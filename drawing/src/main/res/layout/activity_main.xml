@@ -8,13 +8,35 @@
     tools:context = ".MainActivity"
     >
 
-    <com.hsicen.drawing.view.AvatarView
-        android:layout_width = "80dp"
-        android:layout_height = "80dp"
+    <com.hsicen.drawing.view.DashBord
+        android:id = "@+id/dsView"
+        android:layout_width = "match_parent"
+        android:layout_height = "350dp"
         android:layout_margin = "16dp"
-        android:padding = "3dp"
-        android:src = "@mipmap/ic_launcher"
         app:layout_constraintLeft_toLeftOf = "parent"
+        app:layout_constraintLeft_toRightOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        />
+
+    <com.hsicen.drawing.view.PieChart
+        android:id = "@+id/pcView"
+        android:layout_width = "match_parent"
+        android:layout_height = "300dp"
+        android:layout_marginBottom = "16dp"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintLeft_toLeftOf = "parent"
+        app:layout_constraintLeft_toRightOf = "parent"
+        />
+
+    <com.hsicen.drawing.view.AvatarView
+        android:layout_width = "100dp"
+        android:layout_height = "100dp"
+        android:layout_marginBottom = "52dp"
+        android:padding = "4dp"
+        android:src = "@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintLeft_toLeftOf = "parent"
+        app:layout_constraintRight_toRightOf = "parent"
         app:layout_constraintTop_toTopOf = "parent"
         />
 
