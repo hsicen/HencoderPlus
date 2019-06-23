@@ -66,8 +66,8 @@ class DashBord @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
         //绘制指针
         canvas.drawLine(width / 2f, height / 2f,
-                (width / 2f + cos(Math.toRadians(getAngleForMark(10))) * mLength).toFloat(),
-                (height / 2f + sin(Math.toRadians(getAngleForMark(10))) * mLength).toFloat(),
+                (width / 2f + cos(Math.toRadians(getAngleForMark(13))) * mLength).toFloat(),
+                (height / 2f + sin(Math.toRadians(getAngleForMark(13))) * mLength).toFloat(),
                 mPaint)
     }
 
