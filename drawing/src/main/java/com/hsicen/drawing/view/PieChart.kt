@@ -15,7 +15,7 @@ import kotlin.math.sin
  * <p>作者：Hsicen  6/23/2019 11:06 AM
  * <p>邮箱：codinghuang@163.com
  * <p>作用：
- * <p>描述：自定义
+ * <p>描述：自定义饼图
  */
 class PieChart @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     View(context, attrs, defStyleAttr) {
