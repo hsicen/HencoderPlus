@@ -1,6 +1,7 @@
 package com.hsicen.drawing
 
 import android.content.res.Resources
+import android.util.Log
 import android.util.TypedValue
 
 /**
@@ -12,8 +13,14 @@ import android.util.TypedValue
 
 val Float.dp2px: Float
     get() = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
+        TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics
+    )
 
 val Float.sp2px: Float
     get() = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics)
+        TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics
+    )
+
+fun logd(msg: String, tag: String = "hsc") {
+    Log.d(tag, msg)
+}

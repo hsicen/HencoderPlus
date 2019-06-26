@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android = "http://schemas.android.com/apk/res/android"
-    xmlns:app = "http://schemas.android.com/apk/res-auto"
-    xmlns:tools = "http://schemas.android.com/tools"
-    android:layout_width = "match_parent"
-    android:layout_height = "match_parent"
-    tools:context = ".MainActivity"
-    >
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+>
 
-    <com.hsicen.drawing.view.DashBord
-        android:id = "@+id/dsView"
-        android:layout_width = "match_parent"
-        android:layout_height = "350dp"
-        android:layout_margin = "16dp"
-        app:layout_constraintLeft_toLeftOf = "parent"
-        app:layout_constraintLeft_toRightOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent"
-        />
-
-    <com.hsicen.drawing.view.PieChart
-        android:id = "@+id/pcView"
-        android:layout_width = "match_parent"
-        android:layout_height = "300dp"
-        android:layout_marginBottom = "16dp"
-        app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintLeft_toLeftOf = "parent"
-        app:layout_constraintLeft_toRightOf = "parent"
-        />
-
-    <com.hsicen.drawing.view.AvatarView
-        android:layout_width = "100dp"
-        android:layout_height = "100dp"
-        android:layout_marginBottom = "52dp"
-        android:padding = "4dp"
-        android:src = "@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintLeft_toLeftOf = "parent"
-        app:layout_constraintRight_toRightOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent"
-        />
+    <com.hsicen.drawing.view.ImageText
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
