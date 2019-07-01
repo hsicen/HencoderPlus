@@ -11,3 +11,7 @@
 - 自定义属性动画ObjectAnimator
 
 ![图片3-w300](images/img3.png)
+
+- 自定义View颜色和位置渐变
+
+![图片4-w300](images/img4.gif)
