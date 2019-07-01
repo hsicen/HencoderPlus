@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         btnStart.setOnClickListener {
 
-            sportView.startProgress()
+            sportView.startAnimate()
         }
     }
 }
