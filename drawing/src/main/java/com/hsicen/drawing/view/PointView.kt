@@ -43,6 +43,7 @@ class PointView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     }
 
     fun startAnimate() {
+        setLayerType(LAYER_TYPE_HARDWARE, null)
         mPoint = PointF(25f.dp2px, 25f.dp2px)
         mColor = Color.parseColor("#FFFF0000")
 
