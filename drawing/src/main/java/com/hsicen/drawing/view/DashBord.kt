@@ -15,7 +15,7 @@ import kotlin.math.sin
  * <p>描述：仪表盘
  */
 class DashBord @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-        View(context, attrs, defStyleAttr) {
+    View(context, attrs, defStyleAttr) {
 
     private val mRadius = 150f.dp2px
     private val mLeftAngle = 120f
@@ -49,9 +49,16 @@ class DashBord @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
+        val xOffset = mRadius * cos(Math.toRadians(mLeftAngle / 2.0)).toFloat() - paddingLeft * 2
+
         mArcPath.addArc(
-                width / 2 - mRadius, height / 2 - mRadius, width / 2 + mRadius, height / 2 + mRadius,
-                90 + mLeftAngle / 2, 360 - mLeftAngle)
+            width / 2 - mRadius - xOffset,
+            height / 2 - mRadius,
+            width / 2 + mRadius - xOffset,
+            height / 2 + mRadius,
+            180 + mLeftAngle / 2,
+            360 - mLeftAngle
+        )
 
         //绘制扇形
         canvas.drawPath(mArcPath, mPaint)
@@ -62,16 +69,28 @@ class DashBord @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         mPaint.pathEffect = null
 
         mPaint.style = Paint.Style.FILL
-        canvas.drawCircle(width / 2f, height / 2f, 4f.dp2px, mPaint)
+        canvas.drawCircle(width / 2f - xOffset, height / 2f, 4f.dp2px, mPaint)
 
         //绘制指针
-        canvas.drawLine(width / 2f, height / 2f,
-                (width / 2f + cos(Math.toRadians(getAngleForMark(13))) * mLength).toFloat(),
-                (height / 2f + sin(Math.toRadians(getAngleForMark(13))) * mLength).toFloat(),
-                mPaint)
+        canvas.drawLine(
+            width / 2f - xOffset, height / 2f,
+            (width / 2f - xOffset + cos(Math.toRadians(getAngleForMark(13))) * mLength).toFloat(),
+            (height / 2f + sin(Math.toRadians(getAngleForMark(13))) * mLength).toFloat(),
+            mPaint
+        )
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val width = mRadius + paddingLeft + paddingRight + mRadius * cos(Math.toRadians(mLeftAngle / 2.0)).toFloat()
+        val height = mRadius * 2 + paddingTop + paddingBottom
+
+        setMeasuredDimension(
+            resolveSize(width.toInt(), widthMeasureSpec),
+            resolveSize(height.toInt(), heightMeasureSpec)
+        )
     }
 
     private fun getAngleForMark(position: Int): Double {
-        return ((90 + mLeftAngle / 2) + position * (360 - mLeftAngle) / 20).toDouble()
+        return ((180 + mLeftAngle / 2) + position * (360 - mLeftAngle) / 20).toDouble()
     }
 }

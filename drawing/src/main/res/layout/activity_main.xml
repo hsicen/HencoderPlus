@@ -8,22 +8,12 @@
         tools:context=".MainActivity"
 >
 
-    <com.hsicen.drawing.view.PointView
+    <com.hsicen.drawing.view.DashBord
             android:id="@+id/sportView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#2B2B2B"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-    />
-
-    <Button
-            android:id="@+id/btnStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start"
-            android:textAllCaps="false"
-            app:layout_constraintRight_toRightOf="parent"
+            android:padding="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
     />
 
