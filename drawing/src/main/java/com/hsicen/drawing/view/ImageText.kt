@@ -20,7 +20,7 @@ class ImageText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     View(context, attrs, defStyleAttr) {
 
     private val mWidth = 150f.dp2px
-    private val mPadding = 100f.dp2px
+    private val mPadding = 105f.dp2px
     private val mBitmap = getBitmap(mWidth.toInt())
     private val mMetrics = Paint.FontMetrics()
     private val mMeasureWidth = FloatArray(1)
@@ -28,6 +28,11 @@ class ImageText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
     private val mText = "管理员在后台可设置各期开奖奖品，设置限时抽奖是否开启，查看各期开奖中奖情况啊" +
             "派发奖品后可填写物流信息以供用户在前台APP页面中查看管理员在后台可设置各期开奖奖品，设置限" +
+            "时抽奖是否开启，查看各期开奖中奖情况，派发奖品后可填写物流信息以供用户在前台APP页面中查看" +
+            "时抽奖是否开启，查看各期开奖中奖情况，派发奖品后可填写物流信息以供用户在前台APP页面中查看" +
+            "时抽奖是否开启，查看各期开奖中奖情况，派发奖品后可填写物流信息以供用户在前台APP页面中查看" +
+            "时抽奖是否开启，查看各期开奖中奖情况，派发奖品后可填写物流信息以供用户在前台APP页面中查看" +
+            "时抽奖是否开启，查看各期开奖中奖情况，派发奖品后可填写物流信息以供用户在前台APP页面中查看" +
             "时抽奖是否开启，查看各期开奖中奖情况，派发奖品后可填写物流信息以供用户在前台APP页面中查看" +
             "管理员在后台可设置各期开奖奖品，设置限时抽奖是否开启，查看各期开奖中奖情况，派发奖品后可填" +
             "写物流信息以供用户在前台APP页面中查看"

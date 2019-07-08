@@ -8,11 +8,11 @@
         tools:context=".MainActivity"
 >
 
-    <com.hsicen.drawing.view.DashBord
+    <com.hsicen.drawing.view.ImageText
+            android:background="#2b2b2b"
             android:id="@+id/sportView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
     />
