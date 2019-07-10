@@ -27,22 +27,31 @@ class CameraView @JvmOverloads constructor(context: Context, attrs: AttributeSet
         getBitmap(mWidth.toInt())
     }
 
+    init {
+        mCamera.rotateX(45f)
+        mCamera.setLocation(0f, 0f, -8 * (context.resources.displayMetrics.density))
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         //绘制上半部分
         canvas.save()
-        canvas.clipRect(0f, 0f, width / 1f, height / 2f)
+        canvas.translate(width / 2f, height / 2f)
+        canvas.rotate(-30f)
+        canvas.clipRect(-width / 2f, -height / 2f, width / 2f, 0f)
+        canvas.rotate(30f)
+        canvas.translate(-width / 2f, -height / 2f)
         canvas.drawBitmap(mBitmap, width / 2f - mWidth / 2, height / 2f - mWidth / 2f, mPaint)
         canvas.restore()
 
         //绘制下半部分
         canvas.save()
-        canvas.clipRect(0f, height / 2f, width / 1f, height / 1f)
-        mCamera.rotateX(35f)
-        mCamera.setLocation(0f, 0f, -8 * (context.resources.displayMetrics.density))
         canvas.translate(width / 2f, height / 2f)
+        canvas.rotate(-30f)
         mCamera.applyToCanvas(canvas)
+        canvas.clipRect(-width / 2f, 0f, width / 2f, height / 2f)
+        canvas.rotate(30f)
         canvas.translate(-width / 2f, -height / 2f)
         canvas.drawBitmap(mBitmap, width / 2f - mWidth / 2, height / 2f - mWidth / 2f, mPaint)
         canvas.restore()
