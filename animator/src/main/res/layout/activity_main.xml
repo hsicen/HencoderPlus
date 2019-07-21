@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity"
->
-
-    <com.hsicen.animator.PointView
-            android:background="#2b2b2b"
-            android:id="@+id/cameraView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-    />
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "match_parent"
+    tools:context = ".MainActivity"
+    >
 
     <Button
-            android:id="@+id/btnStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="开始"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-    />
+        android:id = "@+id/btnStart"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:text = "开始"
+        app:layout_constraintRight_toRightOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        />
+
+    <com.hsicen.animator.PointView
+        android:id = "@+id/cameraView"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        android:background = "#2b2b2b"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

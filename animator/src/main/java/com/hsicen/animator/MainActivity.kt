@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             val heightPixels = Resources.getSystem().displayMetrics.heightPixels - 25f.dp2px
 
             val positionHolder =
-                PropertyValuesHolder.ofObject("mPoint", PointEvaluator(), PointF(widthPixels, heightPixels))
+                    PropertyValuesHolder.ofObject("mPoint", PointEvaluator(), PointF(widthPixels, heightPixels))
             val colorHolder = PropertyValuesHolder.ofInt("mColor", Color.parseColor("#00ff00"))
             colorHolder.setEvaluator(ArgbEvaluator())
 
