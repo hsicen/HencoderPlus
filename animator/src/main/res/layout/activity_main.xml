@@ -8,12 +8,20 @@
         tools:context=".MainActivity"
 >
 
-    <com.hsicen.drawing.view.CircleView2
-            android:id="@+id/circleView"
+    <com.hsicen.animator.PointView
+            android:background="#2b2b2b"
+            android:id="@+id/cameraView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    />
+
+    <Button
+            android:id="@+id/btnStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="开始"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
