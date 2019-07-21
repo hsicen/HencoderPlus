@@ -1,2 +1,2 @@
-include ':app', ':drawing'
+include ':app', ':drawing', ':animator'
 rootProject.name='HencoderPlus'
