@@ -77,11 +77,11 @@ class CameraView @JvmOverloads constructor(context: Context, attrs: AttributeSet
     private fun getBitmap(width: Int): Bitmap {
         val options = BitmapFactory.Options()
         options.inJustDecodeBounds = true
-        BitmapFactory.decodeResource(resources, R.drawable.hsicen, options)
+        BitmapFactory.decodeResource(resources, R.drawable.avatar_rengwuxian, options)
         options.inJustDecodeBounds = false
         options.inDensity = options.outWidth
         options.inTargetDensity = width
 
-        return BitmapFactory.decodeResource(resources, R.drawable.hsicen, options)
+        return BitmapFactory.decodeResource(resources, R.drawable.avatar_rengwuxian, options)
     }
 }

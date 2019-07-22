@@ -8,8 +8,7 @@
         tools:context=".MainActivity"
 >
 
-    <com.hsicen.animator.PointView
-            android:background="#2b2b2b"
+    <com.hsicen.animator.CameraView
             android:id="@+id/cameraView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
