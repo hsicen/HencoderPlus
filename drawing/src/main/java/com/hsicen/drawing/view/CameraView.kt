@@ -13,11 +13,17 @@ import com.hsicen.drawing.dp2px
  * <p>作用：
  * <p>描述：使用Camera做三维变换
  */
-class CameraView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    View(context, attrs, defStyleAttr) {
+class CameraView @JvmOverloads constructor(
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
 
     private val mWidth = 250f.dp2px
     private val mCamera = Camera()
+
+    private var mRotate = 30f
+    private var mFlipRotate = 20f
 
     private val mPaint by lazy {
         Paint(Paint.ANTI_ALIAS_FLAG)
@@ -38,9 +44,9 @@ class CameraView @JvmOverloads constructor(context: Context, attrs: AttributeSet
         //绘制上半部分
         canvas.save()
         canvas.translate(width / 2f, height / 2f)
-        canvas.rotate(-30f)
+        canvas.rotate(-mFlipRotate)
         canvas.clipRect(-width / 2f, -height / 2f, width / 2f, 0f)
-        canvas.rotate(30f)
+        canvas.rotate(mFlipRotate)
         canvas.translate(-width / 2f, -height / 2f)
         canvas.drawBitmap(mBitmap, width / 2f - mWidth / 2, height / 2f - mWidth / 2f, mPaint)
         canvas.restore()
@@ -48,10 +54,10 @@ class CameraView @JvmOverloads constructor(context: Context, attrs: AttributeSet
         //绘制下半部分
         canvas.save()
         canvas.translate(width / 2f, height / 2f)
-        canvas.rotate(-30f)
+        canvas.rotate(-mFlipRotate)
         mCamera.applyToCanvas(canvas)
         canvas.clipRect(-width / 2f, 0f, width / 2f, height / 2f)
-        canvas.rotate(30f)
+        canvas.rotate(mFlipRotate)
         canvas.translate(-width / 2f, -height / 2f)
         canvas.drawBitmap(mBitmap, width / 2f - mWidth / 2, height / 2f - mWidth / 2f, mPaint)
         canvas.restore()
