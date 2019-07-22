@@ -15,3 +15,7 @@
 - 自定义View颜色和位置渐变
 
 ![图片4-w300](images/img4.gif)
+
+- 翻页效果
+
+![图片5-w300](images/img5.gif)
