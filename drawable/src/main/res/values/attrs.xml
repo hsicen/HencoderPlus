@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MaterialEditText">
+        <attr name="useLabel" format="boolean" />
+        <attr name="label" format="string" />
+        <attr name="labelSize" format="dimension" />
+        <attr name="labelColor" format="color" />
+    </declare-styleable>
+</resources>

@@ -26,6 +26,16 @@ val Float.sp2px: Float
         TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics
     )
 
+val Int.dp2px: Int
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics
+    ).toInt()
+
+val Int.sp2px: Int
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_SP, this.toFloat(), Resources.getSystem().displayMetrics
+    ).toInt()
+
 fun logd(msg: String, tag: String = "hsc") {
     Log.d(tag, msg)
 }
@@ -52,7 +62,11 @@ fun drawable2Bitmap(drawable: Drawable): Bitmap {
     val mBitmap = if (drawable.intrinsicWidth <= 0 || drawable.intrinsicHeight <= 0) {
         Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
     } else {
-        Bitmap.createBitmap(drawable.intrinsicWidth, drawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
+        Bitmap.createBitmap(
+            drawable.intrinsicWidth,
+            drawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        )
     }
 
     val canvas = Canvas(mBitmap)
