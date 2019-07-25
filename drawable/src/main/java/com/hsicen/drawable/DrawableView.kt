@@ -11,8 +11,11 @@ import android.view.View
  * <p>作用：
  * <p>描述：DrawableView
  */
-class DrawableView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    View(context, attrs, defStyleAttr) {
+class DrawableView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
 
     private val mDrawable = MeshDrawable()
 
@@ -20,7 +23,7 @@ class DrawableView @JvmOverloads constructor(context: Context, attrs: AttributeS
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        mDrawable.setBounds(50f.dp2px.toInt(), 50f.dp2px.toInt(), width, height)
+        mDrawable.setBounds(0, 0, width, height)
         mDrawable.draw(canvas)
     }
 
