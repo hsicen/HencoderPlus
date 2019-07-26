@@ -19,3 +19,7 @@
 - 翻页效果
 
 ![图片5-w300](images/img5.gif)
+
+- MaterialEditText效果
+
+![图片6-w300](images/img6.gif)
