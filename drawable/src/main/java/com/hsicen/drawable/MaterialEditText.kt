@@ -95,12 +95,12 @@ class MaterialEditText @JvmOverloads constructor(
         background.getPadding(backPadding)
         if (useLabel) {
             setPadding(
-                paddingLeft,
+                backPadding.left,
                 (backPadding.top.toFloat() + mLabelSize + TEXT_MARGIN).toInt(),
-                paddingRight,
-                paddingBottom
+                backPadding.right,
+                backPadding.bottom
             )
-        } else setPadding(paddingLeft, backPadding.top, paddingRight, paddingBottom)
+        } else setPadding(backPadding.left, backPadding.top, backPadding.right, backPadding.bottom)
     }
 
     override fun onDraw(canvas: Canvas) {
