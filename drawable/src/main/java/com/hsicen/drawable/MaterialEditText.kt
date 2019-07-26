@@ -95,12 +95,15 @@ class MaterialEditText @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        mPaint.alpha = (0xff * labelFraction).toInt()
+        //Paint先设置Alpha，然后再设置颜色，Alpha效果会失效
         mPaint.color = mLabelColor
         mPaint.textSize = mLabelSize
+        mPaint.alpha = (0xff * labelFraction).toInt()
         val extraOffset = HORIZONTAL_OFFSET_EXTRA * (1 - labelFraction)
+
+        val showLength = (mLabel.length * labelFraction).toInt()
         canvas.drawText(
-            mLabel,
+            mLabel.substring(0, showLength),
             HORIZONTAL_OFFSET,
             VERTICAL_OFFSET + extraOffset,
             mPaint
@@ -111,6 +114,6 @@ class MaterialEditText @JvmOverloads constructor(
         private val TEXT_MARGIN = 8.dp2px
         private val VERTICAL_OFFSET = 22f.dp2px
         private val HORIZONTAL_OFFSET = 5f.dp2px
-        private val HORIZONTAL_OFFSET_EXTRA = 16f.dp2px
+        private val HORIZONTAL_OFFSET_EXTRA = 17f.dp2px
     }
 }

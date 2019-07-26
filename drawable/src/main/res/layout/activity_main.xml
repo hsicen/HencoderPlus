@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,10 +32,11 @@
         <com.hsicen.drawable.MaterialEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
                 android:hint="Username"
                 android:paddingStart="5dp"
+                app:labelColor="@color/colorAccent"
+                app:labelSize="12sp"
+                app:useLabel="true"
                 />
     </FrameLayout>
 
