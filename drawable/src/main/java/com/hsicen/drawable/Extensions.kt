@@ -52,6 +52,8 @@ fun drawable2Bitmap(resId: Int): Bitmap {
 /*** resource file to bitmap
  * it works for xml type drawable
  * use canvas to drawable a bitmap
+ *
+ * create a bitmap and canvas, and then use drawable to draw canvas
  */
 fun drawable2Bitmap(drawable: Drawable): Bitmap {
 
@@ -71,6 +73,7 @@ fun drawable2Bitmap(drawable: Drawable): Bitmap {
 
     val canvas = Canvas(mBitmap)
     drawable.setBounds(0, 0, canvas.width, canvas.height)
+    drawable.draw(canvas)
 
     return mBitmap
 }
