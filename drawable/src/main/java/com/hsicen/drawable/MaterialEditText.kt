@@ -27,10 +27,28 @@ class MaterialEditText @JvmOverloads constructor(
         Paint(Paint.ANTI_ALIAS_FLAG)
     }
 
-    private var useLabel = false
-    private var mLabel = ""
-    private var mLabelSize = 0f
-    private var mLabelColor = Color.BLACK
+    var useLabel = false
+        set(value) {
+            if (field != value) {
+                field = value
+                onLabelChanged()
+            }
+        }
+    var mLabel = ""
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var mLabelSize = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var mLabelColor = Color.BLACK
+        set(value) {
+            field = value
+            invalidate()
+        }
     private var backPadding = Rect()
 
     /*** 标记是否显示悬浮标签*/
@@ -83,13 +101,6 @@ class MaterialEditText @JvmOverloads constructor(
                 paddingBottom
             )
         } else setPadding(paddingLeft, backPadding.top, paddingRight, paddingBottom)
-    }
-
-    fun useLabel(isUseLabel: Boolean) {
-        if (this.useLabel != isUseLabel) {
-            this.useLabel = isUseLabel
-            onLabelChanged()
-        }
     }
 
     override fun onDraw(canvas: Canvas) {
