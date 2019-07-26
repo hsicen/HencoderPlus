@@ -36,6 +36,7 @@
                 android:paddingStart="5dp"
                 app:labelColor="@color/colorAccent"
                 app:labelSize="12sp"
+                app:label="请输入你的名字"
                 app:useLabel="true"
                 />
     </FrameLayout>
