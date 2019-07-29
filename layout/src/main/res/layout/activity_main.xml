@@ -1,19 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
 	xmlns:android = "http://schemas.android.com/apk/res/android"
-	xmlns:app = "http://schemas.android.com/apk/res-auto"
 	xmlns:tools = "http://schemas.android.com/tools"
 	android:layout_width = "match_parent"
 	android:layout_height = "match_parent"
-	tools:context = ".MainActivity">
+	android:orientation = "vertical">
 
-	<com.hsicen.layout.SquareImageView
-		android:layout_width = "300dp"
-		android:layout_height = "400dp"
-		android:background = "@color/colorAccent"
-		app:layout_constraintBottom_toBottomOf = "parent"
-		app:layout_constraintLeft_toLeftOf = "parent"
-		app:layout_constraintRight_toRightOf = "parent"
-		app:layout_constraintTop_toTopOf = "parent" />
+	<com.hsicen.layout.TagLayout
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		tools:context = ".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "北京市" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "天津市" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "上海市" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "重庆市" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "河北省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "山西省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "辽宁省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "吉林省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "黑龙江省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "江苏省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "浙江省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "安徽省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "福建省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "江西省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "山东省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "河南省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "湖北省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "湖南省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "广东省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "海南省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "四川省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "贵州省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "云南省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "陕西省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "甘肃省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "青海省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "台湾省" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "内蒙古自治区" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "广西壮族自治区" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "西藏自治区" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "宁夏回族自治区" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "新疆维吾尔自治区" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "香港特别行政区" />
+
+		<com.hsicen.layout.ColorTextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_margin = "5dp"
+			android:text = "澳门特别行政区" />
+
+	</com.hsicen.layout.TagLayout>
+</androidx.core.widget.NestedScrollView>
