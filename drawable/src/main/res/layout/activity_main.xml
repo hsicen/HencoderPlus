@@ -1,43 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MainActivity"
-        >
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent"
+	android:orientation = "vertical"
+	tools:context = ".MainActivity">
 
+	<FrameLayout
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:background = "#3000ff00">
 
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#3000ff00"
-            >
+		<androidx.appcompat.widget.AppCompatEditText
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+	</FrameLayout>
 
-    </FrameLayout>
+	<FrameLayout
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:background = "#30ff0000">
 
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#30ff0000"
-            >
-
-        <com.hsicen.drawable.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Username"
-                app:label="请输入你的名字"
-                app:labelColor="@color/colorAccent"
-                app:labelSize="12sp"
-                app:useLabel="true"
-                />
-    </FrameLayout>
+		<com.hsicen.drawable.MaterialEditText
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content"
+			android:hint = "Username"
+			app:label = "请输入你的名字"
+			app:labelColor = "@color/colorAccent"
+			app:labelSize = "12sp"
+			app:useLabel = "true" />
+	</FrameLayout>
 
 </LinearLayout>
