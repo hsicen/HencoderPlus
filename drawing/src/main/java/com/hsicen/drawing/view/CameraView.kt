@@ -14,9 +14,9 @@ import com.hsicen.drawing.dp2px
  * <p>描述：使用Camera做三维变换
  */
 class CameraView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
     private val mWidth = 250f.dp2px

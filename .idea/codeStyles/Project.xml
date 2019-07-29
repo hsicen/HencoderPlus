@@ -4,12 +4,11 @@
       <option name="LAYOUT_SETTINGS">
         <value>
           <option name="INSERT_LINE_BREAK_BEFORE_NAMESPACE_DECLARATION" value="true" />
-          <option name="INSERT_LINE_BREAK_AFTER_LAST_ATTRIBUTE" value="true" />
         </value>
       </option>
       <option name="MANIFEST_SETTINGS">
         <value>
-          <option name="WRAP_ATTRIBUTES" value="1" />
+          <option name="WRAP_ATTRIBUTES" value="4" />
           <option name="INSERT_LINE_BREAK_BEFORE_NAMESPACE_DECLARATION" value="true" />
         </value>
       </option>
@@ -20,7 +19,7 @@
       </option>
       <option name="OTHER_SETTINGS">
         <value>
-          <option name="WRAP_ATTRIBUTES" value="1" />
+          <option name="WRAP_ATTRIBUTES" value="4" />
           <option name="INSERT_LINE_BREAK_BEFORE_NAMESPACE_DECLARATION" value="true" />
         </value>
       </option>
@@ -31,7 +30,15 @@
     <MarkdownNavigatorCodeStyleSettings>
       <option name="RIGHT_MARGIN" value="72" />
     </MarkdownNavigatorCodeStyleSettings>
+    <XML>
+      <option name="XML_SPACE_AROUND_EQUALITY_IN_ATTRIBUTE" value="true" />
+    </XML>
     <codeStyleSettings language="XML">
+      <indentOptions>
+        <option name="CONTINUATION_INDENT_SIZE" value="4" />
+        <option name="USE_TAB_CHARACTER" value="true" />
+        <option name="SMART_TABS" value="true" />
+      </indentOptions>
       <arrangement>
         <rules>
           <section>
