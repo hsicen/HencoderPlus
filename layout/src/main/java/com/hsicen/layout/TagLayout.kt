@@ -1,9 +1,9 @@
 package com.hsicen.layout
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.core.view.marginBottom
 import androidx.core.view.marginLeft
@@ -29,7 +29,6 @@ class TagLayout @JvmOverloads constructor(
     }
 
     //重写onMeasure  计算出每个子View的尺寸和左上右下的位置值
-    @SuppressLint("DrawAllocation")
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         var usedWidth = 0  //记录使用的宽度(ViewGroup)
         var usedHeight = 0 //记录使用的高度(ViewGroup)
@@ -90,6 +89,10 @@ class TagLayout @JvmOverloads constructor(
 
     override fun generateLayoutParams(attrs: AttributeSet): LayoutParams {
         return MarginLayoutParams(context, attrs)
+    }
+
+    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+        return super.onInterceptTouchEvent(ev)
     }
 
 }

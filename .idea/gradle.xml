@@ -13,6 +13,8 @@
             <option value="$PROJECT_DIR$/drawable" />
             <option value="$PROJECT_DIR$/drawing" />
             <option value="$PROJECT_DIR$/layout" />
+            <option value="$PROJECT_DIR$/scalableimageview" />
+            <option value="$PROJECT_DIR$/touch" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
