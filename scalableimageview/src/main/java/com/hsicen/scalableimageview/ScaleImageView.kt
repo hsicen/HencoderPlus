@@ -30,6 +30,7 @@ class ScaleImageView @JvmOverloads constructor(
     private val mBitmapWidth = 250f.dp2px
     private val mBitmap = getBitmap(mBitmapWidth.toInt())
     private val mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val mScale = 1.5f
 
     private var offsetY = 0f
     private var offsetX = 0f
@@ -115,7 +116,8 @@ class ScaleImageView @JvmOverloads constructor(
                 -(mBitmap.width * mLargeScale - width).toInt() / 2,
                 (mBitmap.width * mLargeScale - width).toInt() / 2,
                 -(mBitmap.height * mLargeScale - height).toInt() / 2,
-                (mBitmap.height * mLargeScale - height).toInt() / 2
+                (mBitmap.height * mLargeScale - height).toInt() / 2,
+                50, 50
             )
 
             postOnAnimation(this)
@@ -146,6 +148,17 @@ class ScaleImageView @JvmOverloads constructor(
         if (isScale) {
             offsetX -= distanceX
             offsetY -= distanceY
+
+            mScroller.fling(
+                offsetX.toInt(), offsetY.toInt(), 1, 1,
+                -(mBitmap.width * mLargeScale - width).toInt() / 2,
+                (mBitmap.width * mLargeScale - width).toInt() / 2,
+                -(mBitmap.height * mLargeScale - height).toInt() / 2,
+                (mBitmap.height * mLargeScale - height).toInt() / 2,
+                50, 50
+            )
+
+            postOnAnimation(this)
         }
         return false
     }
@@ -154,7 +167,7 @@ class ScaleImageView @JvmOverloads constructor(
         super.onSizeChanged(w, h, oldw, oldh)
 
         mSmallScale = width / mBitmap.width.toFloat()
-        mLargeScale = height / mBitmap.height.toFloat()
+        mLargeScale = height * mScale / mBitmap.height.toFloat()
     }
 
     override fun onDraw(canvas: Canvas) {
