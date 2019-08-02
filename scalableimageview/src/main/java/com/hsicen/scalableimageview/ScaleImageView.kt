@@ -111,7 +111,7 @@ class ScaleImageView @JvmOverloads constructor(
         private val mScroller = OverScroller(context)
 
         override fun run() {
-            //快速滑动，界面更新
+            //判断动画是否在进行中，快速滑动，界面更新
             if (mScroller.computeScrollOffset()) {
                 //刷新位置
                 offsetX = mScroller.currX.toFloat()
@@ -158,8 +158,7 @@ class ScaleImageView @JvmOverloads constructor(
                     -((mBitmap.width * mLargeScale - width) / 2).toInt(),
                     ((mBitmap.width * mLargeScale - width) / 2).toInt(),
                     -((mBitmap.height * mLargeScale - height) / 2).toInt(),
-                    ((mBitmap.height * mLargeScale - height) / 2).toInt(),
-                    50, 50
+                    ((mBitmap.height * mLargeScale - height) / 2).toInt()
                 )
 
                 postOnAnimation(this)
@@ -178,25 +177,34 @@ class ScaleImageView @JvmOverloads constructor(
             if (isScale) {
                 //按下位置更新和滑动界面限制
                 offsetX -= distanceX
-                offsetX = min(offsetX, (mBitmap.width * mLargeScale - width) / 2)
-                offsetX = max(offsetX, -(mBitmap.width * mLargeScale - width) / 2)
-
                 offsetY -= distanceY
-                offsetY = min(offsetY, (mBitmap.height * mLargeScale - height) / 2)
-                offsetY = max(offsetY, -(mBitmap.height * mLargeScale - height) / 2)
 
+                fixPosition()
                 invalidate()
             }
 
             return false
         }
 
+        private fun fixPosition() {
+            offsetX = min(offsetX, (mBitmap.width * mLargeScale - width) / 2)
+            offsetX = max(offsetX, -(mBitmap.width * mLargeScale - width) / 2)
+
+            offsetY = min(offsetY, (mBitmap.height * mLargeScale - height) / 2)
+            offsetY = max(offsetY, -(mBitmap.height * mLargeScale - height) / 2)
+        }
+
         /*** 双击时调用此方法*/
-        override fun onDoubleTap(e: MotionEvent?): Boolean {
+        override fun onDoubleTap(e: MotionEvent): Boolean {
             isScale = if (isScale) {
                 mAnimator.reverse()
                 false
             } else {
+                //设置以点击处为中心放大
+                offsetX = (e.x - width / 2f) * (1 - mLargeScale / mSmallScale)
+                offsetY = (e.y - height / 2f) * (1 - mLargeScale / mSmallScale)
+
+                fixPosition()
                 mAnimator.start()
                 true
             }
