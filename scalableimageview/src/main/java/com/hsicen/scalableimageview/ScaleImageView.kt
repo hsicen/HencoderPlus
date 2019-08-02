@@ -12,6 +12,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.OverScroller
 import androidx.core.view.GestureDetectorCompat
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * <p>作者：Hsicen  2019/7/30 0:34
@@ -23,17 +25,22 @@ class ScaleImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr), GestureDetector.OnGestureListener,
-    GestureDetector.OnDoubleTapListener, Runnable {
+) : View(context, attrs, defStyleAttr) {
 
-    private val mGestureDetector: GestureDetectorCompat = GestureDetectorCompat(context, this)
+    private val mGestureListener = HGestureListener()
+    private val mGestureDetector: GestureDetectorCompat =
+        GestureDetectorCompat(context, mGestureListener)
     private val mBitmapWidth = 250f.dp2px
     private val mBitmap = getBitmap(mBitmapWidth.toInt())
     private val mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val mScale = 1.5f
+    private val mOverScale = 1.3f
+
+    private var transX = 0f
+    private var transY = 0f
 
     private var offsetY = 0f
     private var offsetX = 0f
+
     private var isScale = false
     private var mSmallScale = 0f
     private var mLargeScale = 0f
@@ -47,127 +54,22 @@ class ScaleImageView @JvmOverloads constructor(
     private val mAnimator by lazy {
         ObjectAnimator.ofFloat(this, "mFraction", 0f, 1f)
     }
-    //惯性滑动处理
-    private val mScroller = OverScroller(context)
-
-    //双击事件处理
-    override fun onDoubleTap(e: MotionEvent?): Boolean {
-        isScale = if (isScale) {
-            mAnimator.reverse()
-            false
-        } else {
-            mAnimator.start()
-            true
-        }
-
-        return false
-    }
-
-    //双击按下后手指不离开屏幕回调此方法
-    override fun onDoubleTapEvent(e: MotionEvent?): Boolean {
-
-        return false
-    }
-
-    //单击事件回调此方法
-    override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
-
-        return false
-    }
-
-    //按下100ms后回调此方法
-    override fun onShowPress(e: MotionEvent?) {
-
-    }
-
-    //长按600ms后回调此方法
-    override fun onLongPress(e: MotionEvent?) {
-
-    }
-
-    //单击抬起手指后回调此方法
-    override fun onSingleTapUp(e: MotionEvent?): Boolean {
-
-        return false
-    }
-
-    //每次按下手指调用此方法
-    override fun onDown(e: MotionEvent?): Boolean {
-
-        //返回true，确认接管每次事件
-        return true
-    }
-
-    //按下后迅速抬起调用此方法
-    override fun onFling(
-        e1: MotionEvent?,
-        e2: MotionEvent?,
-        velocityX: Float,
-        velocityY: Float
-    ): Boolean {
-        //e1  该事件序列的按下事件
-        //e2   触发滑动事件的当前回调事件
-        //velocityX  当前x轴的速度(单位s)
-        //velocityY   当前y轴的速度(单位s)
-
-        if (isScale) {
-            mScroller.fling(
-                offsetX.toInt(), offsetY.toInt(), velocityX.toInt(), velocityY.toInt(),
-                -(mBitmap.width * mLargeScale - width).toInt() / 2,
-                (mBitmap.width * mLargeScale - width).toInt() / 2,
-                -(mBitmap.height * mLargeScale - height).toInt() / 2,
-                (mBitmap.height * mLargeScale - height).toInt() / 2,
-                50, 50
-            )
-
-            postOnAnimation(this)
-        }
-
-        return false
-    }
-
-    override fun run() {
-        if (mScroller.computeScrollOffset()) {
-            //刷新位置
-            offsetX = mScroller.currX.toFloat()
-            offsetY = mScroller.currY.toFloat()
-            invalidate()
-
-            postOnAnimation(this)
-        }
-    }
-
-    //按下滑动调用此方法
-    override fun onScroll(
-        e1: MotionEvent?,
-        e2: MotionEvent?,
-        distanceX: Float,
-        distanceY: Float
-    ): Boolean {
-        //记录按下的位置
-        if (isScale) {
-            offsetX -= distanceX
-            offsetY -= distanceY
-
-            mScroller.fling(
-                offsetX.toInt(), offsetY.toInt(), 1, 1,
-                -(mBitmap.width * mLargeScale - width).toInt() / 2,
-                (mBitmap.width * mLargeScale - width).toInt() / 2,
-                -(mBitmap.height * mLargeScale - height).toInt() / 2,
-                (mBitmap.height * mLargeScale - height).toInt() / 2,
-                50, 50
-            )
-
-            postOnAnimation(this)
-        }
-        return false
-    }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
 
-        mSmallScale = width / mBitmap.width.toFloat()
-        mLargeScale = height * mScale / mBitmap.height.toFloat()
+        transX = (width - mBitmapWidth) / 2f
+        transY = (height - mBitmapWidth) / 2f
+
+        if (mBitmap.width.toFloat() / mBitmap.height > width.toFloat() / height) {
+            //比较胖的图片
+            mSmallScale = width / mBitmap.width.toFloat()
+            mLargeScale = height * mOverScale / mBitmap.height.toFloat()
+        } else {
+            //比较修长的图片
+            mSmallScale = height * mOverScale / mBitmap.height.toFloat()
+            mLargeScale = width / mBitmap.width.toFloat()
+        }
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -180,7 +82,7 @@ class ScaleImageView @JvmOverloads constructor(
         val scale = mSmallScale + (mLargeScale - mSmallScale) * mFraction
         canvas.scale(scale, scale, width / 2f, height / 2f)
         //初始偏移到中心
-        canvas.translate((width - mBitmapWidth) / 2f, (height - mBitmapWidth) / 2f)
+        canvas.translate(transX, transY)
         canvas.drawBitmap(mBitmap, 0f, 0f, mPaint)
     }
 
@@ -198,5 +100,121 @@ class ScaleImageView @JvmOverloads constructor(
         options.inTargetDensity = width
 
         return BitmapFactory.decodeResource(resources, R.drawable.avatar_rengwuxian, options)
+    }
+
+    /**
+     * 自定义手势监听器
+     */
+    inner class HGestureListener : GestureDetector.OnGestureListener,
+        GestureDetector.OnDoubleTapListener, Runnable {
+        //惯性滑动处理
+        private val mScroller = OverScroller(context)
+
+        override fun run() {
+            //快速滑动，界面更新
+            if (mScroller.computeScrollOffset()) {
+                //刷新位置
+                offsetX = mScroller.currX.toFloat()
+                offsetY = mScroller.currY.toFloat()
+                invalidate()
+
+                postOnAnimation(this)
+            }
+        }
+
+        /*** 每次 ACTION_DOWN 事件出现的时候都会被调用*/
+        override fun onDown(e: MotionEvent?): Boolean {
+
+            //在这⾥里里返回 true 可以保证必然消费掉事件
+            return true
+        }
+
+        /*** ⽤户按下 100ms 不松⼿后会被调用，⽤于标记「可以显示按下状态了」*/
+        override fun onShowPress(e: MotionEvent?) {
+
+        }
+
+        /*** ⽤户单击时被调用(长按后松手不会调用、双击的第⼆下时不会被调用)*/
+        override fun onSingleTapUp(e: MotionEvent?): Boolean {
+
+            return false
+        }
+
+        /*** ⽤户长按（按下 500ms 不松手）后会被调用*/
+        override fun onLongPress(e: MotionEvent?) {
+
+        }
+
+        /*** 按下，抬起后  惯性滑动调用此方法*/
+        override fun onFling(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            velocityX: Float,
+            velocityY: Float
+        ): Boolean {
+            if (isScale) {
+                mScroller.fling(
+                    offsetX.toInt(), offsetY.toInt(), velocityX.toInt(), velocityY.toInt(),
+                    -((mBitmap.width * mLargeScale - width) / 2).toInt(),
+                    ((mBitmap.width * mLargeScale - width) / 2).toInt(),
+                    -((mBitmap.height * mLargeScale - height) / 2).toInt(),
+                    ((mBitmap.height * mLargeScale - height) / 2).toInt(),
+                    50, 50
+                )
+
+                postOnAnimation(this)
+            }
+
+            return false
+        }
+
+        /*** 按下不松开滑动调用此方法*/
+        override fun onScroll(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            distanceX: Float,
+            distanceY: Float
+        ): Boolean {
+            if (isScale) {
+                //按下位置更新和滑动界面限制
+                offsetX -= distanceX
+                offsetX = min(offsetX, (mBitmap.width * mLargeScale - width) / 2)
+                offsetX = max(offsetX, -(mBitmap.width * mLargeScale - width) / 2)
+
+                offsetY -= distanceY
+                offsetY = min(offsetY, (mBitmap.height * mLargeScale - height) / 2)
+                offsetY = max(offsetY, -(mBitmap.height * mLargeScale - height) / 2)
+
+                invalidate()
+            }
+
+            return false
+        }
+
+        /*** 双击时调用此方法*/
+        override fun onDoubleTap(e: MotionEvent?): Boolean {
+            isScale = if (isScale) {
+                mAnimator.reverse()
+                false
+            } else {
+                mAnimator.start()
+                true
+            }
+
+            return false
+        }
+
+        /*** 双击后移动抬起后调用此方法*/
+        override fun onDoubleTapEvent(e: MotionEvent?): Boolean {
+
+            return false
+        }
+
+        /*** 按下抬起，并且在规定时间内不按下调用此方法*/
+        override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
+
+            return false
+        }
+
     }
 }
