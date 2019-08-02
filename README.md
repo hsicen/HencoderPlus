@@ -27,3 +27,7 @@
 - 自定义布局，手写TagLayout
 
 ![图片7-w300](images/img7.png)
+
+- 双向滑动缩放的ImageView
+
+![图片8-w300](images/img8.gif)
