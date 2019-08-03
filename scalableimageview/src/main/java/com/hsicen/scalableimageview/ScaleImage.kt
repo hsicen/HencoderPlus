@@ -26,7 +26,7 @@ class ScaleImage @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr), Runnable {
     private val mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val mBitmap = getBitmap(200f.dp2px.toInt())
+    private lateinit var mBitmap: Bitmap
 
     //偏移
     private var transX = 0f
@@ -130,10 +130,10 @@ class ScaleImage @JvmOverloads constructor(
 
     init {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ScaleImage)
-//        val mResourceId =
-//            typedArray.getInt(R.styleable.ScaleImage_src, 0)
+        val mResourceId =
+            typedArray.getResourceId(R.styleable.ScaleImage_src, 0)
         typedArray.recycle()
-        //mBitmap = getBitmap(200f.dp2px.toInt())
+        mBitmap = BitmapFactory.decodeResource(resources, mResourceId)
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -184,17 +184,6 @@ class ScaleImage @JvmOverloads constructor(
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         return mGestureDetector.onTouchEvent(event)
-    }
-
-    private fun getBitmap(width: Int): Bitmap {
-        val options = BitmapFactory.Options()
-        options.inJustDecodeBounds = true
-        BitmapFactory.decodeResource(resources, R.drawable.avatar_rengwuxian, options)
-        options.inJustDecodeBounds = false
-        options.inDensity = options.outWidth
-        options.inTargetDensity = width
-
-        return BitmapFactory.decodeResource(resources, R.drawable.avatar_rengwuxian, options)
     }
 
 }
