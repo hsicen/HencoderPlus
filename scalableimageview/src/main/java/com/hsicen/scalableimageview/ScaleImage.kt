@@ -9,6 +9,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.GestureDetector
 import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.view.View
 import android.widget.OverScroller
 import kotlin.math.max
@@ -40,7 +41,7 @@ class ScaleImage @JvmOverloads constructor(
     private var largeScale = 0f
     private var isScale = false
 
-    //缩放动画
+    //缩放
     private var mFraction = 0f
         set(value) {
             field = value
@@ -50,10 +51,12 @@ class ScaleImage @JvmOverloads constructor(
         ObjectAnimator.ofFloat(this, "mFraction", 0f, 1f)
     }
 
-    //滑动
-    private val mScroller by lazy {
-        OverScroller(context)
+    private val mScaleDetector by lazy {ObjectAnimator.ofFloat(this, "mFraction", 0f, 1f)
+        ScaleGestureDetector(context, HScaleListener())
     }
+
+    //滑动
+    private val mScroller by lazy { OverScroller(context) }
     private val mGestureDetector =
         GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
             override fun onDown(e: MotionEvent?): Boolean {
@@ -66,9 +69,10 @@ class ScaleImage @JvmOverloads constructor(
                     mAnimator.reverse()
                     isScale = false
                 } else {
-                    //指定缩放区域
-                    offsetX = width / 2 - e.x
-                    offsetY = height / 2 - e.y
+                    //缩放后手指点击的位置
+                    offsetX = (e.x - width / 2f) * (1 - largeScale / smallScale)
+                    offsetY = (e.y - height / 2f) * (1 - largeScale / smallScale)
+
                     fixPosition()
 
                     mAnimator.start()
@@ -184,6 +188,33 @@ class ScaleImage @JvmOverloads constructor(
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         return mGestureDetector.onTouchEvent(event)
+    }
+
+    /**
+     * 双指缩放监听器
+     */
+    inner class HScaleListener : ScaleGestureDetector.OnScaleGestureListener {
+
+        /*** 开始缩放回调监听*/
+        override fun onScaleBegin(detector: ScaleGestureDetector?): Boolean {
+            //可以做一些准备工作  必须返回true后面的事件才会回调
+
+
+            return true
+        }
+
+        /*** 缩放回调监听*/
+        override fun onScale(detector: ScaleGestureDetector?): Boolean {
+            //具体缩放逻辑处理
+
+        }
+
+        /*** 缩放结束回调监听*/
+        override fun onScaleEnd(detector: ScaleGestureDetector?) {
+            //做一些收尾工作
+
+
+        }
     }
 
 }
