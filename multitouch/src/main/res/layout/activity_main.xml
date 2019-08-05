@@ -7,7 +7,7 @@
 	android:layout_height = "match_parent"
 	tools:context = ".MainActivity">
 
-	<com.hsicen.multitouch.MultiTouchView
+	<com.hsicen.multitouch.MultiTouchTestView
 		android:layout_width = "match_parent"
 		android:layout_height = "match_parent"
 		app:layout_constraintBottom_toBottomOf = "parent"

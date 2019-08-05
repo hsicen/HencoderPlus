@@ -80,7 +80,9 @@ class MultiTouchView @JvmOverloads constructor(
                 //判断抬起的手指是否为当前起作用的手指
                 if (trackPointerId == event.getPointerId(actionIndex)) {
 
+                    // pointerCount 包含此刻抬起的手指
                     actionIndex = if (actionIndex == event.pointerCount - 1) {
+                        //抬起的手指是最后按下的手指
                         event.pointerCount - 2
                     } else event.pointerCount - 1
 
