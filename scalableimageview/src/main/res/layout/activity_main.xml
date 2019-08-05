@@ -12,4 +12,4 @@
 		android:layout_height = "match_parent"
 		app:src = "@drawable/avatar_rengwuxian" />
 
-</LinearLayout>ObjectAnimator.ofFloat(this, "mFraction", 0f, 1f)
+</LinearLayout>
