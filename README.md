@@ -31,3 +31,7 @@
 - 双向滑动缩放的ImageView
 
 ![图片8-w300](images/img8.gif)
+
+- 多点触控
+
+![图片9-w300](images/img9.gif)
