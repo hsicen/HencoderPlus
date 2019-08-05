@@ -25,7 +25,7 @@ class ScaleImage @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr), Runnable {
+) : View(context, attrs, defStyleAttr) {
     private val mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private lateinit var mBitmap: Bitmap
 
@@ -42,31 +42,28 @@ class ScaleImage @JvmOverloads constructor(
     private var isScale = false
 
     //缩放
-    private var mFraction = 0f
+    private var mAnimator: ObjectAnimator? = null
+    private var currentScale = 0f
         set(value) {
             field = value
             invalidate()
         }
-    private val mAnimator by lazy {
-        ObjectAnimator.ofFloat(this, "mFraction", 0f, 1f)
-    }
 
-    private val mScaleDetector by lazy {ObjectAnimator.ofFloat(this, "mFraction", 0f, 1f)
+    /*** 双指缩放*/
+    private val mScaleDetector by lazy {
         ScaleGestureDetector(context, HScaleListener())
     }
 
     //滑动
     private val mScroller by lazy { OverScroller(context) }
+    private val mFlingRunnable by lazy { HRunner() }
     private val mGestureDetector =
         GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
-            override fun onDown(e: MotionEvent?): Boolean {
-
-                return true
-            }
+            override fun onDown(e: MotionEvent?) = true
 
             override fun onDoubleTap(e: MotionEvent): Boolean {
                 if (isScale) {
-                    mAnimator.reverse()
+                    getAnimator().reverse()
                     isScale = false
                 } else {
                     //缩放后手指点击的位置
@@ -74,8 +71,7 @@ class ScaleImage @JvmOverloads constructor(
                     offsetY = (e.y - height / 2f) * (1 - largeScale / smallScale)
 
                     fixPosition()
-
-                    mAnimator.start()
+                    getAnimator().start()
                     isScale = true
                 }
 
@@ -123,11 +119,9 @@ class ScaleImage @JvmOverloads constructor(
                         -((mBitmap.height * largeScale - height) / 2).toInt(),
                         ((mBitmap.height * largeScale - height) / 2).toInt()
                     )
-
                     //主线程更新UI
-                    postOnAnimation(this@ScaleImage)
+                    postOnAnimation(mFlingRunnable)
                 }
-
                 return false
             }
         })
@@ -156,64 +150,99 @@ class ScaleImage @JvmOverloads constructor(
             smallScale = height / mBitmap.height.toFloat()
             largeScale = width / mBitmap.width.toFloat() * OVER_SCALE
         }
+
+        currentScale = smallScale
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         //滑动偏移
-        canvas.translate(offsetX * mFraction, offsetY * mFraction)
-
-        //计算缩放比例
-        val scale = smallScale + (largeScale - smallScale) * mFraction
-
+        val scaleFraction = (currentScale - smallScale) / (largeScale - smallScale)
+        canvas.translate(offsetX * scaleFraction, offsetY * scaleFraction)
         //缩放
-        canvas.scale(scale, scale, width / 2f, height / 2f)
+        canvas.scale(currentScale, currentScale, width / 2f, height / 2f)
         //平移到中心
         canvas.translate(transX, transY)
         canvas.drawBitmap(mBitmap, 0f, 0f, mPaint)
     }
 
-    override fun run() {
-        //判断是否滑动中  滑动位置更新
-        if (mScroller.computeScrollOffset()) {
-            offsetX = mScroller.currX.toFloat()
-            offsetY = mScroller.currY.toFloat()
-
-            invalidate()
-            postOnAnimation(this)
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        var result = mScaleDetector.onTouchEvent(event)
+        if (!mScaleDetector.isInProgress) {
+            result = mGestureDetector.onTouchEvent(event)
         }
+
+        return result
     }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
+    private fun getAnimator(): ObjectAnimator {
+        if (mAnimator == null) {
+            mAnimator = ObjectAnimator.ofFloat(this, "currentScale", 0f)
+        }
+        mAnimator!!.setFloatValues(smallScale, largeScale)
 
-        return mGestureDetector.onTouchEvent(event)
+        return mAnimator!!
     }
 
     /**
      * 双指缩放监听器
      */
     inner class HScaleListener : ScaleGestureDetector.OnScaleGestureListener {
+        /*** 初始缩放比例*/
+        private var initialScale = 0f
 
         /*** 开始缩放回调监听*/
-        override fun onScaleBegin(detector: ScaleGestureDetector?): Boolean {
+        override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
             //可以做一些准备工作  必须返回true后面的事件才会回调
-
+            initialScale = currentScale
 
             return true
         }
 
         /*** 缩放回调监听*/
-        override fun onScale(detector: ScaleGestureDetector?): Boolean {
+        override fun onScale(detector: ScaleGestureDetector): Boolean {
             //具体缩放逻辑处理
+            currentScale = initialScale * detector.scaleFactor
+            logd("currentScale:  $currentScale")
 
+            //限制最小缩放倍数
+            if (currentScale < smallScale) {
+                currentScale = smallScale
+            }
+
+            //限制最大缩放倍数
+            if (currentScale > largeScale) {
+                currentScale = largeScale
+                isScale = true
+            }
+
+            invalidate()
+
+            return false
         }
 
         /*** 缩放结束回调监听*/
-        override fun onScaleEnd(detector: ScaleGestureDetector?) {
+        override fun onScaleEnd(detector: ScaleGestureDetector) {
             //做一些收尾工作
 
 
+        }
+    }
+
+    /**
+     * 滑动UI更新线程
+     */
+    inner class HRunner : Runnable {
+        override fun run() {
+            //判断是否滑动中  滑动位置更新
+            if (mScroller.computeScrollOffset()) {
+                offsetX = mScroller.currX.toFloat()
+                offsetY = mScroller.currY.toFloat()
+
+                invalidate()
+                postOnAnimation(this)
+            }
         }
     }
 
