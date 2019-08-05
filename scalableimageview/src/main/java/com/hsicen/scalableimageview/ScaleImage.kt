@@ -157,7 +157,7 @@ class ScaleImage @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        //滑动偏移
+        //滑动偏移   最大倍数到最小倍数之间的缩放比例
         val scaleFraction = (currentScale - smallScale) / (largeScale - smallScale)
         canvas.translate(offsetX * scaleFraction, offsetY * scaleFraction)
         //缩放
@@ -168,6 +168,7 @@ class ScaleImage @JvmOverloads constructor(
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
+        /*** 手势处理和双指缩放处理*/
         var result = mScaleDetector.onTouchEvent(event)
         if (!mScaleDetector.isInProgress) {
             result = mGestureDetector.onTouchEvent(event)
@@ -214,7 +215,6 @@ class ScaleImage @JvmOverloads constructor(
             //限制最大缩放倍数
             if (currentScale > largeScale) {
                 currentScale = largeScale
-                isScale = true
             }
 
             invalidate()
@@ -225,7 +225,6 @@ class ScaleImage @JvmOverloads constructor(
         /*** 缩放结束回调监听*/
         override fun onScaleEnd(detector: ScaleGestureDetector) {
             //做一些收尾工作
-
 
         }
     }
