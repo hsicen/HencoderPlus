@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent"
+	tools:context = ".MainActivity">
+
+	<!--宽高百分比-->
+	<TextView
+		android:id = "@+id/tv1"
+		android:layout_width = "0dp"
+		android:layout_height = "0dp"
+		android:layout_marginStart = "32dp"
+		android:layout_marginTop = "16dp"
+		android:background = "@color/colorPrimaryDark"
+		android:gravity = "center"
+		android:text = "Hello World!"
+		android:textColor = "@color/colorAccent"
+		app:layout_constraintHeight_default = "percent"
+		app:layout_constraintHeight_percent = "0.15"
+		app:layout_constraintHorizontal_bias = "0.5"
+		app:layout_constraintLeft_toLeftOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent"
+		app:layout_constraintWidth_default = "percent"
+		app:layout_constraintWidth_percent = "0.3" />
+
+	<!-- 宽高比例-->
+	<TextView
+		android:layout_width = "wrap_content"
+		android:layout_height = "0dp"
+		android:layout_marginStart = "16dp"
+		android:layout_marginTop = "16dp"
+		android:background = "@color/colorAccent"
+		android:gravity = "center"
+		android:padding = "10dp"
+		android:text = "你好啊你好啊"
+		app:layout_constraintDimensionRatio = "1:1"
+		app:layout_constraintLeft_toRightOf = "@id/tv1"
+		app:layout_constraintTop_toTopOf = "parent"
+		app:layout_goneMarginStart = "32dp" />
+
+	<View
+		android:id = "@+id/head"
+		android:layout_width = "150dp"
+		android:layout_height = "150dp"
+		android:layout_marginTop = "16dp"
+		android:background = "@color/colorPrimary"
+		app:layout_constraintLeft_toLeftOf = "@id/tv1"
+		app:layout_constraintTop_toBottomOf = "@id/tv1" />
+
+	<Button
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:text = "关注"
+		app:layout_constraintBottom_toBottomOf = "@id/head"
+		app:layout_constraintLeft_toRightOf = "@id/head"
+		app:layout_constraintTop_toTopOf = "@id/head" />
+
+
+	<ImageView
+		android:id = "@+id/headImage"
+		android:layout_width = "0dp"
+		android:layout_height = "130dp"
+		android:layout_margin = "16dp"
+		android:background = "@color/colorPrimary"
+		app:layout_constraintLeft_toLeftOf = "parent"
+		app:layout_constraintRight_toRightOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@id/head" />
+
+	<ImageView
+		android:layout_width = "48dp"
+		android:layout_height = "48dp"
+		android:background = "@color/colorAccent"
+		app:layout_constraintBottom_toBottomOf = "@id/headImage"
+		app:layout_constraintLeft_toLeftOf = "@id/headImage"
+		app:layout_constraintRight_toRightOf = "@id/headImage"
+		app:layout_constraintTop_toBottomOf = "@id/headImage"
+		app:layout_constraintVertical_chainStyle = "packed" />
+
+	<Button
+		android:id = "@+id/btnGone"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:text = "gone"
+		app:layout_constraintRight_toRightOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent" />
+
+	<androidx.constraintlayout.widget.Guideline
+		android:layout_width = "0dp"
+		android:layout_height = "0dp"
+		android:orientation = "horizontal"
+		app:layout_constraintGuide_percent = "0.78" />
+
+	<androidx.constraintlayout.widget.Group
+		app:constraint_referenced_ids="btnGone"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"/>
+
+	<androidx.constraintlayout.h
+
+</androidx.constraintlayout.widget.ConstraintLayout>
