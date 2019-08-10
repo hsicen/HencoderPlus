@@ -1,2 +1,2 @@
-include ':app', ':drawing', ':animator', ':drawable', ':layout', ':scalableimageview', ':touch', ':multitouch', ':recyclerviewcore'
+include ':app', ':drawing', ':animator', ':drawable', ':layout', ':scalableimageview', ':touch', ':multitouch', ':recyclerviewcore', ':19_constraintlayout'
 rootProject.name='HencoderPlus'
