@@ -1,9 +1,9 @@
 package com.hsicen.a19_constraintlayout
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
+import com.hsicen.a19_constraintlayout.constraint.ConstraintActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,12 +12,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnGone.setOnClickListener {
-            if (tv1.isVisible) {
-                tv1.visibility = View.GONE
-            } else {
-                tv1.visibility = View.VISIBLE
-            }
+
+        btnConstraint.setOnClickListener {
+            startActivity(
+                Intent(this, ConstraintActivity::class.java)
+            )
+        }
+
+        btnMotion.setOnClickListener {
+            startActivity(Intent(this, MotionActivity::class.java))
         }
     }
 }
