@@ -5,32 +5,30 @@
 	xmlns:tools = "http://schemas.android.com/tools"
 	android:layout_width = "match_parent"
 	android:layout_height = "match_parent"
-	tools:context = ".MainActivity">
-
-	<Button
-		android:id = "@+id/btnConstraint"
-		android:layout_width = "wrap_content"
-		android:layout_height = "wrap_content"
-		android:text = "Constraint Layout"
-		android:textAllCaps = "false"
-		tools:ignore = "MissingConstraints" />
-
-	<Button
-		android:id = "@+id/btnMotion"
-		android:layout_width = "wrap_content"
-		android:layout_height = "wrap_content"
-		android:text = "Motion Layout"
-		android:textAllCaps = "false"
-		tools:ignore = "MissingConstraints" />
+	tools:context = ".constraint.ConstraintActivity">
 
 	<androidx.constraintlayout.helper.widget.Flow
 		android:layout_width = "wrap_content"
 		android:layout_height = "wrap_content"
 		android:orientation = "horizontal"
-		app:constraint_referenced_ids = "btnConstraint,btnMotion"
+		app:constraint_referenced_ids = "btnRelative,btnHelper"
 		app:flow_wrapMode = "aligned"
 		app:layout_constraintEnd_toEndOf = "parent"
 		app:layout_constraintStart_toStartOf = "parent"
 		app:layout_constraintTop_toTopOf = "parent" />
+
+	<androidx.appcompat.widget.AppCompatButton
+		android:id = "@+id/btnRelative"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:text = "Position"
+		android:textAllCaps = "false" />
+
+	<androidx.appcompat.widget.AppCompatButton
+		android:id = "@+id/btnHelper"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:text = "Helper"
+		android:textAllCaps = "false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
