@@ -35,3 +35,7 @@
 - 多点触控
 
 ![图片9-w300](images/img9.gif)
+
+- MotionLayout动画
+
+![图片10-w300](images/img10.gif)
