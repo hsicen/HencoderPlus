@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent"
+	app:layoutDescription = "@xml/motion_constraint_scene">
+
+	<androidx.constraintlayout.utils.widget.ImageFilterView
+		android:id = "@+id/ivMove"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:background = "@color/colorPrimary"
+		android:padding = "16dp"
+		android:src = "@android:drawable/ic_menu_camera"
+		app:altSrc = "@android:drawable/ic_menu_delete" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

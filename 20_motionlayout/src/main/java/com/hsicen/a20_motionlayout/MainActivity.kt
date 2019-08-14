@@ -27,6 +27,12 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        btnConstraint.setOnClickListener {
+            startActivity(
+                Intent(this, SceneConstraintActivity::class.java)
+            )
+        }
+
         ml.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
 

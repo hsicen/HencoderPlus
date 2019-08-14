@@ -12,7 +12,8 @@
 		android:supportsRtl = "true"
 		android:theme = "@style/NoTitle"
 		tools:ignore = "GoogleAppIndexingWarning">
-		<activity android:name = ".MotionMenuActivity"></activity>
+		<activity android:name = ".SceneConstraintActivity"></activity>
+		<activity android:name = ".MotionMenuActivity" />
 		<activity android:name = ".MainActivity">
 			<intent-filter>
 				<action android:name = "android.intent.action.MAIN" />
