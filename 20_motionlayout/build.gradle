@@ -7,7 +7,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.hsicen.a19_constraintlayout"
+        applicationId "com.hsicen.a20_motionlayout"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1

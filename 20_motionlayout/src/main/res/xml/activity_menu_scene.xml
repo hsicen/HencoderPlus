@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+	xmlns:app = "http://schemas.android.com/apk/res-auto">
+
+	<!--  描述过渡动画-->
+	<!--  包括开始场景，结束场景，动画时长，动画插值器-->
+	<!--  onClick/onSwipe 描述过渡触发条件-->
+	<Transition
+		app:constraintSetEnd = "@layout/activity_menu_end"
+		app:constraintSetStart = "@layout/activity_menu_start"
+		app:duration = "2000">
+
+		<OnClick
+			app:clickAction = "transitionToEnd"
+			app:targetId = "@id/ivMenu" />
+
+	</Transition>
+
+</MotionScene>

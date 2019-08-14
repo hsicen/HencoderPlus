@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto">
+
+	<!--  定义Start场景属性约束-->
+	<ConstraintSet android:id = "@+id/constraint_scene_start">
+
+		<!-- 定义布局中id为ivMove的View的属性约束-->
+		<Constraint
+			android:id = "@+id/ivMove"
+			android:layout_width = "48dp"
+			android:layout_height = "48dp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintLeft_toLeftOf = "parent"
+			app:layout_constraintRight_toRightOf = "parent" />
+
+	</ConstraintSet>
+
+	<!--  定义End场景属性约束-->
+	<ConstraintSet android:id = "@+id/constraint_scene_end">
+
+		<!-- 定义布局中id为ivMove的View的属性约束-->
+		<Constraint
+			android:id = "@+id/ivMove"
+			android:layout_width = "48dp"
+			android:layout_height = "48dp"
+			app:layout_constraintLeft_toLeftOf = "parent"
+			app:layout_constraintRight_toRightOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+
+	</ConstraintSet>
+
+
+	<Transition
+		app:constraintSetEnd = "@id/constraint_scene_end"
+		app:constraintSetStart = "@id/constraint_scene_start"
+		app:duration = "1000">
+
+		<OnClick
+			app:clickAction = "toggle"
+			app:targetId = "@id/ivMove" />
+
+	</Transition>
+
+</MotionScene>
