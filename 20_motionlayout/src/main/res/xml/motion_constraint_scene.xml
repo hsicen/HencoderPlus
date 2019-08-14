@@ -3,6 +3,8 @@
 	xmlns:android = "http://schemas.android.com/apk/res/android"
 	xmlns:app = "http://schemas.android.com/apk/res-auto">
 
+	<!--  把控件的定义放在布局中   然后在MotionScene中定义控件的约束-->
+
 	<!--  定义Start场景属性约束-->
 	<ConstraintSet android:id = "@+id/constraint_scene_start">
 
@@ -13,7 +15,20 @@
 			android:layout_height = "48dp"
 			app:layout_constraintBottom_toBottomOf = "parent"
 			app:layout_constraintLeft_toLeftOf = "parent"
-			app:layout_constraintRight_toRightOf = "parent" />
+			app:layout_constraintTop_toTopOf = "parent"
+			app:pathMotionArc = "startHorizontal"
+			app:transitionEasing = "decelerate">
+
+			<!-- 自定义属性-->
+			<CustomAttribute
+				app:attributeName = "backgroundColor"
+				app:customColorValue = "@color/colorPrimary" />
+
+			<CustomAttribute
+				app:attributeName = "CrossFade"
+				app:customFloatValue = "0" />
+
+		</Constraint>
 
 	</ConstraintSet>
 
@@ -25,21 +40,72 @@
 			android:id = "@+id/ivMove"
 			android:layout_width = "48dp"
 			android:layout_height = "48dp"
-			app:layout_constraintLeft_toLeftOf = "parent"
+			app:layout_constraintBottom_toBottomOf = "parent"
 			app:layout_constraintRight_toRightOf = "parent"
-			app:layout_constraintTop_toTopOf = "parent" />
+			app:layout_constraintTop_toTopOf = "parent"
+			app:pathMotionArc = "flip">
+
+			<!-- 自定义属性    对于该属性View必须要有对应的get/set方法，相当于属性动画  -->
+			<CustomAttribute
+				app:attributeName = "backgroundColor"
+				app:customColorValue = "@color/colorAccent" />
+
+			<CustomAttribute
+				app:attributeName = "CrossFade"
+				app:customFloatValue = "1" />
+
+		</Constraint>
 
 	</ConstraintSet>
 
-
+	<!--   过度场景定义-->
 	<Transition
 		app:constraintSetEnd = "@id/constraint_scene_end"
 		app:constraintSetStart = "@id/constraint_scene_start"
-		app:duration = "1000">
+		app:duration = "3000">
 
 		<OnClick
 			app:clickAction = "toggle"
 			app:targetId = "@id/ivMove" />
+
+		<!--  动画关键帧定义-->
+		<KeyFrameSet>
+
+			<!-- 属性关键帧    在View运动过程中修改View的相关属性比如大小，透明度-->
+			<KeyAttribute
+				android:rotation = "360"
+				android:scaleX = "1.5"
+				android:scaleY = "1.5"
+				app:framePosition = "50"
+				app:motionTarget = "@id/ivMove" />
+
+			<!-- 位置关键帧   对View的运行路径进行控制
+			keyPositionType:   坐标系类型
+				pathRelative：相对于路径
+				deltaRelative：三角定位
+				parentRelative：相对于父容器
+			-->
+			<KeyPosition
+				app:framePosition = "25"
+				app:keyPositionType = "pathRelative"
+				app:motionTarget = "@id/ivMove"
+				app:percentX = "0.75"
+				app:percentY = "-0.3" />
+
+			<KeyPosition
+				app:framePosition = "50"
+				app:keyPositionType = "pathRelative"
+				app:motionTarget = "@id/ivMove"
+				app:percentY = "-0.4" />
+
+			<KeyPosition
+				app:framePosition = "75"
+				app:keyPositionType = "pathRelative"
+				app:motionTarget = "@id/ivMove"
+				app:percentX = "0.25"
+				app:percentY = "-0.3" />
+
+		</KeyFrameSet>
 
 	</Transition>
 

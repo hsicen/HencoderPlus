@@ -12,7 +12,7 @@
 	<FrameLayout
 		android:id = "@+id/topBar"
 		android:layout_width = "0dp"
-		android:layout_height = "200dp"
+		android:layout_height = "80dp"
 		android:background = "@color/colorPrimary"
 		app:layout_constraintLeft_toLeftOf = "parent"
 		app:layout_constraintRight_toRightOf = "parent"
