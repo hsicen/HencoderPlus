@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto">
+
+	<Transition
+		app:constraintSetEnd = "@id/fly_end"
+		app:constraintSetStart = "@id/fly_start"
+		app:duration = "4000"
+		app:motionInterpolator = "easeInOut">
+
+		<OnClick
+			app:clickAction = "toggle"
+			app:targetId = "@id/iv1" />
+
+		<!-- 关键帧定义-->
+		<KeyFrameSet>
+
+			<!-- 位置关键帧定义   控件运行的路径-->
+
+			<!-- View 1-->
+			<KeyPosition
+				app:framePosition = "18"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv1"
+				app:pathMotionArc = "flip"
+				app:percentX = "0.25"
+				app:percentY = "0.65" />
+
+			<KeyPosition
+				app:framePosition = "34"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv1"
+				app:pathMotionArc = "flip"
+				app:percentX = "0"
+				app:percentY = "0.5" />
+
+			<KeyPosition
+				app:framePosition = "50"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv1"
+				app:pathMotionArc = "startHorizontal"
+				app:percentX = "0.5"
+				app:percentY = "0.25" />
+
+			<KeyPosition
+				app:framePosition = "66"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv1"
+				app:pathMotionArc = "startVertical"
+				app:percentX = "1"
+				app:percentY = "0.5" />
+
+			<KeyPosition
+				app:framePosition = "84"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv1"
+				app:pathMotionArc = "none"
+				app:percentX = "0.5"
+				app:percentY = "0.75" />
+
+			<!-- View 2-->
+			<KeyPosition
+				app:framePosition = "20"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv2"
+				app:pathMotionArc = "flip"
+				app:percentX = "0.25"
+				app:percentY = "0.65" />
+
+			<KeyPosition
+				app:framePosition = "36"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv2"
+				app:pathMotionArc = "flip"
+				app:percentX = "0"
+				app:percentY = "0.5" />
+
+			<KeyPosition
+				app:framePosition = "52"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv2"
+				app:pathMotionArc = "startHorizontal"
+				app:percentX = "0.5"
+				app:percentY = "0.25" />
+
+			<KeyPosition
+				app:framePosition = "68"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv2"
+				app:pathMotionArc = "startVertical"
+				app:percentX = "1"
+				app:percentY = "0.5" />
+
+			<KeyPosition
+				app:framePosition = "84"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv2"
+				app:pathMotionArc = "none"
+				app:percentX = "0.5"
+				app:percentY = "0.75" />
+
+			<!--  view 3-->
+			<KeyPosition
+				app:framePosition = "22"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv3"
+				app:pathMotionArc = "flip"
+				app:percentX = "0.25"
+				app:percentY = "0.65" />
+
+			<KeyPosition
+				app:framePosition = "38"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv3"
+				app:pathMotionArc = "flip"
+				app:percentX = "0"
+				app:percentY = "0.5" />
+
+			<KeyPosition
+				app:framePosition = "54"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv3"
+				app:pathMotionArc = "startHorizontal"
+				app:percentX = "0.5"
+				app:percentY = "0.25" />
+
+			<KeyPosition
+				app:framePosition = "70"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv3"
+				app:pathMotionArc = "startVertical"
+				app:percentX = "1"
+				app:percentY = "0.5" />
+
+			<KeyPosition
+				app:framePosition = "84"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv3"
+				app:pathMotionArc = "none"
+				app:percentX = "0.5"
+				app:percentY = "0.75" />
+
+			<!-- View 4-->
+			<KeyPosition
+				app:framePosition = "24"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv4"
+				app:pathMotionArc = "flip"
+				app:percentX = "0.25"
+				app:percentY = "0.65" />
+
+			<KeyPosition
+				app:framePosition = "40"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv4"
+				app:pathMotionArc = "flip"
+				app:percentX = "0"
+				app:percentY = "0.5" />
+
+			<KeyPosition
+				app:framePosition = "56"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv4"
+				app:pathMotionArc = "startHorizontal"
+				app:percentX = "0.5"
+				app:percentY = "0.25" />
+
+			<KeyPosition
+				app:framePosition = "72"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv4"
+				app:pathMotionArc = "startVertical"
+				app:percentX = "1"
+				app:percentY = "0.5" />
+
+			<KeyPosition
+				app:framePosition = "84"
+				app:keyPositionType = "parentRelative"
+				app:motionTarget = "@id/iv4"
+				app:pathMotionArc = "none"
+				app:percentX = "0.5"
+				app:percentY = "0.75" />
+
+		</KeyFrameSet>
+
+	</Transition>
+
+	<!--  控件起始场景约束定义-->
+	<ConstraintSet android:id = "@+id/fly_start">
+
+		<Constraint
+			android:id = "@id/iv4"
+			android:layout_width = "60dp"
+			android:layout_height = "60dp"
+			android:background = "#008000"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintLeft_toLeftOf = "parent"
+			app:layout_constraintRight_toRightOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+
+		<Constraint
+			android:id = "@id/iv3"
+			android:layout_width = "60dp"
+			android:layout_height = "60dp"
+			android:background = "#EC7600"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintLeft_toLeftOf = "parent"
+			app:layout_constraintRight_toRightOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+
+		<Constraint
+			android:id = "@id/iv2"
+			android:layout_width = "60dp"
+			android:layout_height = "60dp"
+			android:background = "#007CF9"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintLeft_toLeftOf = "parent"
+			app:layout_constraintRight_toRightOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+
+		<Constraint
+			android:id = "@id/iv1"
+			android:layout_width = "60dp"
+			android:layout_height = "60dp"
+			android:background = "#FFEA3B"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintLeft_toLeftOf = "parent"
+			app:layout_constraintRight_toRightOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+
+	</ConstraintSet>
+
+	<!--  控件结束场景约束定义-->
+	<ConstraintSet android:id = "@+id/fly_end">
+
+		<Constraint
+			android:id = "@id/iv4"
+			android:layout_width = "60dp"
+			android:layout_height = "60dp"
+			android:background = "#008000"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintLeft_toLeftOf = "parent"
+			app:layout_constraintRight_toLeftOf = "@id/iv3" />
+
+		<Constraint
+			android:id = "@id/iv3"
+			android:layout_width = "60dp"
+			android:layout_height = "60dp"
+			android:background = "#EC7600"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintLeft_toRightOf = "@id/iv4"
+			app:layout_constraintRight_toLeftOf = "@id/iv2" />
+
+		<Constraint
+			android:id = "@id/iv2"
+			android:layout_width = "60dp"
+			android:layout_height = "60dp"
+			android:background = "#007CF9"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintLeft_toRightOf = "@id/iv3"
+			app:layout_constraintRight_toLeftOf = "@id/iv1" />
+
+		<Constraint
+			android:id = "@id/iv1"
+			android:layout_width = "60dp"
+			android:layout_height = "60dp"
+			android:background = "#FFEA3B"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintLeft_toRightOf = "@id/iv2"
+			app:layout_constraintRight_toRightOf = "parent" />
+
+	</ConstraintSet>
+
+</MotionScene>
