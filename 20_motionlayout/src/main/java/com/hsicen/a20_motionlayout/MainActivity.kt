@@ -33,6 +33,12 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        btnFly.setOnClickListener {
+            startActivity(
+                Intent(this, CardFlyActivity::class.java)
+            )
+        }
+
         ml.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
 
