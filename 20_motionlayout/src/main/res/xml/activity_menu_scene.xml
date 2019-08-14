@@ -8,10 +8,10 @@
 	<Transition
 		app:constraintSetEnd = "@layout/activity_menu_end"
 		app:constraintSetStart = "@layout/activity_menu_start"
-		app:duration = "2000">
+		app:duration = "800">
 
 		<OnClick
-			app:clickAction = "transitionToEnd"
+			app:clickAction = "toggle"
 			app:targetId = "@id/ivMenu" />
 
 	</Transition>
