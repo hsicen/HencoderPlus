@@ -182,6 +182,13 @@
 				app:percentX = "0.5"
 				app:percentY = "0.75" />
 
+			<KeyCycle
+				app:framePosition = "93"
+				app:motionTarget = "@id/iv4"
+				app:waveOffset = "2dp"
+				app:wavePeriod = "3"
+				app:waveShape = "cos" />
+
 		</KeyFrameSet>
 
 	</Transition>
@@ -199,15 +206,24 @@
 			app:layout_constraintRight_toRightOf = "parent"
 			app:layout_constraintTop_toTopOf = "parent" />
 
-		<Constraint
-			android:id = "@id/iv3"
-			android:layout_width = "60dp"
-			android:layout_height = "60dp"
-			android:background = "#EC7600"
-			app:layout_constraintBottom_toBottomOf = "parent"
-			app:layout_constraintLeft_toLeftOf = "parent"
-			app:layout_constraintRight_toRightOf = "parent"
-			app:layout_constraintTop_toTopOf = "parent" />
+		<Constraint android:id = "@id/iv3">
+
+			<!-- 动画参数-->
+			<Motion
+				app:pathMotionArc = "startVertical"
+				app:transitionEasing = "bounce" />
+
+			<!--  布局参数-->
+			<Layout
+				android:layout_width = "60dp"
+				android:layout_height = "60dp"
+				android:background = "#EC7600"
+				app:layout_constraintBottom_toBottomOf = "parent"
+				app:layout_constraintLeft_toLeftOf = "parent"
+				app:layout_constraintRight_toRightOf = "parent"
+				app:layout_constraintTop_toTopOf = "parent" />
+
+		</Constraint>
 
 		<Constraint
 			android:id = "@id/iv2"
