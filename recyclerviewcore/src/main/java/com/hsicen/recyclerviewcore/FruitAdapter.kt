@@ -47,6 +47,11 @@ class FruitAdapter(private val data: List<String>) :
         } else 2
     }
 
+    /*** 可在此方法中处理由缓存引发的相关问题*/
+    override fun onViewDetachedFromWindow(holder: ViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+    }
+
     @SuppressLint("SetTextI18n")
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         //itemView 控件初始化
