@@ -29,7 +29,11 @@ class MainActivity : AppCompatActivity() {
 
 
     private val Float.px: Float
-        get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
+        get() = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            this,
+            Resources.getSystem().displayMetrics
+        )
 
     private inline fun <reified T> create(): T {
         val retrofit = Retrofit.Builder()
