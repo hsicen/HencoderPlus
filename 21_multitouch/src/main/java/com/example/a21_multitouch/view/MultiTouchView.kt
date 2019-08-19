@@ -12,7 +12,7 @@ import android.view.View
  * <p>作者：Hsicen  19-8-18 下午7:25
  * <p>邮箱：codinghuang@163.com
  * <p>功能：
- * <p>描述： 多点触控(协作型)
+ * <p>描述： 多点触控(协作型，共同作用)
  */
 class MultiTouchView @JvmOverloads constructor(
     context: Context,
