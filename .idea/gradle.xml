@@ -8,19 +8,20 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/19_constraintlayout" />
-            <option value="$PROJECT_DIR$/20_motionlayout" />
-            <option value="$PROJECT_DIR$/21_multitouch" />
-            <option value="$PROJECT_DIR$/21_viewpager" />
-            <option value="$PROJECT_DIR$/animator" />
+            <option value="$PROJECT_DIR$/10_drawing" />
+            <option value="$PROJECT_DIR$/11_animator" />
+            <option value="$PROJECT_DIR$/12_drawable" />
+            <option value="$PROJECT_DIR$/13_layout" />
+            <option value="$PROJECT_DIR$/14_touch" />
+            <option value="$PROJECT_DIR$/15_scalableimageview" />
+            <option value="$PROJECT_DIR$/16_multitouch" />
+            <option value="$PROJECT_DIR$/17_recyclerviewcore" />
+            <option value="$PROJECT_DIR$/18_constraintlayout" />
+            <option value="$PROJECT_DIR$/19_motionlayout" />
+            <option value="$PROJECT_DIR$/20_viewpager" />
+            <option value="$PROJECT_DIR$/21_drag_nestedscroll" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/drawable" />
-            <option value="$PROJECT_DIR$/drawing" />
-            <option value="$PROJECT_DIR$/layout" />
             <option value="$PROJECT_DIR$/multitouch" />
-            <option value="$PROJECT_DIR$/recyclerviewcore" />
-            <option value="$PROJECT_DIR$/scalableimageview" />
-            <option value="$PROJECT_DIR$/touch" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
