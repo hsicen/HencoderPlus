@@ -21,11 +21,15 @@ class MultiTouchView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
     private val mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
+    //控件偏移
     private var offsetX = 0f
     private var offsetY = 0f
 
+    //按下位置
     private var downX = 0f
     private var downY = 0f
+
+    //记录上一次偏移位置
     private var imageX = 0f
     private var imageY = 0f
 
