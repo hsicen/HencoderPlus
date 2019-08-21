@@ -22,7 +22,7 @@ class DragListenerGridView @JvmOverloads constructor(
 ) : ViewGroup(context, attrs, defStyleAttr) {
 
     private val mDragListener = HDragListener()
-    private val mOrderChild = ArrayList<View>()
+    private val mOrderChild: ArrayList<View> = ArrayList()
 
     private var mDragView: View? = null
 
@@ -41,7 +41,7 @@ class DragListenerGridView @JvmOverloads constructor(
             childView.setOnLongClickListener {
                 mDragView = it
                 it.startDrag(null, DragShadowBuilder(it), it, 0)
-                false
+                true
             }
 
             childView.setOnDragListener(mDragListener)
@@ -116,20 +116,19 @@ class DragListenerGridView @JvmOverloads constructor(
             }
         }
 
-        if (targetIndex < dragIndex) {
-            mOrderChild.removeAt(dragIndex)
-            mOrderChild.add(targetIndex, mDragView!!)
-        } else if (targetIndex > dragIndex) {
+        //排序
+        if (targetIndex != dragIndex) {
             mOrderChild.removeAt(dragIndex)
             mOrderChild.add(targetIndex, mDragView!!)
         }
 
+        //布局动画
         var childLeft: Int
         var childTop: Int
         val childWidth = width / COLS
         val childHeight = height / ROWS
         for (pos in 0 until childCount) {
-            val childView = getChildAt(pos)
+            val childView = mOrderChild[pos]
             childLeft = pos % 2 * childWidth
             childTop = pos / 2 * childHeight
             childView.animate()
