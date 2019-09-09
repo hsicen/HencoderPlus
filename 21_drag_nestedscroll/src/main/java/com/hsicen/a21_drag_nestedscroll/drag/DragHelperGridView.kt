@@ -50,9 +50,7 @@ class DragHelperGridView @JvmOverloads constructor(
             val childView = getChildAt(pos)
             childLeft = pos % 2 * childWidth
             childTop = pos / 2 * childHeight
-            childView.layout(0, 0, childWidth, childHeight)
-            childView.translationX = childLeft.toFloat()
-            childView.translationY = childTop.toFloat()
+            childView.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight)
         }
     }
 
@@ -96,7 +94,7 @@ class DragHelperGridView @JvmOverloads constructor(
 
         /*** View被拖起时回调*/
         override fun onViewCaptured(capturedChild: View, activePointerId: Int) {
-            capturedChild.elevation = elevation + 10
+            capturedChild.elevation = elevation + 1
             capturedLeft = capturedChild.left
             capturedTop = capturedChild.top
         }
@@ -108,17 +106,15 @@ class DragHelperGridView @JvmOverloads constructor(
             }
         }
 
-        /*** View位置改变时回调*/
         override fun onViewPositionChanged(
             changedView: View, left: Int, top: Int,
             dx: Int, dy: Int
         ) {
-            super.onViewPositionChanged(changedView, left, top, dx, dy)
+            //位置改变时回调
         }
 
-        /*** View被松开是回调*/
+        /*** View被松开时回调*/
         override fun onViewReleased(releasedChild: View, xvel: Float, yvel: Float) {
-            super.onViewReleased(releasedChild, xvel, yvel)
             mDragHelper.settleCapturedViewAt(capturedLeft, capturedTop)
             //更新下一帧的绘制
             postInvalidateOnAnimation()

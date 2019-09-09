@@ -1,7 +1,11 @@
 package com.hsicen.a21_drag_nestedscroll
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.hsicen.a21_drag_nestedscroll.drag.DragCollectActivity
+import com.hsicen.a21_drag_nestedscroll.drag.DragUpDownActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * <p>作者：Hsicen  2019/8/20 16:00
@@ -14,5 +18,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        tvDragCollect.setOnClickListener {
+            startActivity(Intent(this, DragCollectActivity::class.java))
+        }
+
+        tvDragUpDown.setOnClickListener {
+            startActivity(Intent(this, DragUpDownActivity::class.java))
+        }
     }
 }
