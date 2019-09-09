@@ -4,22 +4,25 @@
 	xmlns:tools = "http://schemas.android.com/tools"
 	android:layout_width = "match_parent"
 	android:layout_height = "match_parent"
-	tools:context = ".MainActivity">
+	tools:context = ".MainActivity"
+	tools:ignore = "HardcodedText">
 
 	<TextView
-		android:id = "@+id/view1"
+		android:id = "@+id/tvDragCollect"
 		android:layout_width = "match_parent"
 		android:layout_height = "match_parent"
-		android:background = "#2962FF"
+		android:background = "#F4FF81"
 		android:gravity = "center"
-		android:text = "DragListener  列表"
-		android:textColor = "@color/colorAccent" />
+		android:text = "drag to collect"
+		android:textColor = "#CEFF81E2" />
 
-	<View
-		android:id = "@+id/view2"
-		android:layout_width = "wrap_content"
-		android:layout_height = "wrap_content"
-		android:background = "#396E76" />
+	<TextView
+		android:id = "@+id/tvDragUpDown"
+		android:layout_width = "match_parent"
+		android:layout_height = "match_parent"
+		android:background = "#396E76"
+		android:gravity = "center"
+		android:text = "drag up down" />
 
 	<View
 		android:id = "@+id/view3"
