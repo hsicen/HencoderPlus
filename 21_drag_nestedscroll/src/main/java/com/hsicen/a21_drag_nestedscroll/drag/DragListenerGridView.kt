@@ -1,10 +1,12 @@
 package com.hsicen.a21_drag_nestedscroll.drag
 
+import android.content.ClipData
 import android.content.Context
 import android.util.AttributeSet
 import android.view.DragEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import java.util.*
 
 /**
@@ -40,7 +42,13 @@ class DragListenerGridView @JvmOverloads constructor(
             mOrderChild.add(childView)
             childView.setOnLongClickListener {
                 mDragView = it
-                it.startDrag(null, DragShadowBuilder(it), it, 0)
+                ViewCompat.startDragAndDrop(
+                    it,
+                    ClipData.newPlainText("name", "drag"),
+                    DragShadowBuilder(it),
+                    it,
+                    0
+                )
                 true
             }
 
