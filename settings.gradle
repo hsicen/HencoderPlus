@@ -1,4 +1,5 @@
 include ':app',
+        ':9_kolitn',
         ':multitouch',
         ':10_drawing',
         ':11_animator',
