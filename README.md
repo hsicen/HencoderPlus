@@ -4,6 +4,10 @@
 - [讲义](./note/01-HTTP工作原理.pdf "HTTP原理") 
 - [笔记](./note/01-HTTP工作原理.md "HTTP原理")
 
+#### 02-编码加密和登录授权
+- [讲义](./note/02-编码加密和登录授权.pdf "编码加密和登录授权") 
+- [笔记](./note/02-编码加密和登录授权.md "编码加密和登录授权")
+
 #### 20-Android拖拽和嵌套滑动处理
 - [讲义](./note/20-拖拽和嵌套滑动.pdf "拖拽和滑动嵌套") 
 - [笔记](./note/20-拖拽和嵌套滑动.md "拖拽和滑动嵌套") 
@@ -15,42 +19,52 @@
 
 
 
-# 自定义View测量
 
-![图片1 W-300](images/img1.png)
+- 自定义View测量
+<img src="./images/img1.png" alt="自定义View测量" style="zoom:30%;" />
+
+
 
 - 图文混排，多行文字测量
+<img src="./images/img2.png" alt="图文混排，多行文字测量" style="zoom:30%;" />
 
-![图片2-w300](images/img2.png)
+
 
 - 自定义属性动画ObjectAnimator
+<img src="./images/img3.png" alt="自定义属性动画ObjectAnimator" style="zoom:30%;" />
 
-![图片3-w300](images/img3.png)
+
 
 - 自定义View颜色和位置渐变
+<img src="./images/img4.gif" alt="自定义View颜色和位置渐变" style="zoom:50%;" />
 
-![图片4-w300](images/img4.gif)
+
 
 - 翻页效果
+<img src="./images/img5.gif" alt="翻页效果" style="zoom:50%;" />
 
-![图片5-w300](images/img5.gif)
+
 
 - MaterialEditText效果
+<img src="./images/img6.gif" alt="MaterialEditText效果" style="zoom:50%;" />
 
-![图片6-w300](images/img6.gif)
+
 
 - 自定义布局，手写TagLayout
+<img src="./images/img7.png" alt="自定义布局，手写TagLayout" style="zoom:30%;" />
 
-![图片7-w300](images/img7.png)
+
 
 - 双向滑动缩放的ImageView
+<img src="./images/img8.gif" alt="双向滑动缩放的ImageView" style="zoom:50%;" />
 
-![图片8-w300](images/img8.gif)
+
 
 - 多点触控
+<img src="./images/img9.gif" alt="多点触控" style="zoom:50%;" />
 
-![图片9-w300](images/img9.gif)
+
 
 - MotionLayout动画
+<img src="./images/img10.gif" alt="MotionLayout动画" style="zoom:50%;" />
 
-![图片10-w300](images/img10.gif)
