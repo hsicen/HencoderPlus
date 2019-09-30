@@ -22,12 +22,15 @@
 
 > **URL格式**
 > URL分三部分组成：协议类型://服务器地址[:端口号]路径(path)
+>
 > <img src="./image/01http1.jpg" alt="URL格式" style="zoom:40%;" />
 >
 > **请求报文**
+>
 > <img src="./image/01http2.jpg" alt="请求报文" style="zoom:50%;" />
 >
 > **响应报文**
+>
 > <img src="./image/01http3.jpg" alt="响应报文" style="zoom:75%;" />
 > 
 
@@ -137,6 +140,7 @@
 > 虚拟主机：将一台计算机主机分成一台台"虚拟"的子主机，每一台主机都有独立的域名和ip地址
 >
 > 计算机网络寻址过程：
+>
 > <img src="./image/01http4.jpg" alt="Host" style="zoom:50%;" /> 		
 > 
 
