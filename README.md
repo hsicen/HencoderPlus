@@ -12,6 +12,10 @@
 - [讲义](./note/03-登录和第三方授权.pdf "登录和第三方授权") 
 - [笔记](./note/03-登录和第三方授权.md "登录和第三方授权")
 
+#### 04-TCPIP和HTTPS
+- [讲义](./note/04-TCPIP和HTTPS.pdf "TCPIP和HTTPS") 
+- [笔记](./note/04-TCPIP和HTTPS.md "TCPIP和HTTPS")
+
 #### 20-Android拖拽和嵌套滑动处理
 - [讲义](./note/20-拖拽和嵌套滑动.pdf "拖拽和滑动嵌套") 
 - [笔记](./note/20-拖拽和嵌套滑动.md "拖拽和滑动嵌套") 
