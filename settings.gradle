@@ -1,4 +1,4 @@
-include ':app', ':23_rxjava',
+include ':app', ':23_rxjava', ':6_retrofit',
         ':9_kolitn',
         ':multitouch',
         ':10_drawing',
