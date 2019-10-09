@@ -71,17 +71,17 @@
 > 		
 > 		@Override public @Nullable Object invoke(Object proxy, Method method,
 > 		@Nullable Object[] args) throws Throwable {
-> 	// If the method is a method from Object then defer to normal invocation.
-> 	if (method.getDeclaringClass() == Object.class) {//继承自Object的方法
-> 		return method.invoke(this, args);
-> }
-> if (platform.isDefaultMethod(method)) {  //接口默认方法 Java8
-> 		return platform.invokeDefaultMethod(method, service, proxy, args);
-> }
+> 	    // If the method is a method from Object then defer to normal invocation.
+> 	    if (method.getDeclaringClass() == Object.class) {//继承自Object的方法
+> 		    return method.invoke(this, args);
+>       }
+>       if (platform.isDefaultMethod(method)) {  //接口默认方法 Java8
+> 		   return platform.invokeDefaultMethod(method, service, proxy, args);
+>       }
 > 
-> //关键代码
-> return loadServiceMethod(method).invoke(args != null ? args : emptyArgs);
-> 	}
+>       //关键代码
+>       return loadServiceMethod(method).invoke(args != null ? args : emptyArgs);
+> 	  }
 > 	});
 > }
 > ```
