@@ -16,6 +16,10 @@
 - [讲义](./note/04-TCPIP和HTTPS.pdf "TCPIP和HTTPS") 
 - [笔记](./note/04-TCPIP和HTTPS.md "TCPIP和HTTPS")
 
+#### 05-Retrofit原理解析
+- [讲义](./note/05-Retrofit原理解析.pdf "Retrofit原理解析") 
+- [笔记](./note/05-Retrofit原理解析.md "Retrofit原理解析")
+
 #### 20-Android拖拽和嵌套滑动处理
 - [讲义](./note/20-拖拽和嵌套滑动.pdf "拖拽和滑动嵌套") 
 - [笔记](./note/20-拖拽和嵌套滑动.md "拖拽和滑动嵌套") 
