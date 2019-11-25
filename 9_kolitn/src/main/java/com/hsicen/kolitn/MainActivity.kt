@@ -1,6 +1,7 @@
 package com.hsicen.kolitn
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.*
 
@@ -11,6 +12,8 @@ import kotlinx.coroutines.*
  * <p>描述：kotlin的简单实用
  */
 class MainActivity : AppCompatActivity() {
+    val num1 = 10;
+    var num2 = "12"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +21,13 @@ class MainActivity : AppCompatActivity() {
 
         // testGlobalScope()
         testCoroutineScope()
+
+        val fruitStore = Store(Food.APPLE)
+        when (fruitStore.food) {
+            Food.APPLE -> Toast.makeText(this, "这个是苹果商店", Toast.LENGTH_SHORT).show()
+            Food.BANANA -> Toast.makeText(this, "这个是香蕉商店", Toast.LENGTH_SHORT).show()
+            Food.WATERMALON -> Toast.makeText(this, "这个是西瓜商店", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun testCoroutineScope() {
