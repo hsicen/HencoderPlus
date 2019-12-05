@@ -3,6 +3,8 @@ package com.hsicen.a23_rxjava
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import io.reactivex.Observable
+import io.reactivex.Observer
 import io.reactivex.Single
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btn_get.setOnClickListener { getUser() }
+        btn_get.setOnClickListener { observableInterval() }
     }
 
     private fun getUser() {
@@ -69,14 +72,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observableInterval() {
+        Log.d("hsc", " 线程： " + Thread.currentThread().name)
 
-    }
+        Observable.interval(1, TimeUnit.SECONDS)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Observer<Long> {
+                override fun onComplete() {
+                    tv_info.text = "结束"
+                }
 
-    override fun onResume() {
-        super.onResume()
+                override fun onSubscribe(d: Disposable) {
+                    Log.d("hsc", " 线程： " + Thread.currentThread().name)
+                    tv_info.text = "开始"
+                }
 
-        btn_get.post {
-            Log.d("hsc", "onResume 中 view.post 获取宽高信息：${btn_get.width} * ${btn_get.height}")
-        }
+                override fun onNext(t: Long) {
+                    Log.d("hsc", " 线程： " + Thread.currentThread().name)
+                    tv_info.text = "$t"
+                }
+
+                override fun onError(e: Throwable) {
+                    tv_info.text = "出错"
+                }
+
+            })
     }
 }
