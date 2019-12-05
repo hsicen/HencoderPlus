@@ -12,7 +12,7 @@ import kotlinx.coroutines.*
  * <p>描述：kotlin的简单实用
  */
 class MainActivity : AppCompatActivity() {
-    val num1 = 10;
+    val num1 = 10
     var num2 = "12"
 
     override fun onCreate(savedInstanceState: Bundle?) {
