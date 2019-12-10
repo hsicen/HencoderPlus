@@ -1,8 +1,10 @@
 package com.hsicen.a23_rxjava
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.jakewharton.rxbinding3.view.clicks
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.Single
@@ -24,11 +26,13 @@ import java.util.concurrent.TimeUnit
  */
 class MainActivity : AppCompatActivity() {
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btn_get.setOnClickListener { observableInterval() }
+        btn_get.clicks().throttleFirst(800, TimeUnit.MILLISECONDS)
+            .subscribe { observableInterval() }
     }
 
     private fun getUser() {
@@ -88,7 +92,6 @@ class MainActivity : AppCompatActivity() {
         Observable.interval(1, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.computation())
             .map { it + 1 }
-            .delay(30, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<Long> {
                 override fun onComplete() {
