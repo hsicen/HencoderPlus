@@ -16,6 +16,12 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+/**
+ * <p>作者：hsicen  2019/12/5 9:11
+ * <p>邮箱：codinghuang@163.com
+ * <p>功能：
+ * <p>描述：RxJava2原理解析
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onSubscribe(d: Disposable) {
-                    d.dispose()
+                    //获取可取消对象，方便后续取消请求
                 }
 
                 override fun onError(e: Throwable) {
@@ -54,28 +60,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun singelJust() {
+        var disposable: Disposable? = null
+
         Single.just(1)
             .map { it + 3 }
+            .delay(3, TimeUnit.SECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<Int> {
                 override fun onSuccess(t: Int) {
-
+                    tv_info.text = "$t"
+                    Log.d("hsc", "是否已经取消  ${disposable?.isDisposed}")
                 }
 
                 override fun onSubscribe(d: Disposable) {
-
+                    disposable = d
+                    tv_info.text = "开始"
+                    Log.d("hsc", "是否已经取消  ${disposable?.isDisposed}")
                 }
 
                 override fun onError(e: Throwable) {
-
+                    tv_info.text = "出错"
                 }
             })
     }
 
     private fun observableInterval() {
-        Log.d("hsc", " 线程： " + Thread.currentThread().name)
-
         Observable.interval(1, TimeUnit.SECONDS)
-            .subscribeOn(Schedulers.io())
+            .subscribeOn(Schedulers.computation())
+            .map { it + 1 }
+            .delay(30, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<Long> {
                 override fun onComplete() {
@@ -83,6 +96,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onSubscribe(d: Disposable) {
+                    Log.d("hsc", " 可取消对象： ${d.javaClass.name}")
                     Log.d("hsc", " 线程： " + Thread.currentThread().name)
                     tv_info.text = "开始"
                 }
