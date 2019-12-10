@@ -1,4 +1,5 @@
-include ':app', ':23_rxjava', ':6_retrofit',
+include ':app',
+        ':6_retrofit',
         ':9_kolitn',
         ':multitouch',
         ':10_drawing',
@@ -14,5 +15,8 @@ include ':app', ':23_rxjava', ':6_retrofit',
         ':20_viewpager',
         ':21_drag_nestedscroll',
         ':22_thread',
-        ':22_Thread_interaction'
+        ':22_Thread_interaction',
+        ':23_rxjava',
+        ':24_io'
+
 rootProject.name = 'HencoderPlus'
