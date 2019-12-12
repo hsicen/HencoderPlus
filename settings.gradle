@@ -1,5 +1,5 @@
-include ':app',
-        ':6_retrofit',
+include ':app', ':6_okhttp',
+        ':5_retrofit',
         ':9_kolitn',
         ':multitouch',
         ':10_drawing',
