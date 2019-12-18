@@ -141,9 +141,12 @@ class MainActivity : AppCompatActivity() {
 
         // execute 同步请求    会阻塞主线程(异常)
         thread {
-            Log.d("hsc", "当前线程：${Thread.currentThread().name}")
             executeCall.execute().use {
-                Log.d("hsc", "同步返回：${Thread.currentThread().name}    ${it.body?.string()}")
+                val resultMsg =
+                    if (!it.isSuccessful) "出错${it.message}"
+                    else "成功${it.body?.string()}"
+
+                runOnUiThread { tv_info.text = "同步：$resultMsg" }
             }
         }
     }
