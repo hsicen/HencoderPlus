@@ -1,5 +1,8 @@
 package com.hsicen.a24_io
 
+import okio.Buffer
+import okio.buffer
+import okio.source
 import java.io.*
 import java.net.InetSocketAddress
 import java.net.ServerSocket
@@ -17,7 +20,7 @@ import java.nio.charset.Charset
  */
 fun main() {
 
-    netIo()
+    okio2()
 }
 
 /*** 普通网络IO
@@ -138,3 +141,17 @@ fun nio3() {
         byteBuffer.clear()
     }
 }
+
+fun okio1() {
+    val source = File("./24_io/hsc.txt").source()
+    val buffer = Buffer()
+    source.read(buffer, 1024)
+
+    println("读取：${buffer.readUtf8()}")
+}
+
+fun okio2() {
+    val source = File("./24_io/hsc.txt").source().buffer()
+    println("读取：${source.readUtf8()}")
+}
+
