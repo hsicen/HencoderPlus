@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+//引用插件
+apply plugin: 'Hencoder'  //properties文件名
+
+//自定义配置
+hsicen {
+    name '黄思程!!!'
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "com.hsicen.a25_gradle"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        debug {}
+
+        hsc {
+            initWith debug
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions('paying', 'nation')
+    productFlavors {
+        free {
+            dimension 'paying'
+        }
+
+        pay {
+            dimension 'paying'
+        }
+
+        global {
+            dimension 'nation'
+        }
+
+        china {
+            dimension 'nation'
+        }
+
+        us {
+            dimension 'nation'
+        }
+
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+}
+
+task bumpVersion() {
+    doLast {
+
+        def versionPropertyFile = file('version.properties')
+        def versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropertyFile))
+        def codeBumped = versionProps['VERSION_CODE'].toInteger() + 1
+        versionProps['VERSION_CODE'] = codeBumped.toString()
+        versionProps.store(versionPropertyFile.newWriter(), null)
+    }
+}
+
+task notifyVersionBump(dependsOn: bumpVersion) {
+    doLast {
+        println(" 已经更新了应用版本号！！！")
+    }
+}
