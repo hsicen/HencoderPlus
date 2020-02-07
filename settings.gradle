@@ -1,4 +1,4 @@
-include ':app', ':6_okhttp', ':25_gradle', ':28_plugin', ':28_plugin_lib',
+include ':app', ':6_okhttp', ':25_gradle', ':28_plugin', ':28_plugin_lib', ':29_hotfix',
         ':5_retrofit',
         ':9_kolitn',
         ':multitouch',
