@@ -24,9 +24,15 @@
             <option value="$PROJECT_DIR$/22_thread" />
             <option value="$PROJECT_DIR$/23_rxjava" />
             <option value="$PROJECT_DIR$/24_io" />
-            <option value="$PROJECT_DIR$/6_retrofit" />
+            <option value="$PROJECT_DIR$/25_gradle" />
+            <option value="$PROJECT_DIR$/28_plugin" />
+            <option value="$PROJECT_DIR$/28_plugin_lib" />
+            <option value="$PROJECT_DIR$/29_hotfix" />
+            <option value="$PROJECT_DIR$/5_retrofit" />
+            <option value="$PROJECT_DIR$/6_okhttp" />
             <option value="$PROJECT_DIR$/9_kolitn" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/multitouch" />
           </set>
         </option>
