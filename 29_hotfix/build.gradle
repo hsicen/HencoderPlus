@@ -37,7 +37,7 @@ dependencies {
 //需要改动文件的路径
 def patchPath = "com/hsicen/a29_hotfix/Title"
 
-task hotfix {
+task hotfix() {
     doLast {
         exec {
             commandLine 'rm', '-r', './build/patch'
