@@ -17,12 +17,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btn_load.setOnClickListener {
-            tv_title.text = Title().getTitle()
+        showTitleBt.setOnClickListener {
+            titleTv.text = Title().getTitle()
         }
 
-        btn_hotfix.setOnClickListener {
-            loadHotfixDex()
+        //从网络下载文件保存到缓存目录
+        hotfixBt.setOnClickListener {
+            //loadHotfixDex()
+        }
+
+        removeHotfixBt.setOnClickListener {
+            //删除文件
+        }
+
+        killSelfBt.setOnClickListener {
+            android.os.Process.killProcess(android.os.Process.myPid())
         }
     }
 
@@ -34,22 +43,28 @@ class MainActivity : AppCompatActivity() {
                 apk.sink().buffer().writeAll(it)
             }
 
-            //dexElements 替换
-            val loaderClass = BaseDexClassLoader::class.java
-            val pathListFiled = loaderClass.getDeclaredField("pathList")
-            pathListFiled.isAccessible = true
-            val pathListObject = pathListFiled.get(classLoader)
+            try {
+                val loaderClass = BaseDexClassLoader::class.java
+                val pathListField = loaderClass.getDeclaredField("pathList")
+                pathListField.isAccessible = true
 
-            val pathListClass = pathListObject::class.java
-            val dexElementFiled = pathListClass.getDeclaredField("dexElements")
-            dexElementFiled.isAccessible = true
+                val pathListObject = pathListField.get(classLoader) // getClassLoader().pathList
+                val pathListClass = pathListObject.javaClass
+                val dexElementsField = pathListClass.getDeclaredField("dexElements")
+                dexElementsField.isAccessible = true
 
-            val newClassLoader = PathClassLoader(apk.path, null)
-            val newPathListObject = pathListFiled.get(newClassLoader)
-            val newDexElementObject = dexElementFiled.get(newPathListObject)
+                val dexElementsObject = dexElementsField.get(pathListObject)
+                val newClassLoader = PathClassLoader(apk.path, null)
+                val newPathListObject = pathListField.get(newClassLoader) // newClassLoader.pathList
+                val newDexElementsObject =
+                    dexElementsField.get(newPathListObject) // newClassLoader.pathList.dexElements
 
-            //替换
-            dexElementFiled.set(pathListObject, newDexElementObject)
+                dexElementsField.set(pathListObject, newDexElementsObject)
+            } catch (e: NoSuchFieldException) {
+                e.printStackTrace()
+            } catch (e: IllegalAccessException) {
+                e.printStackTrace()
+            }
         } catch (e: Exception) {
             Log.d("hsc ", "替换出错  ${e.printStackTrace()}")
         }
