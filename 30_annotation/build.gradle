@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -34,5 +35,5 @@ dependencies {
     //implementation project(':30_annotation_reflection')
     implementation project(':30_lib')
     implementation project(':30_lib_annotation')
-    //annotationProcessor project(':30_lib_processor')
+    kapt project(':30_lib_processos')
 }
