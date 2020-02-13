@@ -28,6 +28,12 @@
             <option value="$PROJECT_DIR$/28_plugin" />
             <option value="$PROJECT_DIR$/28_plugin_lib" />
             <option value="$PROJECT_DIR$/29_hotfix" />
+            <option value="$PROJECT_DIR$/30_annotation" />
+            <option value="$PROJECT_DIR$/30_annotation_reflection" />
+            <option value="$PROJECT_DIR$/30_lib" />
+            <option value="$PROJECT_DIR$/30_lib_annotation" />
+            <option value="$PROJECT_DIR$/30_lib_processos" />
+            <option value="$PROJECT_DIR$/31_generics" />
             <option value="$PROJECT_DIR$/5_retrofit" />
             <option value="$PROJECT_DIR$/6_okhttp" />
             <option value="$PROJECT_DIR$/9_kolitn" />
