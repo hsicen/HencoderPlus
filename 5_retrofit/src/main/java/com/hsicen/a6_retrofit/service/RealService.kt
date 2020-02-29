@@ -26,7 +26,7 @@ class RealService : GithubService {
         }
     }
 
-    override fun listRepos(user: String): Call<List<Repo>> {
+    /*override fun listRepos(user: String): Call<List<Repo>> {
         val method = GithubService::class.java.getMethod("listRepos")
         return invocationHandler.invoke(this, method, arrayOf(user)) as Call<List<Repo>>
     }
@@ -34,6 +34,6 @@ class RealService : GithubService {
     override fun getUser(): Call<User> {
         val method = GithubService::class.java.getMethod("getUser")
         return invocationHandler.invoke(this, method, null) as Call<User>
-    }
+    }*/
 
 }

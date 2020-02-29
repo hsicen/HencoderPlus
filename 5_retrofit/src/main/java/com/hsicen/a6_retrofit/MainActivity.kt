@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchData() {
-        val repoService = Net.instance().create(GithubService::class.java)
+        /*val repoService = Net.instance().create(GithubService::class.java)
         repoService.listRepos("hsicen")
             .observeOn(Schedulers.newThread())
             .subscribe(object : SingleObserver<List<Repo>> {
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onError(e: Throwable?) {
                 }
 
-            })
+            })*/
 
         /*val listRepos = repoService.listRepos("hsicen")
         listRepos.enqueue(object : Callback<List<Repo>> {
