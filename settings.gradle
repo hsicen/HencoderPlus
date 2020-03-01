@@ -20,3 +20,4 @@ include ':app', ':6_okhttp', ':25_gradle', ':28_plugin', ':28_plugin_lib', ':29_
         ':24_io'
 
 rootProject.name = 'HencoderPlus'
+include ':32_view_draw_process'
