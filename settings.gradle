@@ -1,7 +1,7 @@
-include ':app', ':6_okhttp', ':25_gradle', ':28_plugin', ':28_plugin_lib', ':29_hotfix', ':30_annotation', ':30_annotation_reflection', ':30_lib', ':30_lib_annotation', ':30_lib_processos', ':31_generics',
+include ':4_retrofit', ':6_okhttp', ':25_gradle', ':28_plugin', ':28_plugin_lib', ':29_hotfix', ':30_annotation', ':30_annotation_reflection', ':30_lib', ':30_lib_annotation', ':30_lib_processos', ':31_generics',
         ':5_retrofit',
         ':9_kolitn',
-        ':multitouch',
+        ':16_multitouch1',
         ':10_drawing',
         ':11_animator',
         ':12_drawable',
@@ -21,3 +21,7 @@ include ':app', ':6_okhttp', ':25_gradle', ':28_plugin', ':28_plugin_lib', ':29_
 
 rootProject.name = 'HencoderPlus'
 include ':32_view_draw_process'
+include ':33_hashmap'
+include ':34_gradle_process'
+include ':35_jvm'
+include ':lib_inter'

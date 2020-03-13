@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/14_touch" />
             <option value="$PROJECT_DIR$/15_scalableimageview" />
             <option value="$PROJECT_DIR$/16_multitouch" />
+            <option value="$PROJECT_DIR$/16_multitouch1" />
             <option value="$PROJECT_DIR$/17_recyclerviewcore" />
             <option value="$PROJECT_DIR$/18_constraintlayout" />
             <option value="$PROJECT_DIR$/19_motionlayout" />
@@ -38,12 +39,15 @@
             <option value="$PROJECT_DIR$/30_lib_processos" />
             <option value="$PROJECT_DIR$/31_generics" />
             <option value="$PROJECT_DIR$/32_view_draw_process" />
+            <option value="$PROJECT_DIR$/33_hashmap" />
+            <option value="$PROJECT_DIR$/34_gradle_process" />
+            <option value="$PROJECT_DIR$/35_jvm" />
+            <option value="$PROJECT_DIR$/4_retrofit" />
             <option value="$PROJECT_DIR$/5_retrofit" />
             <option value="$PROJECT_DIR$/6_okhttp" />
             <option value="$PROJECT_DIR$/9_kolitn" />
-            <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/multitouch" />
+            <option value="$PROJECT_DIR$/lib_inter" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
