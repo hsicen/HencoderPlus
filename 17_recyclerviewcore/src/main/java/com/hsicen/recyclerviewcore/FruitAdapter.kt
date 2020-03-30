@@ -33,10 +33,9 @@ class FruitAdapter(private val data: List<String>) :
         holder.bindTo(position)
     }
 
-    /*** 增量更新方法*/
+    /*** 增量更新方法  (局部刷新)*/
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
         super.onBindViewHolder(holder, position, payloads)
-
 
     }
 

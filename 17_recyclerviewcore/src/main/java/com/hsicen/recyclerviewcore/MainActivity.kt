@@ -2,8 +2,8 @@ package com.hsicen.recyclerviewcore
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hsicen.recyclerviewcore.manager.CustomLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -25,10 +25,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        rvFruit.layoutManager = LinearLayoutManager(this).apply {
-            initialPrefetchItemCount = 3
-        }
+        val layoutManager = CustomLayoutManager(0.7f, 0.85f)
         rvFruit.adapter = mAdapter
+        rvFruit.layoutManager = layoutManager
         rvFruit.setRecycledViewPool(RecyclerView.RecycledViewPool())
 
         mData.addAll(listOf("", "", "", "", "", "", "", ""))
