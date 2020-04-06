@@ -6,6 +6,6 @@ package com.hsicen.kolitn;
  * <p>作用：
  * <p>描述：HencoderPlus
  */
-public interface Food {
+public interface Foods {
 
 }

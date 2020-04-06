@@ -1,6 +1,10 @@
+@file:JvmName("DpUtils")
+
 package com.hsicen.kolitn
 
-import android.util.Log
+import android.content.res.Resources
+import android.util.TypedValue
+import android.widget.Toast
 
 /**
  * <p>作者：hsicen  2019/11/22 14:46
@@ -10,15 +14,16 @@ import android.util.Log
  */
 
 /***px2dp*/
-fun Int.dp(): Int {
-    //逻辑处理。。。。
 
-    return this * 3
+fun Float.dp(): Float {
+    //逻辑处理。。。。
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        this,
+        Resources.getSystem().displayMetrics
+    )
 }
 
+fun String.toast(duration: Int = Toast.LENGTH_SHORT) {
 
-fun main() {
-
-    val dpValue = 12.dp()
-    Log.d("hsc", "This is the value of  $dpValue")
 }

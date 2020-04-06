@@ -59,7 +59,7 @@ class CustomLayoutManager(private val itemHWRatio: Float, private val scale: Flo
         if (!mHasChild) {
             mHasChild = true
             mItemViewHeight = getVerticalSpace()
-            mItemViewWidth = (mItemViewHeight / itemHWRatio).toInt()
+            mItemViewWidth = getHorizontalSpace()//(mItemViewHeight / itemHWRatio).toInt()
         }
 
         mItemCount = itemCount

@@ -6,6 +6,6 @@ package com.hsicen.kolitn;
  * <p>作用：
  * <p>描述：HencoderPlus
  */
-public class Monster<T extends Animal & Food & Person> {
+public class Monster<T extends Animal & Foods & Person> {
 
 }
