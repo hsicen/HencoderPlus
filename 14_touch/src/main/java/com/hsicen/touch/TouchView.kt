@@ -4,8 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.GestureDetector
 import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.view.View
 import androidx.core.view.GestureDetectorCompat
+import androidx.customview.widget.ViewDragHelper
 
 /**
  * <p>作者：Hsicen  2019/7/30 10:01

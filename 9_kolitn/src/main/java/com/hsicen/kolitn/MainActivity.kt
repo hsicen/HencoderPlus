@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         when (fruitStore.food) {
             Food.APPLE -> Toast.makeText(this, "这个是苹果商店", Toast.LENGTH_SHORT).show()
             Food.BANANA -> Toast.makeText(this, "这个是香蕉商店", Toast.LENGTH_SHORT).show()
-            Food.WATERMALON -> Toast.makeText(this, "这个是西瓜商店", Toast.LENGTH_SHORT).show()
+            Food.WATERMELON -> Toast.makeText(this, "这个是西瓜商店", Toast.LENGTH_SHORT).show()
         }
     }
 

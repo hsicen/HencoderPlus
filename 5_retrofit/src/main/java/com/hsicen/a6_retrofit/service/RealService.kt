@@ -2,6 +2,7 @@ package com.hsicen.a6_retrofit.service
 
 import com.hsicen.a6_retrofit.entity.Repo
 import com.hsicen.a6_retrofit.entity.User
+import io.reactivex.Single
 import okhttp3.internal.platform.Platform
 import retrofit2.Call
 import java.lang.reflect.InvocationHandler
@@ -21,19 +22,18 @@ class RealService : GithubService {
         override fun invoke(proxy: Any?, method: Method?, args: Array<out Any>?): Any {
             //扮演代理角色，对不同的方法做不同的处理
 
-
             return Any()
         }
     }
 
-    /*override fun listRepos(user: String): Call<List<Repo>> {
+    override fun listRepos(user: String): Single<List<Repo>> {
         val method = GithubService::class.java.getMethod("listRepos")
-        return invocationHandler.invoke(this, method, arrayOf(user)) as Call<List<Repo>>
+        return invocationHandler.invoke(this, method, arrayOf(user)) as Single<List<Repo>>
     }
 
     override fun getUser(): Call<User> {
         val method = GithubService::class.java.getMethod("getUser")
         return invocationHandler.invoke(this, method, null) as Call<User>
-    }*/
+    }
 
 }

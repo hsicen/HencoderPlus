@@ -14,9 +14,9 @@ import retrofit2.http.Path
  * <p>描述：Web Service接口
  */
 interface GithubService {
-    /*@GET("/users/{user}/repos")
+    @GET("/users/{user}/repos")
     fun listRepos(@Path("user") user: String): Single<List<Repo>>
 
     @GET("/users/hsicen")
-    fun getUser(): Call<User>*/
+    fun getUser(): Call<User>
 }

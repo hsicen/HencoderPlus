@@ -2,6 +2,8 @@ package com.hsicen.kolitn
 
 import android.view.View
 import android.widget.TextView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.*
 
 /**
@@ -74,4 +76,10 @@ fun <T> copy(src1: Array<out T>, src2: Array<in T>) {
         src2[i] = src1[i]
     }
 }
+
+inline fun <reified T : Any> Gson.fromJson(jsonStr: String): T =
+    this.fromJson(jsonStr, T::class.java)
+
+/*inline fun <reified T : Any> Gson.fromJsonArr(jsonStr: String): T =
+    this.fromJson(jsonStr, object : TypeToken<T>() {})*/
 
