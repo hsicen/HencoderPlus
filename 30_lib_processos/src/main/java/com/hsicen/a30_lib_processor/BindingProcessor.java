@@ -36,7 +36,6 @@ public class BindingProcessor extends AbstractProcessor {
             String pkgStr = element.getEnclosingElement().toString();  //包名
             String classStr = element.getSimpleName().toString(); //类名
 
-            //构造自动生成的类名 (类名 + Binding)
             ClassName className = ClassName.get(pkgStr, classStr + "Binding");
             MethodSpec.Builder constructorBuilder = MethodSpec.constructorBuilder()
                     .addModifiers(Modifier.PUBLIC)
