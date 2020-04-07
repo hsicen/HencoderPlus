@@ -4,7 +4,7 @@ package com.hsicen.a3_author
  * 作者：hsicen  2020/4/7 15:21
  * 邮箱：codinghuang@163.com
  * 功能：
- * 描述：Cookie、Authorization、OAuth2流程
+ * 描述：Cookie、Authorization、OAuth2授权流程
  */
 class AuthorClass {
     //登录和授权：登录是确认你是你的过程，授权是授予某些权限；实际上登录过程中实质上也是授予了一定权限
