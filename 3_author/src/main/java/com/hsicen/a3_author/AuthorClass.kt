@@ -21,7 +21,7 @@ class AuthorClass {
      *      Tracking（分析用户行为）
      */
 
-    //Header：Authorization
+    //Header： Authorization
     /**
      * 分类：Basic 和 Bearer
      * Basic：Authorization: Basic<username:password(base64ed)>
