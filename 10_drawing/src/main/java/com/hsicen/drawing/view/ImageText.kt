@@ -16,7 +16,11 @@ import com.hsicen.drawing.sp2px
  *
  *   使用StaticLayout进行多行文字测量
  */
-class ImageText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+class ImageText @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) :
     View(context, attrs, defStyleAttr) {
 
     private val mWidth = 150f.dp2px
@@ -49,7 +53,7 @@ class ImageText @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
         //绘制文字
         mPaint.textSize = 20f.sp2px
-        mPaint.color = Color.WHITE
+        mPaint.color = Color.BLACK
         mPaint.getFontMetrics(mMetrics)
 
         var start = 0

@@ -16,8 +16,7 @@ class AvatarView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) :
-    ImageView(context, attrs, defStyleAttr) {
+) : ImageView(context, attrs, defStyleAttr) {
 
     private val mPadding = 0f.dp2px
 

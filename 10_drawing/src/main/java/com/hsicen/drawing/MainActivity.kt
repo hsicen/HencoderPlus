@@ -1,9 +1,7 @@
 package com.hsicen.drawing
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * <p>作者：Hsicen  6/22/2019 12:32 PM
@@ -17,9 +15,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val animator = ObjectAnimator.ofFloat(circleView, "radius", 250f, 10f, 100f)
+        /*val animator = ObjectAnimator.ofInt(pointer, "pointer", 1, 19, 10, 15)
         animator.duration = 2000
         animator.startDelay = 2000
-        animator.start()
+        animator.start()*/
     }
 }

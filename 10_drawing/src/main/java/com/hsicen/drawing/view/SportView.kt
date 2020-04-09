@@ -18,8 +18,12 @@ import com.hsicen.drawing.sp2px
  * <p>作用：
  * <p>描述：百分比View
  */
-class SportView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-        View(context, attrs, defStyleAttr) {
+class SportView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) :
+    View(context, attrs, defStyleAttr) {
 
     private val mRadius = 150f.dp2px
     private val mBounds = Rect()
@@ -53,14 +57,14 @@ class SportView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         mPaint.strokeCap = Paint.Cap.ROUND
         mPaint.color = Color.parseColor("#E91B63")
         canvas.drawArc(
-                width / 2f - mRadius,
-                height / 2f - mRadius,
-                width / 2f + mRadius,
-                height / 2f + mRadius,
-                140f,
-                progress.toFloat(),
-                false,
-                mPaint
+            width / 2f - mRadius,
+            height / 2f - mRadius,
+            width / 2f + mRadius,
+            height / 2f + mRadius,
+            140f,
+            progress.toFloat(),
+            false,
+            mPaint
         )
     }
 

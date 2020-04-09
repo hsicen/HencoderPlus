@@ -17,7 +17,11 @@ import kotlin.math.sin
  * <p>作用：
  * <p>描述：自定义饼图
  */
-class PieChart @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+class PieChart @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) :
     View(context, attrs, defStyleAttr) {
     private val mRadius = 150f.dp2px
     private val mShift = 10f.dp2px
@@ -28,7 +32,12 @@ class PieChart @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
     }
 
     private val mRect by lazy {
-        RectF(width / 2f - mRadius, height / 2f - mRadius, width / 2f + mRadius, height / 2f + mRadius)
+        RectF(
+            width / 2f - mRadius,
+            height / 2f - mRadius,
+            width / 2f + mRadius,
+            height / 2f + mRadius
+        )
     }
 
     private val mColors = listOf(
@@ -46,7 +55,7 @@ class PieChart @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         super.onDraw(canvas)
 
         var mStart = 0f
-        for (index in 0 until mColors.size) {
+        for (index in mColors.indices) {
             mPaint.color = mColors[index]
 
             //偏移突出效果

@@ -14,7 +14,11 @@ import kotlin.math.sin
  * <p>作用：
  * <p>描述：仪表盘
  */
-class DashBord @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+class DashBord @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) :
     View(context, attrs, defStyleAttr) {
 
     private val mRadius = 150f.dp2px
@@ -35,7 +39,12 @@ class DashBord @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
     }
 
     private val dashEffect by lazy {
-        PathDashPathEffect(dash, (mPathMeasure.length - 2f.dp2px) / 20, 0f, PathDashPathEffect.Style.ROTATE)
+        PathDashPathEffect(
+            dash,
+            (mPathMeasure.length - 2f.dp2px) / 20,
+            0f,
+            PathDashPathEffect.Style.ROTATE
+        )
     }
 
     private val mArcPath by lazy {
@@ -45,6 +54,13 @@ class DashBord @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
     private val mPathMeasure by lazy {
         PathMeasure(mArcPath, false)
     }
+
+    private var pointer = 0
+        get() = field
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -74,14 +90,15 @@ class DashBord @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         //绘制指针
         canvas.drawLine(
             width / 2f - xOffset, height / 2f,
-            (width / 2f - xOffset + cos(Math.toRadians(getAngleForMark(13))) * mLength).toFloat(),
-            (height / 2f + sin(Math.toRadians(getAngleForMark(13))) * mLength).toFloat(),
+            (width / 2f - xOffset + cos(Math.toRadians(getAngleForMark(pointer))) * mLength).toFloat(),
+            (height / 2f + sin(Math.toRadians(getAngleForMark(pointer))) * mLength).toFloat(),
             mPaint
         )
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = mRadius + paddingLeft + paddingRight + mRadius * cos(Math.toRadians(mLeftAngle / 2.0)).toFloat()
+        val width =
+            mRadius + paddingLeft + paddingRight + mRadius * cos(Math.toRadians(mLeftAngle / 2.0)).toFloat()
         val height = mRadius * 2 + paddingTop + paddingBottom
 
         setMeasuredDimension(
