@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             .observeOn(Schedulers.newThread())
             .subscribe(object : SingleObserver<List<Repo>> {
                 override fun onSubscribe(d: Disposable?) {
+
                 }
 
                 override fun onSuccess(value: List<Repo>?) {
