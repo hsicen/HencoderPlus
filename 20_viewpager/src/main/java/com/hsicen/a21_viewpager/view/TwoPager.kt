@@ -26,6 +26,7 @@ class TwoPager @JvmOverloads constructor(
 
     private var downX = 0f
     private var downY = 0f
+
     //画面初始偏移
     private var downScrollX = 0f
     private var scrolling = false

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.hsicen.a21_viewpager.view.TwoPager
-	xmlns:android = "http://schemas.android.com/apk/res/android"
-	xmlns:tools = "http://schemas.android.com/tools"
-	android:layout_width = "match_parent"
-	android:layout_height = "match_parent"
-	tools:context = ".MainActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-	<View
-		android:layout_width = "match_parent"
-		android:layout_height = "match_parent"
-		android:background = "#C29BE3" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#C29BE3" />
 
-	<View
-		android:layout_width = "match_parent"
-		android:layout_height = "match_parent"
-		android:background = "#A4DBA9" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A4DBA9" />
 
 </com.hsicen.a21_viewpager.view.TwoPager>
