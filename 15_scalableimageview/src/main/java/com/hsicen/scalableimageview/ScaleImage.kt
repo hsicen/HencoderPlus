@@ -19,7 +19,7 @@ import kotlin.math.min
  * <p>作者：Hsicen  2019/8/2 14:34
  * <p>邮箱：codinghuang@163.com
  * <p>作用：
- * <p>描述：自定义双向缩放的ImageView
+ * <p>描述：自定义双向缩放的ImageView ScaleGestureDetector
  */
 class ScaleImage @JvmOverloads constructor(
     context: Context,
