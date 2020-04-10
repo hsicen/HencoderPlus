@@ -3,7 +3,6 @@ package com.hsicen.layout
 import android.content.Context
 import android.graphics.Rect
 import android.util.AttributeSet
-import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.core.view.marginBottom
 import androidx.core.view.marginLeft
@@ -90,9 +89,4 @@ class TagLayout @JvmOverloads constructor(
     override fun generateLayoutParams(attrs: AttributeSet): LayoutParams {
         return MarginLayoutParams(context, attrs)
     }
-
-    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        return super.onInterceptTouchEvent(ev)
-    }
-
 }
