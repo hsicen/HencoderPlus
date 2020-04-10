@@ -44,12 +44,14 @@ class ScaleImageView @JvmOverloads constructor(
     private var isScale = false
     private var mSmallScale = 0f
     private var mLargeScale = 0f
+
     //记录动画完成度
     private var mFraction = 0f
         set(value) {
             field = value
             invalidate()
         }
+
     //缩放动画
     private val mAnimator by lazy {
         ObjectAnimator.ofFloat(this, "mFraction", 0f, 1f)
