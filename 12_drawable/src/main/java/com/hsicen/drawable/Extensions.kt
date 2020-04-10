@@ -44,10 +44,7 @@ fun logd(msg: String, tag: String = "hsc") {
  *  it  works for jpg and png type drawables, but it does not work for xml type drawable
  *  I guess because xml file has no specific width and height information
  * */
-fun drawable2Bitmap(resId: Int): Bitmap {
-
-    return BitmapFactory.decodeResource(Resources.getSystem(), resId)
-}
+fun res2Bitmap(resId: Int) = BitmapFactory.decodeResource(Resources.getSystem(), resId)
 
 /*** resource file to bitmap
  * it works for xml type drawable

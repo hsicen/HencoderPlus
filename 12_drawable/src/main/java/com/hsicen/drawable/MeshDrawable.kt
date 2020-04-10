@@ -18,7 +18,6 @@ class MeshDrawable : Drawable() {
     override fun draw(canvas: Canvas) {
         mPaint.color = Color.parseColor("#0080FF")
         mPaint.strokeWidth = 2f.dp2px
-
         val widthGap = bounds.width() / mLines * 1f
         val heightGap = bounds.height() / mLines * 1f
 
