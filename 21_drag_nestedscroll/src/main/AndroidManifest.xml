@@ -10,8 +10,8 @@
 		android:roundIcon = "@mipmap/ic_launcher_round"
 		android:supportsRtl = "true"
 		android:theme = "@style/AppTheme">
-		<activity android:name = ".drag.DragUpDownActivity"></activity>
-		<activity android:name = ".drag.DragCollectActivity" />
+		<activity android:name = ".DragUpDownActivity"></activity>
+		<activity android:name = ".DragCollectActivity" />
 		<activity android:name = ".DragListenerListActivity" />
 		<activity android:name = ".MainActivity">
 			<intent-filter>

@@ -3,8 +3,6 @@ package com.hsicen.a21_drag_nestedscroll
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.hsicen.a21_drag_nestedscroll.drag.DragCollectActivity
-import com.hsicen.a21_drag_nestedscroll.drag.DragUpDownActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**

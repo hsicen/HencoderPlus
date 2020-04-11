@@ -35,6 +35,7 @@ class DragUpDownLayout @JvmOverloads constructor(
     private val mViewConfiguration by lazy {
         ViewConfiguration.get(context)
     }
+
     /*** 拖拽工具类*/
     private val mDragHelper by lazy {
         ViewDragHelper.create(this, DragCallback())
@@ -43,7 +44,7 @@ class DragUpDownLayout @JvmOverloads constructor(
     override fun onFinishInflate() {
         super.onFinishInflate()
 
-        mChild = findViewById<View>(R.id.dragView)
+        mChild = findViewById(R.id.dragView)
     }
 
     override fun computeScroll() {
