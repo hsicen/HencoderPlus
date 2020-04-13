@@ -25,9 +25,7 @@ class DragListenerGridView @JvmOverloads constructor(
 
     private val mDragListener = HDragListener()
     private val mOrderChild: ArrayList<View> = ArrayList()
-
     private var mDragView: View? = null
-
 
     init {
         isChildrenDrawingOrderEnabled = true
@@ -41,7 +39,7 @@ class DragListenerGridView @JvmOverloads constructor(
             //初始化设置
             mOrderChild.add(childView)
             childView.setOnLongClickListener {
-                mDragView = it
+                mDragView = it  //更新当前进行拖拽的View
                 ViewCompat.startDragAndDrop(
                     it,
                     ClipData.newPlainText("name", "drag"),
@@ -91,9 +89,7 @@ class DragListenerGridView @JvmOverloads constructor(
         private const val ROWS = 3
     }
 
-    /**
-     * 自定义拖拽监听器
-     */
+    /*** 自定义拖拽监听器*/
     inner class HDragListener : OnDragListener {
         override fun onDrag(v: View, event: DragEvent): Boolean {
             when (event.action) {

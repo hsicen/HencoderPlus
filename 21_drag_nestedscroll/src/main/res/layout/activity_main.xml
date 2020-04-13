@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hsicen.a21_drag_nestedscroll.drag.DragListenerGridView
-	xmlns:android = "http://schemas.android.com/apk/res/android"
-	xmlns:tools = "http://schemas.android.com/tools"
-	android:layout_width = "match_parent"
-	android:layout_height = "match_parent"
-	tools:context = ".MainActivity"
-	tools:ignore = "HardcodedText">
+<com.hsicen.a21_drag_nestedscroll.drag.DragHelperGridView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:ignore="HardcodedText">
 
-	<TextView
-		android:id = "@+id/tvDragCollect"
-		android:layout_width = "match_parent"
-		android:layout_height = "match_parent"
-		android:background = "#F4FF81"
-		android:gravity = "center"
-		android:text = "drag to collect"
-		android:textColor = "#CEFF81E2" />
+    <TextView
+        android:id="@+id/tvDragCollect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4FF81"
+        android:gravity="center"
+        android:text="drag to collect"
+        android:textColor="#CEFF81E2" />
 
-	<TextView
-		android:id = "@+id/tvDragUpDown"
-		android:layout_width = "match_parent"
-		android:layout_height = "match_parent"
-		android:background = "#396E76"
-		android:gravity = "center"
-		android:text = "drag up down" />
+    <TextView
+        android:id="@+id/tvDragUpDown"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#396E76"
+        android:gravity="center"
+        android:text="drag up down" />
 
-	<View
-		android:id = "@+id/view3"
-		android:layout_width = "wrap_content"
-		android:layout_height = "wrap_content"
-		android:background = "#AA00FF" />
+    <View
+        android:id="@+id/view3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#AA00FF" />
 
-	<View
-		android:id = "@+id/view4"
-		android:layout_width = "wrap_content"
-		android:layout_height = "wrap_content"
-		android:background = "#6200EA" />
+    <View
+        android:id="@+id/view4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#6200EA" />
 
-	<View
-		android:id = "@+id/view5"
-		android:layout_width = "wrap_content"
-		android:layout_height = "wrap_content"
-		android:background = "#00C853" />
+    <View
+        android:id="@+id/view5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00C853" />
 
-	<View
-		android:id = "@+id/view6"
-		android:layout_width = "match_parent"
-		android:layout_height = "match_parent"
-		android:background = "#FF6D00" />
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF6D00" />
 
-</com.hsicen.a21_drag_nestedscroll.drag.DragListenerGridView>
+</com.hsicen.a21_drag_nestedscroll.drag.DragHelperGridView>
