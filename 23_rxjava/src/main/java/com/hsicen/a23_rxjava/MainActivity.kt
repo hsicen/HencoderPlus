@@ -26,6 +26,8 @@ import java.util.concurrent.TimeUnit
  */
 class MainActivity : AppCompatActivity() {
 
+    var mDisposable: Disposable? = null
+
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,11 +104,16 @@ class MainActivity : AppCompatActivity() {
                     Log.d("hsc", " 可取消对象： ${d.javaClass.name}")
                     Log.d("hsc", " 线程： " + Thread.currentThread().name)
                     tv_info.text = "开始"
+                    mDisposable = d
                 }
 
                 override fun onNext(t: Long) {
                     Log.d("hsc", " 线程： " + Thread.currentThread().name)
                     tv_info.text = "$t"
+
+                    if (10 == t.toInt()) {
+                        mDisposable?.dispose()
+                    }
                 }
 
                 override fun onError(e: Throwable) {
