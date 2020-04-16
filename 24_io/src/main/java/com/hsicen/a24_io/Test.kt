@@ -2,6 +2,7 @@ package com.hsicen.a24_io
 
 import okio.Buffer
 import okio.buffer
+import okio.sink
 import okio.source
 import java.io.*
 import java.net.InetSocketAddress
@@ -20,30 +21,29 @@ import java.nio.charset.Charset
  */
 fun main() {
 
-    okio2()
+    okio3()
 }
 
 /*** 普通网络IO
  *  telnet localhost 8080   (连接本地服务器)
  * */
 fun netIo() {
-    val serverSocket = ServerSocket(8080)
+    val serverSocket = ServerSocket(1258)
     val socket = serverSocket.accept()
 
-    val reader = BufferedReader(InputStreamReader(socket.getInputStream()))
-    val writer = BufferedWriter(OutputStreamWriter(socket.getOutputStream()))
+    val reader = BufferedReader(InputStreamReader(socket.getInputStream(), "utf-8"))
+    val writer = BufferedWriter(OutputStreamWriter(socket.getOutputStream(), "utf-8"))
 
     var data: String
     while (reader.readLine().also { data = it } != null) {
         data = data.replace("吗", "")
         data = data.replace("?", "!")
         data = data.replace("？", "!")
-        writer.write(data)
+        writer.write("客服：$data")
         writer.write(System.lineSeparator())
         writer.flush()
     }
 }
-
 
 fun copyFile() {
     val fis = FileInputStream("./24_io/hsc.txt")
@@ -68,11 +68,17 @@ fun read() {
 
 fun write() {
     val fos = FileOutputStream("./24_io/hsc.txt")
-    fos.write('a'.toInt())
-    fos.write('b'.toInt())
-    fos.write(3)
-    fos.write(15)
+    val osw = OutputStreamWriter(fos)
+    val writer = BufferedWriter(osw)
 
+    writer.append("你在干什么")
+    writer.append("关你什么事")
+    fos.flush()
+    osw.flush()
+    writer.flush()
+
+    writer.close()
+    osw.close()
     fos.close()
 }
 
@@ -98,7 +104,6 @@ fun read1() {
     fis.close()
 }
 
-
 fun nio1() {
     val raf = RandomAccessFile("./24_io/hsc.txt", "r")
     val channel = raf.channel
@@ -119,14 +124,13 @@ fun nio2() {
     while (socketChannel.read(byteBuffer) != -1) {
         byteBuffer.flip()
         socketChannel.write(byteBuffer)
-        //println("接收到：${Charset.defaultCharset().decode(byteBuffer)}")
+        println("接收到：${Charset.defaultCharset().decode(byteBuffer)}")
         byteBuffer.clear()
     }
 }
 
 /*** 网络交互的非阻塞式*/
 fun nio3() {
-
     val serverSocketChannel = ServerSocketChannel.open()
     serverSocketChannel.bind(InetSocketAddress(8080))
     serverSocketChannel.configureBlocking(false)
@@ -135,9 +139,9 @@ fun nio3() {
     val socketChannel = serverSocketChannel.accept()
     val byteBuffer = ByteBuffer.allocate(1024)
 
-    while (socketChannel.read(byteBuffer) != -1) {
+    while (socketChannel?.read(byteBuffer) != -1) {
         byteBuffer.flip()
-        socketChannel.write(byteBuffer)
+        socketChannel?.write(byteBuffer)
         byteBuffer.clear()
     }
 }
@@ -153,5 +157,13 @@ fun okio1() {
 fun okio2() {
     val source = File("./24_io/hsc.txt").source().buffer()
     println("读取：${source.readUtf8()}")
+}
+
+fun okio3() {
+    val sink = File("./24_io/hsc.txt").sink(true)
+    val buffer = Buffer()
+    buffer.writeString("你在干什么三大类贷款", Charset.defaultCharset())
+    buffer.writeUtf8("这个是三个环节两节课四大皆空上来看大家拉家里卡拉加多了")
+    sink.write(buffer, buffer.size)
 }
 
