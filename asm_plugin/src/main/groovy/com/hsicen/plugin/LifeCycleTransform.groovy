@@ -1,22 +1,14 @@
-package com.hsicen.plugin
-
 import com.android.build.api.transform.QualifiedContent
 import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformException
 import com.android.build.api.transform.TransformInvocation
 import com.android.build.gradle.internal.pipeline.TransformManager
 
-/**
- * 作者：hsicen  2019/12/30 8:30
- * 邮箱：codinghuang@163.com
- * 作用：
- * 描述：HencoderPlus
- */
-class HencoderTransform extends Transform {
+public class LifeCycleTransform extends Transform {
 
     @Override
     String getName() {
-        return 'hencoderTransform'
+        return "LifeCycleTransform"
     }
 
     @Override
@@ -26,7 +18,7 @@ class HencoderTransform extends Transform {
 
     @Override
     Set<? super QualifiedContent.Scope> getScopes() {
-        return TransformManager.SCOPE_FULL_PROJECT
+        return TransformManager.PROJECT_ONLY
     }
 
     @Override
