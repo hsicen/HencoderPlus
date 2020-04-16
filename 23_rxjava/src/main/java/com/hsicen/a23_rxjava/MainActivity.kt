@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    private fun singelJust() {
+    private fun singleJust() {
         var disposable: Disposable? = null
 
         Single.just(1)
@@ -92,6 +92,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun observableInterval() {
         Observable.interval(1, TimeUnit.SECONDS)
+            .delay(2000L, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.computation())
             .map { it + 1 }
             .observeOn(AndroidSchedulers.mainThread())

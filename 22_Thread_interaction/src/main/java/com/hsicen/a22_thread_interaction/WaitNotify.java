@@ -9,10 +9,12 @@ package com.hsicen.a22_thread_interaction;
 public class WaitNotify {
 
     private String mStr;
+    private boolean globalBol;
 
     public static void main(String[] args) {
         WaitNotify waitNotify = new WaitNotify();
-        waitNotify.testWaitNotify();
+        //waitNotify.testWaitNotify();
+        waitNotify.testVariable();
     }
 
     private synchronized void initStr() {
@@ -31,7 +33,6 @@ public class WaitNotify {
 
         System.out.println("The String is " + mStr);
     }
-
 
     private void testWaitNotify() {
 
@@ -61,5 +62,11 @@ public class WaitNotify {
 
         thread.start();
         thread2.start();
+    }
+
+    private void testVariable() {
+        boolean localBol;
+
+        System.out.println("The value is " + globalBol);
     }
 }
