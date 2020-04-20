@@ -1,19 +1,19 @@
 buildscript {
-    ext.kotlin_version = '1.3.71'
+    ext.kotlin_version = '1.3.72'
 
-    repositories {
+    repositories { //仓库地址
         google()
         jcenter()
     }
 
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.2'
+    dependencies { //插件地址
+        classpath 'com.android.tools.build:gradle:3.6.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 allprojects {
-    repositories {
+    repositories { //项目仓库地址
         google()
         jcenter()
         maven { url 'https://jitpack.io' }

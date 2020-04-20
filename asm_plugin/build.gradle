@@ -7,7 +7,9 @@ dependencies {
     implementation gradleApi()
     implementation localGroovy()
 
-    implementation('com.android.tools.build:gradle:3.6.2')
+    implementation 'com.android.tools.build:gradle:3.6.3'
+    implementation 'org.ow2.asm:asm:8.0.1'
+    implementation 'org.ow2.asm:asm-commons:8.0.1'
 }
 
 group = 'com.hsicen.plugin'
@@ -16,6 +18,7 @@ version = '1.0.0'
 uploadArchives {
     repositories {
         mavenDeployer {
+            //本地仓库 maven地址
             repository(url: uri('../asm_lifecycle_repo'))
         }
     }

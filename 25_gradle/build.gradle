@@ -11,14 +11,17 @@ hsicen {
     name '黄思程!!!'
 }
 
+//只对当前项目起作用
 buildscript {
     repositories {
         google()
         jcenter()
-        maven {url('../asm_lifecycle_repo')}
+        //自定义插件地址
+        maven { url('../asm_lifecycle_repo') }
     }
 
     dependencies {
+        //加载自定义插件 group+module+version
         classpath('com.hsicen.plugin:asm_plugin:1.0.0')
     }
 }
@@ -35,11 +38,13 @@ android {
         versionName "1.0"
     }
 
-    buildTypes {
-        debug {}
+    buildTypes {//版本配置 (Debug，Test，Release)
+        dev {
 
-        hsc {
-            initWith debug
+        }
+
+        ts {
+            initWith dev
         }
 
         release {
@@ -48,8 +53,8 @@ android {
         }
     }
 
-    flavorDimensions('paying', 'nation')
-    productFlavors {
+    flavorDimensions('paying', 'nation') //渠道维度
+    productFlavors { //渠道配置
         free {
             dimension 'paying'
         }

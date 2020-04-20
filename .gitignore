@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 .idea/
+/asm_plugin/build/
+asm_lifecycle_repo/
