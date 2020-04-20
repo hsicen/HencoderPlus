@@ -28,10 +28,10 @@ public class LifecycleClassVisitor extends ClassVisitor {
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
-        System.out.println("ClassVisitor visitMethod name: " + className + "  superName：" + superName);
+        System.out.println("ClassVisitor visitMethod name: " + className + "  superName: " + superName);
         MethodVisitor methodVisitor = cv.visitMethod(access, name, descriptor, signature, exceptions);
 
-        if (superName.equals("android/support/v7/app/AppCompatActivity")) {
+        if (superName.equals("androidx/appcompat/app/AppCompatActivity")) {
             if (name.startsWith("onCreate")) {
                 return new LifecycleMethodVisitor(methodVisitor, className, name);
             }
