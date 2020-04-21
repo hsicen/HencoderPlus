@@ -81,8 +81,6 @@ public class LifeCycleTransform extends Transform {
 
                 def dest = outputProvider.getContentLocation(directoryInput.name, directoryInput.contentTypes, directoryInput.scopes, Format.DIRECTORY)
                 FileUtils.copyDirectory(directoryInput.file, dest)
-
-
             }
 
             //单独把Jar包复制过去
