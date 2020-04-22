@@ -2,9 +2,30 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-//引用插件
+//引用自定义插件
 apply plugin: 'Hencoder'  //properties文件名
 apply plugin: 'hsicen.asm.lifecycle'
+
+//自定义插件
+class HelloWorld implements Plugin<Project> {
+    @Override
+    void apply(Project target) {
+        def helloWord = target.extensions.create("HelloWorld", HelloWorldExtension)
+        target.afterEvaluate {
+            println "Plugin say $helloWord.say !!!"
+        }
+    }
+}
+
+class HelloWorldExtension {
+    def say = "Hello World"
+}
+
+apply plugin: HelloWorld
+
+HelloWorld {
+    say 'Hello Groovy'
+}
 
 //自定义配置
 hsicen {

@@ -29,7 +29,10 @@ task clean(type: Delete) {
         println("3")
     }
 
+    //配置阶段执行
     println("1")
     delete rootProject.buildDir
     println("2")
+
+    //clean 1,2,3,4
 }

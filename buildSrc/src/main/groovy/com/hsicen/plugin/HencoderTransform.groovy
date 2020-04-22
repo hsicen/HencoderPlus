@@ -1,10 +1,9 @@
 package com.hsicen.plugin
 
-import com.android.build.api.transform.QualifiedContent
-import com.android.build.api.transform.Transform
-import com.android.build.api.transform.TransformException
-import com.android.build.api.transform.TransformInvocation
+import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
+import com.android.utils.FileUtils
+import groovy.io.FileType
 
 /**
  * 作者：hsicen  2019/12/30 8:30
@@ -36,6 +35,35 @@ class HencoderTransform extends Transform {
 
     @Override
     void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
-        super.transform(transformInvocation)
+        def srcInputs = transformInvocation.inputs //a compose of jar list and directory list
+        def destOutputs = transformInvocation.outputProvider
+
+        srcInputs.each { TransformInput input ->
+
+            //处理Directory
+            input.directoryInputs.each { DirectoryInput dirInput ->
+                def dirFile = dirInput.file
+                if (dirFile) {
+                    //过滤出.class 文件
+                    dirFile.traverse(type: FileType.FILES, nameFilter: ~/.*\.class/) {
+                        //使用字节码工具对class文件进行处理
+                        println "Find directory: $dirFile.name ; path: $dirFile.path"
+                    }
+                }
+
+                //复制文件到指定目录
+                def dirDest = destOutputs.getContentLocation(dirInput.name, dirInput.contentTypes, dirInput.scopes, Format.DIRECTORY)
+                FileUtils.copyDirectory(dirFile, dirDest)
+            }
+
+            //处理Jar
+            input.jarInputs.each { JarInput jarInput ->
+                def jarFile = jarInput.file
+                println "Find jar: $jarFile.name ; path: $jarFile.path"
+
+                def jarDest = destOutputs.getContentLocation(jarInput.name, jarInput.contentTypes, jarInput.scopes, Format.JAR)
+                FileUtils.copyFile(jarFile, jarDest)
+            }
+        }
     }
 }
