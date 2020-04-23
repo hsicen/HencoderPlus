@@ -5,6 +5,7 @@ import android.content.Context
 import dalvik.system.BaseDexClassLoader
 import dalvik.system.PathClassLoader
 import java.io.File
+import java.lang.invoke.MethodHandle
 import java.lang.reflect.Array
 
 

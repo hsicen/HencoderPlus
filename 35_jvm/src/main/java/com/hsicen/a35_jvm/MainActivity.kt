@@ -15,5 +15,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val mClassLoader = MainActivity::class.java.classLoader
+        println("MainActivity:  $mClassLoader")
     }
 }

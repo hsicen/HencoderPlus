@@ -44,7 +44,7 @@ class HencoderTransform extends Transform {
             input.directoryInputs.each { DirectoryInput dirInput ->
                 def dirFile = dirInput.file
                 if (dirFile) {
-                    //过滤出.class 文件
+                    //过滤出.class 文件(从classes文件夹中过滤出 .class 文件)
                     dirFile.traverse(type: FileType.FILES, nameFilter: ~/.*\.class/) {
                         //使用字节码工具对class文件进行处理
                         println "Find directory: $dirFile.name ; path: $dirFile.path"
@@ -56,7 +56,7 @@ class HencoderTransform extends Transform {
                 FileUtils.copyDirectory(dirFile, dirDest)
             }
 
-            //处理Jar
+            //处理Jar包
             input.jarInputs.each { JarInput jarInput ->
                 def jarFile = jarInput.file
                 println "Find jar: $jarFile.name ; path: $jarFile.path"
