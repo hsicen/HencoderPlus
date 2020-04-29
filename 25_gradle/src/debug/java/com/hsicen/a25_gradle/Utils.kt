@@ -1,9 +1,8 @@
 package com.hsicen.a25_gradle
 
-import android.app.Activity
-import android.graphics.Color
-import android.view.ViewGroup
-import android.widget.TextView
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 
 /**
  * <p>作者：hsicen  2019/12/22 11:37
@@ -13,10 +12,15 @@ import android.widget.TextView
  */
 object Utils {
 
-    fun drawBadge(act: Activity) {
-        val decorView = act.window.decorView as ViewGroup
+    fun drawBadge(act: Context) {
+        /*val decorView = act.window.decorView as ViewGroup
         val badge = TextView(act)
         badge.setBackgroundColor(Color.YELLOW)
-        decorView.addView(badge, 200, 150)
+        decorView.addView(badge, 200, 150)*/
+
+        val bundle = Bundle()
+        val intent = Intent(act, MainActivity::class.java)
+
+        act.startActivity(intent, bundle)
     }
 }

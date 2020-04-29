@@ -59,43 +59,24 @@ android {
         versionName "1.0"
     }
 
-    buildTypes {//版本配置 (Debug，Test，Release)
-        dev {
-
-        }
-
-        ts {
-            initWith dev
-        }
-
+    buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
-    flavorDimensions('paying', 'nation') //渠道维度
+    flavorDimensions('paying') //渠道维度
     productFlavors { //渠道配置
         free {
             dimension 'paying'
+            buildConfigField('String', 'BaseUrl', '\"https:www.baidu.com.free\"')
         }
 
         pay {
             dimension 'paying'
+            buildConfigField('String', 'BaseUrl', '\"https:www.baidu.com.pay\"')
         }
-
-        global {
-            dimension 'nation'
-        }
-
-        china {
-            dimension 'nation'
-        }
-
-        us {
-            dimension 'nation'
-        }
-
     }
 }
 

@@ -40,6 +40,8 @@ class TwoPager @JvmOverloads constructor(
     init {
         minVelocity = viewConfiguration.scaledMinimumFlingVelocity
         maxVelocity = viewConfiguration.scaledMaximumFlingVelocity
+        //开启自定义事件分发
+        isChildrenDrawingOrderEnabled = true
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -156,5 +158,10 @@ class TwoPager @JvmOverloads constructor(
             scrollTo(overScroller.currX, overScroller.currY)
             postInvalidateOnAnimation()
         }
+    }
+
+    //自定义事件分发顺序
+    override fun getChildDrawingOrder(childCount: Int, i: Int): Int {
+        return super.getChildDrawingOrder(childCount, i)
     }
 }
