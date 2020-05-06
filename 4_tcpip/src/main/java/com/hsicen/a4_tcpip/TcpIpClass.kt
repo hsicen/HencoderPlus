@@ -96,5 +96,6 @@ class TcpIpClass {
         val url = URL("https://www.baidu.com/")
         val urlConnection = url.openConnection()
         val inStream = urlConnection.getInputStream()
+        val outStream = urlConnection.getOutputStream()
     }
 }
