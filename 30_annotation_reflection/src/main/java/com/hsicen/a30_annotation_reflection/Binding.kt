@@ -7,14 +7,14 @@ import android.util.Log
  * <p>作者：hsicen  2020/2/9 15:32
  * <p>邮箱：codinghuang@163.com
  * <p>作用：
- * <p>描述：HencoderPlus
+ * <p>描述：利用反射实现findViewById的效果
  */
 object Binding {
 
-    fun bind(activity: Activity){
-        activity.javaClass.declaredFields.forEach {filed ->
+    fun bind(activity: Activity) {
+        activity.javaClass.declaredFields.forEach { filed ->
             val bindView = filed.getAnnotation(BindView::class.java)
-            if (bindView != null){
+            if (bindView != null) {
                 try {
                     filed.isAccessible = true
                     filed.set(activity, activity.findViewById(bindView.value))

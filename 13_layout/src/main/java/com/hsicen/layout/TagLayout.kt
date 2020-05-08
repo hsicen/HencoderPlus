@@ -36,6 +36,7 @@ class TagLayout @JvmOverloads constructor(
         val widthMode = MeasureSpec.getMode(widthMeasureSpec) //ViewGroup的测量模式
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)   //ViewGroup最大宽度
 
+        //处理child
         for (index in 0 until childCount) {
             val child = getChildAt(index)
             //难点1：计算出每个子View的widthMeasureSpec和heightMeasureSpec

@@ -19,6 +19,13 @@ import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 
+/**
+ * 作者：hsicen  2020/5/7 14:07
+ * 邮箱：codinghuang@163.com
+ * 功能：
+ * 描述：编译时生成类逻辑(javapoet 工具生成)
+ * 该类会在代码编译时执行
+ */
 public class BindingProcessor extends AbstractProcessor {
     private Filer mFiler;
 

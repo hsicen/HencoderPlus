@@ -1,5 +1,6 @@
 package com.hsicen.touch
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
                 Toast.makeText(this@MainActivity, "单击操作", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this@MainActivity, TouchSecondActivity::class.java))
                 return super.onSingleTapConfirmed(e)
             }
 
