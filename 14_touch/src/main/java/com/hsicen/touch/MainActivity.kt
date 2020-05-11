@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
+import com.hsicen.touch.sample.TouchEventActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
                 Toast.makeText(this@MainActivity, "单击操作", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@MainActivity, TouchSecondActivity::class.java))
+                startActivity(Intent(this@MainActivity, TouchEventActivity::class.java))
                 return super.onSingleTapConfirmed(e)
             }
 
