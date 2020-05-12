@@ -29,7 +29,8 @@ class SampleButton @JvmOverloads constructor(
     override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
         Log.d("hsc", "Button dispatchTouchEvent: $event")
 
-        return super.dispatchTouchEvent(event)
+        //接管事件分发，结束事件流程
+        return true
     }
 
 }

@@ -24,4 +24,15 @@ class ListTest {
 
         Assert.assertEquals(1, mLinkedList.size)
     }
+
+    @Test
+    fun arrayList() {
+        val arrayList = ArrayList<String>()
+        arrayList.add("Java")
+        arrayList.javaClass.getMethod("add", Any::class.java).invoke(arrayList, 134)
+
+        arrayList.forEach {
+            println(" $it")
+        }
+    }
 }
