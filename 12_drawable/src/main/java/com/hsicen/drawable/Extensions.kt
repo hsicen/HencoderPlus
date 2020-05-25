@@ -62,8 +62,7 @@ fun drawable2Bitmap(drawable: Drawable): Bitmap {
         Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
     } else {
         Bitmap.createBitmap(
-            drawable.intrinsicWidth,            drawable.intrinsicHeight,
-            Bitmap.Config.ARGB_8888
+            drawable.intrinsicWidth, drawable.intrinsicHeight, Bitmap.Config.ARGB_8888
         )
     }
 

@@ -38,6 +38,7 @@ class CustomLayoutManager(private val itemHWRatio: Float, private val scale: Flo
         return true
     }
 
+    //滑动处理
     override fun scrollHorizontallyBy(
         dx: Int, recycler: RecyclerView.Recycler?, state: RecyclerView.State?
     ): Int {
