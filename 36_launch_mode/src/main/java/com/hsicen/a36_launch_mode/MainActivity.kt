@@ -3,8 +3,10 @@ package com.hsicen.a36_launch_mode
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.hsicen.a36_launch_mode.singleTask.SingleTask1Activity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -32,5 +34,16 @@ class MainActivity : AppCompatActivity() {
         btn_jump1.setOnClickListener {
             startActivity(Intent(this, SingleTask1Activity::class.java))
         }
+    }
+
+    /*** 获取图片类型*/
+    private fun getBitmapType(bitmapPath: String) {
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = true
+        BitmapFactory.decodeFile(bitmapPath, options)
+        options.inJustDecodeBounds = false
+
+        val mimeType = options.outMimeType
+        Log.d("图片类型", mimeType)
     }
 }
