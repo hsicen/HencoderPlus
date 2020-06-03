@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.hsicen.a36_launch_mode.singleTask.SingleTask1Activity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.FileOutputStream
+import java.io.ObjectOutputStream
 
 /**
  * 作者：hsicen  2020/5/26 9:11
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Log.d("hsc","onCreate 重建")
 
         val mService = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         println("当前任务栈：" + mService.appTasks)
@@ -33,7 +36,14 @@ class MainActivity : AppCompatActivity() {
 
         btn_jump1.setOnClickListener {
             startActivity(Intent(this, SingleTask1Activity::class.java))
+            tv_name.text = "超长文字显示超长文字显示超长文字显示超长文字显示超长文字显示"
         }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+        Log.d("hsc","onNewIntent 重建")
     }
 
     /*** 获取图片类型*/

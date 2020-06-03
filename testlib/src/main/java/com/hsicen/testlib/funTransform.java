@@ -13,6 +13,7 @@ public class funTransform {
         int init = 10;
         testBaseType(init);
         System.out.println("方法调用后：" + init);
+        User user = new User();
     }
 
     private static void testBaseType(int value) {

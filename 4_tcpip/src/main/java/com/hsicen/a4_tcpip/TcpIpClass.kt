@@ -37,7 +37,7 @@ class TcpIpClass {
      * 定义：HTTP over SSL 的简称，即工作在SSL/TLS 上的HTTP，说白了就是加密通信的HTTP
      * HTTPS和SSL的关系就像当初HTTP和HTML的关系，后台SSL不仅可以实现HTTPS的安全，作为一层独立的协议，还可以作为FTP的底层加密传输
      * 后面SSL -> TLS
-     * TLS作为安全层，在HTTP和TCP之间，对数据进行加密和解密； HTTP+TLS -> HTTPS
+     * TLS作为安全层，在HTTP(应用层)和TCP(传输层)之间，对数据进行加密和解密； HTTP+TLS -> HTTPS
      *
      * 工作原理：在客户端和服务器之间利用非对称加密协商出一套对称密钥，每次发送信息之前先将内容加密，收到之后解密，达到内容的加密传输
      *
