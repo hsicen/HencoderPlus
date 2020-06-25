@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 
 //引用自定义插件
 apply plugin: 'Hencoder'  //properties文件名
-apply plugin: 'hsicen.asm.lifecycle'
 
 //自定义插件
 class HelloWorld implements Plugin<Project> {
@@ -30,21 +29,6 @@ HelloWorld {
 //自定义配置
 hsicen {
     name '黄思程!!!'
-}
-
-//只对当前项目起作用
-buildscript {
-    repositories {
-        google()
-        jcenter()
-        //自定义插件地址
-        maven { url('../asm_lifecycle_repo') }
-    }
-
-    dependencies {
-        //加载自定义插件 group+module+version
-        classpath('com.hsicen.plugin:asm_plugin:1.0.0')
-    }
 }
 
 android {
