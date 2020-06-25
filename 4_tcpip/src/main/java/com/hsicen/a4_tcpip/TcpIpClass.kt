@@ -1,5 +1,7 @@
 package com.hsicen.a4_tcpip
 
+import java.net.InetSocketAddress
+import java.net.Socket
 import java.net.URL
 
 /**
@@ -97,5 +99,8 @@ class TcpIpClass {
         val urlConnection = url.openConnection()
         val inStream = urlConnection.getInputStream()
         val outStream = urlConnection.getOutputStream()
+
+        val socket = Socket("http://www.baidu.com", 80)
+        socket.connect(InetSocketAddress(80))
     }
 }
