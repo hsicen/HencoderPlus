@@ -1,3 +1,4 @@
+include ':hiltsample'
 rootProject.name = 'HencoderPlus'
 
 include ':1_http'
