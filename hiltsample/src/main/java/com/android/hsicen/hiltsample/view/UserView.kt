@@ -1,5 +1,6 @@
 package com.android.hsicen.hiltsample.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
@@ -12,15 +13,18 @@ import com.android.hsicen.hiltsample.MainActivity
  * 描述：HencoderPlus
  */
 class UserView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
 
+    @SuppressLint("SetTextI18n")
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        (context as MainActivity)
+        //手动依赖注入
+        val mUser = (context as MainActivity).mUser
+        text = "${mUser.name} 的心情变成了：${mUser.mood}"
     }
 
 }

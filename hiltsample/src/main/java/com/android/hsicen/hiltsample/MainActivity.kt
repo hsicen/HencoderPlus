@@ -1,8 +1,8 @@
 package com.android.hsicen.hiltsample
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.android.hsicen.hiltsample.data.User
 import com.android.hsicen.hiltsample.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,5 +31,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.tvUser.text = "${mUser.name} 的心情是：${mUser.mood}"
+        mUser.mood = "有点想笑"
     }
 }
