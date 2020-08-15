@@ -1,5 +1,6 @@
 package com.android.hsicen.hiltsample.data
 
+import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
 /**
@@ -8,6 +9,8 @@ import javax.inject.Inject
  * 作用：
  * 描述：HencoderPlus
  */
+
+@ActivityScoped //Activity作用域  同一个Activity中只存在一个实例
 class User(var id: Int, var name: String, var mood: String) {
 
     @Inject //向外提供实例

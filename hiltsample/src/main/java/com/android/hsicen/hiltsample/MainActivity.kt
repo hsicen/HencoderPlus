@@ -15,12 +15,12 @@ import javax.inject.Inject
  * 描述：Hilt依赖注入
  */
 
-@AndroidEntryPoint
+@AndroidEntryPoint //依赖注入标记
 class MainActivity : AppCompatActivity() {
     //ViewBinding 替代findViewById
     private lateinit var binding: ActivityMainBinding
 
-    @Inject
+    @Inject //获取实例
     lateinit var mUser: User
 
     @SuppressLint("SetTextI18n")
@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.tvUser.text = "${mUser.name} 的心情是：${mUser.mood}"
         mUser.mood = "有点想笑"
     }
 }
