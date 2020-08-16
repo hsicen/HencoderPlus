@@ -17,6 +17,8 @@ import javax.inject.Inject
  * 邮箱：codinghuang@163.com
  * 功能：
  * 描述：Hilt依赖注入
+ *
+ * 在我们的日常工作中，已经在使用依赖注入，Hilt使用注解的方式，让依赖注入更加简单
  */
 
 @AndroidEntryPoint //依赖注入标记

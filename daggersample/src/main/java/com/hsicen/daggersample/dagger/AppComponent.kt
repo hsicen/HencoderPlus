@@ -13,7 +13,7 @@ import dagger.Component
  */
 
 @ActivityScope
-@Component
+@Component(modules = [AppModule::class])
 interface AppComponent {
 
     fun inject(act: MainActivity)
