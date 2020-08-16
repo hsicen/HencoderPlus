@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.scopes.ActivityScoped
 
 /**
  * 作者：hsicen  2020/8/16 19:55
@@ -17,6 +18,7 @@ import dagger.hilt.android.components.ActivityComponent
 @InstallIn(ActivityComponent::class)
 object HiltModule1 {
 
+    @ActivityScoped
     @Provides //给需要User的注解提供一个User对象
     fun provideUser(): User {
         val user = User()
