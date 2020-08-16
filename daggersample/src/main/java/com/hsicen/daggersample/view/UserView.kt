@@ -1,21 +1,19 @@
-package com.android.hsicen.hiltsample.view
+package com.hsicen.daggersample.view
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import com.android.hsicen.hiltsample.data.User
-import dagger.hilt.android.AndroidEntryPoint
+import com.hsicen.daggersample.DaggerApp
+import com.hsicen.daggersample.data.User
 import javax.inject.Inject
 
 /**
- * 作者：hsicen  2020/8/14 8:33
+ * 作者：hsicen  2020/8/16 16:13
  * 邮箱：codinghuang@163.com
  * 作用：
  * 描述：HencoderPlus
  */
-
-@AndroidEntryPoint //依赖注入标记
 class UserView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -29,7 +27,8 @@ class UserView @JvmOverloads constructor(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        text = "${mUser.name} 的心情变成了：${mUser.mood}"
+        //加入编织图
+        (context.applicationContext as DaggerApp).coreComponent.inject(this)
+        text = "${mUser.name}使用Dagger的心情变成了：${mUser.mood}"
     }
-
 }
