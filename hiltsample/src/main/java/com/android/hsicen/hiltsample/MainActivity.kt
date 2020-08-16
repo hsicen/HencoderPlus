@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
     @Inject //获取实例
     lateinit var mUser: User
 
+    @Inject
+    lateinit var mAny: Any
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val anyUser = mAny as User
+        binding.tvUser.text = "${anyUser.name} 的心情是：${anyUser.mood}"
         mUser.mood = "有点想笑"
     }
 }
