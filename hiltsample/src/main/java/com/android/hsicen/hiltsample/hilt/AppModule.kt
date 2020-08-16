@@ -15,6 +15,12 @@ import javax.inject.Singleton
  * 邮箱：codinghuang@163.com
  * 作用：
  * 描述：提供全局单例对象  Application作用域
+ *
+ * ApplicationComponent 全局作用域
+ * ActivityComponent
+ * FragmentComponent
+ * ViewComponent
+ * ActivityRetainedComponent
  */
 
 @Module
