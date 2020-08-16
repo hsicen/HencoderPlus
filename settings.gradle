@@ -1,3 +1,4 @@
+include ':koinsample'
 include ':daggersample'
 include ':hiltsample'
 rootProject.name = 'HencoderPlus'

@@ -2,7 +2,7 @@ package com.hsicen.a36_launch_mode.singleTask
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.hsicen.a36_launch_mode.R
 import kotlinx.android.synthetic.main.activity_single_task1.*
 

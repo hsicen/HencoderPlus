@@ -3,7 +3,7 @@ package com.hsicen.a36_launch_mode.singleTask
 import android.app.ActivityManager
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.hsicen.a36_launch_mode.R
 
 class SingleTask2Activity : AppCompatActivity() {
