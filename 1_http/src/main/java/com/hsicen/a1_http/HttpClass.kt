@@ -5,22 +5,37 @@
  * 邮箱：codinghuang@163.com
  * 功能：
  * 描述：Http的原理和工作机制
+ *
+ * 一次配置，终生使用
  */
 class HttpClass {
 
-    //Hype Text Transfer Protocol
+    //定义：Hyper Text Transfer Protocol
+    /**
+     * Protocol：协议，通信规则，通信方能够简单，顺利的沟通
+     *
+     * HyperText 扩展文本 HTML文本
+     * 用纯文本 传输 带格式的页面
+     * 学术界的人需要在网上浏览文章
+     * 传输HTML文本的协议
+     *
+     * 工作方式：
+     * 浏览器：联网请求 -> 请求报文拼接 -> 服务器响应 -> 响应报文 -> 数据解析
+     * 手机App：联网请求 -> 请求报文拼接 -> 服务器响应 -> 响应报文 -> 数据解析
+     * 渲染引擎：显示HTML文本
+     */
 
     //URL  协议类型://服务器地址:端口号/路径  http://www.baidu.com/search?content="Hello world"
     //HTTP端口号为80     HTTPS端口号为443
 
     //请求报文
     /**
-     * 请求行： GET  /search  HTTP/1.1
+     * 请求行： GET  /search(定位)  HTTP/1.1
      * Header: Host: www.baidu.com
      *         Content-Type: text/plain
      *         Content-Length: 21
      *
-     * body body body body
+     * body body body body (提供给服务器的具体信息)
      * */
 
     //响应报文
@@ -33,27 +48,32 @@ class HttpClass {
      * body body body body
      * */
 
-    //请求方法
+    //请求方法(Request method)
     /**
-     * GET：   获取资源，无body，参数拼接在path后面  幂等操作
-     * POST：  增加或修改资源，有body，参数在body里
-     * PUT：   修改资源，有body，参数写在body里  幂等性操作
-     * DELETE: 删除资源，无body，参数拼接在body后面  幂等性操作
-     * HEAD：  和GET相同，但是响应中没有body
+     * GET：   获取资源，无body，参数拼接在path后面(@Path)  幂等操作
+     * POST：  增加或修改资源，有body，参数在body里(@Filed)
+     * PUT：   修改资源，有body，参数写在body里(@Path, @Filed)  幂等性操作
+     * DELETE: 删除资源，无body，参数拼接在path后面  幂等性操作
+     * HEAD：  和GET相同，但是响应中没有body，只有状态行和Header
      */
 
-    //状态码：对响应结果做出类型化描述
+    //状态码(Response Status Code)：对响应结果做出类型化描述   方便开发调试
     /**
-     * 1xx： 临时性消息（100：继续发送；101：正在切换协议）
+     * 1xx： 临时性消息（100：继续发送 Expect:100-continue； 101：正在切换协议 Upgrade: h2c）
      * 2xx： 成功（200：成功；201：创建成功）
      * 3xx： 重定向（301：永久移动；302：暂时移动；304：内容未改变）
      * 4xx： 客户端错误（400：客户端请求错误；401：认证失败；403：被禁止访问；404：内容未找到）
-     * 5xx： 服务器错误（500：服务器内部错误）
+     * 5xx： 服务器错误（500：服务器内部错误；503：服务器不可用；504：网关超时）
      */
 
     //常见Header
     /**
+     * 作用：HTTP消息的元数据(关于数据的数据)
+     *
      * Host： 目标主机，不是用于寻址，是用于在目标服务器上定位子服务器的
+     *        发送请求前：主机域名 -> DNS系统 -> IP地址
+     *        虚拟主机：由于域名定位出来的IP都是指向大主机的，大主机需要用域名来定位子主机
+     *
      * Content-Type：指定body的类型，主要有四种
      *      text/html：body返回html文本
      *      application/x-www.form-urlencode：提交表单  @FormURLEncode  @Field
