@@ -74,12 +74,13 @@ class HttpClass {
      *        发送请求前：主机域名 -> DNS系统 -> IP地址
      *        虚拟主机：由于域名定位出来的IP都是指向大主机的，大主机需要用域名来定位子主机
      *
-     * Content-Type：指定body的类型，主要有四种
+     * Content-Type：指定body的类型，主要有四种(没有默认值)
      *      text/html：body返回html文本
-     *      application/x-www.form-urlencode：提交表单  @FormURLEncode  @Field
-     *      multipart/form-data：二进制文件表单提交  利用boundary分割参数   @Multipart  @Part RequestBody.create()
-     *      application/json：body提交json内容  @Body 类对象
-     *      image/jpeg：提交二进制内容   @Body  RequestBody.create()
+     *      application/x-www-form-urlencoded：提交普通表单，纯文字表单    @FormURLEncode  @Field(拼接在body中) @Query(拼接在path后面)
+     *      multipart/form-data：二进制文件表单提交  利用boundary分割参数   @Multipart      @Part RequestBody.create()
+     *      application/json：body提交json内容/返回json数据               @Body(有converter) 类对象   @RequestBody(无converter)
+     *      image/jpeg：提交二进制内容(单文件上传/下载)   @Body  RequestBody.create()
+     *      application/zip: 单文件上传/下载
      *
      * Content-Length： 23         body长度
      * Transfer-Encoding：chunked  分块传输，快速响应(服务器压力大时使用该策略)
