@@ -14,8 +14,8 @@ import java.lang.reflect.Method
  * <p>作用：
  * <p>描述：HencoderPlus
  */
-@Suppress("UNCHECKED_CAST")
 class RealService : GithubService {
+
     private val invocationHandler = object : InvocationHandler {
         private val platform = Platform.get();
 

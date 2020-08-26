@@ -88,7 +88,7 @@ class HttpClass {
      * User-Agent：xxx   用户代理，区分是谁进行的访问，是什么平台，软件版本等相关信息
      *
      * 断点续传和多线程下载相关
-     * Accept-Range: 65534  响应报文中出现，表示可以按字节范围来获取数据
+     * Accept-Range: 65534   响应报文中出现，表示可以按字节范围来获取数据
      * Range：bytes=xxx-xxx  请求报文中出现，表示获取指定范围数据
      * Content-Range：xxx-xxx/total 响应报文中出现，表示发送的是那一段数据
      *
