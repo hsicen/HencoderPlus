@@ -14,6 +14,28 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.concurrent.thread
 
+/**
+ * 作者：hsicen  2020/8/27 9:12
+ * 邮箱：codinghuang@163.com
+ * 功能：
+ * 描述：Retrofit源码解析
+ *
+ * 关键点：
+ * 1. Retrofit.create(GithubService::class.java)
+ *  创建出Service对象，让我们可以调用在Service里定义的方法进行接口请求
+ *  create()方法内部是通过动态代理的方法创建的，程序会在运行时动态创建一个类去实现Service接口，Service里的每个抽象方法
+ *  都会代理给InvocationHandler去处理，InvocationHandler在Invoke()方法中会分类去处理各种方法，我们在接口里定义的抽
+ *  象方法主要是 loadServiceMethod(method).invoke(args) 去处理
+ *
+ * 2. Retrofit.loadServiceMethod(method) -> ServiceMethod 的创建
+ *  这个方法有缓存机制，会从cache中拿两次，拿不到再手动创建 -> ServiceMethod.parseAnnotations(this, method)
+ *  RequestFactory.parseAnnotations(retrofit, method) 解析注解(包括method,url,header等)，创建一个RequestFactory对象
+ *
+ *
+ *
+ *
+ *
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
