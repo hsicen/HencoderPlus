@@ -30,11 +30,15 @@ import kotlin.concurrent.thread
  * 2. Retrofit.loadServiceMethod(method) -> ServiceMethod 的创建
  *  这个方法有缓存机制，会从cache中拿两次，拿不到再手动创建 -> ServiceMethod.parseAnnotations(this, method)
  *  RequestFactory.parseAnnotations(retrofit, method) 解析注解(包括method,url,header等)，创建一个RequestFactory对象
+ *  HttpServiceMethod.parseAnnotations(retrofit, method, requestFactory)
  *
+ * 3. OkHttpCall的创建： 在第二步创建的是HttpServiceMethod，则HttpServiceMethod.invoke(args)
+ *  在invoke()方法中创建了一个OkHttpCall，OkHttpCall是Retrofit的Call的子类；也就是我们在Service接口中定义的方法的返回类型Call.
+ *  在它的enqueue或execute方法调用时，会创建一个okhttp3.Call，然后调用其enqueue或execute方法，并在其回调中回调OkHttpCall的Callback
  *
- *
- *
- *
+ * 4. HttpServiceMethod.invoke(args)中的adapt()方法
+ *  这个方法是用来对OkHttpCall进行转换的，系统默认返回的是一个ExecutorCallbackCall，它的作用是把操作切回主线程，在主线程中回调网络
+ *  请求结果；这个方法用来结合自定义的CallAdaptor来实现Call的转换,例如结合RxJava来返回一个Observable对象
  */
 class MainActivity : AppCompatActivity() {
 

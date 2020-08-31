@@ -17,7 +17,8 @@ import java.lang.reflect.Method
 class RealService : GithubService {
 
     private val invocationHandler = object : InvocationHandler {
-        private val platform = Platform.get();
+        private val platform = Platform.get()
+        private val emptyArgs = arrayOfNulls<Any>(0)
 
         override fun invoke(proxy: Any?, method: Method?, args: Array<out Any>?): Any {
             //扮演代理角色，对不同的方法做不同的处理
@@ -27,7 +28,7 @@ class RealService : GithubService {
     }
 
     override fun listRepos(user: String): Single<List<Repo>> {
-        val method = GithubService::class.java.getMethod("listRepos")
+        val method = GithubService::class.java.getMethod("listRepos", String::class.java)
         return invocationHandler.invoke(this, method, arrayOf(user)) as Single<List<Repo>>
     }
 
