@@ -29,6 +29,7 @@ class GzipRequestInterceptor : Interceptor {
         return chain.proceed(compressedRequest)
     }
 
+    //对Request的Body数据进行压缩
     private fun gzip(body: RequestBody?): RequestBody {
 
         return object : RequestBody() {

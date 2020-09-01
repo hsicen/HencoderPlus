@@ -17,6 +17,7 @@ import okio.BufferedSink
 import java.io.File
 import java.io.IOException
 import java.lang.reflect.Type
+import java.net.HttpURLConnection
 import kotlin.concurrent.thread
 
 /**
