@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -33,21 +34,11 @@ class FruitAdapter(private val data: List<String>) :
         holder.bindTo(position)
     }
 
-    /*** 增量更新方法  (局部刷新)*/
-    override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
-        super.onBindViewHolder(holder, position, payloads)
-    }
-
     /***  多布局逻辑处理*/
     override fun getItemViewType(position: Int): Int {
         return if (position % 2 == 0) {
             1
         } else 2
-    }
-
-    /*** 可在此方法中处理由缓存引发的相关问题*/
-    override fun onViewDetachedFromWindow(holder: ViewHolder) {
-        super.onViewDetachedFromWindow(holder)
     }
 
     @SuppressLint("SetTextI18n")
@@ -60,5 +51,35 @@ class FruitAdapter(private val data: List<String>) :
         fun bindTo(position: Int) {
             mEdition.text = "第20190606期 $position"
         }
+    }
+
+    fun notifyDataChange() {
+        val oldData = listOf(1, 2, 3)
+        val newData = listOf(1, 2, 3)
+
+        val diffBack = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+
+            override fun getOldListSize() = oldData.size
+
+            override fun getNewListSize() = newData.size
+
+            //比较两个位置是否是同类型Item，相同则调用areContentsTheSame
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                val old = oldData[oldItemPosition]
+                val new = newData[newItemPosition]
+
+                return old == new
+            }
+
+            //比较内容是否相同， 相同则直接复用，不同则调用getChangePayload差异化更新
+            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+
+                return false
+            }
+
+        })
+
+        //应用到Adapter更新数据
+        diffBack.dispatchUpdatesTo(this)
     }
 }
