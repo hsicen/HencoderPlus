@@ -20,8 +20,7 @@ class ImageText @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) :
-    View(context, attrs, defStyleAttr) {
+) : View(context, attrs, defStyleAttr) {
 
     private val mWidth = 150f.dp2px
     private val mPadding = 105f.dp2px

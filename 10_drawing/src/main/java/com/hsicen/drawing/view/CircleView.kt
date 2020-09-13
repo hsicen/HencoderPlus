@@ -16,8 +16,11 @@ import com.hsicen.drawing.sp2px
  * <p>作用：
  * <p>描述：自定义圆形进度条
  */
-class CircleView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    View(context, attrs, defStyleAttr) {
+class CircleView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
 
     //圆环半径
     private val mRadius = 100f.dp2px
@@ -44,8 +47,14 @@ class CircleView @JvmOverloads constructor(context: Context, attrs: AttributeSet
         mPaint.color = Color.parseColor("#FF8040")
         mPaint.strokeCap = Paint.Cap.ROUND
         canvas.drawArc(
-            width / 2f - mRadius, height / 2f - mRadius, width / 2f + mRadius, height / 2f + mRadius,
-            0f, 230f, false, mPaint
+            width / 2f - mRadius,
+            height / 2f - mRadius,
+            width / 2f + mRadius,
+            height / 2f + mRadius,
+            0f,
+            230f,
+            false,
+            mPaint
         )
 
         //绘制文字(居中)
@@ -68,6 +77,11 @@ class CircleView @JvmOverloads constructor(context: Context, attrs: AttributeSet
 
         //贴左
         mPaint.getTextBounds(mText, 0, mText.length, mBounds)
-        canvas.drawText(mText, -mBounds.left.toFloat(), -mBounds.top.toFloat() + mPaint.fontSpacing, mPaint)
+        canvas.drawText(
+            mText,
+            -mBounds.left.toFloat(),
+            -mBounds.top.toFloat() + mPaint.fontSpacing,
+            mPaint
+        )
     }
 }

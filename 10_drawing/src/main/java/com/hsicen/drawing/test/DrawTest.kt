@@ -34,6 +34,23 @@ class DrawTest @JvmOverloads constructor(
         Paint.FontMetrics()
     }
 
+    private val mPathMeasure = PathMeasure()
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+
+        val mRadius = width / 3f
+        mPath.fillType = Path.FillType.EVEN_ODD
+        mPath.addCircle(width / 2f, height / 2f, mRadius, Path.Direction.CW)
+        mPath.addRect(
+            width / 2f - mRadius,
+            height / 2f,
+            width / 2f + mRadius,
+            height / 2f + mRadius * 2,
+            Path.Direction.CW
+        )
+    }
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
@@ -44,6 +61,7 @@ class DrawTest @JvmOverloads constructor(
             textSize = 16f.dp2px
         }
 
+        //draw text
         val str = "Hello World"
         mPaint.getTextBounds(str, 0, str.length, mTextRect)  //获取文字尺寸
         canvas?.drawText(str, 2 * mTextRect.left.toFloat(), -mTextRect.top.toFloat(), mPaint)
@@ -60,12 +78,11 @@ class DrawTest @JvmOverloads constructor(
         )
 
         //with path
-        mPath.addCircle(width / 2f, height / 2f, width / 3f, Path.Direction.CW)
-        mPath.fillType = Path.FillType.WINDING
         canvas?.drawPath(mPath, mPaint)
+        mPathMeasure.length
+        //mPathMeasure.getPosTan()
 
         mPaint.getFontMetrics(mMetrics)
-
     }
 
 }

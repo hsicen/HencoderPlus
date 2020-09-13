@@ -14,8 +14,7 @@ class SquareView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) :
-    ImageView(context, attrs, defStyleAttr) {
+) : ImageView(context, attrs, defStyleAttr) {
 
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

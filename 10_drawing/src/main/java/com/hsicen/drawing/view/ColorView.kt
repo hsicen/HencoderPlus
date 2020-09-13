@@ -15,8 +15,11 @@ import com.hsicen.drawing.view.evaluator.HsvEvaluator
  * <p>作用：
  * <p>描述：颜色渐变动画
  */
-class ColorView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    View(context, attrs, defStyleAttr) {
+class ColorView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
 
     private val mRadius = 150f.dp2px
     var mColor: Int = 0xffff0000.toInt()

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DashView">
+        <!--开口角度-->
+        <attr name="openAngle" format="float" />
+        <!--刻度数量-->
+        <attr name="mark" format="integer" />
+        <!-- 半径-->
+        <attr name="radius" format="dimension" />
+        <!--指针长度-->
+        <attr name="markLength" format="dimension" />
+        <!--指针位置-->
+        <attr name="markPos" format="integer" />
+    </declare-styleable>
+
+</resources>

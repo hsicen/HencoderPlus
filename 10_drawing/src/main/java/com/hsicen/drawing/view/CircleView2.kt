@@ -13,11 +13,13 @@ import com.hsicen.drawing.dp2px
  * <p>作用：
  * <p>描述：HencoderPlus
  */
-class CircleView2 @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    View(context, attrs, defStyleAttr) {
+class CircleView2 @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
 
     private var radius = 25f.dp2px
-        get() = field
         set(value) {
             field = value
             invalidate()

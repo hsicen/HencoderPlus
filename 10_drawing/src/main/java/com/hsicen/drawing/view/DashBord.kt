@@ -41,8 +41,8 @@ class DashBord @JvmOverloads constructor(
     private val dashEffect by lazy {
         PathDashPathEffect(
             dash,
-            (mPathMeasure.length - 2f.dp2px) / 20,
-            0f,
+            (mPathMeasure.length - 2f.dp2px) / 20, //设置两个点之间的间隔
+            0f, //设置提前间隔多少像素
             PathDashPathEffect.Style.ROTATE
         )
     }
@@ -56,7 +56,6 @@ class DashBord @JvmOverloads constructor(
     }
 
     private var pointer = 0
-        get() = field
         set(value) {
             field = value
             invalidate()
@@ -65,18 +64,19 @@ class DashBord @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val xOffset = mRadius * cos(Math.toRadians(mLeftAngle / 2.0)).toFloat() - paddingLeft * 2
+        val xOffset = 0//mRadius * cos(Math.toRadians(mLeftAngle / 2.0)).toFloat() - paddingLeft * 2
 
+        //绘制扇形
         mArcPath.addArc(
             width / 2 - mRadius - xOffset,
             height / 2 - mRadius,
             width / 2 + mRadius - xOffset,
             height / 2 + mRadius,
-            180 + mLeftAngle / 2,
+            90 + mLeftAngle / 2,
             360 - mLeftAngle
         )
-
-        //绘制扇形
+        mPaint.style = Paint.Style.STROKE
+        mPaint.strokeWidth = 3f.dp2px
         canvas.drawPath(mArcPath, mPaint)
 
         //绘制刻度
@@ -84,12 +84,14 @@ class DashBord @JvmOverloads constructor(
         canvas.drawPath(mArcPath, mPaint)
         mPaint.pathEffect = null
 
+        //绘制原点
         mPaint.style = Paint.Style.FILL
         canvas.drawCircle(width / 2f - xOffset, height / 2f, 4f.dp2px, mPaint)
 
         //绘制指针
         canvas.drawLine(
-            width / 2f - xOffset, height / 2f,
+            width / 2f - xOffset,
+            height / 2f,
             (width / 2f - xOffset + cos(Math.toRadians(getAngleForMark(pointer))) * mLength).toFloat(),
             (height / 2f + sin(Math.toRadians(getAngleForMark(pointer))) * mLength).toFloat(),
             mPaint

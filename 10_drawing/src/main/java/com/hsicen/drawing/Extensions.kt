@@ -9,6 +9,8 @@ import android.util.TypedValue
  * <p>邮箱：codinghuang@163.com
  * <p>作用：
  * <p>描述：全局扩展
+ *
+ * 将物理单位转换为px值
  */
 
 val Float.dp2px: Float

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,8 +27,25 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />-->
 
-    <com.hsicen.drawing.view.CameraView
+    <!-- <com.hsicen.drawing.view.CameraView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent" />-->
+
+    <!--<com.hsicen.drawing.test.DrawTest
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" />-->
+
+    <!-- <com.hsicen.drawing.view.DashBord
+         android:layout_width="match_parent"
+         android:layout_height="match_parent" />-->
+
+    <com.hsicen.drawing.test.DashView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mark="30"
+        app:markLength="128dp"
+        app:markPos="15"
+        app:openAngle="100"
+        app:radius="140dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
