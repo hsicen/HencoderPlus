@@ -38,7 +38,7 @@
          android:layout_width="match_parent"
          android:layout_height="match_parent" />-->
 
-    <com.hsicen.drawing.test.PieView
+    <com.hsicen.drawing.test.UserView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

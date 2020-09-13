@@ -8,6 +8,7 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import com.hsicen.drawing.dp2px
+import java.lang.Math.toRadians
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -53,8 +54,8 @@ class PieView @JvmOverloads constructor(
             if (index == offset) {
                 canvas.save()
                 canvas.translate(
-                    (offsetLen * cos(Math.toRadians((currentAngle + ANGLES[index] / 2).toDouble()))).toFloat(),
-                    (offsetLen * sin(Math.toRadians((currentAngle + ANGLES[index] / 2).toDouble()))).toFloat()
+                    (offsetLen * cos(toRadians((currentAngle + ANGLES[index] / 2).toDouble()))).toFloat(),
+                    (offsetLen * sin(toRadians((currentAngle + ANGLES[index] / 2).toDouble()))).toFloat()
                 )
             }
 
