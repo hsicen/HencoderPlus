@@ -14,10 +14,19 @@ import android.view.View
  * <p>作用：
  * <p>描述：HencoderPlus
  */
-class PointView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    View(context, attrs, defStyleAttr) {
+class PointView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
 
     var mPoint = PointF(25f.dp2px, 25f.dp2px)
+        get
+        set(value) {
+            field = value
+            invalidate()
+        }
+
     var mColor = Color.parseColor("#ff0000")
         set(value) {
             field = value

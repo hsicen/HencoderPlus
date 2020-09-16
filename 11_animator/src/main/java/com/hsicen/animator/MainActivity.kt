@@ -1,11 +1,12 @@
 package com.hsicen.animator
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
-import android.animation.TypeEvaluator
+import android.animation.*
+import android.graphics.Color
+import android.graphics.PointF
 import android.os.Bundle
+import android.view.animation.AccelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.addListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -20,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnStart.setOnClickListener {
+        //几何变换与属性动画结合
+        cameraStart.setOnClickListener {
             val bottomFlip = ObjectAnimator.ofFloat(cameraView, "mBottomFlip", 45f)
             bottomFlip.duration = 1000
 
@@ -35,14 +37,53 @@ class MainActivity : AppCompatActivity() {
 
             val bottomHolder = PropertyValuesHolder.ofFloat("mBottomFlip", 0f)
             val topHolder = PropertyValuesHolder.ofFloat("mTopFlip", 0f)
-            val endFlip = ObjectAnimator.ofPropertyValuesHolder(cameraView, bottomHolder, topHolder)
+            val endFlip = ObjectAnimator.ofPropertyValuesHolder(
+                cameraView,
+                bottomHolder,
+                topHolder
+            )
             endFlip.duration = 100
             endFlip.startDelay = 200
 
             val set = AnimatorSet()
             set.playSequentially(bottomFlip, rotate, topFlip, endFlip)
             set.start()
+            set.addListener(onEnd = {
+                cameraView.mRotate = 0f
+            })
         }
+
+        //自定义估值器
+        pointStart.setOnClickListener {
+            pointView.mPoint = PointF(25f.dp2px, 25f.dp2px)
+            pointView.mColor = Color.parseColor("#ff0000")
+
+            val positionHolder =
+                PropertyValuesHolder.ofObject(
+                    "mPoint",
+                    PointEvaluator(),
+                    PointF(325f.dp2px, 325f.dp2px)
+                )
+            val colorHolder = PropertyValuesHolder.ofInt("mColor", Color.parseColor("#00ff00"))
+            colorHolder.setEvaluator(ArgbEvaluator())
+
+            val pointAnimator =
+                ObjectAnimator.ofPropertyValuesHolder(pointView, positionHolder, colorHolder)
+            pointAnimator.duration = 3000
+            pointAnimator.interpolator = AccelerateInterpolator()
+
+            pointAnimator.start()
+            pointAnimator.addListener(onEnd = {
+                pointView.mPoint = PointF(25f.dp2px, 25f.dp2px)
+                pointView.mColor = Color.parseColor("#ff0000")
+            })
+        }
+
+        //字符串动画
+        provinceStart.setOnClickListener {
+
+        }
+
     }
 
     inner class ProvinceEvaluator : TypeEvaluator<String> {

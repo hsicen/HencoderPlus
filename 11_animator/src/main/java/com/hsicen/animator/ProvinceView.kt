@@ -15,8 +15,7 @@ class ProvinceView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) :
-    View(context, attrs, defStyleAttr) {
+) : View(context, attrs, defStyleAttr) {
 
     private val mPaint by lazy {
         Paint(Paint.ANTI_ALIAS_FLAG)
