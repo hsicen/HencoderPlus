@@ -1,6 +1,11 @@
 package com.hsicen.drawing
 
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.util.TypedValue
 
@@ -23,6 +28,66 @@ val Float.sp2px: Float
         TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics
     )
 
+val Int.dp2px: Int
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics
+    ).toInt()
+
+val Int.sp2px: Int
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_SP, this.toFloat(), Resources.getSystem().displayMetrics
+    ).toInt()
+
 fun logd(msg: String, tag: String = "hsc") {
     Log.d(tag, msg)
 }
+
+/*** resource file to Bitmap
+ *  it  works for jpg and png type drawables, but it does not work for xml type drawable
+ *  I guess because xml file has no specific width and height information
+ * */
+fun drawable2Bitmap(resId: Int): Bitmap {
+
+    return BitmapFactory.decodeResource(Resources.getSystem(), resId)
+}
+
+/*** resource file to bitmap
+ * it works for xml type drawable
+ * use canvas to drawable a bitmap
+ *
+ * create a bitmap and canvas, and then use drawable to draw canvas
+ */
+fun drawable2Bitmap(drawable: Drawable): Bitmap {
+
+    if (drawable is BitmapDrawable) {
+        if (drawable.bitmap != null) return drawable.bitmap
+    }
+
+    val mBitmap = if (drawable.intrinsicWidth <= 0 || drawable.intrinsicHeight <= 0) {
+        Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
+    } else {
+        Bitmap.createBitmap(
+            drawable.intrinsicWidth,
+            drawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        )
+    }
+
+    val canvas = Canvas(mBitmap)
+    drawable.setBounds(0, 0, canvas.width, canvas.height)
+    drawable.draw(canvas)
+
+    return mBitmap
+}
+
+/**
+ *  Bitmap to drawable
+ */
+fun Bitmap.toDrawable() = BitmapDrawable(Resources.getSystem(), this)
+
+/**
+ *  Resize bitmap
+ */
+fun Bitmap.resize(width: Int, height: Int) = Bitmap.createScaledBitmap(this, width, height, true)
+
+

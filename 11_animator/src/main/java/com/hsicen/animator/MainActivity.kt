@@ -81,9 +81,24 @@ class MainActivity : AppCompatActivity() {
 
         //字符串动画
         provinceStart.setOnClickListener {
+            val provinceAnimator =
+                ObjectAnimator.ofObject(provinceView, "mProvince", ProvinceEvaluator(), "广西省")
+                    .setDuration(10000L)
 
+            provinceAnimator.addListener(onEnd = {
+                provinceView.mProvince = "北京市"
+            })
+
+            provinceAnimator.start()
         }
 
+        colorStart.setOnClickListener {
+            colorView.startAnimate()
+        }
+
+        sportStart.setOnClickListener {
+            sportView.startProgress()
+        }
     }
 
     inner class ProvinceEvaluator : TypeEvaluator<String> {

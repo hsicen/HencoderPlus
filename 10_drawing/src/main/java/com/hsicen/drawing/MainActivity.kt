@@ -14,10 +14,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        /*val animator = ObjectAnimator.ofInt(pointer, "pointer", 1, 19, 10, 15)
-        animator.duration = 2000
-        animator.startDelay = 2000
-        animator.start()*/
     }
 }

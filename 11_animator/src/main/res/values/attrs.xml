@@ -4,4 +4,11 @@
         <attr name="useFloatingLabel" format="boolean" />
         <attr name="rengwuxian" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="MaterialEditTextNew">
+        <attr name="useLabel" format="boolean" />
+        <attr name="label" format="string" />
+        <attr name="labelSize" format="dimension" />
+        <attr name="labelColor" format="color" />
+    </declare-styleable>
 </resources>
