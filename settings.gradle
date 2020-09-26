@@ -1,3 +1,4 @@
+include ':coroutine'
 include ':koinsample'
 include ':daggersample'
 include ':hiltsample'
