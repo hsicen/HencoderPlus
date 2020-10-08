@@ -1,9 +1,18 @@
+rootProject.name = 'HencoderPlus'
+
+def include_project = { dir, name ->
+    include "$name"
+    project(":$name").projectDir = file("$dir/$name")
+}
+
+include_project('Jetpack','roomsample')
+
 include ':coroutine'
 include ':koinsample'
 include ':daggersample'
 include ':hiltsample'
-rootProject.name = 'HencoderPlus'
 
+//HenCoder Plus课程
 include ':1_http'
 include ':2_encrypt'
 include ':3_author'
