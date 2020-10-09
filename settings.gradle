@@ -6,6 +6,7 @@ def include_project = { dir, name ->
 }
 
 include_project('Jetpack','roomsample')
+include_project('Jetpack','workmanagersample')
 
 include ':coroutine'
 include ':koinsample'
