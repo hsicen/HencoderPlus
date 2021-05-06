@@ -29,12 +29,12 @@ fun main() {
 }
 
 fun maxTest() {
-    val numbers = listOf(99,5, 10, 4, 3, 9, 66, 39, 42)
-    val min3Remainder = numbers.minBy { it % 3 }
+    val numbers = listOf(99, 5, 10, 4, 3, 9, 66, 39, 42)
+    val min3Remainder = numbers.minByOrNull { it % 3 }
     println(min3Remainder)
 
     val strings = listOf("one", "two", "three", "four")
-    val longestString = strings.maxWith(compareBy { it.length })
+    val longestString = strings.maxWithOrNull(compareBy { it.length })
     println(longestString)
 }
 

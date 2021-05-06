@@ -1,6 +1,7 @@
 package com.hsicen.roomsample
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 /**
@@ -11,7 +12,7 @@ import androidx.room.PrimaryKey
  */
 
 @Entity
-class User(
+data class User(
     @PrimaryKey(autoGenerate = true)
     val _id: Int? = null,
     var name: String,
@@ -19,6 +20,7 @@ class User(
     var gender: String
 ) {
 
+    @Ignore
     constructor(name: String, age: Int, gender: String) : this(null, name, age, gender)
 
     override fun toString(): String {

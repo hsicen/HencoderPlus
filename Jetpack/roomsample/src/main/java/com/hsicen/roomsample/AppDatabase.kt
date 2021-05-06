@@ -12,7 +12,7 @@ import androidx.room.RoomDatabase
  * 描述：数据库(关联表)
  */
 
-@Database(entities = [Student::class, User::class], version = 1)
+@Database(entities = [Student::class, User::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
