@@ -2,13 +2,13 @@ package com.hsicen.a6_retrofit
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.hsicen.a6_retrofit.databinding.ActivityMainBinding
 import com.hsicen.a6_retrofit.entity.Repo
 import com.hsicen.a6_retrofit.entity.User
 import com.hsicen.a6_retrofit.service.GithubService
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,12 +41,14 @@ import kotlin.concurrent.thread
  *  请求结果；这个方法用来结合自定义的CallAdaptor来实现Call的转换,例如结合RxJava来返回一个Observable对象
  */
 class MainActivity : AppCompatActivity() {
+    lateinit var bing: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        bing = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bing.root)
 
-        btn_fetch.setOnClickListener {
+        bing.btnFetch.setOnClickListener {
             fetchData()
         }
     }

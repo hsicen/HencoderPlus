@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.hsicen.a6_okhttp.databinding.ActivityMainBinding
 import com.hsicen.a6_okhttp.interceptor.LoggingInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -17,7 +17,6 @@ import okio.BufferedSink
 import java.io.File
 import java.io.IOException
 import java.lang.reflect.Type
-import java.net.HttpURLConnection
 import kotlin.concurrent.thread
 
 /**
@@ -35,12 +34,14 @@ import kotlin.concurrent.thread
  */
 @SuppressLint("SetTextI18n")
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_request.setOnClickListener { getCall() }
+        binding.btnRequest.setOnClickListener { getCall() }
     }
 
     /*** 响应缓存处理*/
@@ -100,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
                     val repos = adapter.fromJson(response.body!!.source())
-                    runOnUiThread { tv_info.text = repos.toString() }
+                    runOnUiThread { binding.tvInfo.text = repos.toString() }
                 } else {
                     throw IOException("请求出错：$response")
                 }
@@ -131,12 +132,12 @@ class MainActivity : AppCompatActivity() {
         enqueueCall.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 resultMsg = e.message ?: e.javaClass.name
-                runOnUiThread { tv_info.text = "异步：$resultMsg" }
+                runOnUiThread { binding.tvInfo.text = "异步：$resultMsg" }
             }
 
             override fun onResponse(call: Call, response: Response) {
                 resultMsg = response.body?.string() ?: response.message
-                runOnUiThread { tv_info.text = "异步：$resultMsg" }
+                runOnUiThread { binding.tvInfo.text = "异步：$resultMsg" }
             }
         })
 
@@ -147,7 +148,7 @@ class MainActivity : AppCompatActivity() {
                     if (!it.isSuccessful) "出错${it.message}"
                     else "成功${it.body?.string()}"
 
-                runOnUiThread { tv_info.text = "同步：$resultMsg" }
+                runOnUiThread { binding.tvInfo.text = "同步：$resultMsg" }
             }
         }
     }
