@@ -1,5 +1,6 @@
 package com.hsicen.touch
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.GestureDetector
@@ -7,10 +8,11 @@ import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
+import com.hsicen.touch.databinding.ActivityMainBinding
 import com.hsicen.touch.sample.TouchEventActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     private val mTouchDelegate by lazy {
         GestureDetectorCompat(this, object : GestureDetector.SimpleOnGestureListener() {
@@ -30,15 +32,17 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        touchView.setOnClickListener {
+        binding.touchView.setOnClickListener {
             Toast.makeText(this, "被点击了", Toast.LENGTH_SHORT).show()
         }
 
-        iv_touch_sample.setOnTouchListener { _, event ->
+        binding.ivTouchSample.setOnTouchListener { _, event ->
             mTouchDelegate.onTouchEvent(event)
         }
     }

@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
-import kotlinx.android.synthetic.main.activity_drag_collect.*
+import com.hsicen.a21_drag_nestedscroll.databinding.ActivityDragCollectBinding
 
 /**
  * <p>作者：Hsicen  2019/9/9 15:55
@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_drag_collect.*
  * View.setOnDragListener() 设置拖拽监听
  */
 class DragCollectActivity : AppCompatActivity() {
+    private lateinit var mBinding: ActivityDragCollectBinding
 
     /*** 开始拖拽监听*/
     private val onDragStart by lazy {
@@ -52,10 +53,11 @@ class DragCollectActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_drag_collect)
+        mBinding = ActivityDragCollectBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
-        ivHead.setOnLongClickListener(onDragStart)
-        ivLogo.setOnLongClickListener(onDragStart)
-        llCollect.setOnDragListener(onDragListener)
+        mBinding.ivHead.setOnLongClickListener(onDragStart)
+        mBinding.ivLogo.setOnLongClickListener(onDragStart)
+        mBinding.llCollect.setOnDragListener(onDragListener)
     }
 }

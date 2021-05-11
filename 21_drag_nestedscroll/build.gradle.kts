@@ -7,7 +7,7 @@ android {
     compileSdk = Versions.compileSdk
 
     defaultConfig {
-        applicationId = "com.hsicen.animator"
+        applicationId = "com.hsicen.a21_drag_nestedscroll"
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         versionCode = Versions.versionCode
@@ -26,15 +26,6 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
     buildFeatures {
         viewBinding = true
     }
@@ -51,4 +42,7 @@ dependencies {
     implementation(Deps.appCompat)
     implementation(Deps.ktx)
     implementation(Deps.constrainLayout)
+
+    implementation(Deps.recyclerview)
+    implementation(Deps.cardview)
 }

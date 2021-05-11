@@ -4,42 +4,43 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
-import kotlinx.android.synthetic.main.activity_scene_start.*
+import com.hsicen.a20_motionlayout.databinding.ActivitySceneStartBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mBinding: ActivitySceneStartBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scene_start)
+        mBinding = ActivitySceneStartBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
-
-        btnStart.setOnClickListener {
-            ml.transitionToStart()
+        mBinding.btnStart.setOnClickListener {
+            mBinding.ml.transitionToStart()
         }
 
-        btnEnd.setOnClickListener {
-            ml.transitionToEnd()
+        mBinding.btnEnd.setOnClickListener {
+            mBinding.ml.transitionToEnd()
         }
 
-        btnMenu.setOnClickListener {
+        mBinding.btnMenu.setOnClickListener {
             startActivity(
                 Intent(this, MotionMenuActivity::class.java)
             )
         }
 
-        btnConstraint.setOnClickListener {
+        mBinding.btnConstraint.setOnClickListener {
             startActivity(
                 Intent(this, SceneConstraintActivity::class.java)
             )
         }
 
-        btnFly.setOnClickListener {
+        mBinding.btnFly.setOnClickListener {
             startActivity(
                 Intent(this, CardFlyActivity::class.java)
             )
         }
 
-        ml.setTransitionListener(object : MotionLayout.TransitionListener {
+        mBinding.ml.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
 
             }

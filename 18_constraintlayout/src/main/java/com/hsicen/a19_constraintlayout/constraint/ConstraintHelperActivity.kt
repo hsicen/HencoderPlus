@@ -5,9 +5,10 @@ import android.transition.TransitionManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import com.hsicen.a19_constraintlayout.R
-import kotlinx.android.synthetic.main.activity_constraint_helper.*
+import com.hsicen.a19_constraintlayout.databinding.ActivityConstraintHelperBinding
 
 class ConstraintHelperActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityConstraintHelperBinding
 
     private val mConstraintSet1 by lazy { ConstraintSet() }
     private val mConstraintSet2 by lazy { ConstraintSet() }
@@ -15,27 +16,28 @@ class ConstraintHelperActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityConstraintHelperBinding.inflate(layoutInflater)
 
         //Clone from layout Resource file
         mConstraintSet2.clone(this, R.layout.layout_set_type)
-        setContentView(R.layout.activity_constraint_helper)
+        setContentView(binding.root)
 
         //Clone from ConstraintLayout
-        mConstraintSet1.clone(clType1)
+        mConstraintSet1.clone(binding.clType1)
 
-        tvName.setOnClickListener {
+        binding.tvName.setOnClickListener {
             changeLayout()
             mOld = !mOld
         }
     }
 
     private fun changeLayout() {
-        TransitionManager.beginDelayedTransition(clType1)
+        TransitionManager.beginDelayedTransition(binding.clType1)
 
         if (mOld) {
-            mConstraintSet1.applyTo(clType1)
+            mConstraintSet1.applyTo(binding.clType1)
         } else {
-            mConstraintSet2.applyTo(clType1)
+            mConstraintSet2.applyTo(binding.clType1)
         }
     }
 }

@@ -2,10 +2,9 @@ package com.hsicen.recyclerviewcore
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
+import com.hsicen.recyclerviewcore.databinding.ActivityMainBinding
 import java.util.*
 
 /**
@@ -15,6 +14,7 @@ import java.util.*
  * <p>描述：RecyclerVIew核心要点讲解
  */
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     private val mData = ArrayList<String>()
 
@@ -24,12 +24,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val layoutManager = LinearLayoutManager(this)
-        rvFruit.adapter = mAdapter
-        rvFruit.layoutManager = layoutManager
-        rvFruit.setRecycledViewPool(RecyclerView.RecycledViewPool())
+        binding.rvFruit.adapter = mAdapter
+        binding.rvFruit.layoutManager = layoutManager
+        binding.rvFruit.setRecycledViewPool(RecyclerView.RecycledViewPool())
 
         mData.addAll(listOf("", "", "", "", "", "", "", ""))
         mAdapter.notifyDataSetChanged()

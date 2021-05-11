@@ -43,6 +43,8 @@ object Deps {
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
 
     const val gson = "com.google.code.gson:gson:2.8.6"
+    const val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
+    const val cardview = "androidx.cardview:cardview:1.0.0"
 }
 
 object TestDeps {

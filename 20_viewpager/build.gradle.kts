@@ -7,7 +7,7 @@ android {
     compileSdk = Versions.compileSdk
 
     defaultConfig {
-        applicationId = "com.hsicen.animator"
+        applicationId = "com.hsicen.a21_viewpager"
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         versionCode = Versions.versionCode
