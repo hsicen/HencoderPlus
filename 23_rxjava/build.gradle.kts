@@ -7,7 +7,7 @@ android {
     compileSdk = Versions.compileSdk
 
     defaultConfig {
-        applicationId = "com.hsicen.drawing"
+        applicationId = "com.hsicen.a23_rxjava"
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         versionCode = Versions.versionCode
@@ -26,13 +26,8 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -47,4 +42,24 @@ dependencies {
     implementation(Deps.appCompat)
     implementation(Deps.ktx)
     implementation(Deps.constrainLayout)
+
+    implementation(Deps.retrofit)
+    implementation(Deps.converterGson)
+    implementation(Deps.adapterRxjava2)
+
+    implementation(Deps.rxjava)
+    implementation(Deps.rxandroid)
+
+    //Platform bindings:
+    implementation(Deps.rxbinding)
+    implementation(Deps.rxbindingCore)
+    implementation(Deps.rxbindingAppcompat)
+    implementation(Deps.rxbindingDrawerlayout)
+    implementation(Deps.rxbindingLeanback)
+    implementation(Deps.rxbindingRecyclerview)
+    implementation(Deps.rxbindingSlidingpanelayout)
+    implementation(Deps.rxbindingSwiperefreshlayout)
+    implementation(Deps.rxbindingViewpager)
+    implementation(Deps.rxbindingViewpager2)
+    implementation(Deps.rxbindingMaterial)
 }

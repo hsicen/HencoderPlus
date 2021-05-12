@@ -7,7 +7,7 @@ android {
     compileSdk = Versions.compileSdk
 
     defaultConfig {
-        applicationId = "com.hsicen.drawing"
+        applicationId = "com.hsicen.a24_io"
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         versionCode = Versions.versionCode
@@ -34,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -47,4 +51,6 @@ dependencies {
     implementation(Deps.appCompat)
     implementation(Deps.ktx)
     implementation(Deps.constrainLayout)
+
+    implementation(Deps.okio)
 }

@@ -19,6 +19,7 @@ object Versions {
 
     const val retrofit = "2.9.0"
     const val coroutine = "1.4.2"
+    const val rxBinding = "3.1.0"
 }
 
 //依赖库管理
@@ -45,9 +46,38 @@ object Deps {
     const val gson = "com.google.code.gson:gson:2.8.6"
     const val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
     const val cardview = "androidx.cardview:cardview:1.0.0"
+
+    const val rxjava = "io.reactivex.rxjava2:rxjava:2.2.10"
+    const val rxandroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
+
+    const val rxbinding = "com.jakewharton.rxbinding3:rxbinding:${Versions.rxBinding}"
+    const val rxbindingCore = "com.jakewharton.rxbinding3:rxbinding-core:${Versions.rxBinding}"
+    const val rxbindingAppcompat =
+        "com.jakewharton.rxbinding3:rxbinding-appcompat:${Versions.rxBinding}"
+    const val rxbindingDrawerlayout =
+        "com.jakewharton.rxbinding3:rxbinding-drawerlayout:${Versions.rxBinding}"
+    const val rxbindingLeanback =
+        "com.jakewharton.rxbinding3:rxbinding-leanback:${Versions.rxBinding}"
+    const val rxbindingRecyclerview =
+        "com.jakewharton.rxbinding3:rxbinding-recyclerview:${Versions.rxBinding}"
+    const val rxbindingSlidingpanelayout =
+        "com.jakewharton.rxbinding3:rxbinding-slidingpanelayout:${Versions.rxBinding}"
+    const val rxbindingSwiperefreshlayout =
+        "com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:${Versions.rxBinding}"
+    const val rxbindingViewpager =
+        "com.jakewharton.rxbinding3:rxbinding-viewpager:${Versions.rxBinding}"
+    const val rxbindingViewpager2 =
+        "com.jakewharton.rxbinding3:rxbinding-viewpager2:${Versions.rxBinding}"
+    const val rxbindingMaterial =
+        "com.jakewharton.rxbinding3:rxbinding-material:${Versions.rxBinding}"
+
+    const val okio = "'com.squareup.okio:okio:2.8.2"
+
 }
 
 object TestDeps {
+    const val runner = "androidx.test.runner.AndroidJUnitRunner"
+
     const val junit = "junit:junit:4.13.1"
     const val junitExt = "androidx.test.ext:junit:1.1.2"
     const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
@@ -55,9 +85,4 @@ object TestDeps {
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:4.4.1"
 }
 
-object Plugin {
-    const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
-    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-    const val hilt = "com.google.dagger:hilt-android-gradle-plugin:2.35"
-}
 

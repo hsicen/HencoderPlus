@@ -2,16 +2,18 @@ package com.hsicen.a24_io
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.hsicen.a24_io.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
-        btn_get.setOnClickListener { getStackTrace() }
+        mBinding.btnGet.setOnClickListener { getStackTrace() }
     }
 
     private fun getStackTrace() {
