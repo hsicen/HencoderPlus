@@ -1,12 +1,12 @@
 plugins {
-    `kotlin-dsl`
+  `kotlin-dsl`
 }
 
 repositories {
-    google()
-    mavenCentral()
+  google()
+  mavenCentral()
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:4.2.1")
+  implementation("com.android.tools.build:gradle:4.2.1")
 }
