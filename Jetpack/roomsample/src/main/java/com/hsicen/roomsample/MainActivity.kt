@@ -4,9 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.activity_main.*
+import com.hsicen.roomsample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     private val mUserViewModel by lazy {
         ViewModelProvider(this)[UserViewModel::class.java]
@@ -14,14 +15,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btnInsert.setOnClickListener {
+        binding.btnInsert.setOnClickListener {
             mUserViewModel.insertUser(User("小黄", 25, "女"))
         }
 
         mUserViewModel.userData.observe(this, Observer {
-            tvInfo.text = it.toString()
+            binding.tvInfo.text = it.toString()
         })
     }
 }

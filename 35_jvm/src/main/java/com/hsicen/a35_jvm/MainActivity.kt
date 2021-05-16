@@ -2,7 +2,7 @@ package com.hsicen.a35_jvm
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.hsicen.a35_jvm.databinding.ActivityMainBinding
 import java.lang.ref.SoftReference
 import java.lang.ref.WeakReference
 import java.util.*
@@ -15,6 +15,7 @@ import java.util.*
  * BaseDexClassLoader，PathClassLoader，DexClassLoader
  */
 class MainActivity : AppCompatActivity() {
+    private lateinit var mBind: ActivityMainBinding
 
     private val referent = User("", 12)
     private var weakUser = WeakReference<User>(referent)
@@ -23,7 +24,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mBind = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBind.root)
 
         val bytChar = CharArray(233333333)
 
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         println("MainActivity:  $mClassLoader")
         Int.MAX_VALUE
 
-        btn_gc.setOnClickListener {
+        mBind.btnGc.setOnClickListener {
             println("hsc  Before: weakUser -> $weakUser   softUser -> $softUser")
             System.gc()
             println("hsc  After: weakUser -> $weakUser   softUser -> $softUser")

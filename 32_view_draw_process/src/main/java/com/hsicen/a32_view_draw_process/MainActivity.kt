@@ -3,25 +3,25 @@ package com.hsicen.a32_view_draw_process
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.hsicen.a32_view_draw_process.databinding.ActivityMainBinding
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
-        childText.setOnClickListener {
+        mBinding.childText.setOnClickListener {
             it.requestLayout()
             thread {
-                childText.text = "线程： ${Thread.currentThread().name}"
+                mBinding.childText.text = "线程： ${Thread.currentThread().name}"
             }
         }
 
-        childText.post {
-
-        }
+        mBinding.childText.post {}
 
         startActivity(Intent(this, MainActivity::class.java))
     }

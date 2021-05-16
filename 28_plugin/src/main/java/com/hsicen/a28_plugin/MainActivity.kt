@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.hsicen.a28_plugin.databinding.ActivityMainBinding
 import dalvik.system.PathClassLoader
-import kotlinx.android.synthetic.main.activity_main.*
 import okio.buffer
 import okio.sink
 import okio.source
@@ -13,12 +13,14 @@ import java.io.File
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
-        btn_load.setOnClickListener {
+        mBinding.btnLoad.setOnClickListener {
             //复制Assets文件到缓存
             val apk = File("$cacheDir/28_plugin_lib.apk")
             assets.open("apk/28_plugin_lib.apk").source().use {
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        btn_invoke.setOnClickListener {
+        mBinding.btnInvoke.setOnClickListener {
             try {
                 //val utilClass = Utils::class.java
                 //val utils = utilClass.newInstance()
@@ -57,11 +59,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        btn_finish.setOnClickListener {
+        mBinding.btnFinish.setOnClickListener {
             finish()
         }
-
-
     }
 
     override fun onDestroy() {

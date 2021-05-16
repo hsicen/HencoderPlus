@@ -20,12 +20,18 @@ object Versions {
     const val retrofit = "2.9.0"
     const val coroutine = "1.4.2"
     const val rxBinding = "3.1.0"
+
+    const val room = "2.2.6"
+    const val dagger = "2.35"
 }
 
 //依赖库管理
 object Deps {
+    const val gradle = "com.android.tools.build:gradle:4.0.0"
+
     val fileMap = mapOf("dir" to "libs", "include" to listOf("*.jar"))
     const val kotlinStb = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+
     const val ktx = "androidx.core:core-ktx:1.3.2"
     const val appCompat = "androidx.appcompat:appcompat:1.2.0"
     const val material = "com.google.android.material:material:1.2.1"
@@ -71,8 +77,23 @@ object Deps {
     const val rxbindingMaterial =
         "com.jakewharton.rxbinding3:rxbinding-material:${Versions.rxBinding}"
 
-    const val okio = "'com.squareup.okio:okio:2.8.2"
+    const val okio = "com.squareup.okio:okio:2.3.0"
+    const val javapoet = "com.squareup:javapoet:1.12.1"
+    const val gsonParent = "com.google.code.gson:gson-parent:2.8.6"
 
+    const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
+    const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+
+    const val hiltCompiler = "androidx.hilt:hilt-compiler:1.0.0"
+    const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.dagger}"
+    const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.dagger}"
+
+    const val butterknife = "com.jakewharton:butterknife:10.2.3"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+    const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
+
+    const val koinAndroid = "io.insert-koin:koin-android:3.0.1"
 }
 
 object TestDeps {

@@ -3,34 +3,36 @@ package com.hsicen.a29_hotfix
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.hsicen.a29_hotfix.databinding.ActivityMainBinding
 import dalvik.system.BaseDexClassLoader
 import dalvik.system.PathClassLoader
-import kotlinx.android.synthetic.main.activity_main.*
 import okio.buffer
 import okio.sink
 import okio.source
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
-        showTitleBt.setOnClickListener {
-            titleTv.text = Title().getTitle()
+        mBinding.showTitleBt.setOnClickListener {
+            mBinding.titleTv.text = Title().getTitle()
         }
 
         //从网络下载文件保存到缓存目录
-        hotfixBt.setOnClickListener {
+        mBinding.hotfixBt.setOnClickListener {
             //loadHotfixDex()
         }
 
-        removeHotfixBt.setOnClickListener {
+        mBinding.removeHotfixBt.setOnClickListener {
             //删除文件
         }
 
-        killSelfBt.setOnClickListener {
+        mBinding.killSelfBt.setOnClickListener {
             android.os.Process.killProcess(android.os.Process.myPid())
         }
     }

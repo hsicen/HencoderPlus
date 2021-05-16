@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 //引用自定义插件
 apply plugin: 'Hencoder' //properties文件名
@@ -47,6 +46,10 @@ android {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
+  }
+
+  buildFeatures{
+    viewBinding =  true
   }
 
   flavorDimensions('paying') //渠道维度
