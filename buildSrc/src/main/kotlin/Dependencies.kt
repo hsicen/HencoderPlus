@@ -42,8 +42,8 @@ object Deps {
   const val adapterRxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
 
   const val okhttp = "com.squareup.okhttp3:okhttp:4.9.0"
-  const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:1.9.2"
-  const val moshiKotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:1.11.02"
+  const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:1.12.0"
+  const val moshiKotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
 
   const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
   const val coroutinesAndroid =
@@ -105,5 +105,3 @@ object TestDeps {
 
   const val mockWebServer = "com.squareup.okhttp3:mockwebserver:4.4.1"
 }
-
-
