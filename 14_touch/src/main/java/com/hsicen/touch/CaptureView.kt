@@ -13,16 +13,15 @@ import android.view.View
  * 描述：HencoderPlus
  */
 class CaptureView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        val actionMasked = event?.actionMasked
-        Log.d("hsc", "Event: $event")
+  override fun onTouchEvent(event: MotionEvent?): Boolean {
+    val actionMasked = event?.actionMasked
+    Log.d("hsc", "Event: $event")
 
-        return true
-    }
-
+    return true
+  }
 }

@@ -8,17 +8,17 @@ import com.hsicen.koinsample.databinding.ActivityMainBinding
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
-    lateinit var mainBinding: ActivityMainBinding
-    private val mUser by inject<User>()
+  lateinit var mainBinding: ActivityMainBinding
+  private val mUser by inject<User>()
 
-    @SuppressLint("SetTextI18n")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  @SuppressLint("SetTextI18n")
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        mainBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(mainBinding.root)
+    mainBinding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(mainBinding.root)
 
-        //mainBinding.tvUser.text = "${mUser.name}使用Koin的心情是：${mUser.mood}"
-        mUser.mood = "奇怪"
-    }
+    //mainBinding.tvUser.text = "${mUser.name}使用Koin的心情是：${mUser.mood}"
+    mUser.mood = "奇怪"
+  }
 }

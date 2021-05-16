@@ -14,19 +14,19 @@ import org.koin.dsl.module
  * 描述：HencoderPlus
  */
 class KoinApp : Application() {
-    private val appModule = module {
-        single { User(1, "扔物线", "毫无波澜") }
+  private val appModule = module {
+    single { User(1, "扔物线", "毫无波澜") }
+  }
+
+  override fun onCreate() {
+    super.onCreate()
+
+    //添加编织图
+    startKoin {
+      androidLogger()
+      androidContext(this@KoinApp)
+
+      modules(appModule)
     }
-
-    override fun onCreate() {
-        super.onCreate()
-
-        //添加编织图
-        startKoin {
-            androidLogger()
-            androidContext(this@KoinApp)
-
-            modules(appModule)
-        }
-    }
+  }
 }
