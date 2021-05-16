@@ -6,89 +6,89 @@ apply plugin: 'Hencoder' //properties文件名
 
 //自定义插件
 class HelloWorld implements Plugin<Project> {
-  @Override
-  void apply(org.gradle.api.Project project) {
-    def helloWord = project.extensions.create("HelloWorld", HelloWorldExtension)
-    project.afterEvaluate {
-      println "Plugin say $helloWord.say !!!"
+    @Override
+    void apply(org.gradle.api.Project project) {
+        def helloWord = project.extensions.create("HelloWorld", HelloWorldExtension)
+        project.afterEvaluate {
+            println "Plugin say $helloWord.say !!!"
+        }
     }
-  }
 }
 
 class HelloWorldExtension {
-  def say = "Hello World"
+    def say = "Hello World"
 }
 
 apply plugin: HelloWorld
 
 HelloWorld {
-  say 'Hello Groovy'
+    say 'Hello Groovy'
 }
 
 //自定义配置
 hsicen {
-  name '黄思程!!!'
+    name '黄思程!!!'
 }
 
 android {
-  compileSdkVersion 30
+    compileSdkVersion 30
 
-  defaultConfig {
-    applicationId "com.hsicen.a25_gradle"
-    minSdkVersion 21
-    targetSdkVersion 30
-    versionCode 1
-    versionName "1.0"
-  }
-
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-    }
-  }
-
-  buildFeatures{
-    viewBinding =  true
-  }
-
-  flavorDimensions('paying') //渠道维度
-  productFlavors {
-    //渠道配置
-    free {
-      dimension 'paying'
-      buildConfigField('String', 'BaseUrl', '\"https:www.baidu.com.free\"')
+    defaultConfig {
+        applicationId "com.hsicen.a25_gradle"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
     }
 
-    pay {
-      dimension 'paying'
-      buildConfigField('String', 'BaseUrl', '\"https:www.baidu.com.pay\"')
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
-  }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    flavorDimensions('paying') //渠道维度
+    productFlavors {
+        //渠道配置
+        free {
+            dimension 'paying'
+            buildConfigField('String', 'BaseUrl', '\"https:www.baidu.com.free\"')
+        }
+
+        pay {
+            dimension 'paying'
+            buildConfigField('String', 'BaseUrl', '\"https:www.baidu.com.pay\"')
+        }
+    }
 }
 
 dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation fileTree(Deps.fileMap)
+    implementation Deps.kotlinStb
 
-  implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'androidx.core:core-ktx:1.3.1'
-  implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation Deps.appCompat
+    implementation Deps.ktx
+    implementation Deps.constrainLayout
 }
 
 task bumpVersion() {
-  doLast {
-    def versionPropertyFile = file('version.properties')
-    def versionProps = new Properties()
-    versionProps.load(new FileInputStream(versionPropertyFile))
-    def codeBumped = versionProps['VERSION_CODE'].toInteger() + 1
-    versionProps['VERSION_CODE'] = codeBumped.toString()
-    versionProps.store(versionPropertyFile.newWriter(), null)
-  }
+    doLast {
+        def versionPropertyFile = file('version.properties')
+        def versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropertyFile))
+        def codeBumped = versionProps['VERSION_CODE'].toInteger() + 1
+        versionProps['VERSION_CODE'] = codeBumped.toString()
+        versionProps.store(versionPropertyFile.newWriter(), null)
+    }
 }
 
 task notifyVersionBump(dependsOn: bumpVersion) {
-  doLast {
-    println(" 已经更新了应用版本号！！！")
-  }
+    doLast {
+        println(" 已经更新了应用版本号！！！")
+    }
 }
