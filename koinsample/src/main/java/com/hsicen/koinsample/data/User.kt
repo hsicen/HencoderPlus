@@ -8,5 +8,5 @@ package com.hsicen.koinsample.data
  */
 class User(var id: Int, var name: String, var mood: String) {
 
-    constructor() : this(1, "hsicen", "毫无波澜")
+  constructor() : this(1, "hsicen", "毫无波澜")
 }

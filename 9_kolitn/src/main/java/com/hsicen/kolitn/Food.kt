@@ -7,7 +7,7 @@ package com.hsicen.kolitn
  * <p>描述：枚举类型定义
  */
 enum class Food(val no: Int) {
-    APPLE(1), BANANA(2), WATERMELON(3);
+  APPLE(1), BANANA(2), WATERMELON(3);
 
-    fun getFoodSize() = 4
+  fun getFoodSize() = 4
 }

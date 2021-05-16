@@ -16,7 +16,7 @@ import dagger.Component
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
-    fun inject(act: MainActivity)
+  fun inject(act: MainActivity)
 
-    fun inject(view: UserView)
+  fun inject(view: UserView)
 }

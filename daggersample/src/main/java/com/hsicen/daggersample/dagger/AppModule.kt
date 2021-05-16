@@ -18,12 +18,12 @@ import java.util.concurrent.TimeUnit
 @Module
 object AppModule {
 
-    @ActivityScope
-    @Provides
-    fun provideExecutor(): ExecutorService {
-        return ThreadPoolExecutor(
-            5, 30, 1, TimeUnit.MINUTES,
-            LinkedBlockingDeque(10000)
-        )
-    }
+  @ActivityScope
+  @Provides
+  fun provideExecutor(): ExecutorService {
+    return ThreadPoolExecutor(
+      5, 30, 1, TimeUnit.MINUTES,
+      LinkedBlockingDeque(10000)
+    )
+  }
 }

@@ -14,16 +14,16 @@ import org.koin.java.KoinJavaComponent.inject
  * 描述：HencoderPlus
  */
 class UserView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
-    private val mUser by inject<User>(User::class.java)
+  private val mUser by inject<User>(User::class.java)
 
-    @SuppressLint("SetTextI18n")
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
+  @SuppressLint("SetTextI18n")
+  override fun onAttachedToWindow() {
+    super.onAttachedToWindow()
 
-        text = "${mUser.name}使用Koin的心情变成了：${mUser.mood}"
-    }
+    text = "${mUser.name}使用Koin的心情变成了：${mUser.mood}"
+  }
 }
