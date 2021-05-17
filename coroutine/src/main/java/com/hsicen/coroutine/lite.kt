@@ -15,17 +15,17 @@ import kotlin.coroutines.suspendCoroutine
 
 //1.实现一个delay函数
 private val executor = Executors.newScheduledThreadPool(1) { runnable ->
-    Thread(runnable, "Scheduler").apply { isDaemon = true }
+  Thread(runnable, "Scheduler").apply { isDaemon = true }
 }
 
 suspend fun delay(time: Long, unit: TimeUnit = TimeUnit.MILLISECONDS) {
-    if (time <= 0) {
-        return
-    } else {
-        suspendCoroutine<Unit> { continuation ->
-            executor.schedule({ continuation.resume(Unit) }, time, unit)
-        }
+  if (time <= 0) {
+    return
+  } else {
+    suspendCoroutine<Unit> { continuation ->
+      executor.schedule({ continuation.resume(Unit) }, time, unit)
     }
+  }
 }
 
 //2.协程的描述类
@@ -34,25 +34,25 @@ typealias OnCancel = () -> Unit
 
 
 interface Job : CoroutineContext.Element {
-    companion object Key : CoroutineContext.Key<Job>
+  companion object Key : CoroutineContext.Key<Job>
 
-    override val key: CoroutineContext.Key<*> get() = Job
+  override val key: CoroutineContext.Key<*> get() = Job
 
-    val isActive: Boolean
+  val isActive: Boolean
 
-    //fun invokeOnCancel(onCancel: OnCancel): Disposable
+  //fun invokeOnCancel(onCancel: OnCancel): Disposable
 
-    //fun invokeOnComplete(onComplete: OnComplete): Disposable
+  //fun invokeOnComplete(onComplete: OnComplete): Disposable
 
-    fun cancel()
+  fun cancel()
 
-    //fun remove(disposable: Disposable)
+  //fun remove(disposable: Disposable)
 
-    suspend fun join()
+  suspend fun join()
 }
 
 sealed class CoroutineState {
-    class Incomplete : CoroutineState()
-    class Cancelling : CoroutineState()
-    class Complete<T>(val value: T? = null, val exception: Throwable? = null) : CoroutineState()
+  class Incomplete : CoroutineState()
+  class Cancelling : CoroutineState()
+  class Complete<T>(val value: T? = null, val exception: Throwable? = null) : CoroutineState()
 }

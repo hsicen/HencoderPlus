@@ -31,7 +31,6 @@ class MaterialEditText(context: Context, attrs: AttributeSet) :
   private var backgroundPadding = Rect()
 
   init {
-
     init(context, attrs)
   }
 

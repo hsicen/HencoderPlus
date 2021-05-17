@@ -10,18 +10,18 @@ import kotlin.concurrent.thread
  */
 fun hello(postAction: () -> Unit) {
 
-    println("Hello !!!")
+  println("Hello !!!")
 
-    thread {
-        postAction()
-    }
+  thread {
+    postAction()
+  }
 }
 
 fun main() {
-    hello {
-        println("Bye !!!")
-        return@hello
-    }
+  hello {
+    println("Bye !!!")
+    return@hello
+  }
 
-    println("In the end.")
+  println("In the end.")
 }

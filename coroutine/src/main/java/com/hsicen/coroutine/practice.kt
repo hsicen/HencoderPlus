@@ -9,30 +9,30 @@ package com.hsicen.coroutine
 
 
 val sequence = sequence {
-    yield(1)
-    yield(2)
-    yield(3)
-    yield(4)
-    yieldAll(listOf(1, 2, 3, 4, 5))
+  yield(1)
+  yield(2)
+  yield(3)
+  yield(4)
+  yieldAll(listOf(1, 2, 3, 4, 5))
 }
 
 val fibonacci = sequence {
-    yield(1L)   //first number
-    var cur = 1L
-    var next = 1L
+  yield(1L)   //first number
+  var cur = 1L
+  var next = 1L
 
-    while (true) {
-        yield(next) //next number
+  while (true) {
+    yield(next) //next number
 
-        next += cur //next = cur + next
-        cur = next - cur //cur = next
-    }
+    next += cur //next = cur + next
+    cur = next - cur //cur = next
+  }
 }
 
 fun main() {
-    for (item in sequence) {
-        println(item)
-    }
+  for (item in sequence) {
+    println(item)
+  }
 
-    fibonacci.take(10).forEach(::println)
+  fibonacci.take(10).forEach(::println)
 }
