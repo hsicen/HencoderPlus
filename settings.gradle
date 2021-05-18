@@ -1,17 +1,18 @@
 rootProject.name = 'HencoderPlus'
 
 def include_project = { dir, name ->
-    include "$name"
-    project(":$name").projectDir = file("$dir/$name")
+  include "$name"
+  project(":$name").projectDir = file("$dir/$name")
 }
 
-include_project('Jetpack','roomsample')
-include_project('Jetpack','workmanagersample')
+include_project('Jetpack', 'viewmodel')
+include_project('Jetpack', 'roomsample')
+include_project('Jetpack', 'coroutine')
+include_project('Jetpack', 'workmanagersample')
 
-include ':coroutine'
-include ':koinsample'
-include ':daggersample'
-include ':hiltsample'
+include_project('Inject', 'koinsample')
+include_project('Inject', 'hiltsample')
+include_project('Inject', 'daggersample')
 
 //HenCoder Plus课程
 include ':1_http'

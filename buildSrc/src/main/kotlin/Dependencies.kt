@@ -23,6 +23,7 @@ object Versions {
 
   const val room = "2.2.6"
   const val dagger = "2.35"
+  const val lifecycle = "2.3.1"
 }
 
 //依赖库管理
@@ -91,9 +92,13 @@ object Deps {
   const val butterknife = "com.jakewharton:butterknife:10.2.3"
   const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
   const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
-  const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
   const val koinAndroid = "io.insert-koin:koin-android:3.0.1"
+
+  const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+  const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+  const val lifecycleViewmodelKtx =
+    "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
 }
 
 object TestDeps {

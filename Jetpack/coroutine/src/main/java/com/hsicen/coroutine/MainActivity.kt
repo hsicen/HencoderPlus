@@ -3,11 +3,13 @@ package com.hsicen.coroutine
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.hsicen.coroutine.databinding.ActivityMainBinding
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
   private lateinit var binding: ActivityMainBinding
+  private val mainScope by lazy { MainScope() }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -15,6 +17,16 @@ class MainActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     zipRequest()
+
+    lifecycleScope.launch {
+      delay(1000)
+      println("Hello World")
+    }
+
+    lifecycleScope.launchWhenResumed {
+      kotlinx.coroutines.delay(1000)
+      println("Hello World")
+    }
   }
 
   /*** 利用协程合并请求*/
@@ -36,5 +48,10 @@ class MainActivity : AppCompatActivity() {
   private suspend fun requestData2() = withContext(Dispatchers.IO) {
     delay(1500)
     "miky"
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    mainScope.cancel()
   }
 }
