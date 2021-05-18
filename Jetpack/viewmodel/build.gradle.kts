@@ -51,4 +51,8 @@ dependencies {
   implementation(Deps.ktx)
   implementation(Deps.material)
   implementation(Deps.constrainLayout)
+
+  implementation(Deps.lifecycleExtensions)
+  implementation(Deps.activityKtx)
+  implementation(Deps.fragmentKtx)
 }
