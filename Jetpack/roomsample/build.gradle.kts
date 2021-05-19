@@ -55,5 +55,5 @@ dependencies {
 
     kapt(Deps.roomCompiler)
     implementation(Deps.roomRuntime)
-    implementation(Deps.lifecycleExtensions)
+  implementation(Deps.lifecycleViewmodel)
 }

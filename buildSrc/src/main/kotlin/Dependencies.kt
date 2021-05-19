@@ -28,10 +28,11 @@ object Versions {
 
 //依赖库管理
 object Deps {
-  const val gradle = "com.android.tools.build:gradle:4.0.0"
+  const val gradle = "com.android.tools.build:gradle:4.2.1"
 
   val fileMap = mapOf("dir" to "libs", "include" to listOf("*.jar"))
   const val kotlinStb = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+  const val extension = "com.github.hsicen:Extensions:1.0.1"
 
   const val ktx = "androidx.core:core-ktx:1.3.2"
   const val appCompat = "androidx.appcompat:appcompat:1.2.0"
@@ -95,8 +96,8 @@ object Deps {
 
   const val koinAndroid = "io.insert-koin:koin-android:3.0.1"
 
-  const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
   const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+  const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
   const val lifecycleViewmodelKtx =
     "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
 

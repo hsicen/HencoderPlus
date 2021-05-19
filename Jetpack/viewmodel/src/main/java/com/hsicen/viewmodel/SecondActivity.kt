@@ -6,6 +6,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.hsicen.viewmodel.databinding.ActivitySecondBinding
 
+/**
+ * 作者：hsicen  5/18/21 21:15
+ * 邮箱：codinghuang@163.com
+ * 功能：
+ * 描述：AndroidViewModel
+ */
 class SecondActivity : AppCompatActivity() {
   private lateinit var secondBinding: ActivitySecondBinding
   private val viewModel by viewModels<CountAndroidModel>()

@@ -52,7 +52,8 @@ dependencies {
   implementation(Deps.material)
   implementation(Deps.constrainLayout)
 
-  implementation(Deps.lifecycleExtensions)
+  implementation(Deps.lifecycleViewmodel)
   implementation(Deps.activityKtx)
   implementation(Deps.fragmentKtx)
+  implementation(Deps.extension)
 }
