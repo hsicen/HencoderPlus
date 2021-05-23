@@ -51,5 +51,6 @@ dependencies {
   implementation(Deps.material)
   implementation(Deps.extension)
   implementation(Deps.appCompat)
+  implementation(Deps.lifecycleViewmodel)
   implementation(Deps.constrainLayout)
 }

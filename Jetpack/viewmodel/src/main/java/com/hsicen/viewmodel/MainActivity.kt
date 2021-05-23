@@ -12,6 +12,8 @@ import com.hsicen.viewmodel.databinding.ActivityMainBinding
  * 邮箱：codinghuang@163.com
  * 功能：
  * 描述：ViewModel
+ *
+ * ViewModel与AndroidViewModel的区别是，AndroidViewModel有Application参数，用于需要Context的场景，没有其他区别
  */
 class MainActivity : AppCompatActivity() {
   private lateinit var mainBinding: ActivityMainBinding
