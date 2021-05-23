@@ -9,6 +9,7 @@ include_project('Jetpack', 'viewmodel')
 include_project('Jetpack', 'roomsample')
 include_project('Jetpack', 'coroutine')
 include_project('Jetpack', 'livedata')
+include_project('Jetpack', 'viewBinding')
 include_project('Jetpack', 'workmanagersample')
 
 include_project('Inject', 'koinsample')
@@ -56,3 +57,4 @@ include ':32_view_draw_process'
 include ':33_hashmap'
 include ':34_gradle_process'
 include ':35_jvm'
+include ':viewbinding'
