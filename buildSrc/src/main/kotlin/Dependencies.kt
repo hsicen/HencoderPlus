@@ -100,6 +100,7 @@ object Deps {
   const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
   const val lifecycleViewmodelKtx =
     "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+  const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
   const val activityKtx = "androidx.activity:activity-ktx:1.2.3"
   const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.3"
