@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  package="com.hsicen.appstartup">
+
+  <application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/Theme.HencoderPlus">
+    <activity android:name=".MainActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+
+    <provider
+      android:name=".ProviderA"
+      android:authorities="${applicationId}.test_providerA"
+      android:exported="false" />
+
+    <provider
+      android:name=".ProviderB"
+      android:authorities="${applicationId}.test_providerB"
+      android:exported="false" />
+
+    <provider
+      android:name=".ProviderC"
+      android:authorities="${applicationId}.test_providerC"
+      android:exported="false" />
+
+    <provider
+      android:name=".ProviderD"
+      android:authorities="${applicationId}.test_providerD"
+      android:exported="false" />
+
+    <provider
+      android:name="androidx.startup.InitializationProvider"
+      android:authorities="${applicationId}.androidx-startup"
+      android:exported="false"
+      tools:node="merge">
+      <meta-data
+        android:name="com.hsicen.appstartup.InitializationA"
+        android:value="androidx.startup" />
+    </provider>
+
+  </application>
+
+</manifest>

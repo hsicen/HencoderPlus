@@ -11,6 +11,7 @@ include_project('Jetpack', 'coroutine')
 include_project('Jetpack', 'livedata')
 include_project('Jetpack', 'viewBinding')
 include_project('Jetpack', 'lifecycle')
+include_project('Jetpack', 'appstartup')
 include_project('Jetpack', 'workmanagersample')
 
 include_project('Inject', 'koinsample')
