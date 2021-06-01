@@ -13,7 +13,7 @@ object Versions {
   const val versionCode = 1
   const val versionName = "1.0"
 
-  const val kotlin = "1.5.0"
+  const val kotlin = "1.5.10"
   const val gradle = "4.2.1"
   const val hilt = "2.35"
 
