@@ -3,19 +3,40 @@ package com.hsicen.coroutine
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.hsicen.coroutine.databinding.ActivityMainBinding
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 
 class MainActivity : AppCompatActivity() {
   private lateinit var binding: ActivityMainBinding
   private val mainScope by lazy { MainScope() }
+  private val flowModel by lazy {
+    ViewModelProvider(this).get(FlowViewModel::class.java)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
+    lifecycleScope.launchWhenStarted {
+      flowModel.uiState.collect {
+        when (it) {
+          is LoadState.Initial -> binding.tvInfo.text = "Initial"
+          is LoadState.Loaded -> binding.tvInfo.text = it.news.toString()
+          is LoadState.Error -> binding.tvInfo.text = it.exception.message
+        }
+      }
+    }
+
+    binding.button.setOnClickListener {
+      flowModel.fetchNews()
+    }
+  }
+
+  private fun test() {
     zipRequest()
 
     lifecycleScope.launch {
