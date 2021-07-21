@@ -18,13 +18,14 @@ fun main(): Unit = runBlocking {
 
       println(request1.await() + " ${System.currentTimeMillis()}")
       println(request2.await() + " ${System.currentTimeMillis()}")
+        delay(1000)
     }
     println("cost time:$cost  ${System.currentTimeMillis()}")
   }
 }
 
 suspend fun requestData1(): String {
-  delay(14000)
+    delay(10000)
   return "Data from request one"
 }
 
