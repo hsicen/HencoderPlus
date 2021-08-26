@@ -25,7 +25,7 @@ public class Synchronized1Demo implements TestDemo {
         new Thread() {
             @Override
             public void run() {
-                for (int i = 0; i < 1_000_000_000; i++) {
+                for (int i = 0; i < 1_000_000; i++) {
                     count(i);
                 }
             }
@@ -34,7 +34,7 @@ public class Synchronized1Demo implements TestDemo {
         new Thread() {
             @Override
             public void run() {
-                for (int i = 0; i < 1_000_000_000; i++) {
+                for (int i = 0; i < 1_000_000; i++) {
                     count(i);
                 }
             }

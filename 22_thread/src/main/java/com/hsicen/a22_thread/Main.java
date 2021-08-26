@@ -5,7 +5,11 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * <p>作者：Hsicen  2019/9/16 8:13
@@ -18,11 +22,11 @@ public class Main {
     public static void main(String[] args) {
         //thread();
         //runnable();
-        threadFactory();
+        //threadFactory();
         //executor();
         //callable();
         //runSynchronized1Demo();
-        //runSynchronized2Demo();
+        runSynchronized2Demo();
         //runSynchronized3Demo();
 
     }
@@ -97,17 +101,43 @@ public class Main {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                System.out.println("Thread with runnable start - " + Thread.currentThread().getName());
+                try {
+                    Thread.sleep(3000L);
+                    System.out.println("Thread with runnable start - " + Thread.currentThread().getName());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         };
 
-        ExecutorService executorService = Executors.newCachedThreadPool();
+        ExecutorService executorService = Executors.newFixedThreadPool(20);
         executorService.execute(runnable);
         executorService.execute(runnable);
         executorService.execute(runnable);
 
         executorService.shutdown();
+        executorService.shutdownNow();
     }
+
+
+    private static void threadPool() {
+        int coreSize = Runtime.getRuntime().availableProcessors();
+        LinkedBlockingDeque<Runnable> deque = new LinkedBlockingDeque<>();
+
+
+        ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(coreSize, coreSize, 1, TimeUnit.MINUTES, deque);
+        poolExecutor.setThreadFactory(new ThreadFactory() {
+
+            @Override
+            public Thread newThread(Runnable r) {
+
+
+                return null;
+            }
+        });
+
+    }
+
 
     /**
      * 带返回值的线程
@@ -119,7 +149,7 @@ public class Main {
             public String call() throws Exception {
 
                 try {
-                    Thread.sleep(1500);
+                    Thread.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -131,7 +161,14 @@ public class Main {
         ExecutorService executorService = Executors.newCachedThreadPool();
         Future<String> future = executorService.submit(callable);
 
+        AtomicLong count = new AtomicLong(1);
         try {
+            while (!future.isDone()) {
+                // do sth else
+                System.out.println("CPU current is free.");
+                count.getAndIncrement();
+            }
+            System.out.println("count:" + count.get());
             String result = future.get();
             System.out.println("result = " + result);
         } catch (ExecutionException | InterruptedException e) {

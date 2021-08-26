@@ -12,13 +12,21 @@ public class Synchronized3Demo implements TestDemo {
     private int y = 0;
     private String name;
 
+    private final Object monitor1 = new Object();
+    private final Object monitor2 = new Object();
+
+    // Create a Virtual Monitor
     private void count(int newValue) {
-        x = newValue;
-        y = newValue;
+        synchronized (monitor1) {
+            x = newValue;
+            y = newValue;
+        }
     }
 
     private void setName(String name) {
-        this.name = name;
+        synchronized (monitor2) {
+            this.name = name;
+        }
     }
 
     @Override

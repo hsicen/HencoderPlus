@@ -7,7 +7,7 @@ package com.hsicen.a22_thread;
  * <p>描述：HencoderPlus
  */
 public class SingleMan {
-    //volatile在赋值过程过程中不能访问对象
+    // volatile在赋值过程过程中不能访问对象
     // 轻量级的synchronized  保证数据的同步性
     // 使用于引用类型和基本类型的赋值
     private static volatile SingleMan sInstance;
