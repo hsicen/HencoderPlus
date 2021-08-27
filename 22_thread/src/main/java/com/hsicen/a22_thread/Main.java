@@ -1,5 +1,7 @@
 package com.hsicen.a22_thread;
 
+import android.os.SystemClock;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -53,6 +55,7 @@ public class Main {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
+                SystemClock.sleep(2000);
                 System.out.println("Thread with runnable start");
             }
         });

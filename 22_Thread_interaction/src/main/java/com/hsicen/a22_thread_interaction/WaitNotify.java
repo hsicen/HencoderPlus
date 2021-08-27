@@ -13,19 +13,23 @@ public class WaitNotify {
 
     public static void main(String[] args) {
         WaitNotify waitNotify = new WaitNotify();
-        //waitNotify.testWaitNotify();
-        waitNotify.testVariable();
+        waitNotify.testWaitNotify();
+        //waitNotify.testVariable();
     }
 
     private synchronized void initStr() {
         mStr = "Hello World !!!";
+        System.out.println("init str: " + Thread.currentThread().getName());
         notifyAll();
+        //notify();
     }
 
     private synchronized void printStr() {
-        if (mStr == null) {
+        while (mStr == null) { // 使用while判断
             try {
+                System.out.println("before wait: " + Thread.currentThread().getName());
                 wait();
+                System.out.println("after wait: " + Thread.currentThread().getName());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -35,6 +39,7 @@ public class WaitNotify {
     }
 
     private void testWaitNotify() {
+        System.out.println("start test: " + Thread.currentThread().getName());
 
         Thread thread = new Thread() {
             @Override
@@ -44,7 +49,9 @@ public class WaitNotify {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                System.out.println("before print: " + Thread.currentThread().getName());
                 printStr();
+                System.out.println("after print: " + Thread.currentThread().getName());
             }
         };
 
@@ -52,11 +59,13 @@ public class WaitNotify {
             @Override
             public void run() {
                 try {
-                    sleep(800);
+                    sleep(1800);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                System.out.println("before init: " + Thread.currentThread().getName());
                 initStr();
+                System.out.println("after init: " + Thread.currentThread().getName());
             }
         };
 

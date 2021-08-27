@@ -2,6 +2,9 @@ package com.hsicen.a21_drag_nestedscroll
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import androidx.appcompat.app.AppCompatActivity
 import com.hsicen.a21_drag_nestedscroll.databinding.ActivityMainBinding
 
@@ -26,5 +29,22 @@ class MainActivity : AppCompatActivity() {
         mBinding.tvDragUpDown.setOnClickListener {
             startActivity(Intent(this, DragUpDownActivity::class.java))
         }
+
+    }
+
+    fun createReceiver() {
+        Thread(Runnable {
+            Looper.prepare()
+            val handler = Handler {
+                // handle message here.
+
+                true
+            }
+            Looper.loop()
+
+
+            val msg = Message.obtain()
+            handler.sendMessage(msg)
+        }).start()
     }
 }
