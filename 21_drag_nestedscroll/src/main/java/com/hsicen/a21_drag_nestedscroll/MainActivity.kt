@@ -30,6 +30,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, DragUpDownActivity::class.java))
         }
 
+        mBinding.tvDragCollect.post {
+
+        }
     }
 
     fun createReceiver() {

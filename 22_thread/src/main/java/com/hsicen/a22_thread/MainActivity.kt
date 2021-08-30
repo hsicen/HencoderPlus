@@ -30,5 +30,9 @@ class MainActivity : AppCompatActivity() {
                 mHandler.sendMessage(message)
             }
         }
+
+        val handler = object : Handler() {
+        }
+
     }
 }

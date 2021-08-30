@@ -28,9 +28,9 @@ class HttpClass {
     //URL  协议类型://服务器地址:端口号/路径  http://www.baidu.com/search?content="Hello world"
     //HTTP端口号为80     HTTPS端口号为443
 
-    //请求报文
+    //请求报文: Request
     /**
-     * 请求行： GET  /search(定位)  HTTP/1.1
+     * 请求行:  GET  /search(定位)  HTTP/1.1
      * Header: Host: www.baidu.com
      *         Content-Type: text/plain
      *         Content-Length: 21
@@ -38,7 +38,7 @@ class HttpClass {
      * body body body body (提供给服务器的具体信息)
      * */
 
-    //响应报文
+    //响应报文: Response
     /**
      * 状态行： HTTP/1.1  200  OK
      * Header: Host: www.baidu.com
@@ -59,11 +59,11 @@ class HttpClass {
 
     //状态码(Response Status Code)：对响应结果做出类型化描述   方便开发调试
     /**
-     * 1xx： 临时性消息（100：继续发送 Expect:100-continue； 101：正在切换协议 Upgrade: h2c）
-     * 2xx： 成功（200：成功；201：创建成功）
-     * 3xx： 重定向（301：永久移动；302：暂时移动；304：内容未改变）
-     * 4xx： 客户端错误（400：客户端请求错误；401：认证失败；403：被禁止访问；404：内容未找到）
-     * 5xx： 服务器错误（500：服务器内部错误；503：服务器不可用；504：网关超时）
+     * 1xx： 临时性消息  (100：继续发送 header -> Expect:100-continue)  (101：正在切换协议  header -> Upgrade: h2c)
+     * 2xx： 成功      （200：成功；201：创建成功）
+     * 3xx： 重定向    （301：永久移动；302：暂时移动；304：内容未改变）
+     * 4xx： 客户端错误 （400：客户端请求错误；401：认证失败；403：被禁止访问；404：内容未找到）
+     * 5xx： 服务器错误 （500：服务器内部错误；503：服务器不可用；504：网关超时）
      */
 
     //常见Header
