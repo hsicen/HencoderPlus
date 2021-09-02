@@ -2,7 +2,6 @@ package com.hsicen.plugin
 
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
-import com.android.utils.FileUtils
 import groovy.io.FileType
 
 /**

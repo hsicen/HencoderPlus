@@ -9,8 +9,6 @@ android {
     defaultConfig {
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
-        versionCode = Versions.versionCode
-        versionName = Versions.versionName
 
         testInstrumentationRunner = TestDeps.runner
         consumerProguardFile("consumer-rules.pro")

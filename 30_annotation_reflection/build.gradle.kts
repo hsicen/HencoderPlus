@@ -13,7 +13,6 @@ android {
         versionName = Versions.versionName
 
         testInstrumentationRunner = TestDeps.runner
-        consumerProguardFile("consumer-rules.pro")
     }
 
     buildTypes {

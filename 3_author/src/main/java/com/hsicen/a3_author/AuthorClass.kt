@@ -30,13 +30,13 @@ class AuthorClass {
      * bearer token获取方式：通过OAuth2的授权流程
      *
      * OAuth2授权流程：
-     *     1.第三方网站向授权方网站申请第三方授权合作，拿到client id和client secret
-     *     2.用户在使用第三方网站时，点击通过xx(如微信，QQ)按钮登录，第三方网站跳转授权方网站，并传入client id作为自己的身份标识
-     *     3.授权方网站根据client id，将第三方网站的信息和第三方网站需要的用户权限展示给用户，并询问用户是否同意授权
-     *     4.用户点击[同意授权]按钮后，授权方网站将页面跳转回第三方网站，并传入Authorization Code作为用户认可的凭证
-     *     5.第三方网站将Authorization Code发送回自己的服务器
-     *     6.服务器将Authorization Code和自己的client secret一并发送给授权方的服务器，授权方服务器在验证通过后，返回access token，OAuth流程结束
-     *     7.在上面里程结束后，第三方网站服务器就可以使用access token作为用户授权的令牌，向授权方网站发送请求来获取用户的信息或操作用户的账户
+     *     1.第三方网站向授权方网站申请第三方授权合作，拿到 client id 和 client secret
+     *     2.用户在使用第三方网站时，点击通过xx(如微信，QQ)按钮登录，第三方网站跳转授权方网站，并传入 client id 作为自己的身份标识
+     *     3.授权方网站根据 client id，将第三方网站的信息和第三方网站需要的用户权限展示给用户，并询问用户是否同意授权
+     *     4.用户点击[同意授权]按钮后，授权方网站将页面跳转回第三方网站，并传入 Authorization Code 作为用户认可的凭证
+     *     5.第三方网站将 Authorization Code 发送回自己的服务器
+     *     6.服务器将 Authorization Code 和自己的 client secret 一并发送给授权方的服务器，授权方服务器在验证通过后，返回access token，OAuth流程结束
+     *     7.在上面里程结束后，第三方网站服务器就可以使用 access token 作为用户授权的令牌，向授权方网站发送请求来获取用户的信息或操作用户的账户
      *
      * 为什么OAuth要引入Authorization Code：为了安全
      *
@@ -58,7 +58,7 @@ class AuthorClass {
      *
      * Refresh token：
      *      ⽤法：access token有失效时间，在它失效后，调用refresh token接口，
-     *           传⼊refresh_token 来获取新的access token
+     *           传⼊ refresh_token 来获取新的 access token
      *      目的：安全
      */
 

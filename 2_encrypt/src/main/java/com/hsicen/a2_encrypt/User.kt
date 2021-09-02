@@ -1,0 +1,1 @@
+package com.hsicen.a2_encrypt/** * 作者：hsicen  8/30/21 21:26 * 邮箱：codinghuang@163.com * 作用： * 描述：HencoderPlus */class User {    override fun hashCode(): Int {        return javaClass.hashCode()    }}

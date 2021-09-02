@@ -1,0 +1,1 @@
+package com.hsicen.a35_jvm/** * 作者：hsicen  8/31/21 13:35 * 邮箱：codinghuang@163.com * 作用： * 描述：HencoderPlus */fun showName(name: String = "hsicen", age: Int) {    println("The $name is $age")}fun main() {    showName(age = 12)    showName("vince", 18)}

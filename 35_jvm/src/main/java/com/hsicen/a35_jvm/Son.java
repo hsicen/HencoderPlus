@@ -6,17 +6,20 @@ package com.hsicen.a35_jvm;
  * 作用：
  * 描述：HencoderPlus
  */
-public class Son extends Father {
+public class Son {
     String name = "唐舞桐";
-    private int age = 23;
-
-    String getWeapon() {
-        return weapon;
-    }
+    private final int age = 23;
 
     int getMoney() {
 
         return 0;
+    }
+
+    public static int add(int k) {
+        int i = 1;
+        int j = 2;
+
+        return i + j + k;
     }
 
     private void printAge() {
