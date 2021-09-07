@@ -13,14 +13,14 @@ import java.net.Socket
  * 描述：手动创建TCP链接
  */
 
-fun main(args: Array<String>) {
+fun main() {
     try {
-        val socket = Socket("hencoder.com", 80)
+        val socket = Socket("rengwuxian.com", 80)
         val writer = BufferedWriter(OutputStreamWriter(socket.getOutputStream()))
         val reader = BufferedReader(InputStreamReader(socket.getInputStream()))
 
         //请求报文
-        writer.write("GET / HTTP/1.1\nHost:hencoder.com\n\n")
+        writer.write("GET / HTTP/1.1\nHost:rengwuxian.com\n\n")
         writer.flush()
 
         var msg: String

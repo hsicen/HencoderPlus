@@ -59,30 +59,17 @@ class MainActivity : AppCompatActivity() {
         repoService.listRepos("hsicen")
             .observeOn(Schedulers.newThread())
             .subscribe(object : SingleObserver<List<Repo>> {
-                override fun onSubscribe(d: Disposable?) {
-
-                }
-
-                override fun onSuccess(value: List<Repo>?) {
-
-                }
-
-                override fun onError(e: Throwable?) {
-                }
-
+                override fun onSubscribe(d: Disposable?) {}
+                override fun onSuccess(value: List<Repo>?) {}
+                override fun onError(e: Throwable?) {}
             })
 
         val listRepos = repoService.getUser()
         val cloneCall = listRepos.clone()
 
         listRepos.enqueue(object : Callback<User> {
-            override fun onFailure(call: Call<User>, t: Throwable) {
-
-            }
-
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-
-            }
+            override fun onFailure(call: Call<User>, t: Throwable) {}
+            override fun onResponse(call: Call<User>, response: Response<User>) {}
         })
 
         thread {

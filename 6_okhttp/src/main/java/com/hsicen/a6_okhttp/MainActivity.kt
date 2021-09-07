@@ -1,8 +1,15 @@
 package com.hsicen.a6_okhttp
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Looper
+import android.os.SystemClock
 import android.util.Log
+import android.view.SurfaceHolder
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.hsicen.a6_okhttp.databinding.ActivityMainBinding
 import com.hsicen.a6_okhttp.interceptor.LoggingInterceptor
@@ -17,6 +24,7 @@ import okio.BufferedSink
 import java.io.File
 import java.io.IOException
 import java.lang.reflect.Type
+import java.util.*
 import kotlin.concurrent.thread
 
 /**
@@ -42,6 +50,52 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnRequest.setOnClickListener { getCall() }
+
+        binding.btnRequest.setOnClickListener {
+            binding.tvInfo.requestLayout()
+            thread {
+                binding.tvInfo.text = Thread.currentThread().name
+            }
+
+            thread {
+                Looper.prepare()
+                Toast.makeText(this, "Hello world", Toast.LENGTH_SHORT).show()
+
+                val button = Button(this)
+                windowManager.addView(button, WindowManager.LayoutParams())
+                button.setOnClickListener {
+                    button.text = Thread.currentThread().name
+                }
+
+                Looper.loop()
+            }
+        }
+
+        binding.svHolder.holder.addCallback(object : SurfaceHolder.Callback {
+            override fun surfaceCreated(holder: SurfaceHolder) {
+                thread {
+                    while (true) {
+                        holder.lockCanvas()?.let {
+                            val random = Random()
+                            val red = random.nextInt(255)
+                            val green = random.nextInt(255)
+                            val blue = random.nextInt(255)
+                            it.drawColor(Color.rgb(red, green, blue))
+                            holder.unlockCanvasAndPost(it)
+                            SystemClock.sleep(500)
+                        }
+                    }
+                }
+            }
+
+            override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
+            }
+
+            override fun surfaceDestroyed(holder: SurfaceHolder) {
+
+            }
+        })
+
     }
 
     /*** 响应缓存处理*/
@@ -114,6 +168,11 @@ class MainActivity : AppCompatActivity() {
         var resultMsg: String
 
         val okHttpClient = OkHttpClient.Builder()
+            .certificatePinner(
+                CertificatePinner.Builder()
+                    .add()
+                    .build()
+            )
             .addInterceptor(LoggingInterceptor())
             .build()
 
@@ -121,7 +180,7 @@ class MainActivity : AppCompatActivity() {
             .url("https://api.github.com/users/hsicen/repos")
             .header("User-Agent", "OkHttp Test")
             .get()
-            //.header()  //会替换
+            //.header()  //会替换对应header
             //.addHeader()  //不会替换
             .build()
 
