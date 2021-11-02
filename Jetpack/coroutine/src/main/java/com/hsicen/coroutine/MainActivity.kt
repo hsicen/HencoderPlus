@@ -32,7 +32,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     binding.button.setOnClickListener {
-      flowModel.fetchNews()
+      MainScope().launch {
+        supervisorScope {
+          val job1 = async {
+            println("Job: ${coroutineContext.job.javaClass.simpleName}")
+            throw Exception("Test exception.")
+          }
+
+          runCatching {
+            job1.await()
+          }.onSuccess {
+            println("Job success")
+          }.onFailure {
+            println("Job failure: ${it.message}")
+          }
+        }
+      }
     }
   }
 

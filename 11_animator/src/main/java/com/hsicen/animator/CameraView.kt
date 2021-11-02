@@ -12,17 +12,17 @@ import android.view.View
  * <p>描述：使用Camera做三维变换
  */
 class CameraView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-        View(context, attrs, defStyleAttr) {
+  View(context, attrs, defStyleAttr) {
 
-    private val mWidth = 250f.dp2px
-    private val mCamera = Camera()
+  private val mWidth = 250f.dp2px
+  private val mCamera = Camera()
 
-    var mRotate = 0f
-        set(value) {
-            field = value
-            invalidate()
-        }
-    var mTopFlip = 0f
+  var mRotate = 0f
+    set(value) {
+      field = value
+      invalidate()
+    }
+  var mTopFlip = 0f
         set(value) {
             field = value
             invalidate()

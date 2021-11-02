@@ -23,16 +23,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+      super.onCreate(savedInstanceState)
+      binding = ActivityMainBinding.inflate(layoutInflater)
+      setContentView(binding.root)
 
-        val layoutManager = LinearLayoutManager(this)
-        binding.rvFruit.adapter = mAdapter
-        binding.rvFruit.layoutManager = layoutManager
-        binding.rvFruit.setRecycledViewPool(RecyclerView.RecycledViewPool())
+      val layoutManager = LinearLayoutManager(this)
+      binding.rvFruit.adapter = mAdapter
+      binding.rvFruit.layoutManager = layoutManager
+      binding.rvFruit.setRecycledViewPool(RecyclerView.RecycledViewPool())
 
-        mData.addAll(listOf("", "", "", "", "", "", "", ""))
-        mAdapter.notifyDataSetChanged()
+      mData.addAll(listOf("", "", "", "", "", "", "", ""))
+      mAdapter.notifyItemChanged(3, "payload")
+
+      binding.rvFruit.recycledViewPool.setMaxRecycledViews(2, 10)
     }
 }

@@ -6,4 +6,15 @@ package com.hsicen.livedata
  * 作用：
  * 描述：HencoderPlus
  */
-data class User(val name: String, val gender: String, val age: Int)
+data class User(val name: String, val gender: String, val age: Int) {
+
+  init {
+    val items = listOf(1, 2, 3, 4, 5, 6)
+    items.forEach {
+      println(it)
+    }
+
+    println("ab" in "abc".."xyz")
+  }
+
+}

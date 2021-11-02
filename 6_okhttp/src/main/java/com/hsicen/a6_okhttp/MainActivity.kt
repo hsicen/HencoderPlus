@@ -170,7 +170,6 @@ class MainActivity : AppCompatActivity() {
         val okHttpClient = OkHttpClient.Builder()
             .certificatePinner(
                 CertificatePinner.Builder()
-                    .add()
                     .build()
             )
             .addInterceptor(LoggingInterceptor())

@@ -1,6 +1,7 @@
 package com.hsicen.a23_rxjava
 
 import android.annotation.SuppressLint
+import android.app.Service
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -30,12 +31,14 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(mBinding.root)
+      super.onCreate(savedInstanceState)
+      mBinding = ActivityMainBinding.inflate(layoutInflater)
+      setContentView(mBinding.root)
 
-        mBinding.btnGet.clicks().throttleFirst(800, TimeUnit.MILLISECONDS)
-            .subscribe { observableInterval() }
+      mBinding.btnGet.clicks().throttleFirst(800, TimeUnit.MILLISECONDS)
+        .subscribe { observableInterval() }
+
+      Service
     }
 
     private fun getUser() {
@@ -46,8 +49,9 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val apiStore = mRetrofit.create(ApiStore::class.java)
-        apiStore.listRepos("hsicen")
-            .subscribeOn(Schedulers.newThread())
+      apiStore.listRepos("hsicen")
+        .subscribeOn(Schedulers.newThread())
+        .doOnSubscribe { }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<Any> {
                 override fun onSuccess(t: Any) {
@@ -92,8 +96,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observableInterval() {
-        Observable.interval(1, TimeUnit.SECONDS)
-            .delay(2000L, TimeUnit.SECONDS)
+      Observable.interval(1, TimeUnit.SECONDS)
+        .delay(1L, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.computation())
             .map { it + 1 }
             .observeOn(AndroidSchedulers.mainThread())
@@ -113,9 +117,9 @@ class MainActivity : AppCompatActivity() {
                     Log.d("hsc", " 线程： " + Thread.currentThread().name)
                     mBinding.tvInfo.text = "$t"
 
-                    if (10 == t.toInt()) {
-                        mDisposable?.dispose()
-                    }
+                  /*if (10 == t.toInt()) {
+                      mDisposable?.dispose()
+                  }*/
                 }
 
                 override fun onError(e: Throwable) {

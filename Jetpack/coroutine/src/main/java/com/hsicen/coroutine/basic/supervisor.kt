@@ -11,16 +11,16 @@ import kotlinx.coroutines.*
 
 fun main(args: Array<String>): Unit = runBlocking {
 
-    val uiScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
-    val childJob1 = uiScope.launch {
+  val uiScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+  val childJob1 = uiScope.launch {
 
-    }
+  }
 
-    val childJob2 = uiScope.launch {
+  val childJob2 = uiScope.launch {
 
-    }
+  }
 
-    val childJob3 = uiScope.launch {
+  val childJob3 = uiScope.launch {
 
-    }
+  }
 }
