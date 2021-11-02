@@ -1,0 +1,1 @@
+package commimport Depsimport extensions.implementationimport extensions.javaplugins {  id("kotlin")  id("java-library")}java {  sourceCompatibility = JavaVersion.VERSION_11  targetCompatibility = JavaVersion.VERSION_11}dependencies {  implementation(fileTree(Deps.fileMap))  implementation(Deps.kotlinStb)}

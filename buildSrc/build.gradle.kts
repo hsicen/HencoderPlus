@@ -1,13 +1,21 @@
 plugins {
-    `kotlin-dsl`
+  `kotlin-dsl`
+  `java-gradle-plugin`
+  `kotlin-dsl-precompiled-script-plugins`
 }
 
 repositories {
-    google()
-    mavenCentral()
+  google()
+  mavenCentral()
+}
+
+object PluginVersion {
+  const val GRADLE = "7.0.3"
+  const val KOTLIN = "1.5.31"
 }
 
 dependencies {
-  implementation("com.android.tools.build:gradle:7.0.3")
-  implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
+  implementation("com.android.tools.build:gradle:${PluginVersion.GRADLE}")
+  implementation("com.android.tools.build:gradle-api:${PluginVersion.GRADLE}")
+  implementation("org.jetbrains.kotlin:kotlin-stdlib:${PluginVersion.KOTLIN}")
 }

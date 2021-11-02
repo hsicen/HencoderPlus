@@ -1,5 +1,3 @@
-import org.gradle.api.artifacts.dsl.DependencyHandler
-
 /**
  * 作者：hsicen  5/6/21 20:38
  * 邮箱：codinghuang@163.com
@@ -130,30 +128,5 @@ object TestDeps {
 
   val testLibs = arrayListOf<String>().apply {
     add(junit)
-  }
-}
-
-//util extension
-fun DependencyHandler.kapt(list: List<String>) {
-  list.forEach { dependency ->
-    add("kapt", dependency)
-  }
-}
-
-fun DependencyHandler.implementation(list: List<String>) {
-  list.forEach { dependency ->
-    add("implementation", dependency)
-  }
-}
-
-fun DependencyHandler.androidTestImplementation(list: List<String>) {
-  list.forEach { dependency ->
-    add("androidTestImplementation", dependency)
-  }
-}
-
-fun DependencyHandler.testImplementation(list: List<String>) {
-  list.forEach { dependency ->
-    add("testImplementation", dependency)
   }
 }
