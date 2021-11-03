@@ -1,48 +1,18 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
+  id("comm.app-module")
 }
 
 android {
-    compileSdk = Versions.compileSdk
 
-    defaultConfig {
-        applicationId = "com.hsicen.a21_drag_nestedscroll"
-        minSdk = Versions.minSdk
-        targetSdk = Versions.targetSdk
-        versionCode = Versions.versionCode
-        versionName = Versions.versionName
-
-        testInstrumentationRunner = TestDeps.runner
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-
-    buildFeatures {
-        viewBinding = true
-    }
+  defaultConfig {
+    applicationId = "com.hsicen.a21_drag_nestedscroll"
+  }
+  kotlinOptions {
+    jvmTarget = "11"
+  }
 }
 
 dependencies {
-    testImplementation(TestDeps.junit)
-    androidTestImplementation(TestDeps.junitExt)
-    androidTestImplementation(TestDeps.espresso)
-
-    implementation(fileTree(Deps.fileMap))
-    implementation(Deps.kotlinStb)
-
-    implementation(Deps.appCompat)
-    implementation(Deps.ktx)
-    implementation(Deps.constrainLayout)
-
-    implementation(Deps.recyclerview)
-    implementation(Deps.cardview)
+  implementation(Deps.recyclerview)
+  implementation(Deps.cardview)
 }

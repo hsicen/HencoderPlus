@@ -1,65 +1,36 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
+  id("comm.app-module")
 }
 
 android {
-    compileSdk = Versions.compileSdk
 
-    defaultConfig {
-        applicationId = "com.hsicen.a23_rxjava"
-        minSdk = Versions.minSdk
-        targetSdk = Versions.targetSdk
-        versionCode = Versions.versionCode
-        versionName = Versions.versionName
+  defaultConfig {
+    applicationId = "com.hsicen.a23_rxjava"
+  }
 
-        testInstrumentationRunner = TestDeps.runner
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-
-    buildFeatures {
-        viewBinding = true
-    }
+  kotlinOptions {
+    jvmTarget = "11"
+  }
 }
 
 dependencies {
-    testImplementation(TestDeps.junit)
-    androidTestImplementation(TestDeps.junitExt)
-    androidTestImplementation(TestDeps.espresso)
+  implementation(Deps.retrofit)
+  implementation(Deps.converterGson)
+  implementation(Deps.adapterRxjava2)
 
-    implementation(fileTree(Deps.fileMap))
-    implementation(Deps.kotlinStb)
+  implementation(Deps.rxjava)
+  implementation(Deps.rxandroid)
 
-    implementation(Deps.appCompat)
-    implementation(Deps.ktx)
-    implementation(Deps.constrainLayout)
-
-    implementation(Deps.retrofit)
-    implementation(Deps.converterGson)
-    implementation(Deps.adapterRxjava2)
-
-    implementation(Deps.rxjava)
-    implementation(Deps.rxandroid)
-
-    //Platform bindings:
-    implementation(Deps.rxbinding)
-    implementation(Deps.rxbindingCore)
-    implementation(Deps.rxbindingAppcompat)
-    implementation(Deps.rxbindingDrawerlayout)
-    implementation(Deps.rxbindingLeanback)
-    implementation(Deps.rxbindingRecyclerview)
-    implementation(Deps.rxbindingSlidingpanelayout)
-    implementation(Deps.rxbindingSwiperefreshlayout)
-    implementation(Deps.rxbindingViewpager)
-    implementation(Deps.rxbindingViewpager2)
-    implementation(Deps.rxbindingMaterial)
+  //Platform bindings:
+  implementation(Deps.rxbinding)
+  implementation(Deps.rxbindingCore)
+  implementation(Deps.rxbindingAppcompat)
+  implementation(Deps.rxbindingDrawerlayout)
+  implementation(Deps.rxbindingLeanback)
+  implementation(Deps.rxbindingRecyclerview)
+  implementation(Deps.rxbindingSlidingpanelayout)
+  implementation(Deps.rxbindingSwiperefreshlayout)
+  implementation(Deps.rxbindingViewpager)
+  implementation(Deps.rxbindingViewpager2)
+  implementation(Deps.rxbindingMaterial)
 }

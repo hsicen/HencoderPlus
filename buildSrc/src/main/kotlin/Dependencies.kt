@@ -15,8 +15,9 @@ object Versions {
 
   const val kotlin = "1.5.31"
   const val gradle = "7.0.3"
-  const val hilt = "2.35"
+  const val compose = "1.0.1"
 
+  const val hilt = "2.35"
   const val retrofit = "2.9.0"
   const val coroutine = "1.4.2"
   const val rxBinding = "3.1.0"

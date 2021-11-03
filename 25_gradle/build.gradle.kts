@@ -1,6 +1,8 @@
+import java.io.FileInputStream
+import java.util.*
+
 plugins {
-  id("com.android.application")
-  id("kotlin-android")
+  id("comm.app-module")
   id("Hencoder")
 }
 
@@ -32,51 +34,30 @@ hsicen {
 }
 
 android {
-  compileSdk = Versions.compileSdk
-
   defaultConfig {
     applicationId = "com.hsicen.a25_gradle"
-    minSdk = Versions.minSdk
-    targetSdk = Versions.targetSdk
-    versionCode = Versions.versionCode
-    versionName = Versions.versionName
   }
 
-  buildTypes {
-    getByName("release") {
-      isMinifyEnabled = false
-      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-    }
-  }
-
-  buildFeatures {
-    viewBinding = true
+  kotlinOptions {
+    jvmTarget = "11"
   }
 
   //渠道
-  /*flavorDimensions("paying")
+  flavorDimensions.add("paying")
   productFlavors {
     create("free") {
-      dimension("paying")
+      dimension = "paying"
       buildConfigField("String", "BaseUrl", "https:www.baidu.com.free")
     }
 
     create("pay") {
-      dimension("paying")
+      dimension = "paying"
       buildConfigField("String", "BaseUrl", "https:www.baidu.com.pay")
     }
-  }*/
+  }
 }
 
-dependencies {
-  implementation(fileTree(Deps.fileMap))
-  implementation(Deps.kotlinStb)
-  implementation(Deps.appCompat)
-  implementation(Deps.ktx)
-  implementation(Deps.constrainLayout)
-}
-
-/*task("bumpVersion") {
+task("bumpVersion") {
   doLast {
     val versionFile = file("./version.properties")
     val props = Properties()
@@ -85,11 +66,11 @@ dependencies {
     props["VERSION_CODE"] = codeBumped.toString()
     props.store(versionFile.writer(), null)
   }
-}*/
+}
 
-/*task("notifyVersionBump") {
+task("notifyVersionBump") {
   dependsOn("bumpVersion")
   doLast {
     println("已经更新了应用版本号！！！")
   }
-}*/
+}
