@@ -14,7 +14,7 @@ object Versions {
   const val versionName = "1.0"
 
   const val kotlin = "1.5.31"
-  const val gradle = "7.1.0"
+  const val gradle = "7.0.3"
   const val compose = "1.0.1"
 
   const val hilt = "2.35"
@@ -29,7 +29,7 @@ object Versions {
 
 //依赖库管理
 object Deps {
-  const val gradle = "com.android.tools.build:gradle:7.0.3"
+  const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
   val fileMap = mapOf("dir" to "libs", "include" to listOf("*.jar"))
   const val kotlinStb = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
   const val extension = "com.github.hsicen:Extensions:1.0.1"
