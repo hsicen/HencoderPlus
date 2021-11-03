@@ -1,3 +1,3 @@
 plugins {
-  id("comm.app-module")
+  id("comm.lib-module")
 }

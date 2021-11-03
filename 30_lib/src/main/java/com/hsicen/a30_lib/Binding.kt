@@ -11,14 +11,14 @@ import android.util.Log
  */
 object Binding {
 
-    fun bind(activity: Activity) {
-        //绑定类所生成的类
-        try {
-            val bindClass = Class.forName(activity.javaClass.canonicalName + "Binding")
-            val constructor = bindClass.getDeclaredConstructor(activity.javaClass)
-            constructor.newInstance(activity)
-        } catch (e: Exception) {
-            Log.d("hsc", "反射出错  ${e.printStackTrace()}")
-        }
+  fun bind(activity: Activity) {
+    //绑定类所生成的类
+    try {
+      val bindClass = Class.forName(activity.javaClass.canonicalName + "Binding")
+      val constructor = bindClass.getDeclaredConstructor(activity.javaClass)
+      constructor.newInstance(activity)
+    } catch (e: Exception) {
+      Log.d("hsc", "反射出错  ${e.printStackTrace()}")
     }
+  }
 }
