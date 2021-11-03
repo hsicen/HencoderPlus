@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.livedata"
+    applicationId = "com.hsicen.appstartup"
   }
 
   kotlinOptions {
@@ -14,6 +14,5 @@ android {
 
 dependencies {
   implementation(Deps.material)
-  implementation(Deps.extension)
-  implementation(Deps.lifecycleViewmodel)
+  implementation(Deps.startUp)
 }

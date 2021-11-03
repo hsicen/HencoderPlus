@@ -105,6 +105,8 @@ object Deps {
   const val activityKtx = "androidx.activity:activity-ktx:1.2.3"
   const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.3"
 
+  const val startUp = "androidx.startup:startup-runtime:1.0.0"
+
   val appLibs = arrayListOf<String>().apply {
     add(appCompat)
     add(kotlinStb)

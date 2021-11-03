@@ -1,45 +1,17 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
+  id("comm.app-module")
 }
 
 android {
-    compileSdk = Versions.compileSdk
+  defaultConfig {
+    applicationId = "com.hsicen.a32_view_draw_process"
+  }
 
-    defaultConfig {
-        applicationId = "com.hsicen.a32_view_draw_process"
-        minSdk = Versions.minSdk
-        targetSdk = Versions.targetSdk
-        versionCode = Versions.versionCode
-        versionName = Versions.versionName
-
-        testInstrumentationRunner = TestDeps.runner
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-
-    buildFeatures {
-        viewBinding = true
-    }
+  kotlinOptions {
+    jvmTarget = "11"
+  }
 }
 
 dependencies {
-    testImplementation(TestDeps.junit)
-    androidTestImplementation(TestDeps.junitExt)
-    androidTestImplementation(TestDeps.espresso)
-
-    implementation(fileTree(Deps.fileMap))
-    implementation(Deps.kotlinStb)
-    implementation(Deps.appCompat)
-    implementation(Deps.ktx)
-    implementation(Deps.constrainLayout)
-    implementation(Deps.gsonParent)
+  implementation(Deps.gsonParent)
 }
