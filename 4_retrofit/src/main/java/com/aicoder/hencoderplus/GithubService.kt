@@ -7,7 +7,7 @@ import retrofit2.http.Path
 
 interface GithubService {
 
-    @GET("users/{user}/repos")
-    fun getRepos(@Path("user") userName: String): Call<List<Repo>>
+  @GET("users/{user}/repos")
+  fun getRepos(@Path("user") userName: String): Call<List<Repo>>
 
 }

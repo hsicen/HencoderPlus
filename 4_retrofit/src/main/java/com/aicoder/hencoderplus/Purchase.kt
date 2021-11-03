@@ -9,9 +9,9 @@ package com.aicoder.hencoderplus
 data class Purchase(val currency: String, val price: Float)
 
 fun main() {
-    val iPhone8 = Purchase("CNY", 5556f)
-    val iPhoneX = iPhone8.copy(price = 9999f)
+  val iPhone8 = Purchase("CNY", 5556f)
+  val iPhoneX = iPhone8.copy(price = 9999f)
 
-    println("iPhone8:   $iPhone8")
-    println("iPhoneX:   $iPhoneX")
+  println("iPhone8:   $iPhone8")
+  println("iPhoneX:   $iPhoneX")
 }

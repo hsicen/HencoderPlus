@@ -8,11 +8,11 @@ package com.aicoder.hencoderplus
  */
 class Account {
 
-    @get: JvmName("banlance")
-    var banlance = 100.0
+  @get: JvmName("banlance")
+  var banlance = 100.0
 
-    /*** 成员函数*/
-    infix fun add(increase: Double) {
-        this.banlance = banlance + increase
-    }
+  /*** 成员函数*/
+  infix fun add(increase: Double) {
+    this.banlance = banlance + increase
+  }
 }
