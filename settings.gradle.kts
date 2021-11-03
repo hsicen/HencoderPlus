@@ -10,7 +10,7 @@ include(":Jetpack:appstartup")
 include(":Jetpack:workmanagersample")
 
 include(":Inject:koinsample")
-//include(":Inject:hiltsample")
+include(":Inject:hiltsample")
 include(":Inject:daggersample")
 
 

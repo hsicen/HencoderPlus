@@ -14,7 +14,7 @@ object Versions {
   const val versionName = "1.0"
 
   const val kotlin = "1.5.31"
-  const val gradle = "7.0.3"
+  const val gradle = "7.1.0"
   const val compose = "1.0.1"
 
   const val hilt = "2.35"
@@ -23,7 +23,7 @@ object Versions {
   const val rxBinding = "3.1.0"
 
   const val room = "2.2.6"
-  const val dagger = "2.35"
+  const val dagger = "2.38.1"
   const val lifecycle = "2.3.1"
 }
 
@@ -86,7 +86,6 @@ object Deps {
   const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
   const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
 
-  const val hiltCompiler = "androidx.hilt:hilt-compiler:1.0.0"
   const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.dagger}"
   const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.dagger}"
 
