@@ -14,20 +14,20 @@ import java.net.Socket
  */
 
 fun main() {
-    try {
-        val socket = Socket("rengwuxian.com", 80)
-        val writer = BufferedWriter(OutputStreamWriter(socket.getOutputStream()))
-        val reader = BufferedReader(InputStreamReader(socket.getInputStream()))
+  try {
+    val socket = Socket("rengwuxian.com", 80)
+    val writer = BufferedWriter(OutputStreamWriter(socket.getOutputStream()))
+    val reader = BufferedReader(InputStreamReader(socket.getInputStream()))
 
-        //请求报文
-        writer.write("GET / HTTP/1.1\nHost:rengwuxian.com\n\n")
-        writer.flush()
+    //请求报文
+    writer.write("GET / HTTP/1.1\nHost:rengwuxian.com\n\n")
+    writer.flush()
 
-        var msg: String
-        while (reader.readLine().also { msg = it } != null) {
-            println(msg)
-        }
-    } catch (e: Exception) {
-        e.printStackTrace(System.err)
+    var msg: String
+    while (reader.readLine().also { msg = it } != null) {
+      println(msg)
     }
+  } catch (e: Exception) {
+    e.printStackTrace(System.err)
+  }
 }

@@ -10,21 +10,21 @@ import java.lang.reflect.Proxy
  */
 object Client {
 
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val realSubject = RealSubject()
-        val mHandler = DynamicHandler(realSubject)
+  @JvmStatic
+  fun main(args: Array<String>) {
+    val realSubject = RealSubject()
+    val mHandler = DynamicHandler(realSubject)
 
-        val subject = Proxy.newProxyInstance(
-            mHandler.javaClass.classLoader,
-            realSubject.javaClass.interfaces,
-            mHandler
-        ) as? Subject
+    val subject = Proxy.newProxyInstance(
+      mHandler.javaClass.classLoader,
+      realSubject.javaClass.interfaces,
+      mHandler
+    ) as? Subject
 
-        println(subject?.javaClass?.name)
-        subject?.hello("World")
-        val result = subject?.bye()
+    println(subject?.javaClass?.name)
+    subject?.hello("World")
+    val result = subject?.bye()
 
-        println("The result is $result")
-    }
+    println("The result is $result")
+  }
 }

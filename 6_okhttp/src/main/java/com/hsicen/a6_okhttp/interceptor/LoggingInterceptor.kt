@@ -13,27 +13,27 @@ import okhttp3.Response
  */
 class LoggingInterceptor : Interceptor {
 
-    override fun intercept(chain: Interceptor.Chain): Response {
-        //1. 前置工作
-        val request = chain.request()
-        val start = System.nanoTime()
-        Log.i(
-            "hsc",
-            "\n发起请求：\nurl：${request.url}\nconnection：${chain.connection()}\nheaders：${request.headers}"
-        )
+  override fun intercept(chain: Interceptor.Chain): Response {
+    //1. 前置工作
+    val request = chain.request()
+    val start = System.nanoTime()
+    Log.i(
+      "hsc",
+      "\n发起请求：\nurl：${request.url}\nconnection：${chain.connection()}\nheaders：${request.headers}"
+    )
 
-        //2. 交由下一个Interceptor处理
-        val response = chain.proceed(request)
+    //2. 交由下一个Interceptor处理
+    val response = chain.proceed(request)
 
-        //3. 后置工作
-        val end = System.nanoTime()
-        Log.i(
-            "hsc",
-            "\n结束请求：\nurl：${response.request.url}\nheaders：${response.headers}\n请求耗时：${(end - start) / (1e6)}ms"
-        )
+    //3. 后置工作
+    val end = System.nanoTime()
+    Log.i(
+      "hsc",
+      "\n结束请求：\nurl：${response.request.url}\nheaders：${response.headers}\n请求耗时：${(end - start) / (1e6)}ms"
+    )
 
-        return response
-    }
+    return response
+  }
 
 
 }

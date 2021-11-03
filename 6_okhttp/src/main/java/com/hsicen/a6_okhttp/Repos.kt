@@ -7,12 +7,12 @@ package com.hsicen.a6_okhttp
  * <p>描述：github仓库
  */
 data class Repos(
-    val id: Long = 0,
-    val name: String = "",
-    val url: String = "",
-    val private: Boolean = false
+  val id: Long = 0,
+  val name: String = "",
+  val url: String = "",
+  val private: Boolean = false
 ) {
-    override fun toString(): String {
-        return "id：$id\nname：$name\nurl：$url\nprivate：$private\n\n\n"
-    }
+  override fun toString(): String {
+    return "id：$id\nname：$name\nurl：$url\nprivate：$private\n\n\n"
+  }
 }

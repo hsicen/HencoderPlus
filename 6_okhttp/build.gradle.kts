@@ -1,46 +1,17 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
+  id("comm.app-module")
 }
 
 android {
-    compileSdk = Versions.compileSdk
-
-    defaultConfig {
-        applicationId = "com.hsicen.a6_okhttp"
-        minSdk = Versions.minSdk
-        targetSdk = Versions.targetSdk
-        versionCode = Versions.versionCode
-        versionName = Versions.versionName
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-
-    buildFeatures {
-        viewBinding = true
-    }
+  defaultConfig {
+    applicationId = "com.hsicen.a6_okhttp"
+  }
 }
 
 dependencies {
-    implementation(fileTree(Deps.fileMap))
-    implementation(Deps.kotlinStb)
+  implementation(Deps.okhttp)
+  testImplementation(TestDeps.mockWebServer)
 
-    implementation(Deps.appCompat)
-    implementation(Deps.ktx)
-    implementation(Deps.constrainLayout)
-
-    implementation(Deps.okhttp)
-    testImplementation(TestDeps.mockWebServer)
-
-    kapt(Deps.moshiKotlinCodegen)
-    implementation(Deps.moshiKotlin)
+  kapt(Deps.moshiKotlinCodegen)
+  implementation(Deps.moshiKotlin)
 }

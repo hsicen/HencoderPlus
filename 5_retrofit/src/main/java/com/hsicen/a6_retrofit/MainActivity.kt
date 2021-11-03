@@ -41,39 +41,39 @@ import kotlin.concurrent.thread
  *  请求结果；这个方法用来结合自定义的CallAdaptor来实现Call的转换,例如结合RxJava来返回一个Observable对象
  */
 class MainActivity : AppCompatActivity() {
-    lateinit var bing: ActivityMainBinding
+  lateinit var bing: ActivityMainBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        bing = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(bing.root)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    bing = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(bing.root)
 
-        bing.btnFetch.setOnClickListener {
-            fetchData()
-        }
+    bing.btnFetch.setOnClickListener {
+      fetchData()
     }
+  }
 
-    private fun fetchData() {
-        val repoService = Net.instance().create(GithubService::class.java)
+  private fun fetchData() {
+    val repoService = Net.instance().create(GithubService::class.java)
 
-        repoService.listRepos("hsicen")
-            .observeOn(Schedulers.newThread())
-            .subscribe(object : SingleObserver<List<Repo>> {
-                override fun onSubscribe(d: Disposable?) {}
-                override fun onSuccess(value: List<Repo>?) {}
-                override fun onError(e: Throwable?) {}
-            })
+    repoService.listRepos("hsicen")
+      .observeOn(Schedulers.newThread())
+      .subscribe(object : SingleObserver<List<Repo>> {
+        override fun onSubscribe(d: Disposable?) {}
+        override fun onSuccess(value: List<Repo>?) {}
+        override fun onError(e: Throwable?) {}
+      })
 
-        val listRepos = repoService.getUser()
-        val cloneCall = listRepos.clone()
+    val listRepos = repoService.getUser()
+    val cloneCall = listRepos.clone()
 
-        listRepos.enqueue(object : Callback<User> {
-            override fun onFailure(call: Call<User>, t: Throwable) {}
-            override fun onResponse(call: Call<User>, response: Response<User>) {}
-        })
+    listRepos.enqueue(object : Callback<User> {
+      override fun onFailure(call: Call<User>, t: Throwable) {}
+      override fun onResponse(call: Call<User>, response: Response<User>) {}
+    })
 
-        thread {
-            val userResponse = cloneCall.execute()
-        }
+    thread {
+      val userResponse = cloneCall.execute()
     }
+  }
 }

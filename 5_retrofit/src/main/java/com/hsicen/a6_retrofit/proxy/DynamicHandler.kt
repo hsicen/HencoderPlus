@@ -11,14 +11,14 @@ import java.lang.reflect.Method
  */
 class DynamicHandler(private val subject: Any?) : InvocationHandler {
 
-    override fun invoke(proxy: Any?, method: Method?, args: Array<out Any>?): Any? {
-        println("Before method")
-        println("Call method:   $method")
+  override fun invoke(proxy: Any?, method: Method?, args: Array<out Any>?): Any? {
+    println("Before method")
+    println("Call method:   $method")
 
-        val obj = method?.invoke(subject, args)
-        println("After Method\n")
+    val obj = method?.invoke(subject, args)
+    println("After Method\n")
 
-        return obj
-    }
+    return obj
+  }
 
 }

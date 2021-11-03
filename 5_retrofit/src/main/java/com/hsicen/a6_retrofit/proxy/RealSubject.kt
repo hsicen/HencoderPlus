@@ -8,12 +8,12 @@ package com.hsicen.a6_retrofit.proxy
  */
 class RealSubject : Subject {
 
-    override fun hello(str: String) {
-        println("Hello  $str")
-    }
+  override fun hello(str: String) {
+    println("Hello  $str")
+  }
 
-    override fun bye(): String {
-        println("Goodbye")
-        return "Over"
-    }
+  override fun bye(): String {
+    println("Goodbye")
+    return "Over"
+  }
 }

@@ -11,10 +11,10 @@ import retrofit2.converter.gson.GsonConverterFactory
  * <p>描述：HencoderPlus
  */
 object Net {
-    fun instance(): Retrofit =
-        Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .baseUrl("https://api.github.com/")
-            .build()
+  fun instance(): Retrofit =
+    Retrofit.Builder()
+      .addConverterFactory(GsonConverterFactory.create())
+      .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+      .baseUrl("https://api.github.com/")
+      .build()
 }

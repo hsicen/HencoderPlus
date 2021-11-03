@@ -15,35 +15,35 @@ import okio.buffer
  */
 class GzipRequestInterceptor : Interceptor {
 
-    override fun intercept(chain: Interceptor.Chain): Response {
-        val originalRequest = chain.request()
-        if (originalRequest.body == null || originalRequest.header("Content-Encoding") != null) {
-            return chain.proceed(originalRequest)
-        }
-
-        val compressedRequest = originalRequest.newBuilder()
-            .header("Content_Encoding", "gzip")
-            .method(originalRequest.method, gzip(originalRequest.body))
-            .build()
-
-        return chain.proceed(compressedRequest)
+  override fun intercept(chain: Interceptor.Chain): Response {
+    val originalRequest = chain.request()
+    if (originalRequest.body == null || originalRequest.header("Content-Encoding") != null) {
+      return chain.proceed(originalRequest)
     }
 
-    //对Request的Body数据进行压缩
-    private fun gzip(body: RequestBody?): RequestBody {
+    val compressedRequest = originalRequest.newBuilder()
+      .header("Content_Encoding", "gzip")
+      .method(originalRequest.method, gzip(originalRequest.body))
+      .build()
 
-        return object : RequestBody() {
-            override fun contentType() = body?.contentType()
+    return chain.proceed(compressedRequest)
+  }
 
-            override fun contentLength() = -1L
+  //对Request的Body数据进行压缩
+  private fun gzip(body: RequestBody?): RequestBody {
 
-            override fun writeTo(sink: BufferedSink) {
-                val gZipSink = GzipSink(sink).buffer()
-                body?.writeTo(gZipSink)
+    return object : RequestBody() {
+      override fun contentType() = body?.contentType()
 
-                gZipSink.close()
-            }
-        }
+      override fun contentLength() = -1L
+
+      override fun writeTo(sink: BufferedSink) {
+        val gZipSink = GzipSink(sink).buffer()
+        body?.writeTo(gZipSink)
+
+        gZipSink.close()
+      }
     }
+  }
 
 }

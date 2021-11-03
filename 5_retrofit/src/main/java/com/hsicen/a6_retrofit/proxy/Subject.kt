@@ -8,7 +8,7 @@ package com.hsicen.a6_retrofit.proxy
  */
 interface Subject {
 
-    fun hello(str: String)
+  fun hello(str: String)
 
-    fun bye(): String
+  fun bye(): String
 }
