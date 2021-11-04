@@ -13,6 +13,8 @@ include(":Inject:koinsample")
 //include(":Inject:hiltsample")
 include(":Inject:daggersample")
 
+include(":compose:hellocompose")
+
 
 //HenCoder Plus课程
 include(":1_http")

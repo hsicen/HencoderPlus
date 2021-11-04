@@ -7,10 +7,6 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.a23_rxjava"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }
 
 dependencies {

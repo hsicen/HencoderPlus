@@ -38,10 +38,6 @@ android {
     applicationId = "com.hsicen.a25_gradle"
   }
 
-  kotlinOptions {
-    jvmTarget = "11"
-  }
-
   //渠道
   flavorDimensions.add("paying")
   productFlavors {

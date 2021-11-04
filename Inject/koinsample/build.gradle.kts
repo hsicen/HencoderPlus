@@ -7,10 +7,6 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.koinsample"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }
 
 dependencies {

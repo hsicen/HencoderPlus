@@ -6,10 +6,6 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.a29_hotfix"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }
 
 dependencies {

@@ -6,8 +6,4 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.a33_hashmap"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }

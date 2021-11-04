@@ -6,10 +6,6 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.appstartup"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }
 
 dependencies {

@@ -7,10 +7,6 @@ android {
   defaultConfig {
     applicationId = "com.android.hsicen.hiltsample"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }
 
 dependencies {

@@ -6,10 +6,6 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.viewmodel"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }
 
 dependencies {

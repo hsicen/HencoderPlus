@@ -6,10 +6,6 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.roomsample"
   }
-
-  kotlinOptions {
-    jvmTarget = "1.8"
-  }
 }
 
 dependencies {

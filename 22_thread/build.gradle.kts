@@ -6,10 +6,6 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.a22_thread"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }
 
 dependencies {

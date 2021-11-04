@@ -6,8 +6,4 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.a19_constraintlayout"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }

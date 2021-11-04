@@ -6,8 +6,4 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.animator"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }

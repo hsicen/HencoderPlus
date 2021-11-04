@@ -6,10 +6,6 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.a30_annotation"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }
 
 dependencies {

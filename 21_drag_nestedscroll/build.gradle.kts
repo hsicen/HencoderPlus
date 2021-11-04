@@ -3,12 +3,8 @@ plugins {
 }
 
 android {
-
   defaultConfig {
     applicationId = "com.hsicen.a21_drag_nestedscroll"
-  }
-  kotlinOptions {
-    jvmTarget = "11"
   }
 }
 

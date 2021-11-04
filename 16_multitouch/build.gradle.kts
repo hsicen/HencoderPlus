@@ -6,8 +6,4 @@ android {
   defaultConfig {
     applicationId = "com.example.a21_multitouch"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }

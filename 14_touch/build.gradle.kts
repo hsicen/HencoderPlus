@@ -6,8 +6,4 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.touch"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }

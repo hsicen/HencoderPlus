@@ -6,10 +6,6 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.coroutine"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }
 
 dependencies {

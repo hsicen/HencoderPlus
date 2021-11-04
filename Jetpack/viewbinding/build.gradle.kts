@@ -1,1 +1,1 @@
-plugins {  id("comm.app-module")}android {  defaultConfig {    applicationId = "com.hsicen.viewBinding"  }  kotlinOptions {    jvmTarget = "11"  }}dependencies {  implementation(Deps.material)  implementation(Deps.extension)}
+plugins {  id("comm.app-module")}android {  defaultConfig {    applicationId = "com.hsicen.viewBinding"  }}dependencies {  implementation(Deps.material)  implementation(Deps.extension)}

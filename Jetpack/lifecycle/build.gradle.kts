@@ -6,10 +6,6 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.lifecycle"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }
 
 dependencies {

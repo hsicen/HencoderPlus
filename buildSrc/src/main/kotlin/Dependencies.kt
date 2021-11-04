@@ -7,8 +7,8 @@
 
 object Versions {
   const val minSdk = 21
-  const val compileSdk = 30
-  const val targetSdk = 30
+  const val compileSdk = 31
+  const val targetSdk = 31
 
   const val versionCode = 1
   const val versionName = "1.0"
@@ -48,8 +48,7 @@ object Deps {
   const val moshiKotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
 
   const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
-  const val coroutinesAndroid =
-    "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
+  const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
 
   const val gson = "com.google.code.gson:gson:2.8.6"
   const val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
@@ -60,24 +59,15 @@ object Deps {
 
   const val rxbinding = "com.jakewharton.rxbinding3:rxbinding:${Versions.rxBinding}"
   const val rxbindingCore = "com.jakewharton.rxbinding3:rxbinding-core:${Versions.rxBinding}"
-  const val rxbindingAppcompat =
-    "com.jakewharton.rxbinding3:rxbinding-appcompat:${Versions.rxBinding}"
-  const val rxbindingDrawerlayout =
-    "com.jakewharton.rxbinding3:rxbinding-drawerlayout:${Versions.rxBinding}"
-  const val rxbindingLeanback =
-    "com.jakewharton.rxbinding3:rxbinding-leanback:${Versions.rxBinding}"
-  const val rxbindingRecyclerview =
-    "com.jakewharton.rxbinding3:rxbinding-recyclerview:${Versions.rxBinding}"
-  const val rxbindingSlidingpanelayout =
-    "com.jakewharton.rxbinding3:rxbinding-slidingpanelayout:${Versions.rxBinding}"
-  const val rxbindingSwiperefreshlayout =
-    "com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:${Versions.rxBinding}"
-  const val rxbindingViewpager =
-    "com.jakewharton.rxbinding3:rxbinding-viewpager:${Versions.rxBinding}"
-  const val rxbindingViewpager2 =
-    "com.jakewharton.rxbinding3:rxbinding-viewpager2:${Versions.rxBinding}"
-  const val rxbindingMaterial =
-    "com.jakewharton.rxbinding3:rxbinding-material:${Versions.rxBinding}"
+  const val rxbindingAppcompat = "com.jakewharton.rxbinding3:rxbinding-appcompat:${Versions.rxBinding}"
+  const val rxbindingDrawerlayout = "com.jakewharton.rxbinding3:rxbinding-drawerlayout:${Versions.rxBinding}"
+  const val rxbindingLeanback = "com.jakewharton.rxbinding3:rxbinding-leanback:${Versions.rxBinding}"
+  const val rxbindingRecyclerview = "com.jakewharton.rxbinding3:rxbinding-recyclerview:${Versions.rxBinding}"
+  const val rxbindingSlidingpanelayout = "com.jakewharton.rxbinding3:rxbinding-slidingpanelayout:${Versions.rxBinding}"
+  const val rxbindingSwiperefreshlayout = "com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:${Versions.rxBinding}"
+  const val rxbindingViewpager = "com.jakewharton.rxbinding3:rxbinding-viewpager:${Versions.rxBinding}"
+  const val rxbindingViewpager2 = "com.jakewharton.rxbinding3:rxbinding-viewpager2:${Versions.rxBinding}"
+  const val rxbindingMaterial = "com.jakewharton.rxbinding3:rxbinding-material:${Versions.rxBinding}"
 
   const val okio = "com.squareup.okio:okio:2.3.0"
   const val javapoet = "com.squareup:javapoet:1.12.1"
@@ -97,8 +87,7 @@ object Deps {
 
   const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
   const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
-  const val lifecycleViewmodelKtx =
-    "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+  const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
   const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
   const val activityKtx = "androidx.activity:activity-ktx:1.2.3"
@@ -106,12 +95,11 @@ object Deps {
 
   const val startUp = "androidx.startup:startup-runtime:1.0.0"
 
-  val appLibs = arrayListOf<String>().apply {
-    add(appCompat)
-    add(kotlinStb)
-    add(ktx)
-    add(constrainLayout)
-  }
+  const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
+  const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
+  const val composeUiPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
+
+  const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha06"
 }
 
 object TestDeps {
@@ -123,12 +111,6 @@ object TestDeps {
 
   const val mockWebServer = "com.squareup.okhttp3:mockwebserver:4.4.1"
 
-  val androidTestLibs = arrayListOf<String>().apply {
-    add(junitExt)
-    add(espresso)
-  }
-
-  val testLibs = arrayListOf<String>().apply {
-    add(junit)
-  }
+  const val composeUiTest = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
+  const val composeUiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
 }

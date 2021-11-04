@@ -6,8 +6,4 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.recyclerviewcore"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }

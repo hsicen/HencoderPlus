@@ -12,8 +12,4 @@ android {
       isMinifyEnabled = false
     }
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }

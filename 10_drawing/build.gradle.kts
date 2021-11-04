@@ -6,8 +6,4 @@ android {
   defaultConfig {
     applicationId = "com.hsicen.drawing"
   }
-
-  kotlinOptions {
-    jvmTarget = "11"
-  }
 }
