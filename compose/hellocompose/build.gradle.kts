@@ -7,3 +7,7 @@ android {
     applicationId = "com.hsicen.hellocompose"
   }
 }
+
+dependencies {
+  implementation(Deps.accompanistInsets)
+}

@@ -13,7 +13,7 @@ object Versions {
   const val versionCode = 1
   const val versionName = "1.0"
 
-  const val kotlin = "1.5.31"
+  const val kotlin = "1.5.21"
   const val gradle = "7.0.3"
   const val compose = "1.0.1"
 
@@ -96,10 +96,15 @@ object Deps {
   const val startUp = "androidx.startup:startup-runtime:1.0.0"
 
   const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
+  const val composeUiUtil = "androidx.compose.ui:ui-util:${Versions.compose}"
   const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
   const val composeUiPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
+  const val composeFoundation = "androidx.compose.foundation:foundation:${Versions.compose}"
+  const val composeFoundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
 
+  const val lifecycleViewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
   const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha06"
+  const val accompanistInsets = "dev.chrisbanes.accompanist:accompanist-insets:0.6.0"
 }
 
 object TestDeps {

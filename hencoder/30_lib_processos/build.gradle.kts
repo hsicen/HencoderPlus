@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-  implementation(project(":30_lib_annotation"))
+  implementation(project(":hencoder:30_lib_annotation"))
   implementation(Deps.javapoet)
 }
