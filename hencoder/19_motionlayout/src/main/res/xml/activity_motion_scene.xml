@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+	xmlns:app = "http://schemas.android.com/apk/res-auto">
+
+	<!--  描述过渡动画-->
+	<!--  包括开始场景，结束场景，动画时长，动画插值器-->
+	<!--  onClick/onSwipe 描述过渡触发条件-->
+	<Transition
+		app:constraintSetEnd = "@layout/activity_scene_end"
+		app:constraintSetStart = "@layout/activity_scene_start"
+		app:duration = "1000">
+
+		<OnSwipe
+			app:dragDirection = "dragDown"
+			app:maxAcceleration = "20"
+			app:maxVelocity = "20"
+			app:touchAnchorId = "@id/topBar"
+			app:touchAnchorSide = "bottom" />
+
+		<!-- clickAction
+		   toggle:  在start和end场景之间循环切换
+		   transitionToEnd:  过渡到End场景
+		   transitionToStart:  过渡到Start场景
+		   jumpToEnd:  直接跳到End场景(不执行动画)
+		   jumpToStart:  直接跳到Start场景(不执行动画)
+		-->
+		<OnClick
+			app:clickAction = "toggle"
+			app:targetId = "@id/ivMotion" />
+
+	</Transition>
+
+</MotionScene>

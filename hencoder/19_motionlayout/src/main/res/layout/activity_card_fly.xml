@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent"
+	app:layoutDescription = "@xml/motion_flycard_scene"
+	app:showPaths = "true"
+	tools:context = ".CardFlyActivity">
+
+	<View
+		android:id = "@+id/iv4"
+		android:layout_width = "60dp"
+		android:layout_height = "60dp"
+		android:background = "#008000"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintLeft_toLeftOf = "parent"
+		app:layout_constraintRight_toRightOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent"
+		app:layout_constraintVertical_bias = "0.3" />
+
+	<View
+		android:id = "@+id/iv3"
+		android:layout_width = "60dp"
+		android:layout_height = "60dp"
+		android:background = "#EC7600"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintLeft_toLeftOf = "parent"
+		app:layout_constraintRight_toRightOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent" />
+
+	<View
+		android:id = "@+id/iv2"
+		android:layout_width = "60dp"
+		android:layout_height = "60dp"
+		android:background = "#007CF9"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintLeft_toLeftOf = "parent"
+		app:layout_constraintRight_toRightOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent" />
+
+	<View
+		android:id = "@+id/iv1"
+		android:layout_width = "60dp"
+		android:layout_height = "60dp"
+		android:background = "#FFEA3B"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintLeft_toLeftOf = "parent"
+		app:layout_constraintRight_toRightOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
