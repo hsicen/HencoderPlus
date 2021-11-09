@@ -1,0 +1,1 @@
+package com.hsicen.todo.data/** * 作者：hsicen  11/8/21 21:45 * 邮箱：codinghuang@163.com * 作用： * 描述：provide to do lists. */object DataCenter {  val todos = mutableListOf(    Todo().apply { name = "吃饭" },    Todo().apply { name = "睡觉" },    Todo().apply { name = "打豆豆" }  )}
