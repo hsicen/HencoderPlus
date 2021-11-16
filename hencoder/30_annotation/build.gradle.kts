@@ -10,7 +10,7 @@ android {
 
 dependencies {
   //implementation project(':30_annotation_reflection')
-  implementation(project(":30_lib"))
-  implementation(project(":30_lib_annotation"))
-  kapt(project(":30_lib_processos"))
+  implementation(project(":hencoder:30_lib"))
+  implementation(project(":hencoder:30_lib_annotation"))
+  kapt(project(":hencoder:30_lib_processos"))
 }
