@@ -10,4 +10,5 @@ android {
 
 dependencies {
   implementation(Deps.accompanistInsets)
+  implementation(Deps.accompanistPager)
 }

@@ -105,6 +105,7 @@ object Deps {
   const val lifecycleViewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
   const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha06"
   const val accompanistInsets = "dev.chrisbanes.accompanist:accompanist-insets:0.6.0"
+  const val accompanistPager = "com.google.accompanist:accompanist-pager:0.21.4-beta"
 }
 
 object TestDeps {
