@@ -15,7 +15,7 @@ object Versions {
 
   const val kotlin = "1.5.21"
   const val gradle = "7.0.3"
-  const val compose = "1.0.1"
+    const val compose = "1.1.0-beta04"
 
   const val hilt = "2.35"
   const val retrofit = "2.9.0"
@@ -85,27 +85,30 @@ object Deps {
 
   const val koinAndroid = "io.insert-koin:koin-android:3.0.1"
 
-  const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-  const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
-  const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-  const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+    const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
+    const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
-  const val activityKtx = "androidx.activity:activity-ktx:1.2.3"
-  const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.3"
+    const val activityKtx = "androidx.activity:activity-ktx:1.2.3"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.3"
 
-  const val startUp = "androidx.startup:startup-runtime:1.0.0"
+    const val startUp = "androidx.startup:startup-runtime:1.0.0"
 
-  const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
-  const val composeUiUtil = "androidx.compose.ui:ui-util:${Versions.compose}"
-  const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
-  const val composeUiPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
-  const val composeFoundation = "androidx.compose.foundation:foundation:${Versions.compose}"
-  const val composeFoundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
+    // 一般依赖 material material-icons-extended ui-tooling 三个就行
+    const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
+    const val iconExtend = "androidx.compose.material:material-icons-extended:${Versions.compose}"
 
-  const val lifecycleViewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
-  const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha06"
-  const val accompanistInsets = "dev.chrisbanes.accompanist:accompanist-insets:0.6.0"
-  const val accompanistPager = "com.google.accompanist:accompanist-pager:0.21.4-beta"
+    const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
+    const val composeUiUtil = "androidx.compose.ui:ui-util:${Versions.compose}"
+    const val composeUiPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
+    const val composeFoundation = "androidx.compose.foundation:foundation:${Versions.compose}"
+    const val composeFoundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
+    const val lifecycleViewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
+    const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha06"
+    const val accompanistInsets = "dev.chrisbanes.accompanist:accompanist-insets:0.6.0"
+    const val accompanistPager = "com.google.accompanist:accompanist-pager:0.21.4-beta"
+    const val coil = "io.coil-kt:coil-compose:2.0.0-alpha05"
 }
 
 object TestDeps {

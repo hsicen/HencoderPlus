@@ -61,5 +61,6 @@ include(":hencoder:viewbinding")
 
 
 /**======compose======**/
-include(":compose:01_hellocompose")
 include(":compose:todo")
+include(":compose:01_hellocompose")
+include(":compose:02_sample")
