@@ -33,11 +33,15 @@ import kotlin.reflect.KProperty
  * 结果：组合 Composition
  *
  * MutableState -> StateObject -> StateRecord -> Compose 支持事务功能
- * 链表保存( StateRecord )
+ * 同一个变量存多个值，支持取消更新
+ * 链表保存( StateRecord ) firstStateRecord(next) 为头结点
  *
  * Recompose 重组
  *
- * readable() 三个参数版本：遍历 StateRecord 链表，找到一个最新的、可用的 StateRecord
+ * next.readable()/get函数  三个参数版本：遍历 StateRecord 链表，找到一个最新的、可用的 StateRecord
+ * next.overwritable()/set函数
+ * MutableState 的 value 被 get 时，使用 Snapshot.readObserver 进行记录
+ *  set 时，使用 Snapshot.writeObserver 进行记录
  *
  * StateRecord：变量
  * Snapshot：整个状态；可以对应多个 StateRecord；一个 StateRecord 对应一个 Snapshot
@@ -62,35 +66,35 @@ import kotlin.reflect.KProperty
  *  「应用事件」：标记失效
  */
 class MainActivity : ComponentActivity() {
-    private val hsicen by NameDelegate()
-    private var name by mutableStateOf("hsicen")
+  private val hsicen by NameDelegate()
+  private var name by mutableStateOf("hsicen")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            Surface {
-                Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                    Text(name, textAlign = TextAlign.Center, fontSize = 24.sp)
-                }
-            }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent {
+      Surface {
+        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+          Text(name, textAlign = TextAlign.Center, fontSize = 24.sp)
         }
-
-        lifecycleScope.launch {
-            delay(5000)
-            name = "黄思程~~~"
-        }
+      }
     }
 
-    // 使用 by 代理
-    class NameDelegate {
-        // 获取值
-        operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
-            return "$thisRef, thank you for delegating '${property.name}' to me!"
-        }
-
-        // 设置值
-        operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
-            println("$value has been assigned to '${property.name}' in $thisRef")
-        }
+    lifecycleScope.launch {
+      delay(5000)
+      name = "黄思程~~~"
     }
+  }
+
+  // 使用 by 代理
+  class NameDelegate {
+    // 获取值
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
+      return "$thisRef, thank you for delegating '${property.name}' to me!"
+    }
+
+    // 设置值
+    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
+      println("$value has been assigned to '${property.name}' in $thisRef")
+    }
+  }
 }

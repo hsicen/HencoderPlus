@@ -1,9 +1,9 @@
 plugins {
-    id("comm.app-compose-module")
+  id("comm.app-compose-module")
 }
 
 android {
-    defaultConfig {
-        applicationId = "com.hsicen.state"
-    }
+  defaultConfig {
+    applicationId = "com.hsicen.state"
+  }
 }

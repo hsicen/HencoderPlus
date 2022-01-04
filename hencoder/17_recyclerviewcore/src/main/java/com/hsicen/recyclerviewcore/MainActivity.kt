@@ -14,27 +14,27 @@ import java.util.*
  * <p>描述：RecyclerVIew核心要点讲解
  */
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+  private lateinit var binding: ActivityMainBinding
 
-    private val mData = ArrayList<String>()
+  private val mData = ArrayList<String>()
 
-    private val mAdapter by lazy {
-        FruitAdapter(mData)
-    }
+  private val mAdapter by lazy {
+    FruitAdapter(mData)
+  }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-      super.onCreate(savedInstanceState)
-      binding = ActivityMainBinding.inflate(layoutInflater)
-      setContentView(binding.root)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-      val layoutManager = LinearLayoutManager(this)
-      binding.rvFruit.adapter = mAdapter
-      binding.rvFruit.layoutManager = layoutManager
-      binding.rvFruit.setRecycledViewPool(RecyclerView.RecycledViewPool())
+    val layoutManager = LinearLayoutManager(this)
+    binding.rvFruit.adapter = mAdapter
+    binding.rvFruit.layoutManager = layoutManager
+    binding.rvFruit.setRecycledViewPool(RecyclerView.RecycledViewPool())
 
-      mData.addAll(listOf("", "", "", "", "", "", "", ""))
-      mAdapter.notifyItemChanged(3, "payload")
+    mData.addAll(listOf("", "", "", "", "", "", "", ""))
+    mAdapter.notifyItemChanged(3, "payload")
 
-      binding.rvFruit.recycledViewPool.setMaxRecycledViews(2, 10)
-    }
+    binding.rvFruit.recycledViewPool.setMaxRecycledViews(2, 10)
+  }
 }
