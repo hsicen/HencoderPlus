@@ -3,14 +3,12 @@ package com.hsicen.state
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Surface
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
@@ -61,27 +59,34 @@ import kotlin.reflect.KProperty
  *          通知：StateObject 新值被应用的时候
  *
  * SnapshotMutableStateImpl.value
- *  get()：记录读
- *  set()：标记失效
- *  「应用事件」：标记失效
+ *  get()：记录读 -> 订阅行为
+ *  set()：标记失效 -> 刷新行为
+ *  「应用」事件：标记失效
+ *
+ *
+ *  重组作用域和remember
+ *
+ *  运行时拿到某行代码：【反射 -> 字节码】不算  不可行
+ *
+ *  Recompose Scope: 重组作用域
+ *
  */
 class MainActivity : ComponentActivity() {
-  private val hsicen by NameDelegate()
-  private var name by mutableStateOf("hsicen")
+  private val hsicen: String by NameDelegate()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContent {
-      Surface {
-        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-          Text(name, textAlign = TextAlign.Center, fontSize = 24.sp)
-        }
-      }
-    }
 
-    lifecycleScope.launch {
-      delay(5000)
-      name = "黄思程~~~"
+    setContent {
+      var name by mutableStateOf("hsicen")
+      Button(modifier = Modifier.fillMaxSize(), onClick = {}) {
+        Text(name, textAlign = TextAlign.Center, fontSize = 24.sp)
+      }
+
+      lifecycleScope.launch {
+        delay(3000)
+        name = "黄思程~~~"
+      }
     }
   }
 
