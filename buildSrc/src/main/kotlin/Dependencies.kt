@@ -19,7 +19,7 @@ object Versions {
 
   const val hilt = "2.35"
   const val retrofit = "2.9.0"
-  const val coroutine = "1.4.2"
+  const val coroutine = "1.6.0"
   const val rxBinding = "3.1.0"
 
   const val room = "2.2.6"

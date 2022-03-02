@@ -1,8 +1,8 @@
 package com.hsicen.state
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -71,7 +71,7 @@ import kotlin.reflect.KProperty
  *  Recompose Scope: 重组作用域
  *
  */
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
   private val hsicen: String by NameDelegate()
 
   override fun onCreate(savedInstanceState: Bundle?) {

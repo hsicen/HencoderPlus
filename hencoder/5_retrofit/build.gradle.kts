@@ -9,6 +9,8 @@ android {
 }
 
 dependencies {
+  implementation(Deps.coroutinesCore)
+
   implementation(Deps.retrofit)
   implementation(Deps.converterGson)
   implementation(Deps.adapterRxjava2)
