@@ -1,9 +1,10 @@
 package com.hsicen.a6_retrofit.practise
 
+import kotlinx.coroutines.runBlocking
 import retrofit2.Retrofit
 import java.lang.reflect.*
 import kotlin.coroutines.Continuation
-
+import kotlin.coroutines.CoroutineContext
 
 /**
  * @author: hsicen
@@ -16,15 +17,25 @@ import kotlin.coroutines.Continuation
  * @param T an interface generic type
  * @return an instance of re-proxy interface
  */
+@Suppress("UNCHECKED_CAST")
 inline fun <reified T> T.proxyRetrofit(): T {
   val invocationHandler = Proxy.getInvocationHandler(this)
+
   return Proxy.newProxyInstance(
     T::class.java.classLoader, arrayOf(T::class.java)
   ) { proxy, method, args ->
     method.takeIf { it.isSuspendMethod }?.getSuspendReturnType()
-      ?.let { FactoryRegistry}
+      ?.let { FactoryRegistry.getThrowableResolver(it) }
+      ?.let { resolver ->
+        args.updateAt(
+          args.lastIndex, FakeSuccessContinuationWrapper(
+            args.last() as Continuation<Any>,
+            resolver as ThrowableResolver<Any>
+          )
+        )
+      }
 
-
+    invocationHandler.invoke(proxy, method, args)
   } as T
 }
 
@@ -57,4 +68,34 @@ fun Method.getSuspendReturnType(): Type? {
  */
 fun Array<Any?>.updateAt(index: Int, updated: Any?) {
   this[index] = updated
+}
+
+/**
+ * A [FakeSuccessContinuationWrapper] which can resume a fake success when catch a [Throwable]
+ *
+ * @param T return type of the suspend method.
+ * @property original the original Continuation.
+ * @property throwableResolver [ThrowableResolver] is used to resolve [Throwable]
+ * @property context CoroutineContext
+ * @constructor
+ */
+class FakeSuccessContinuationWrapper<T>(
+  private val original: Continuation<T>,
+  private val throwableResolver: ThrowableResolver<T>
+) : Continuation<T> {
+
+  override val context: CoroutineContext = original.context
+
+  override fun resumeWith(result: Result<T>) {
+    runBlocking(context) {
+      result.onSuccess {
+        // when it's success, resume with original continuation
+        original.resumeWith(result)
+      }.onFailure {
+        // when it's failure, resume a wrapper success with contain failure
+        val fakeResult = throwableResolver.resolve(it)
+        original.resumeWith(Result.success(fakeResult))
+      }
+    }
+  }
 }
