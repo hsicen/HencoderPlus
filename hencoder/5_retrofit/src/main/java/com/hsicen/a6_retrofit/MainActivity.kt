@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.hsicen.a6_retrofit.databinding.ActivityMainBinding
 import com.hsicen.a6_retrofit.entity.Repo
 import com.hsicen.a6_retrofit.entity.User
+import com.hsicen.a6_retrofit.practise.PractiseTest
 import com.hsicen.a6_retrofit.service.GithubService
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
@@ -12,7 +13,6 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.concurrent.thread
 
 /**
  * 作者：hsicen  2020/8/27 9:12
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     setContentView(bing.root)
 
     bing.btnFetch.setOnClickListener {
-      fetchData()
+      testPractise()
     }
   }
 
@@ -71,9 +71,10 @@ class MainActivity : AppCompatActivity() {
       override fun onFailure(call: Call<User>, t: Throwable) {}
       override fun onResponse(call: Call<User>, response: Response<User>) {}
     })
+  }
 
-    thread {
-      val userResponse = cloneCall.execute()
-    }
+  private fun testPractise() {
+    val test = PractiseTest()
+    test.test()
   }
 }
