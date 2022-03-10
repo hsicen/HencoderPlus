@@ -32,7 +32,7 @@ object Deps {
   const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
   val fileMap = mapOf("dir" to "libs", "include" to listOf("*.jar"))
   const val kotlinStb = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-  const val extension = "com.github.hsicen:Extensions:1.0.1"
+  const val extension = "com.github.hsicen:Extensions:1.1.0"
 
   const val ktx = "androidx.core:core-ktx:1.3.2"
   const val appCompat = "androidx.appcompat:appcompat:1.2.0"

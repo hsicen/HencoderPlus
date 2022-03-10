@@ -57,7 +57,7 @@ include(":hencoder:32_view_draw_process")
 include(":hencoder:33_hashmap")
 include(":hencoder:34_gradle_process")
 include(":hencoder:35_jvm")
-include(":hencoder:viewbinding")
+include(":hencoder:36_window_inserts")
 
 
 /**======compose======**/

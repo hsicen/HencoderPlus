@@ -49,9 +49,7 @@ class ContentLayout(context: Context) : CustomLayout(context) {
     addView(this)
   }
 
-  override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-
+  override fun onMeasureChildren(widthMeasureSpec: Int, heightMeasureSpec: Int) {
     btnShow.autoMeasure()
     setMeasuredDimension(measuredWidth, measuredHeight)
   }
