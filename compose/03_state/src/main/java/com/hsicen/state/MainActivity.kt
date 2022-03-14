@@ -23,6 +23,13 @@ import kotlin.reflect.KProperty
  * 功能：
  * 描述：State
  *
+ * Composable
+ *  1. compose 编译器插件 (compiler plugin)，直接干预编译过程，对函数进行修改 (可以跨平台)
+ *  2. 面向切面编程 (AOP): AnnotationProcessor/修改字节码 (只能用于JVM)
+ *  3. Compose编译器插件 @Composable -> 识别符
+ *  4. 自定义Composable = 自定义View/Xml布局文件
+ *
+ *
  * 刷新：组合(Composition)、布局、绘制 -> Compose、布局、绘制
  * 组合过程：拼凑出界面实际内容
  * Compose/Composition -> ComposeView -> AndroidComposeView -> LayoutNode
