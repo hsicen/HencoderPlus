@@ -3,12 +3,15 @@ package com.hsicen.state
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
 import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
@@ -23,11 +26,13 @@ import kotlin.reflect.KProperty
  * 功能：
  * 描述：State
  *
- * Composable
+ * 自定义Composable
  *  1. compose 编译器插件 (compiler plugin)，直接干预编译过程，对函数进行修改 (可以跨平台)
  *  2. 面向切面编程 (AOP): AnnotationProcessor/修改字节码 (只能用于JVM)
  *  3. Compose编译器插件 @Composable -> 识别符
- *  4. 自定义Composable = 自定义View/Xml布局文件
+ *  4. 自定义Composable = 自定义View/Xml布局文件 ?
+ *     xml 是标记语言，没有逻辑能力
+ *     等价物 -> xml布局文件 + 自定义View
  *
  *
  * 刷新：组合(Composition)、布局、绘制 -> Compose、布局、绘制
@@ -85,15 +90,30 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      var name by mutableStateOf("hsicen")
-      Button(modifier = Modifier.fillMaxSize(), onClick = {}) {
-        Text(name, textAlign = TextAlign.Center, fontSize = 24.sp)
-      }
+      MainScreen()
+    }
+  }
 
-      lifecycleScope.launch {
-        delay(3000)
-        name = "黄思程~~~"
-      }
+  @Composable
+  fun StateScreen() {
+    var name by mutableStateOf("hsicen")
+    Button(modifier = Modifier.fillMaxSize(), onClick = {}) {
+      Text(name, textAlign = TextAlign.Center, fontSize = 24.sp)
+    }
+
+    lifecycleScope.launch {
+      delay(3000)
+      name = "黄思程~~~"
+    }
+  }
+
+  @Composable
+  fun MainScreen() {
+    Box(
+      contentAlignment = Alignment.Center,
+      modifier = Modifier.fillMaxSize()
+    ) {
+      Text("Hello World.")
     }
   }
 
