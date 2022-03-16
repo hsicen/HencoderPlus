@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -85,6 +86,26 @@ import kotlin.reflect.KProperty
  *
  * remember 为缓存作用域，用来在 Composable 函数中声明的变量防止 Recompose 造成变量重复初始化
  * 带参数的 remember, 可以根据 key 是否改变来决定是否使用上次计算的缓存
+ *
+ *
+ * State
+ * 状态：UI 组件的属性
+ * Stateful 有状态、Stateless ⽆状态：其实是有内部状态、⽆内部状态。
+ *
+ * 一个有状态的组件 -> 无状态组件  ==> 把这个组件的状态抽出来
+ * State Hoisting: 状态提升
+ * 状态尽量少暴露，尽量下沉，减少出错
+ *
+ * TextField() -> belong material, not ui or foundation.
+ *
+ * 数据：缓存：本地数据 + 网络数据
+ * 多数据来源：需要解决的问题->数据同步性
+ * 解决：单数据来源
+ * Single Source of Truth
+ * Jetpack -> ViewModel -> Repository[数据库+网络]
+ *
+ * Unidirectional Data Flow -> 单向数据流
+ * TextField -> BasicTextField
  */
 class MainActivity : AppCompatActivity() {
   private val hsicen: String by NameDelegate()
@@ -92,7 +113,9 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    stateScreen5()
+    setContent {
+      WithState2()
+    }
   }
 
 
@@ -189,6 +212,29 @@ class MainActivity : AppCompatActivity() {
   private fun ShowContent(str: String) {
     val len = remember(str) { str.length }
     Text(text = "content is: $len")
+  }
+
+  // 有状态组件
+  @Composable
+  private fun WithState() {
+    val content = "Hello hsicen"
+    Text(text = content)
+  }
+
+  // 无状态组件
+  @Composable
+  fun WithoutState(content: String = "Hello hsicen") {
+    Text(text = content)
+  }
+
+  @Composable
+  fun WithState2() {
+    var name by remember { mutableStateOf("hsicen") }
+    TextField(value = name, onValueChange = {
+      // check input content.
+      name = it
+      println("content change  -> $it")
+    })
   }
 
   /**
