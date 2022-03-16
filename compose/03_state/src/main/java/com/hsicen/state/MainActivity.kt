@@ -5,15 +5,14 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
@@ -78,12 +77,14 @@ import kotlin.reflect.KProperty
  *  「应用」事件：标记失效
  *
  *
- *  重组作用域和remember
+ * 重组作用域和remember
+ * 运行时拿到某行代码: 反射/ASM -> 不算
+ * Recompose Scope: 重组作用域
+ *   指的是在 Compose 的 @Composable 代码中，被划归为⼀体的代码块，这些代码块会在变量发⽣变
+ *   化从⽽导致界⾯需要重新组合（重组、Recompose）的时候，被⼀起标记为⽆效、并在稍后⼀起执⾏。
  *
- *  运行时拿到某行代码：【反射 -> 字节码】不算  不可行
- *
- *  Recompose Scope: 重组作用域
- *
+ * remember 为缓存作用域，用来在 Composable 函数中声明的变量防止 Recompose 造成变量重复初始化
+ * 带参数的 remember, 可以根据 key 是否改变来决定是否使用上次计算的缓存
  */
 class MainActivity : AppCompatActivity() {
   private val hsicen: String by NameDelegate()
@@ -91,7 +92,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    stateScreen1()
+    stateScreen5()
   }
 
 
@@ -101,7 +102,7 @@ class MainActivity : AppCompatActivity() {
   private fun stateScreen1() {
     val name = mutableStateOf("hsicen") // MutableState<T>
 
-    setContent { 
+    setContent {
       Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
@@ -130,6 +131,64 @@ class MainActivity : AppCompatActivity() {
       delay(3000)
       name = "黄思程~~~"
     }
+  }
+
+  /**
+   * 重组作用域和remember
+   * Recompose Scope: 重组作用域
+   */
+  private fun stateScreen3() {
+    setContent { // Recompose Scope
+      var name by mutableStateOf("hsicen")
+      Text(
+        name, textAlign = TextAlign.Center, fontSize = 24.sp,
+        modifier = Modifier.padding(16.dp)
+      )
+
+      lifecycleScope.launch {
+        delay(3000)
+        name = "黄思程~~~"
+      }
+    }
+  }
+
+  private fun stateScreen4() {
+    setContent {
+      var name by mutableStateOf("hsicen")
+      Button(onClick = { }, modifier = Modifier.padding(16.dp)) { // Recompose Scope
+        Text(name, textAlign = TextAlign.Center, fontSize = 24.sp)
+      }
+
+      lifecycleScope.launch {
+        delay(3000)
+        name = "黄思程~~~"
+      }
+    }
+  }
+
+  private fun stateScreen5() {
+    setContent { // Recompose Scope
+      var name by remember { mutableStateOf("hsicen") }
+      Text(
+        name, textAlign = TextAlign.Center, fontSize = 24.sp,
+        modifier = Modifier.padding(16.dp)
+      )
+
+      lifecycleScope.launch {
+        delay(3000)
+        name = "黄思程~~~"
+      }
+    }
+  }
+
+  /**
+   * 重复的 str 不会计算长度
+   * @param str String
+   */
+  @Composable
+  private fun ShowContent(str: String) {
+    val len = remember(str) { str.length }
+    Text(text = "content is: $len")
   }
 
   /**
