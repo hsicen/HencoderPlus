@@ -1,8 +1,10 @@
 package com.hsicen.state
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +16,7 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -119,7 +122,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    stateScreen10()
+    composeScope4()
   }
 
 
@@ -365,4 +368,102 @@ class MainActivity : AppCompatActivity() {
       println("$value has been assigned to '${property.name}' in $thisRef")
     }
   }
+
+
+  /*===Recompose Scope===*/
+  /**
+   * 性能风险
+   * Compose: 自动更新 -> 更新范围过大、超过需求 -> 跳过没必要的更新
+   *
+   * Structure equality 结构性相等  kotlin 的 ==  --- Java 的equals
+   * Kotlin 的 ===  Java 的 == Referential Equality
+   *
+   * 可靠类 -> 结构性相等判断是否 Recompose
+   * 不可靠类 ->
+   */
+  private fun composeScope() {
+    var name by mutableStateOf("hsicen")
+
+    setContent { // Recompose Scope
+      println("Recompose scope 范围测试1")
+      Column {
+        println("Recompose scope 范围测试2")
+        Heavy()
+        Text(text = name, modifier = Modifier.clickable {
+          name = "黄思程~~~"
+        })
+      }
+    }
+  }
+
+  private fun composeScope2() {
+    var name by mutableStateOf("hsicen")
+
+    setContent {
+      println("Recompose scope 范围测试1")
+      Column {
+        println("Recompose scope 范围测试2")
+        Button(onClick = {
+          name = "黄思程~~~"
+        }) { // Recompose Scope
+          println("Recompose scope 范围测试3")
+          Heavy()
+          Text(text = name, modifier = Modifier
+            .background(Color.Cyan)
+            .padding(16.dp)
+            .clickable {
+              Toast
+                .makeText(this@MainActivity, "clicked text.", Toast.LENGTH_SHORT)
+                .show()
+            })
+        }
+      }
+    }
+  }
+
+  private fun composeScope3() {
+    var name by mutableStateOf("hsicen")
+    val user = User("hsicen", 18)
+
+    setContent { // Recompose Scope
+      println("Recompose scope 范围测试1")
+      Column {
+        println("Recompose scope 范围测试2")
+        HeavyUser(user)
+        Text(text = name, modifier = Modifier.clickable {
+          name = "黄思程~~~"
+        })
+      }
+    }
+  }
+
+  private fun composeScope4() {
+    var name by mutableStateOf("hsicen")
+    var user = User("hsicen", 18)
+
+    setContent { // Recompose Scope
+      println("Recompose scope 范围测试1")
+      Column {
+        println("Recompose scope 范围测试2")
+        HeavyUser(user)
+        Text(text = name, modifier = Modifier.clickable {
+          name = "黄思程~~~"
+          user = User("hsicen", 18)
+        })
+      }
+    }
+  }
+
+  @Composable
+  private fun Heavy() {
+    println("Recompose scope 范围测试: heavy")
+    Text(text = "Heavy content.")
+  }
+
+  @Composable
+  private fun HeavyUser(user: User) {
+    println("Recompose scope 范围测试: heavy")
+    Text(text = "Heavy content: ${user.name}.")
+  }
+
 }
