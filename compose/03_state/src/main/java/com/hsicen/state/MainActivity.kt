@@ -3,7 +3,9 @@ package com.hsicen.state
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
@@ -106,6 +108,10 @@ import kotlin.reflect.KProperty
  *
  * Unidirectional Data Flow -> 单向数据流
  * TextField -> BasicTextField
+ *
+ *
+ * mutableStateOf 是对 get/set 操作监听
+ * mutableStateListOf/mutableStateMapOf 会对 item 的操作进行监听
  */
 class MainActivity : AppCompatActivity() {
   private val hsicen: String by NameDelegate()
@@ -113,9 +119,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    setContent {
-      WithState2()
-    }
+    stateScreen10()
   }
 
 
@@ -223,12 +227,12 @@ class MainActivity : AppCompatActivity() {
 
   // 无状态组件
   @Composable
-  fun WithoutState(content: String = "Hello hsicen") {
+  private fun WithoutState(content: String = "Hello hsicen") {
     Text(text = content)
   }
 
   @Composable
-  fun WithState2() {
+  private fun WithState2() {
     var name by remember { mutableStateOf("hsicen") }
     TextField(value = name, onValueChange = {
       // check input content.
@@ -236,6 +240,99 @@ class MainActivity : AppCompatActivity() {
       println("content change  -> $it")
     })
   }
+
+  private fun stateScreen6() {
+    var num by mutableStateOf(1)
+
+    setContent {
+      Text(text = "The content of num $num", modifier = Modifier.clickable {
+        num++
+      })
+    }
+  }
+
+  private fun stateScreen7() {
+    val nums by mutableStateOf(mutableListOf(1, 2, 3, 4, 5))
+
+    setContent {
+      Column {
+        Text(text = "add list data", modifier = Modifier
+          .padding(16.dp)
+          .clickable {
+            // nums 的 add 操作没有进行 读/写 监听操作
+            nums.add(nums.last() + 1)
+          })
+
+        for (num in nums) {
+          Text(text = "current num is $num.")
+        }
+      }
+    }
+  }
+
+  private fun stateScreen8() {
+    var nums by mutableStateOf(mutableListOf(1, 2, 3, 4, 5))
+
+    setContent {
+      Column(modifier = Modifier.padding(16.dp)) {
+        Text(text = "add list data", modifier = Modifier
+          .padding(16.dp)
+          .clickable {
+            // nums 的 set/get 操作进行了 读/写 监听操作
+            nums = (nums + (nums.last() + 1)).toMutableList()
+          })
+
+        for (num in nums) {
+          Text(text = "current num is $num.")
+        }
+      }
+    }
+  }
+
+  private fun stateScreen9() {
+    val nums by mutableStateOf(mutableListOf(1, 2, 3, 4, 5))
+    var flag by mutableStateOf("点击我刷新数据")
+
+    setContent {
+      Column(modifier = Modifier.padding(16.dp)) {
+        Text(text = flag, modifier = Modifier
+          .padding(16.dp)
+          .clickable {
+            flag = "$flag."
+          })
+
+        Text(text = "add list data", modifier = Modifier
+          .padding(16.dp)
+          .clickable {
+            nums.add(nums.last() + 1)
+          })
+
+        for (num in nums) {
+          Text(text = "current num is $num.")
+        }
+      }
+    }
+  }
+
+  private fun stateScreen10() {
+    // nums 的 add 操作进行了 读/写 监听操作
+    val nums = mutableStateListOf(1, 2, 3, 4, 5)
+
+    setContent {
+      Column(modifier = Modifier.padding(16.dp)) {
+        Text(text = "add list data", modifier = Modifier
+          .padding(16.dp)
+          .clickable {
+            nums.add(nums.last() + 1)
+          })
+
+        for (num in nums) {
+          Text(text = "current num is $num.")
+        }
+      }
+    }
+  }
+
 
   /**
    * 自定义Composable
