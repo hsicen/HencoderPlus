@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeScope4()
+    composeScope5()
   }
 
 
@@ -378,8 +378,26 @@ class MainActivity : AppCompatActivity() {
    * Structure equality 结构性相等  kotlin 的 ==  --- Java 的equals
    * Kotlin 的 ===  Java 的 == Referential Equality
    *
-   * 可靠类 -> 结构性相等判断是否 Recompose
-   * 不可靠类 ->
+   * 可靠类--本身及其属性不可变 -> 结构性相等判断是否 Recompose
+   * 不可靠类--本身及其属性可变 -> 全部 Recompose
+   *
+   * 先明确问题：可靠性问题，而不是 不跳过 的问题
+   * @Stable 注解
+   *
+   * Object.equals() / Any.equals()
+   * [两个相等的 User 在之后变得不相等] 就不会发生
+   *
+   * @Stable 的稳定
+   *  1.现在相等就永远相等
+   *  2.当公开属性改变的时候，通知到用到这个属性的 Composition，触发刷新
+   *  3.公开属性需要全部是稳定的 可靠属性
+   *
+   * @Immutable 注解, 含义是内部不会改变, 即比 @State 还要稳定, 但实际上两者的行为完全一致
+   *
+   * 稳定性实践:
+   *  1.不要轻易重写 equals()
+   *  2.用 by mutableStateOf() 来代理 Var 修饰的公开属性; 或者加上 @State/@Immutable 注解
+   *  3.对于公开属性也全部是可靠类型, 只能靠写代码的时候多注意, 但其实一般来说不需要做任何事
    */
   private fun composeScope() {
     var name by mutableStateOf("hsicen")
@@ -454,6 +472,23 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
+  private fun composeScope5() {
+    val company = Company("四川省成都市天府新区")
+    val user = User4("hsicen", company)
+
+    setContent { // Recompose Scope
+      println("Recompose scope 范围测试1")
+      Column {
+        println("Recompose scope 范围测试2")
+        HeavyCompany(user)
+        Text(text = user.name, modifier = Modifier.clickable {
+          // user.name = "黄思程~~~"
+          company.address = "四川省成都市武侯区"
+        })
+      }
+    }
+  }
+
   @Composable
   private fun Heavy() {
     println("Recompose scope 范围测试: heavy")
@@ -464,6 +499,12 @@ class MainActivity : AppCompatActivity() {
   private fun HeavyUser(user: User) {
     println("Recompose scope 范围测试: heavy")
     Text(text = "Heavy content: ${user.name}.")
+  }
+
+  @Composable
+  private fun HeavyCompany(user: User4) {
+    println("Recompose scope 范围测试: heavy")
+    Text(text = "Heavy content: ${user.company.address}.")
   }
 
 }
