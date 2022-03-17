@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeScope5()
+    deriveState2()
   }
 
 
@@ -370,7 +370,7 @@ class MainActivity : AppCompatActivity() {
   }
 
 
-  /*===Recompose Scope===*/
+  /****===Recompose Scope===****/
   /**
    * 性能风险
    * Compose: 自动更新 -> 更新范围过大、超过需求 -> 跳过没必要的更新
@@ -507,4 +507,44 @@ class MainActivity : AppCompatActivity() {
     Text(text = "Heavy content: ${user.company.address}.")
   }
 
+
+  /****=== deriveStateOf & rememberOf ===****/
+  /**
+   * convert one or multiple state objects into another state
+   */
+  private fun deriveState() {
+    setContent {
+      var name by remember { mutableStateOf("hsicen") }
+      val processName by remember { derivedStateOf { name.uppercase() } }
+
+      Text(text = processName, modifier = Modifier.clickable {
+        name = "hello hsicen"
+      })
+    }
+  }
+
+  private fun deriveState1() {
+    setContent {
+      var name by remember { mutableStateOf("hsicen") }
+      val processName = remember(name) { name.uppercase() }
+
+      Text(text = processName, modifier = Modifier.clickable {
+        name = "hello hsicen"
+      })
+    }
+  }
+
+
+  private fun deriveState2() {
+    setContent {
+      val names = remember { mutableStateListOf("hsicen", "milky") }
+      val processNames = remember(names) {
+        names.map { it.uppercase() } // names 的结构性相等，是同一个对象，不会触发这行代码
+      }
+
+      Text(text = "$processNames", modifier = Modifier.clickable {
+        names.add("compose")
+      })
+    }
+  }
 }
