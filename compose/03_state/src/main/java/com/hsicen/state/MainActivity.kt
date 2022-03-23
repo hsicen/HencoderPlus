@@ -670,4 +670,22 @@ class MainActivity : AppCompatActivity() {
       }
     }
   }
+
+
+  /****=== CompositionLocal ===****/
+  /**
+   * State hoisting 状态提升 -> 有内部状态到无内部状态
+   * CompositionLocal: composition 的局部变量
+   */
+  private fun compositionLocal() {
+    @Composable
+    fun User(name: String) {
+      Text(text = name)
+    }
+
+    setContent {
+      val name = "hsicen" // local variable
+      User(name = name)
+    }
+  }
 }
