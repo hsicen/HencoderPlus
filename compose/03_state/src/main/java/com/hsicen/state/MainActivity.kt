@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    deriveState7()
+    compositionLocal2()
   }
 
 
@@ -676,6 +676,10 @@ class MainActivity : AppCompatActivity() {
   /**
    * State hoisting 状态提升 -> 有内部状态到无内部状态
    * CompositionLocal: composition 的局部变量
+   * 具有函数穿透功能的局部变量 ==> 作用相当于函数参数 ==> 加强版的函数参数，不需要显式传递的函数参数
+   * 变量 -> 函数参数 -> CompositionLocal
+   *
+   * 声明成一个不会造成更大影响范围的对象
    */
   private fun compositionLocal() {
     @Composable
@@ -686,6 +690,23 @@ class MainActivity : AppCompatActivity() {
     setContent {
       val name = "hsicen" // local variable
       User(name = name)
+    }
+  }
+
+  private val localName = compositionLocalOf<String> { error("name 没有提供值") }
+  private fun compositionLocal2() {
+    @Composable
+    fun User() {
+      // 从内部获取有穿透能力的数据
+      Text(localName.current)
+    }
+
+    setContent {
+      // 从外部提供有穿透能力的数据
+      val name = "hsicen" // local variable
+      CompositionLocalProvider(localName provides name) {
+        User()
+      }
     }
   }
 }
