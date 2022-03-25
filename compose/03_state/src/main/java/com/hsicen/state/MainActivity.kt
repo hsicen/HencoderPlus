@@ -11,12 +11,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -122,7 +124,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    compositionLocal2()
+    compositionLocal4()
   }
 
 
@@ -680,6 +682,20 @@ class MainActivity : AppCompatActivity() {
    * 变量 -> 函数参数 -> CompositionLocal
    *
    * 声明成一个不会造成更大影响范围的对象
+   *
+   * 函数参数 -> 自下而上，函数内部需要的
+   * CompositionLocal -> 自上而下，外面给的
+   *
+   * 上下文 / 环境 / 主题
+   * 外面给的 -> CompositionLocal
+   * 里面要的 -> 函数参数
+   *
+   * 文字的颜色
+   *
+   * CompositionLocal 是可以嵌套的
+   *
+   * compositionLocalOf   会跟踪使用记录，当前值失效时，使用了这个值的地方会被 Recompose  -> 精准刷新(适用于频繁刷新的内容)
+   * staticCompositionLocalOf  不会跟踪使用记录，但是当 当前值失效时，会进行完整的重组  -> 全量刷新(适用于偶尔刷新的内容)
    */
   private fun compositionLocal() {
     @Composable
@@ -699,6 +715,8 @@ class MainActivity : AppCompatActivity() {
     fun User() {
       // 从内部获取有穿透能力的数据
       Text(localName.current)
+      LocalContext.current  // AndroidComposeView.getContext()
+      MaterialTheme.colors.background
     }
 
     setContent {
@@ -706,6 +724,53 @@ class MainActivity : AppCompatActivity() {
       val name = "hsicen" // local variable
       CompositionLocalProvider(localName provides name) {
         User()
+      }
+    }
+  }
+
+  private val LocalBackground = compositionLocalOf<Color> { error("颜色 没有提供颜色值") }
+  private fun compositionLocal3() {
+    @Composable
+    fun TextWithBackground() {
+      Text("有背景的文字", Modifier.background(LocalBackground.current))
+    }
+
+    setContent {
+      Column {
+        CompositionLocalProvider(LocalBackground provides Color.Yellow) {
+          TextWithBackground()
+          CompositionLocalProvider(LocalBackground provides Color.Blue) {
+            TextWithBackground()
+          }
+          TextWithBackground()
+        }
+      }
+    }
+  }
+
+  private fun compositionLocal4() {
+    @Composable
+    fun TextWithBackground() {
+      Text("有背景的文字", Modifier.background(LocalBackground.current))
+    }
+
+    var specialColor by mutableStateOf(Color.Gray)
+    setContent {
+
+      Column {
+        CompositionLocalProvider(LocalBackground provides specialColor) {
+          TextWithBackground()
+          CompositionLocalProvider(LocalBackground provides Color.Blue) {
+            TextWithBackground()
+          }
+          TextWithBackground()
+
+          Button(onClick = {
+            specialColor = Color.Magenta
+          }) {
+            Text("改变颜色")
+          }
+        }
       }
     }
   }
