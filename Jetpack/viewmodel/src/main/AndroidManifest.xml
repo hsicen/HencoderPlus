@@ -9,8 +9,13 @@
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/Theme.HencoderPlus">
-    <activity android:name=".SecondActivity" />
-    <activity android:name=".MainActivity">
+    <activity
+      android:name=".SecondActivity"
+      android:exported="true" />
+
+    <activity
+      android:name=".MainActivity"
+      android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 

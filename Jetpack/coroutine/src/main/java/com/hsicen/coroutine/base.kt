@@ -37,6 +37,7 @@ fun <R, T> launchCoroutine(receiver: R, block: suspend R.() -> T) {
 
 class ProducerScope<T> {
   suspend fun produce(value: T) {
+    delay(1000)
     println("Produce $value")
   }
 }
