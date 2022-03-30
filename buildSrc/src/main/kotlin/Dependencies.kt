@@ -7,17 +7,17 @@
 
 object Versions {
   const val minSdk = 23
-  const val compileSdk = 31
-  const val targetSdk = 31
+  const val compileSdk = 30
+  const val targetSdk = 30
 
   const val versionCode = 1
   const val versionName = "1.0"
 
   const val kotlin = "1.6.10"
   const val gradle = "7.0.4"
-  const val appCompat = "1.4.1"
-  const val coreKtx = "1.7.0"
-  const val material = "1.5.0"
+  const val appCompat = "1.3.1"
+  const val coreKtx = "1.6.0"
+  const val material = "1.4.0"
   const val constraint = "2.1.3"
   const val compose = "1.1.1"
 

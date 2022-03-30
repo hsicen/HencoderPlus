@@ -68,8 +68,7 @@ class CoroutineExceptionHandler(val onErrorAction: (Throwable) -> Unit) :
 
 //5.拦截器
 class LogInterceptor : ContinuationInterceptor {
-  override val key: CoroutineContext.Key<*>
-    get() = ContinuationInterceptor
+  override val key = ContinuationInterceptor
 
   override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> {
     return LogContinuation(continuation)

@@ -1,5 +1,6 @@
 package com.hsicen.coroutine.basic
 
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import kotlin.system.measureTimeMillis
@@ -23,9 +24,19 @@ suspend fun doSomethingUsefulTwo(): Int {
 
 fun main() {
   runBlocking {
-    measureTimeMillis {
+    println("耗时: " + measureTimeMillis {
       doSomethingUsefulOne()
       doSomethingUsefulTwo()
-    }
+    })
+
+    println("======分割线======")
+
+    println("耗时: " + measureTimeMillis {
+      val async = async { doSomethingUsefulOne() }
+      val async1 = async { doSomethingUsefulTwo() }
+
+      async.await()
+      async1.await()
+    })
   }
 }

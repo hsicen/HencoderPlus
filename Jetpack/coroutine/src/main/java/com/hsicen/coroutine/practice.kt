@@ -34,5 +34,7 @@ fun main() {
     println(item)
   }
 
+  println("======分割线======")
+
   fibonacci.take(10).forEach(::println)
 }
