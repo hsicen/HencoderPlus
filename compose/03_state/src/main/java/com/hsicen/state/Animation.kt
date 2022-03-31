@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.os.SystemClock
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.VectorConverter
-import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -34,9 +32,10 @@ class Animation : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation4()
+    composeAnimation6()
   }
 
+  /******====== 1.1 状态转移型动画 - animateXXXAsState ======******/
   private fun composeAnimation() {
 
     setContent {
@@ -93,7 +92,7 @@ class Animation : AppCompatActivity() {
     }
   }
 
-  /**** Animatable ****/
+  /******====== 1.2 流程定制型动画 - Animatable ======******/
   private fun composeAnimation2() {
     setContent {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
@@ -164,7 +163,99 @@ class Animation : AppCompatActivity() {
         // Recompose 优化  remember(key1)
         LaunchedEffect(key1 = big, block = {
           animSize.snapTo(if (big) 300.dp else 0.dp) // 动画起始值
-          animSize.animateTo(if (big) 200.dp else 100.dp) // 动画平缓过渡
+          animSize.animateTo(if (big) 200.dp else 100.dp, spring(Spring.DampingRatioMediumBouncy)) // 动画平缓过渡
+        })
+      }
+    }
+  }
+
+  /******====== 1.3 AnimationSpec - TweenSpec ======******/
+  /**
+   * TweenSpec
+   *  LinearEasing  - 匀速动画
+   *  FastOutSlowInEasing - 元素发生变化
+   *  LinearOutSlowInEasing - 入场动画
+   *  FastOutLinearInEasing - 出场动画
+   */
+  private fun composeAnimation5() {
+    var big by mutableStateOf(false)
+    setContent {
+      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
+
+      Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+      ) {
+        Box(
+          modifier = Modifier
+            .size(animSize.value)
+            .background(Color.Green)
+            .clickable {
+              big = !big
+            }
+        )
+
+        // Recompose 优化  remember(key1)
+        LaunchedEffect(key1 = big, block = {
+          animSize.animateTo(if (big) 200.dp else 100.dp, spring(Spring.DampingRatioMediumBouncy))
+        })
+      }
+    }
+  }
+
+  private fun composeAnimation6() {
+    var big by mutableStateOf(false)
+    setContent {
+      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
+
+      Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+      ) {
+        Box(
+          modifier = Modifier
+            .size(animSize.value)
+            .background(Color.Green)
+            .clickable {
+              big = !big
+            }
+        )
+
+        // TweenSpec
+        LaunchedEffect(key1 = big, block = {
+          // animSize.animateTo(if (big) 200.dp else 100.dp, TweenSpec(easing = LinearEasing))
+          // animSize.animateTo(if (big) 200.dp else 100.dp, TweenSpec(easing = FastOutSlowInEasing))
+          // animSize.animateTo(if (big) 200.dp else 100.dp, TweenSpec(easing = FastOutLinearInEasing))
+          // animSize.animateTo(if (big) 200.dp else 100.dp, TweenSpec(easing = LinearOutSlowInEasing))
+          animSize.animateTo(if (big) 200.dp else 100.dp, tween(easing = Easing {
+            it // 返回动画完成度 动画函数曲线(0.0f ~ 1.0f)
+          }))
+        })
+      }
+    }
+  }
+
+  private fun composeAnimation7() {
+    var big by mutableStateOf(false)
+    setContent {
+      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
+
+      Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+      ) {
+        Box(
+          modifier = Modifier
+            .size(animSize.value)
+            .background(Color.Green)
+            .clickable {
+              big = !big
+            }
+        )
+
+        // SnapSpec
+        LaunchedEffect(key1 = big, block = {
+          animSize.animateTo(if (big) 200.dp else 100.dp, SnapSpec())
         })
       }
     }
