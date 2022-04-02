@@ -32,7 +32,7 @@ class Animation : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation6()
+    composeAnimation8()
   }
 
   /******====== 1.1 状态转移型动画 - animateXXXAsState ======******/
@@ -169,6 +169,7 @@ class Animation : AppCompatActivity() {
     }
   }
 
+  /******====== DurationBasedAnimationSpec ======******/
   /******====== 1.3 AnimationSpec - TweenSpec ======******/
   /**
    * TweenSpec
@@ -176,6 +177,10 @@ class Animation : AppCompatActivity() {
    *  FastOutSlowInEasing - 元素发生变化
    *  LinearOutSlowInEasing - 入场动画
    *  FastOutLinearInEasing - 出场动画
+   *
+   *  Inbetween 补帧
+   *  TweenSpec
+   *  tween
    */
   private fun composeAnimation5() {
     var big by mutableStateOf(false)
@@ -235,6 +240,11 @@ class Animation : AppCompatActivity() {
     }
   }
 
+  /******====== 1.4 AnimationSpec - SnapSpec ======******/
+  /**
+   * SnapSpec/snap - 可以设置延时
+   * snapTo
+   */
   private fun composeAnimation7() {
     var big by mutableStateOf(false)
     setContent {
@@ -253,9 +263,47 @@ class Animation : AppCompatActivity() {
             }
         )
 
-        // SnapSpec
+        // SnapSpec 闪变
         LaunchedEffect(key1 = big, block = {
-          animSize.animateTo(if (big) 200.dp else 100.dp, SnapSpec())
+          animSize.animateTo(if (big) 200.dp else 100.dp, SnapSpec(500))
+        })
+      }
+    }
+  }
+
+  /******====== 1.5 AnimationSpec - KeyframesSpec ======******/
+  /**
+   *  KeyframesSpec 是分段的 TweenSpec
+   */
+  private fun composeAnimation8() {
+    var big by mutableStateOf(false)
+
+    setContent {
+      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
+
+      Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+      ) {
+        Box(
+          modifier = Modifier
+            .size(animSize.value)
+            .background(Color.Green)
+            .clickable {
+              big = !big
+            }
+        )
+
+        // SnapSpec 闪变
+        LaunchedEffect(key1 = big, block = {
+          animSize.animateTo(if (big) 200.dp else 48.dp, keyframes {
+            durationMillis = 1000
+            delayMillis = 500
+
+            48.dp at 0 with LinearEasing
+            144.dp at 150
+            20.dp at 300 with FastOutSlowInEasing
+          })
         })
       }
     }
