@@ -1,4 +1,4 @@
-package com.hsicen.state
+package com.hsicen.a04_animation
 
 import android.os.Bundle
 import android.os.SystemClock
@@ -27,7 +27,7 @@ import kotlinx.coroutines.delay
  * animateXXXAsState 动画 -> 对动画的目标值进行控制，适用于状态切换
  * Animatable 动画 -> 对动画过程进行控制，适用于动画流程定制
  */
-class Animation : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

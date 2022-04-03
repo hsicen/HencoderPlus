@@ -136,8 +136,7 @@ class MainActivity : AppCompatActivity() {
 
     setContent {
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
         Text(name.value)
       }
@@ -173,8 +172,7 @@ class MainActivity : AppCompatActivity() {
     setContent { // Recompose Scope
       var name by mutableStateOf("hsicen")
       Text(
-        name, textAlign = TextAlign.Center, fontSize = 24.sp,
-        modifier = Modifier.padding(16.dp)
+        name, textAlign = TextAlign.Center, fontSize = 24.sp, modifier = Modifier.padding(16.dp)
       )
 
       lifecycleScope.launch {
@@ -756,8 +754,7 @@ class MainActivity : AppCompatActivity() {
 
     var specialColor by mutableStateOf(Color.Gray)
     setContent {
-
-      Column {
+      Column(modifier = Modifier.padding(16.dp)) {
         CompositionLocalProvider(LocalBackground provides specialColor) {
           TextWithBackground()
           CompositionLocalProvider(LocalBackground provides Color.Blue) {
