@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation8()
+    composeAnimation9()
   }
 
   /******====== 1.1 状态转移型动画 - animateXXXAsState ======******/
@@ -304,6 +304,44 @@ class MainActivity : AppCompatActivity() {
             144.dp at 150
             20.dp at 300 with FastOutSlowInEasing
           })
+        })
+      }
+    }
+  }
+
+  /******====== 1.6 AnimationSpec - SpringSpec ======******/
+  /**
+   * SpringSpec
+   *  dampingRatio: 阻尼比，控制动画有多Q弹
+   *  stiffness: 刚度，控制动画回弹速度
+   *  visibilityThreshold: 可见阈值，控制动画可见阈值 (防止过大或过小)
+   */
+  private fun composeAnimation9() {
+    var big by mutableStateOf(false)
+
+    setContent {
+      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
+
+      Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+      ) {
+        Box(
+          modifier = Modifier
+            .size(animSize.value)
+            .background(Color.Green)
+            .clickable {
+              big = !big
+            }
+        )
+
+        LaunchedEffect(key1 = big, block = {
+          // animSize.animateTo(if (big) 200.dp else 48.dp, spring(0.1f))
+          // animSize.animateTo(if (big) 200.dp else 48.dp, spring(1f))
+          // animSize.animateTo(if (big) 200.dp else 48.dp, spring(0.1f, Spring.StiffnessHigh))
+          // animSize.animateTo(if (big) 200.dp else 48.dp, spring(0.1f, Spring.StiffnessVeryLow))
+          // animSize.animateTo(if (big) 200.dp else 48.dp, spring(0.1f, Spring.StiffnessVeryLow, 5.dp))
+          animSize.animateTo(48.dp, spring(0.1f, Spring.StiffnessMedium), 2000.dp)
         })
       }
     }
