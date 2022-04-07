@@ -32,10 +32,15 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation12()
+    composeAnimation1()
   }
 
   /******====== 1.1 状态转移型动画 - animateXXXAsState ======******/
+  /**
+   * 1. animateXXXAsState 返回的是一个 State 对象，而不是 MutableState，不能够改变；能够监听值的变化，触发 Recompose
+   * 2. animateXXXAsState 动画渐变目标值参数是可改变的，通过改变这个值来实现动画效果
+   * 3. 没法手动设置动画的初始值，默认当前值为初始值
+   */
   private fun composeAnimation() {
 
     setContent {
@@ -62,9 +67,6 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  /**
-   * 1. 没法手动设置动画的初始值，默认当前值为初始值
-   */
   private fun composeAnimation1() {
     var size by mutableStateOf(100.dp)
 
@@ -93,6 +95,22 @@ class MainActivity : AppCompatActivity() {
   }
 
   /******====== 1.2 流程定制型动画 - Animatable ======******/
+  /**
+   * Animatable
+   *  1. 可以实现动画流程细节的定制，animatableXXXAsState 只针对状态转移的动画场景
+   *  2. Animatable 是 animatableXXXAsState 的底层实现
+   *
+   * TwoWayConverter
+   *  用于把属性动画和 Compose 内部的 AnimationVector1D/2D/3D/4D 做转化计算用；
+   *  常用的类型(如 Float, Dp, Size 等) 可以直接使用系统自带的 Dp.VectorConverter, Float.VectorConverter 等
+   *  特殊类型的属性需要自定义 TwoWayConverter
+   *
+   * LaunchedEffect
+   *  用于启动协程
+   *  和普通启动协程的方法(如 lifecycleScope.launch )的区别：
+   *   1. 和 Compose 做了结合，不会在 Recompose 过程中发生意外重启
+   *   2. 可以填写一个或多个 keyN 参数，用于在需要的时候主动重启协程
+   */
   private fun composeAnimation2() {
     setContent {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
@@ -174,7 +192,7 @@ class MainActivity : AppCompatActivity() {
   /**
    * TweenSpec
    *  LinearEasing  - 匀速动画
-   *  FastOutSlowInEasing - 元素发生变化
+   *  FastOutSlowInEasing - 元素发生变化， A 状态到 B 状态的动画
    *  LinearOutSlowInEasing - 入场动画
    *  FastOutLinearInEasing - 出场动画
    *
@@ -313,8 +331,8 @@ class MainActivity : AppCompatActivity() {
   /**
    * SpringSpec
    *  dampingRatio: 阻尼比，控制动画有多Q弹
-   *  stiffness: 刚度，控制动画回弹速度
-   *  visibilityThreshold: 可见阈值，控制动画可见阈值 (防止过大或过小)
+   *  stiffness: 刚度，控制动画回弹速度，即弹簧「有多硬 / 多想弹回去」
+   *  visibilityThreshold: 可见阈值，控制动画可见阈值 (防止过大或过小)，直接判断弹簧可以停⽌的阈值
    */
   private fun composeAnimation9() {
     var big by mutableStateOf(false)
