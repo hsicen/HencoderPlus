@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation10()
+    composeAnimation11()
   }
 
   /******====== 1.1 状态转移型动画 - animateXXXAsState ======******/
@@ -379,6 +379,39 @@ class MainActivity : AppCompatActivity() {
           // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween(), RepeatMode.Reverse))
           // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween(), RepeatMode.Reverse, StartOffset(500, StartOffsetType.Delay)))
           animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween(), RepeatMode.Reverse, StartOffset(300, StartOffsetType.FastForward)))
+        })
+      }
+    }
+  }
+
+  /******====== 1.8 AnimationSpec - InfiniteRepeatableSpec ======******/
+  /**
+   * 循环次数是无限的
+   */
+  private fun composeAnimation11() {
+    var big by mutableStateOf(false)
+
+    setContent {
+      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
+
+      Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+      ) {
+        Box(
+          modifier = Modifier
+            .size(animSize.value)
+            .background(Color.Green)
+            .clickable {
+              big = !big
+            }
+        )
+
+        LaunchedEffect(key1 = big, block = {
+          // animSize.animateTo(if (big) 200.dp else 48.dp, infiniteRepeatable(tween()))
+          // animSize.animateTo(if (big) 200.dp else 48.dp, infiniteRepeatable(tween(), RepeatMode.Reverse))
+          // animSize.animateTo(if (big) 200.dp else 48.dp, infiniteRepeatable(tween(), RepeatMode.Reverse, StartOffset(500, StartOffsetType.Delay)))
+          animSize.animateTo(if (big) 200.dp else 48.dp, infiniteRepeatable(tween(), RepeatMode.Reverse, StartOffset(300, StartOffsetType.FastForward)))
         })
       }
     }
