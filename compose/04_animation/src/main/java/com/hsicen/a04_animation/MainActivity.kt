@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation11()
+    composeAnimation12()
   }
 
   /******====== 1.1 状态转移型动画 - animateXXXAsState ======******/
@@ -417,4 +417,35 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
+  /******====== 1.9 AnimationSpec - FloatAnimationSpec ======******/
+  private fun composeAnimation12() {
+    var big by mutableStateOf(false)
+
+    setContent {
+      val animSize = remember { Animatable(100f) }
+
+      Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+      ) {
+        Box(
+          modifier = Modifier
+            .size(animSize.value.dp)
+            .background(Color.Green)
+            .clickable {
+              big = !big
+            }
+        )
+
+        LaunchedEffect(key1 = big, block = {
+          // animSize.animateTo(if (big) 300f else 100f, FloatTweenSpec())
+          animSize.animateTo(if (big) 300f else 100f, FloatSpringSpec())
+        })
+      }
+    }
+  }
+
+  /******====== 1.10 VectorizedAnimationSpec ======******/
+
+  /******====== 1.11 DecayAnimationSpec ======******/
 }
