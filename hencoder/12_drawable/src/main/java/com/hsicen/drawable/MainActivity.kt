@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
     val inStream = assets.open("assets path")
     val decoder = BitmapRegionDecoder.newInstance(inStream, false)
-    val decodeBitmap = decoder.decodeRegion(Rect(0, 0, 200, 200), options)
+    val decodeBitmap = decoder?.decodeRegion(Rect(0, 0, 200, 200), options)
 
     return BitmapFactory.decodeResource(resources, R.mipmap.hsicen, options)
   }
