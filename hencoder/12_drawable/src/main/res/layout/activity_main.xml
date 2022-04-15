@@ -1,44 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:gravity="center"
+  android:orientation="vertical"
+  tools:context=".MainActivity">
+
+  <FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content"
+    android:background="#3000ff00">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#3000ff00">
+    <androidx.appcompat.widget.AppCompatEditText
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+  </FrameLayout>
 
-    </FrameLayout>
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#30ff0000">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#30ff0000">
+    <com.hsicen.drawable.MaterialEditText
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Username"
+      app:label="请输入你的名字"
+      app:labelColor="@color/colorAccent"
+      app:labelSize="12sp"
+      app:useLabel="true" />
+  </FrameLayout>
 
-        <com.hsicen.drawable.MaterialEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            app:label="请输入你的名字"
-            app:labelColor="@color/colorAccent"
-            app:labelSize="12sp"
-            app:useLabel="true" />
-    </FrameLayout>
+  <Button
+    android:id="@+id/btn_bitmap"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="获取Bitmap"
+    android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/btn_bitmap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="获取Bitmap"
-        android:textAllCaps="false" />
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/ripple1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_drawable"
+    android:padding="5dp"
+    android:text="Ripple default" />
+
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/ripple2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_drawable2"
+    android:clickable="true"
+    android:padding="5dp"
+    android:text="Ripple mask drawable color" />
+
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/ripple3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_drawable3"
+    android:clickable="true"
+    android:padding="5dp"
+    android:text="Ripple mask drawable color" />
+
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/ripple4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_drawable4"
+    android:clickable="true"
+    android:padding="5dp"
+    android:text="Ripple mask drawable color" />
+
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/ripple5"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_drawable5"
+    android:clickable="true"
+    android:padding="5dp"
+    android:text="Ripple mask drawable color" />
+
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/ripple6"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_drawable6"
+    android:clickable="true"
+    android:padding="5dp"
+    android:text="Ripple mask drawable color" />
 
 </LinearLayout>

@@ -58,6 +58,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     reUseBitmap = BitmapFactory.decodeResource(resources, R.mipmap.hsicen)
+
+    binding.ripple1.setOnClickListener {
+      // binding.ripple1.startRipple()
+    }
   }
 
   private fun getBitmapFromAssets(): Bitmap {
@@ -133,7 +137,6 @@ class MainActivity : AppCompatActivity() {
 
     return mBitmap
   }
-
 
   private fun throwRepeat() {
     val arrayList = ArrayList<User>()

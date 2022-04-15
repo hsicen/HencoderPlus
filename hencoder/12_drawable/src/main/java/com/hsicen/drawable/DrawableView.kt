@@ -26,5 +26,4 @@ class DrawableView @JvmOverloads constructor(
         mDrawable.setBounds(0, 0, width, height)
         mDrawable.draw(canvas)
     }
-
 }
