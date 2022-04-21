@@ -5,15 +5,19 @@ import android.os.SystemClock
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.core.*
+import androidx.compose.animation.rememberSplineBasedDecay
+import androidx.compose.animation.splineBasedDecay
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
@@ -32,7 +36,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation1()
+    composeAnimation13()
   }
 
   /******====== 1.1 状态转移型动画 - animateXXXAsState ======******/
@@ -47,22 +51,19 @@ class MainActivity : AppCompatActivity() {
       var size by remember { mutableStateOf(48.dp) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(size)
-            .background(Color.Green)
-            .clickable {
-              // 触发 Recompose
-              if (SystemClock.uptimeMillis() % 3 != 0L) {
-                size += 20.dp
-              } else {
-                size -= 20.dp
-              }
+        Box(modifier = Modifier
+          .size(size)
+          .background(Color.Green)
+          .clickable {
+            // 触发 Recompose
+            if (SystemClock.uptimeMillis() % 3 != 0L) {
+              size += 20.dp
+            } else {
+              size -= 20.dp
             }
-        )
+          })
       }
     }
   }
@@ -75,21 +76,18 @@ class MainActivity : AppCompatActivity() {
       val animSize by animateDpAsState(size) // State, just getValue
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(animSize)
-            .background(Color.Green)
-            .clickable {
-              if (SystemClock.uptimeMillis() % 3 != 0L) {
-                size += 20.dp
-              } else {
-                size -= 20.dp
-              }
+        Box(modifier = Modifier
+          .size(animSize)
+          .background(Color.Green)
+          .clickable {
+            if (SystemClock.uptimeMillis() % 3 != 0L) {
+              size += 20.dp
+            } else {
+              size -= 20.dp
             }
-        )
+          })
       }
     }
   }
@@ -116,8 +114,7 @@ class MainActivity : AppCompatActivity() {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
         Box(
           modifier = Modifier
@@ -140,17 +137,14 @@ class MainActivity : AppCompatActivity() {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            }
-        )
+        Box(modifier = Modifier
+          .size(animSize.value)
+          .background(Color.Green)
+          .clickable {
+            big = !big
+          })
 
         // Recompose 优化  remember(key1)
         LaunchedEffect(key1 = big, block = {
@@ -166,17 +160,14 @@ class MainActivity : AppCompatActivity() {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            }
-        )
+        Box(modifier = Modifier
+          .size(animSize.value)
+          .background(Color.Green)
+          .clickable {
+            big = !big
+          })
 
         // Recompose 优化  remember(key1)
         LaunchedEffect(key1 = big, block = {
@@ -206,17 +197,14 @@ class MainActivity : AppCompatActivity() {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            }
-        )
+        Box(modifier = Modifier
+          .size(animSize.value)
+          .background(Color.Green)
+          .clickable {
+            big = !big
+          })
 
         // Recompose 优化  remember(key1)
         LaunchedEffect(key1 = big, block = {
@@ -232,17 +220,14 @@ class MainActivity : AppCompatActivity() {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            }
-        )
+        Box(modifier = Modifier
+          .size(animSize.value)
+          .background(Color.Green)
+          .clickable {
+            big = !big
+          })
 
         // TweenSpec
         LaunchedEffect(key1 = big, block = {
@@ -269,17 +254,14 @@ class MainActivity : AppCompatActivity() {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            }
-        )
+        Box(modifier = Modifier
+          .size(animSize.value)
+          .background(Color.Green)
+          .clickable {
+            big = !big
+          })
 
         // SnapSpec 闪变
         LaunchedEffect(key1 = big, block = {
@@ -300,17 +282,14 @@ class MainActivity : AppCompatActivity() {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            }
-        )
+        Box(modifier = Modifier
+          .size(animSize.value)
+          .background(Color.Green)
+          .clickable {
+            big = !big
+          })
 
         // SnapSpec 闪变
         LaunchedEffect(key1 = big, block = {
@@ -341,17 +320,14 @@ class MainActivity : AppCompatActivity() {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            }
-        )
+        Box(modifier = Modifier
+          .size(animSize.value)
+          .background(Color.Green)
+          .clickable {
+            big = !big
+          })
 
         LaunchedEffect(key1 = big, block = {
           // animSize.animateTo(if (big) 200.dp else 48.dp, spring(0.1f))
@@ -380,17 +356,14 @@ class MainActivity : AppCompatActivity() {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            }
-        )
+        Box(modifier = Modifier
+          .size(animSize.value)
+          .background(Color.Green)
+          .clickable {
+            big = !big
+          })
 
         LaunchedEffect(key1 = big, block = {
           // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween()))
@@ -413,17 +386,14 @@ class MainActivity : AppCompatActivity() {
       val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            }
-        )
+        Box(modifier = Modifier
+          .size(animSize.value)
+          .background(Color.Green)
+          .clickable {
+            big = !big
+          })
 
         LaunchedEffect(key1 = big, block = {
           // animSize.animateTo(if (big) 200.dp else 48.dp, infiniteRepeatable(tween()))
@@ -443,17 +413,14 @@ class MainActivity : AppCompatActivity() {
       val animSize = remember { Animatable(100f) }
 
       Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value.dp)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            }
-        )
+        Box(modifier = Modifier
+          .size(animSize.value.dp)
+          .background(Color.Green)
+          .clickable {
+            big = !big
+          })
 
         LaunchedEffect(key1 = big, block = {
           // animSize.animateTo(if (big) 300f else 100f, FloatTweenSpec())
@@ -466,4 +433,34 @@ class MainActivity : AppCompatActivity() {
   /******====== 1.10 VectorizedAnimationSpec ======******/
 
   /******====== 1.11 DecayAnimationSpec ======******/
+  /**
+   * animateDecay 惯性衰减
+   *  从初始速度慢慢的停下来，不要求目标值，作用于松手后的惯性滑动
+   */
+  private fun composeAnimation13() {
+    setContent {
+      val anim = remember { Animatable(0.dp, Dp.VectorConverter) }
+
+      Box(
+        contentAlignment = Alignment.TopCenter, modifier = Modifier.fillMaxSize()
+      ) {
+        Box(
+          modifier = Modifier
+            .padding(0.dp, anim.value, 0.dp, 0.dp)
+            .size(100.dp)
+            .background(Color.Green)
+        )
+
+        exponentialDecay<Dp>()
+        splineBasedDecay<Dp>(LocalDensity.current) // overscroller 惯性滑动
+        val spec = rememberSplineBasedDecay<Dp>()
+
+        LaunchedEffect(Unit, block = {
+          delay(1000)
+          anim.animateDecay(3000.dp, spec)
+        })
+      }
+    }
+  }
+
 }
