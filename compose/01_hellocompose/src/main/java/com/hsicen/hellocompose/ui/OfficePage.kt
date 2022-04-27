@@ -47,7 +47,10 @@ fun OfficePage(act: Activity, modifier: Modifier = Modifier) {
       Column {
         Text("登录")
         Spacer(modifier.size(16.dp))
-        Text("User info: $mUser")
+        Text("User info:")
+        Text("name: ${mUser?.displayName}")
+        Text("mail: ${mUser?.mail}")
+        Text("zone: ${mUser?.mailboxSettings?.timeZone}")
       }
     }
 
@@ -56,6 +59,14 @@ fun OfficePage(act: Activity, modifier: Modifier = Modifier) {
     }) {
       Column {
         Text("注销")
+      }
+    }
+
+    Button(modifier = modifier.padding(16.dp), onClick = {
+      viewModel.queryEvent()
+    }) {
+      Column {
+        Text("查询日程")
       }
     }
   }
