@@ -1,5 +1,6 @@
 package com.hsicen.hellocompose.ui
 
+import android.app.Activity
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -23,7 +24,7 @@ import com.hsicen.hellocompose.ui.theme.WeComposeTheme
  *
  */
 @Composable
-fun OfficePage(modifier: Modifier = Modifier) {
+fun OfficePage(act: Activity, modifier: Modifier = Modifier) {
   val viewModel: WeViewModel = viewModel()
   val offsetX by animateFloatAsState(if (viewModel.officePage) 0f else 1f)
 
@@ -41,7 +42,7 @@ fun OfficePage(modifier: Modifier = Modifier) {
 
     val mUser by remember(viewModel.mUser) { mutableStateOf(viewModel.mUser) }
     Button(modifier = modifier.padding(16.dp), onClick = {
-      viewModel.signIn()
+      viewModel.signIn(act)
     }) {
       Column {
         Text("登录")

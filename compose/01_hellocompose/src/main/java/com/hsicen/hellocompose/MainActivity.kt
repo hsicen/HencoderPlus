@@ -29,14 +29,12 @@ class MainActivity : ComponentActivity() {
         Box {
           Home(mViewModel)
           ChatPage()
-          OfficePage()
+          OfficePage(this@MainActivity)
         }
-
-        mViewModel.mAct = this
       }
     }
 
-    mViewModel.initSdk()
+    mViewModel.initSdk(this)
   }
 
   override fun onBackPressed() {
