@@ -31,8 +31,12 @@ class MainActivity : ComponentActivity() {
           ChatPage()
           OfficePage()
         }
+
+        mViewModel.mAct = this
       }
     }
+
+    mViewModel.initSdk()
   }
 
   override fun onBackPressed() {
@@ -40,4 +44,5 @@ class MainActivity : ComponentActivity() {
       super.onBackPressed()
     }
   }
+
 }

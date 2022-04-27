@@ -5,6 +5,7 @@ plugins {
 android {
   defaultConfig {
     applicationId = "com.hsicen.hellocompose"
+    minSdk = 24
   }
 
   packagingOptions {
