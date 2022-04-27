@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.hsicen.hellocompose.ui.ChatPage
 import com.hsicen.hellocompose.ui.Home
+import com.hsicen.hellocompose.ui.OfficePage
 import com.hsicen.hellocompose.ui.theme.WeComposeTheme
 
 /**
@@ -28,6 +29,7 @@ class MainActivity : ComponentActivity() {
         Box {
           Home(mViewModel)
           ChatPage()
+          OfficePage()
         }
       }
     }
