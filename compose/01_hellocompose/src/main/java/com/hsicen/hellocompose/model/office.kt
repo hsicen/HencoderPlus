@@ -6,13 +6,14 @@ import android.util.Log
 import com.hsicen.hellocompose.R
 import com.microsoft.graph.authentication.BaseAuthenticationProvider
 import com.microsoft.graph.authentication.IAuthenticationProvider
-import com.microsoft.graph.models.Event
+import com.microsoft.graph.models.*
 import com.microsoft.graph.options.HeaderOption
 import com.microsoft.graph.options.Option
 import com.microsoft.graph.options.QueryOption
 import com.microsoft.graph.requests.EventCollectionPage
 import com.microsoft.graph.requests.GraphServiceClient
 import com.microsoft.identity.client.*
+import com.microsoft.identity.client.PublicClientApplication
 import com.microsoft.identity.client.exception.MsalException
 import java.net.URL
 import java.time.ZoneId
@@ -135,7 +136,7 @@ class AuthenticationHelper private constructor
   }
 }
 
-class GraphHelper() : IAuthenticationProvider {
+class GraphHelper : IAuthenticationProvider {
   private val mClient by lazy {
     val authProvider = AuthenticationHelper.instance
     GraphServiceClient.builder()
@@ -185,6 +186,48 @@ class GraphHelper() : IAuthenticationProvider {
   }
 
   fun serializeObject(obj: Any) = mClient.serializer?.serializeObject(obj) ?: ""
+
+  fun creatEvent(
+    subject: String,
+    start: ZonedDateTime,
+    end: ZonedDateTime,
+    timeZone: String,
+    attendees: List<String>,
+    body: String
+  ): CompletableFuture<Event>? {
+    val event = Event().apply {
+      this.subject = subject
+      this.start = DateTimeTimeZone()
+      this.start?.dateTime = start.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+      this.start?.timeZone = timeZone
+
+      this.end = DateTimeTimeZone()
+      this.end?.dateTime = end.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+      this.end?.timeZone = timeZone
+
+      this.body?.apply {
+        content = body
+        contentType = BodyType.TEXT
+      }
+    }
+
+    if (attendees.isNotEmpty()) {
+      event.attendees = LinkedList()
+      for (attendeeEmail in attendees) {
+        event.attendees?.add(Attendee().apply {
+          type = AttendeeType.REQUIRED
+          emailAddress = EmailAddress().apply {
+            address = attendeeEmail
+          }
+        })
+      }
+    }
+
+    return mClient.me()
+      .events()
+      .buildRequest()
+      ?.postAsync(event)
+  }
 
   companion object {
 
