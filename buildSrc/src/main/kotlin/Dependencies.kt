@@ -6,7 +6,7 @@
  */
 
 object Versions {
-  const val minSdk = 23
+  const val minSdk = 24
   const val compileSdk = 31
   const val targetSdk = 31
 
@@ -126,4 +126,9 @@ object TestDeps {
 
   const val composeUiTest = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
   const val composeUiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
+}
+
+object Mavens {
+  const val jitpackIo = "https://jitpack.io"
+  const val aliyun = "https://maven.aliyun.com/nexus/content/repositories/releases"
 }
