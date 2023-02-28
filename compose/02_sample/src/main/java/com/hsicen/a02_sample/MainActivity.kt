@@ -7,11 +7,20 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.OutlinedButton
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -33,14 +42,20 @@ import coil.compose.rememberAsyncImagePainter
  * Compose独立于平台
  *  1.意思是不依赖于Android, 好处是可以独立更新，以及加入多平台支持 (包括更完美的预览功能)
  *  2.Compose的多平台和Flutter的跨平台，关键不在于名字，而在于初始定位不同，Flutter初始定位在跨平台，Compose初始定位在推广Kotlin
+ *  3.Compose 可以和原生 View 交互,没有绕开原生，Flutter 直接使用NDK和底层渲染引擎交互(skia)，绕开了原生
  *
  * Compose组件
- *  1. Text(), Image(), Icon()
- *  2. Column(), Row(), LazyColumn(), LazyRow()
- *  3. Box(), ConstraintLayout()
- *  4. Pager(), Button()
+ *  1. Text() -> drawText/drawTextRun
+ *  2. Image() -> canvas.drawBitmap/drawColor, Icon()
+ *  3. Column(), Row() -> LinearLayout
+ *  4. LazyColumn(), LazyRow() -> RecyclerView
+ *  5. Box() -> FrameLayout
+ *  6. ConstraintLayout(), MotionLayout()
+ *  7. Pager() -> ViewPager
+ *  8. Button()
+ *  9. Modifier.verticalScroll() -> ScrollView
  *
- * Modifier
+ * Modifier(属性控制)
  *  1.对顺序敏感
  *  2.多次调用会依次应用，而不是互相覆盖
  *  3.通用属性使用 Modifier，专属属性使用函数
@@ -78,28 +93,32 @@ class MainActivity : ComponentActivity() {
           "Coil",
           modifier = Modifier
             .wrapContentSize()
-            .clip(RoundedCornerShape(6.dp))
+            .clip(RoundedCornerShape(12.dp))
             .clickable {
               Toast
                 .makeText(this@MainActivity, "Top image.", Toast.LENGTH_SHORT)
                 .show()
             }
         )
-        Text(text = "Hello", fontSize = 40.sp, color = Color.Green)
+        Text(text = "Hello World", fontSize = 40.sp, color = Color.Green)
         Text(text = "Hello World", fontSize = 20.sp, color = Color.Red)
 
         val names = listOf(
-          "Java", "Kotlin", "Flutter", "Swift",
-          "Java", "Kotlin", "Flutter", "Swift",
-          "Java", "Kotlin", "Flutter", "Swift",
-          "Java", "Kotlin", "Flutter", "Swift"
+          "1-Java", "Kotlin", "Flutter", "Swift", "ReactNative",
+          "2-Java", "Kotlin", "Flutter", "Swift", "ReactNative",
+          "3-Java", "Kotlin", "Flutter", "Swift", "ReactNative",
+          "4-Java", "Kotlin", "Flutter", "Swift", "ReactNative"
         )
-        LazyColumn {
+
+        // 列表数据
+        LazyColumn(modifier = Modifier.fillMaxWidth()) {
+          // 列表集合
           items(names) { item ->
             Text(text = item)
             Spacer(modifier = Modifier.size(1.dp))
           }
 
+          // 单个 item
           // shape size 处理 (clip)
           item {
             Spacer(modifier = Modifier.size(8.dp))
@@ -110,24 +129,21 @@ class MainActivity : ComponentActivity() {
               modifier = Modifier
                 .size(width = 320.dp, height = 180.dp)
                 .clip(RoundedCornerShape(8.dp))
-                .clickable {
-                  Toast
-                    .makeText(this@MainActivity, "Hello world.", Toast.LENGTH_SHORT)
-                    .show()
-                }
             )
+
             Spacer(modifier = Modifier.size(8.dp))
           }
 
-          // padding 处理 (都是内padding)
+          // padding 处理 (都是内边距padding, 没有外边距margin)，通过添加 padding 的顺序来实现 margin 效果
           items(names) { item ->
             Text(
               text = item,
               Modifier
                 .background(Color.Green)
                 .padding(8.dp)
-                .background(Color.Gray)
+                .background(Color.Gray, RoundedCornerShape(6.dp))
                 .padding(8.dp)
+                .background(Color.Yellow)
             )
             Spacer(modifier = Modifier.size(1.dp))
           }
