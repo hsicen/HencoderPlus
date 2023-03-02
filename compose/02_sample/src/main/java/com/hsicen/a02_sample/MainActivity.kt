@@ -66,15 +66,19 @@ import coil.compose.rememberAsyncImagePainter
  *    clickable() 设置监听
  *
  * compose 分层:
+ *  0.Compile (compose 编译插件)
  *  1.Runtime (State, Remember ...)
  *  2.Ui (draw, measure, layout, touch)
  *  3.Animation
- *  4.Foundation (Row, Column, LazyColumn)
- *  5.Material (Button, FloatActionButton)
+ *  4.Foundation (Box, Row, Column, LazyColumn, Image)
+ *  5.Material (Text, Icon, Button, FloatActionButton)
  *
- * ui-tooling: include ui, ui-tooling-preview
- * material: include material and material-icon-core
- * use compose including: material, material-icons-extended, ui-tooling.
+ * 同一个组下多个包依赖关系:
+ *  ui-tooling: include ui, ui-tooling-preview
+ *  material: include material and material-icons-core
+ *  foundation: include foundation-layout
+ *
+ *  use compose including: material, material-icons-extended, ui-tooling.
  *
  * use compose guide:
  *  1. just use material or foundation is enough.
@@ -144,6 +148,11 @@ class MainActivity : ComponentActivity() {
                 .background(Color.Gray, RoundedCornerShape(6.dp))
                 .padding(8.dp)
                 .background(Color.Yellow)
+                .clickable {
+                  Toast
+                    .makeText(this@MainActivity, item, Toast.LENGTH_SHORT)
+                    .show()
+                }
             )
             Spacer(modifier = Modifier.size(1.dp))
           }
