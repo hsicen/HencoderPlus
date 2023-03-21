@@ -1,6 +1,7 @@
 package com.hsicen.state
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -42,12 +43,6 @@ import kotlin.reflect.KProperty
  * 功能：
  * 描述：State
  *
- * SnapshotMutableStateImpl.value
- *  get()：记录读 -> 订阅行为
- *  set()：标记失效 -> 刷新行为
- *  「应用」事件：标记失效
- *
- *
  * 重组作用域和remember
  * 运行时拿到某行代码: 反射/ASM -> 不算
  * Recompose Scope: 重组作用域
@@ -83,6 +78,7 @@ import kotlin.reflect.KProperty
  */
 class MainActivity : AppCompatActivity() {
   private val hsicen: String by NameDelegate()
+  private val TAG = "hsc"
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -136,6 +132,11 @@ class MainActivity : AppCompatActivity() {
    *      发生时间：
    *          订阅：第一个订阅的 readObserver 被调用（通知）的时候
    *          通知：StateObject 新值被应用的时候(全局可见)/Recompose
+   *
+   * SnapshotMutableStateImpl.value
+   *  get()：记录读 -> 订阅行为
+   *  set()：标记失效 -> 刷新行为
+   *  「应用」事件：标记失效
    */
 
   /**
@@ -159,22 +160,17 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun stateScreen11() {
-    val name = mutableStateOf("hsicen") // MutableState<T>
-    val test = mutableStateOf(1) // MutableState<T>
+    val test = mutableStateOf(1)
 
     setContent {
-      test.value = 2
       Box(
         contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Text("${test.value}", fontSize = 400.sp)
-        test.value += 1
+        Log.d(TAG, "stateScreen11 before: $test")
+        Text("${test.value}", fontSize = 30.sp)
+        test.value += 1 // test 值的改变会导致 setContent Scope 一直被重组
+        Log.d(TAG, "stateScreen11 after: $test")
       }
-    }
-
-    lifecycleScope.launch {
-      delay(3000)
-      name.value = "黄思程~~~"
     }
   }
 
