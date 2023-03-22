@@ -17,6 +17,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.derivedStateOf
@@ -42,48 +43,18 @@ import kotlin.reflect.KProperty
  * 邮箱：codinghuang@163.com
  * 功能：
  * 描述：State
- *
- * 重组作用域和remember
- * 运行时拿到某行代码: 反射/ASM -> 不算
- * Recompose Scope: 重组作用域
- *   指的是在 Compose 的 @Composable 代码中，被划归为⼀体的代码块，这些代码块会在变量发⽣变
- *   化从⽽导致界⾯需要重新组合（重组、Recompose）的时候，被⼀起标记为⽆效、并在稍后⼀起执⾏。
- *
- * remember 为缓存作用域，用来在 Composable 函数中声明的变量防止 Recompose 造成变量重复初始化
- * 带参数的 remember, 可以根据 key 是否改变来决定是否使用上次计算的缓存
- *
- *
- * State
- * 状态：UI 组件的属性
- * Stateful 有状态、Stateless ⽆状态：其实是有内部状态、⽆内部状态。
- *
- * 一个有状态的组件 -> 无状态组件  ==> 把这个组件的状态抽出来
- * State Hoisting: 状态提升
- * 状态尽量少暴露，尽量下沉，减少出错
- *
- * TextField() -> belong material, not ui or foundation.
- *
- * 数据：缓存：本地数据 + 网络数据
- * 多数据来源：需要解决的问题->数据同步性
- * 解决：单数据来源
- * Single Source of Truth
- * Jetpack -> ViewModel -> Repository[数据库+网络]
- *
- * Unidirectional Data Flow -> 单向数据流
- * TextField -> BasicTextField
- *
- *
- * mutableStateOf 是对 get/set 操作监听
- * mutableStateListOf/mutableStateMapOf 会对 item 的操作进行监听
  */
 class MainActivity : AppCompatActivity() {
+  companion object {
+    private const val TAG = "hsc"
+  }
+
   private val hsicen: String by NameDelegate()
-  private val TAG = "hsc"
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    stateScreen11()
+    withState132()
   }
 
   /******====== 11.MutableState 和 mutableStateOf() ======******/
@@ -139,10 +110,8 @@ class MainActivity : AppCompatActivity() {
    *  「应用」事件：标记失效
    */
 
-  /**
-   * 拼凑出界面实际内容
-   */
-  private fun stateScreen1() {
+  /**** 拼凑出界面实际内容 */
+  private fun stateScreen110() {
     val name = mutableStateOf("hsicen") // MutableState<T>
 
     setContent {
@@ -159,7 +128,7 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun stateScreen11() {
+  private fun stateScreen111() {
     val test = mutableStateOf(1)
 
     setContent {
@@ -175,7 +144,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   // by 代理实现
-  private fun stateScreen2() {
+  private fun stateScreen112() {
     var name by mutableStateOf("hsicen")
 
     setContent {
@@ -190,43 +159,27 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
+  /******====== 12.重组作用域 和 remember ======******/
   /**
-   * 重组作用域和remember
+   * 运行时拿到某行代码:
+   *   反射/ASM -> 不算
+   *   compose -> Recompose Scope
+   *
    * Recompose Scope: 重组作用域
+   *   指的是在 Compose 的 @Composable 代码中，被划归为⼀体的代码块，这些代码块会在变量发⽣变
+   *   化从⽽导致界⾯需要重新组合（重组、Recompose）的时候，被⼀起标记为⽆效、并在稍后⼀起执⾏。
+   *
+   * remember 为缓存作用域，用来在 Composable 函数中声明的变量防止 Recompose 造成变量重复初始化
+   * 带参数的 remember, 可以根据 key 是否改变来决定是否使用上次计算的缓存
    */
-  private fun stateScreen3() {
+  private fun stateScreen120() {
     setContent { // Recompose Scope
       var name by mutableStateOf("hsicen")
+
       Text(
-        name, textAlign = TextAlign.Center, fontSize = 24.sp, modifier = Modifier.padding(16.dp)
-      )
-
-      lifecycleScope.launch {
-        delay(3000)
-        name = "黄思程~~~"
-      }
-    }
-  }
-
-  private fun stateScreen4() {
-    setContent {
-      var name by mutableStateOf("hsicen")
-      Button(onClick = { }, modifier = Modifier.padding(16.dp)) { // Recompose Scope
-        Text(name, textAlign = TextAlign.Center, fontSize = 24.sp)
-      }
-
-      lifecycleScope.launch {
-        delay(3000)
-        name = "黄思程~~~"
-      }
-    }
-  }
-
-  private fun stateScreen5() {
-    setContent { // Recompose Scope
-      var name by remember { mutableStateOf("hsicen") }
-      Text(
-        name, textAlign = TextAlign.Center, fontSize = 24.sp,
+        name,
+        textAlign = TextAlign.Center,
+        fontSize = 24.sp,
         modifier = Modifier.padding(16.dp)
       )
 
@@ -237,37 +190,95 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  /**
+  // 缩小 重组作用域(再包一层)
+  private fun stateScreen121() {
+    setContent {
+      var name by mutableStateOf("hsicen")
+      Button(onClick = {
+        Log.d(TAG, "stateScreen121: 点击.")
+      }, modifier = Modifier.padding(16.dp)) { // Recompose Scope
+        Text(name, textAlign = TextAlign.Center, fontSize = 24.sp)
+      }
+
+      lifecycleScope.launch {
+        delay(3000)
+        name = "黄思程~~~"
+      }
+    }
+  }
+
+  // 使用 remember 避免 Recompose 时代码重复执行, 直接使用缓存数据
+  private fun stateScreen122() {
+    setContent { // Recompose Scope
+      var name by remember { mutableStateOf("hsicen") }
+      Text(
+        name, textAlign = TextAlign.Center, fontSize = 24.sp,
+        modifier = Modifier.padding(16.dp)
+      )
+
+      LaunchedEffect(Unit, block = {
+        delay(3000)
+        name = "黄思程~~~"
+      })
+    }
+  }
+
+  /*****
+   * 带参数的 remember. 只要参数不变, remember 包裹的代码就不会重复执行.
    * 重复的 str 不会计算长度
-   * @param str String
-   */
+   * */
   @Composable
-  private fun ShowContent(str: String) {
+  private fun ShowContent123(str: String) {
     val len = remember(str) { str.length }
     Text(text = "content is: $len")
   }
 
-  // 有状态组件
-  @Composable
-  private fun WithState() {
+  /******====== 13.无状态，状态提升和单向数据流 ======******/
+  /**
+   * 状态：UI 组件的属性
+   *   无状态：Stateless
+   *   有状态：Stateful
+   *   其实是有内部状态、⽆内部状态
+   *
+   * State Hoisting: 状态提升
+   *   一个有状态的组件 -> 无状态组件  ==> 把这个组件的状态抽出来
+   *   状态尽量少暴露，尽量下沉，减少出错
+   *
+   * TextField() -> belong material, not ui or foundation.
+   * TextField -> BasicTextField
+   *
+   * 数据：缓存：本地数据 + 网络数据
+   * 多数据来源：需要解决的问题->数据同步性
+   * 解决：单数据来源
+   *
+   * Single Source of Truth(单一信息源)
+   * Jetpack -> ViewModel -> Repository[数据库+网络]
+   * Unidirectional Data Flow -> 单向数据流
+   *
+   * mutableStateOf 是对 get/set 操作监听
+   * mutableStateListOf/mutableStateMapOf 会对 item 的操作进行监听
+   */
+  @Composable  // 有状态组件
+  private fun WithState130() {
     val content = "Hello hsicen"
     Text(text = content)
   }
 
-  // 无状态组件
-  @Composable
-  private fun WithoutState(content: String = "Hello hsicen") {
+  @Composable  // 无状态组件
+  private fun WithoutState131(content: String = "Hello hsicen") {
     Text(text = content)
   }
 
-  @Composable
-  private fun WithState2() {
-    var name by remember { mutableStateOf("hsicen") }
-    TextField(value = name, onValueChange = {
-      // check input content.
-      name = it
-      println("content change  -> $it")
-    })
+  private fun withState132() {
+    setContent {
+      // 变量需要用 mutableStateOf 包裹，如果在 compose scope 中，还需要再包上一层 remember。
+      var name by remember { mutableStateOf("hsicen") }
+      TextField(value = name, onValueChange = {
+        // check input content.
+        name = it
+        Log.i(TAG, "withState132: $name")
+      })
+    }
   }
 
   private fun stateScreen6() {
