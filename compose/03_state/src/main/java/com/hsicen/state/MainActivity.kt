@@ -241,6 +241,10 @@ class MainActivity : AppCompatActivity() {
    *   其实是有内部状态、⽆内部状态
    *
    * State Hoisting: 状态提升
+   *   把内部状态抽到外部，即把控件由有（内部）状态变成⽆（内部）状态。⽅式是把内部状态放进函数参数⾥，让外部来调⽤
+   *   「Compose 是⽆状态的」，真实含义是——Compose 的 UI 组件是⽆内部状态的，并且是「可以⽆状态」，⽽不是「绝对⽆状态」
+   *   有状态、⽆状态，其实说到底，指的也不是组件本身，⽽是组件的属性。按照这个⻆度来看，⼀个多属性的组件，可以同时具有「有状态」和「⽆状态」这两种特征。
+   *
    *   一个有状态的组件 -> 无状态组件  ==> 把这个组件的状态抽出来
    *   状态尽量少暴露，尽量下沉，减少出错
    *
@@ -254,6 +258,10 @@ class MainActivity : AppCompatActivity() {
    * Single Source of Truth(单一信息源)
    * Jetpack -> ViewModel -> Repository[数据库+网络]
    * Unidirectional Data Flow -> 单向数据流
+   *   数据由上向下传递，事件由下向上传递，形成单向环。
+   *   对于 Composable 函数来说的实现⽅式：进⾏ State Hoisting 状态提升的时候，
+   *    对于有交互功能的Composable，如果提升的是和交互相关的状态，要把交互的回调也⼀起提升上去，
+   *    放进函数参数⾥，来实现完整的封装。
    *
    * mutableStateOf 是对 get/set 操作监听
    * mutableStateListOf/mutableStateMapOf 会对 item 的操作进行监听
