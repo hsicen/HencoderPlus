@@ -54,8 +54,43 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    withState132()
+    composeScope151()
   }
+
+
+  /******====== 10.自定义 Composable ======******/
+  /**
+   * 自定义Composable
+   *  1. compose 编译器插件 (compiler plugin)，直接干预编译过程，对函数进行修改 (可以跨平台)
+   *  2. 面向切面编程 (AOP): AnnotationProcessor/修改字节码 (只能用于JVM)
+   *  3. Compose编译器插件 @Composable -> 识别符
+   *  4. 自定义Composable = 自定义View/Xml布局文件 ?
+   *     xml 是标记语言，没有逻辑能力
+   *     等价物 -> xml布局文件 + 自定义View
+   */
+  @Composable
+  fun MainScreen() {
+    Box(
+      contentAlignment = Alignment.Center,
+      modifier = Modifier.fillMaxSize()
+    ) {
+      Text("Hello World.")
+    }
+  }
+
+  // 使用 by 代理
+  class NameDelegate {
+    // 获取值
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
+      return "$thisRef, thank you for delegating '${property.name}' to me!"
+    }
+
+    // 设置值
+    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
+      println("$value has been assigned to '${property.name}' in $thisRef")
+    }
+  }
+
 
   /******====== 11.MutableState 和 mutableStateOf() ======******/
   /**
@@ -159,6 +194,7 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
+
   /******====== 12.重组作用域 和 remember ======******/
   /**
    * 运行时拿到某行代码:
@@ -233,6 +269,7 @@ class MainActivity : AppCompatActivity() {
     Text(text = "content is: $len")
   }
 
+
   /******====== 13.无状态，状态提升和单向数据流 ======******/
   /**
    * 状态：UI 组件的属性
@@ -277,9 +314,9 @@ class MainActivity : AppCompatActivity() {
     Text(text = content)
   }
 
+  // 变量需要用 mutableStateOf 包裹，如果在 compose scope 中，还需要再包上一层 remember。
   private fun withState132() {
     setContent {
-      // 变量需要用 mutableStateOf 包裹，如果在 compose scope 中，还需要再包上一层 remember。
       var name by remember { mutableStateOf("hsicen") }
       TextField(value = name, onValueChange = {
         // check input content.
@@ -289,7 +326,21 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun stateScreen6() {
+
+  /******====== 14.更新 List 不会触发更新? -- 状态机制的背后 ======******/
+  /**
+   * 如果需要一个变量在 compose 中的读写被自动更新，直接使用 mutableStateOf 包裹这个变量的声明即可；
+   * 如果这个变量是在 compose scope 中声明的，则还需要包上一层 remember，避免 recompose 时被重复初始化。
+   *
+   * 变量的自动更新是因为 mutableStateXXXOf 对其所包裹对象的 get()/set() 添加了监听
+   *
+   * mutableStateOf     ==> 基本类型
+   * mutableStateListOf ==> list
+   * mutableStateMapOf  ==> map
+   *
+   * 自定义类型 ？？？
+   */
+  private fun stateScreen140() {
     var num by mutableStateOf(1)
 
     setContent {
@@ -299,7 +350,8 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun stateScreen7() {
+  // 对 list 进行 add 等相关操作不会更新，因为没有对 list 的操作进行读写监听
+  private fun stateScreen141() {
     val nums by mutableStateOf(mutableListOf(1, 2, 3, 4, 5))
 
     setContent {
@@ -312,13 +364,17 @@ class MainActivity : AppCompatActivity() {
           })
 
         for (num in nums) {
-          Text(text = "current num is $num.")
+          Text(
+            text = "current num is $num.",
+            modifier = Modifier.padding(16.dp)
+          )
         }
       }
     }
   }
 
-  private fun stateScreen8() {
+  // 对 list 对象本身的操作(get/set)添加了 读/写 监听操作
+  private fun stateScreen142() {
     var nums by mutableStateOf(mutableListOf(1, 2, 3, 4, 5))
 
     setContent {
@@ -337,7 +393,8 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun stateScreen9() {
+  // 通过其它变量的改变触发 recompose 来触发 list 的刷新
+  private fun stateScreen143() {
     val nums by mutableStateOf(mutableListOf(1, 2, 3, 4, 5))
     var flag by mutableStateOf("点击我刷新数据")
 
@@ -362,7 +419,8 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun stateScreen10() {
+  // 使用系统提供的 mutableStateListOf 类型来自动更新 list 数据类型
+  private fun stateScreen144() {
     // nums 的 add 操作进行了 读/写 监听操作
     val nums = mutableStateListOf(1, 2, 3, 4, 5)
 
@@ -382,40 +440,7 @@ class MainActivity : AppCompatActivity() {
   }
 
 
-  /**
-   * 自定义Composable
-   *  1. compose 编译器插件 (compiler plugin)，直接干预编译过程，对函数进行修改 (可以跨平台)
-   *  2. 面向切面编程 (AOP): AnnotationProcessor/修改字节码 (只能用于JVM)
-   *  3. Compose编译器插件 @Composable -> 识别符
-   *  4. 自定义Composable = 自定义View/Xml布局文件 ?
-   *     xml 是标记语言，没有逻辑能力
-   *     等价物 -> xml布局文件 + 自定义View
-   */
-  @Composable
-  fun MainScreen() {
-    Box(
-      contentAlignment = Alignment.Center,
-      modifier = Modifier.fillMaxSize()
-    ) {
-      Text("Hello World.")
-    }
-  }
-
-  // 使用 by 代理
-  class NameDelegate {
-    // 获取值
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
-      return "$thisRef, thank you for delegating '${property.name}' to me!"
-    }
-
-    // 设置值
-    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
-      println("$value has been assigned to '${property.name}' in $thisRef")
-    }
-  }
-
-
-  /****===Recompose Scope===****/
+  /****=== 15.重组的性能风险和智能优化 ===****/
   /**
    * 性能风险
    * Compose: 自动更新 -> 更新范围过大、超过需求 -> 跳过没必要的更新
@@ -444,14 +469,37 @@ class MainActivity : AppCompatActivity() {
    *  2.用 by mutableStateOf() 来代理 Var 修饰的公开属性; 或者加上 @State/@Immutable 注解
    *  3.对于公开属性也全部是可靠类型, 只能靠写代码的时候多注意, 但其实一般来说不需要做任何事
    */
-  private fun composeScope() {
+
+  // 无参函数，触发重组时不会执行函数内部代码
+  private fun composeScope150() {
     var name by mutableStateOf("hsicen")
 
+    println("Recompose scope 范围测试0")
     setContent { // Recompose Scope
       println("Recompose scope 范围测试1")
       Column {
         println("Recompose scope 范围测试2")
-        Heavy()
+        Heavy() // 函数参数没变化，重组时不会执行函数内部代码
+        Text(text = name, modifier = Modifier.clickable {
+          name = "黄思程~~~"
+        })
+      }
+    }
+  }
+
+  // 有参函数，触发重组时:
+  //  1.参数改变，会触发重组
+  //  2.参数不变，不会重组
+  private fun composeScope151() {
+    var name by mutableStateOf("hsicen")
+
+    println("Recompose scope 范围测试0")
+    setContent { // Recompose Scope
+      println("Recompose scope 范围测试1")
+      Column {
+        println("Recompose scope 范围测试2")
+        Heavy(name)
+        Heavy("Hello World")
         Text(text = name, modifier = Modifier.clickable {
           name = "黄思程~~~"
         })
@@ -538,6 +586,12 @@ class MainActivity : AppCompatActivity() {
   private fun Heavy() {
     println("Recompose scope 范围测试: heavy")
     Text(text = "Heavy content.")
+  }
+
+  @Composable
+  private fun Heavy(content: String) {
+    println("Recompose scope 范围测试: heavy")
+    Text(text = "Heavy $content.")
   }
 
   @Composable
