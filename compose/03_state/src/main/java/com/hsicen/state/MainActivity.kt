@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeScope151()
+    composeScope157()
   }
 
 
@@ -443,20 +443,22 @@ class MainActivity : AppCompatActivity() {
   /****=== 15.重组的性能风险和智能优化 ===****/
   /**
    * 性能风险
-   * Compose: 自动更新 -> 更新范围过大、超过需求 -> 跳过没必要的更新
+   * Compose: 自动更新 -> 更新范围过大、超过需求 -> 跳过没必要的更新(智能更新)
+   * 传统View：手动更新
    *
-   * Structure equality 结构性相等  kotlin 的 ==  --- Java 的equals
-   * Kotlin 的 ===  Java 的 == Referential Equality
+   * compose 在重组时用的是结构性相等来判断是否需要重组：
+   *  结构性相等：kotlin 的 ==  ==> Java 的 equals (Structure equality)
+   *  引用性相等：Kotlin 的 === ==> Java 的 == (Referential Equality)
    *
-   * 可靠类--本身及其属性不可变 -> 结构性相等判断是否 Recompose
-   * 不可靠类--本身及其属性可变 -> 全部 Recompose
+   * 可靠性：
+   *  可靠类--本身及其属性不可变 -> 结构性相等判断是否 Recompose
+   *  不可靠类--本身及其属性可变 -> 全部 Recompose
    *
    * 先明确问题：可靠性问题，而不是 不跳过 的问题
-   * @Stable 注解
-   *
    * Object.equals() / Any.equals()
    * [两个相等的 User 在之后变得不相等] 就不会发生
    *
+   * @Stable 注解 ==> 稳定性标记，只要现在相等，在将来也相等；人为保证，小心谨慎
    * @Stable 的稳定
    *  1.现在相等就永远相等
    *  2.当公开属性改变的时候，通知到用到这个属性的 Composition，触发刷新
@@ -507,7 +509,7 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun composeScope2() {
+  private fun composeScope152() {
     var name by mutableStateOf("hsicen")
 
     setContent {
@@ -532,7 +534,8 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun composeScope3() {
+  // 自定义类引用相等 ==> 不触发重组
+  private fun composeScope153() {
     var name by mutableStateOf("hsicen")
     val user = User("hsicen", 18)
 
@@ -543,12 +546,14 @@ class MainActivity : AppCompatActivity() {
         HeavyUser(user)
         Text(text = name, modifier = Modifier.clickable {
           name = "黄思程~~~"
+
         })
       }
     }
   }
 
-  private fun composeScope4() {
+  // 自定义类结构性相等 ==> 不触发重组
+  private fun composeScope154() {
     var name by mutableStateOf("hsicen")
     var user = User("hsicen", 18)
 
@@ -565,7 +570,63 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun composeScope5() {
+  // 自定义类结构性相等，但是为不可靠类(有 var 属性) ==> 触发重组
+  // 现在相等不代表以后也相等
+  private fun composeScope155() {
+    var name by mutableStateOf("hsicen")
+    var user = User1("hsicen")
+
+    setContent { // Recompose Scope
+      println("Recompose scope 范围测试1")
+      Column {
+        println("Recompose scope 范围测试2")
+        HeavyUser(user)
+        Text(text = name, modifier = Modifier.clickable {
+          name = "黄思程~~~"
+          user = User1("hsicen")
+        })
+      }
+    }
+  }
+
+  // 用 @Stable 注解，来告诉编译器 不可靠类不会改变，不要触发重组
+  // 现在结构性相等，以后也相等；需要人为保证，容易出错
+  private fun composeScope156() {
+    var name by mutableStateOf("hsicen")
+    var user = User2("hsicen")
+
+    setContent { // Recompose Scope
+      println("Recompose scope 范围测试1")
+      Column {
+        println("Recompose scope 范围测试2")
+        HeavyUser(user)
+        Text(text = name, modifier = Modifier.clickable {
+          name = "黄思程~~~"
+          user = User2("hsicen")
+        })
+      }
+    }
+  }
+
+  // 使用 @Stable 注解，来告诉编译器 不可靠类不会改变，不要触发重组
+  // 没有重写 equals 的不可靠类，只有同一个对象，才会判定为相等
+  private fun composeScope157() {
+    var name by mutableStateOf("hsicen")
+    val user = User3("hsicen")
+
+    setContent { // Recompose Scope
+      println("Recompose scope 范围测试1")
+      Column {
+        println("Recompose scope 范围测试2")
+        HeavyUser(user)
+        Text(text = name, modifier = Modifier.clickable {
+          name = "黄思程~~~"
+        })
+      }
+    }
+  }
+
+  private fun composeScope158() {
     val company = Company("四川省成都市天府新区")
     val user = User4("hsicen", company)
 
@@ -596,6 +657,24 @@ class MainActivity : AppCompatActivity() {
 
   @Composable
   private fun HeavyUser(user: User) {
+    println("Recompose scope 范围测试: heavy")
+    Text(text = "Heavy content: ${user.name}.")
+  }
+
+  @Composable
+  private fun HeavyUser(user: User1) {
+    println("Recompose scope 范围测试: heavy")
+    Text(text = "Heavy content: ${user.name}.")
+  }
+
+  @Composable
+  private fun HeavyUser(user: User2) {
+    println("Recompose scope 范围测试: heavy")
+    Text(text = "Heavy content: ${user.name}.")
+  }
+
+  @Composable
+  private fun HeavyUser(user: User3) {
     println("Recompose scope 范围测试: heavy")
     Text(text = "Heavy content: ${user.name}.")
   }
