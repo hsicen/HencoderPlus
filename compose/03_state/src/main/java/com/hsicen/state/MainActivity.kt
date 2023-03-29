@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeScope157()
+    composeScope1591()
   }
 
 
@@ -462,7 +462,9 @@ class MainActivity : AppCompatActivity() {
    * @Stable 的稳定
    *  1.现在相等就永远相等
    *  2.当公开属性改变的时候，通知到用到这个属性的 Composition，触发刷新
-   *  3.公开属性需要全部是稳定的 可靠属性
+   *  3.公开属性需要全部是稳定的/可靠属性
+   *
+   *  compose 只会判断第二条，来决定是稳定还是不稳定类型
    *
    * @Immutable 注解, 含义是内部不会改变, 即比 @State 还要稳定, 但实际上两者的行为完全一致
    *
@@ -590,7 +592,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   // 用 @Stable 注解，来告诉编译器 不可靠类不会改变，不要触发重组
-  // 现在结构性相等，以后也相等；需要人为保证，容易出错
+  // 现在结构性相等(equals)，以后也相等；需要人为保证，容易出错
   private fun composeScope156() {
     var name by mutableStateOf("hsicen")
     var user = User2("hsicen")
@@ -626,7 +628,27 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
+  // 当公开属性改变时，没法通知使用到这个属性的地方进行刷新
   private fun composeScope158() {
+    var name by mutableStateOf("hsicen")
+    val user = User3("hsicen")
+
+    setContent { // Recompose Scope
+      println("Recompose scope 范围测试1")
+      Column {
+        println("Recompose scope 范围测试2")
+        HeavyUser(user)
+        Text(text = name, modifier = Modifier.clickable {
+          name = "黄思程~~~"
+          user.name = "黄思程~~~" // 改变公开属性
+        })
+      }
+    }
+  }
+
+  // 使用 mutableStateOf 来包裹公开属性，
+  // 让使用到公开属性的地方在公开属性改变时进行Recompose
+  private fun composeScope159() {
     val company = Company("四川省成都市天府新区")
     val user = User4("hsicen", company)
 
@@ -636,8 +658,25 @@ class MainActivity : AppCompatActivity() {
         println("Recompose scope 范围测试2")
         HeavyCompany(user)
         Text(text = user.name, modifier = Modifier.clickable {
-          // user.name = "黄思程~~~"
+          user.name = "黄思程~~~"
           company.address = "四川省成都市武侯区"
+        })
+      }
+    }
+  }
+
+  private fun composeScope1591() {
+    val cat = Cat("Cat: Tom")
+    val user = User6("hsicen", cat)
+
+    setContent { // Recompose Scope
+      println("Recompose scope 范围测试1")
+      Column {
+        println("Recompose scope 范围测试2")
+        HeavyCat(user)
+        Text(text = user.name, modifier = Modifier.clickable {
+          user.name = "黄思程~~~"
+          // cat.name = "Cat: Jerry"
         })
       }
     }
@@ -683,6 +722,12 @@ class MainActivity : AppCompatActivity() {
   private fun HeavyCompany(user: User4) {
     println("Recompose scope 范围测试: heavy")
     Text(text = "Heavy content: ${user.company.address}.")
+  }
+
+  @Composable
+  private fun HeavyCat(user: User6) {
+    println("Recompose scope 范围测试: heavy")
+    Text(text = "Heavy content: ${user.cat.name}.")
   }
 
 
