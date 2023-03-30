@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeScope1591()
+    deriveState1601()
   }
 
 
@@ -738,11 +738,11 @@ class MainActivity : AppCompatActivity() {
   }
 
 
-  /****=== deriveStateOf & rememberOf ===****/
+  /****=== 16.deriveStateOf & rememberOf ===****/
   /**
-   * convert one or multiple state objects into another state
+   * deriveStateOf: convert one or multiple state objects into another state
    *
-   * 当改变状态的方式不是用过赋值，而是改变内部状态时，使用 derivedStateOf 才能够监听到状态改变，触发刷新
+   * 当改变状态的方式不是通过赋值，而是改变内部状态时，使用 derivedStateOf 才能够监听到状态改变，触发刷新
    * 通过赋值的方式触发状态改变，可以直接使用带参数的 remember
    *
    * 1. 监听状态变化从而实现自动刷新，有两种写法：带参数的 remember(); 不带参数的 remember() + derivedStateOf()
@@ -757,18 +757,19 @@ class MainActivity : AppCompatActivity() {
    * 函数参数 -> remember()
    * 内部状态 -> derivedStateOf()
    */
-  private fun deriveState() {
+
+  private fun deriveState1601() {
     setContent {
-      var name by remember { mutableStateOf("hsicen") }
+      var name by remember { mutableStateOf("黄翊安") }
       val processName by remember { derivedStateOf { name.uppercase() } }
 
       Text(text = processName, modifier = Modifier.clickable {
-        name = "hello hsicen"
+        name = "黄柚柚" // 修改后触发重组
       })
     }
   }
 
-  private fun deriveState1() {
+  private fun deriveState1602() {
     setContent {
       var name by remember { mutableStateOf("hsicen") }
       val processName = remember(name) { name.uppercase() }
@@ -902,7 +903,7 @@ class MainActivity : AppCompatActivity() {
   }
 
 
-  /****=== CompositionLocal ===****/
+  /****=== 17.CompositionLocal ===****/
   /**
    * State hoisting 状态提升 -> 有内部状态到无内部状态
    * CompositionLocal: composition 的局部变量
