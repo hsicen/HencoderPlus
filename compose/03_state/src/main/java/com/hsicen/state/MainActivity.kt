@@ -443,8 +443,17 @@ class MainActivity : AppCompatActivity() {
   /****=== 15.重组的性能风险和智能优化 ===****/
   /**
    * 性能风险
-   * Compose: 自动更新 -> 更新范围过大、超过需求 -> 跳过没必要的更新(智能更新)
-   * 传统View：手动更新
+   *  Compose: 自动更新 -> 更新范围过大、超过需求 -> 跳过没必要的更新(智能更新)
+   *  传统View：手动更新
+   *
+   * 自动优化：
+   *  在 Recompose 过程中，⾃动跳过参数没变化的 Composable 函数的内部代码。
+   *  但参数必须全部都是「可靠类型」
+   *
+   * 可靠类型：可以根据 @Stable 注解的注释的三个要求来定义
+   *  「相等」的恒定性；
+   *   公开属性的改变⾃动通知到 Composition;
+   *   公开属性也全部都是可靠类型。
    *
    * compose 在重组时用的是结构性相等来判断是否需要重组：
    *  结构性相等：kotlin 的 ==  ==> Java 的 equals (Structure equality)
@@ -454,23 +463,20 @@ class MainActivity : AppCompatActivity() {
    *  可靠类--本身及其属性不可变 -> 结构性相等判断是否 Recompose
    *  不可靠类--本身及其属性可变 -> 全部 Recompose
    *
-   * 先明确问题：可靠性问题，而不是 不跳过 的问题
-   * Object.equals() / Any.equals()
-   * [两个相等的 User 在之后变得不相等] 就不会发生
-   *
    * @Stable 注解 ==> 稳定性标记，只要现在相等，在将来也相等；人为保证，小心谨慎
-   * @Stable 的稳定
+   * 稳定性的判断：
    *  1.现在相等就永远相等
    *  2.当公开属性改变的时候，通知到用到这个属性的 Composition，触发刷新
    *  3.公开属性需要全部是稳定的/可靠属性
-   *
    *  compose 只会判断第二条，来决定是稳定还是不稳定类型
+   *  基本类型和 String 天生就是稳定类型
    *
    * @Immutable 注解, 含义是内部不会改变, 即比 @State 还要稳定, 但实际上两者的行为完全一致
    *
    * 稳定性实践:
-   *  1.不要轻易重写 equals()
-   *  2.用 by mutableStateOf() 来代理 Var 修饰的公开属性; 或者加上 @State/@Immutable 注解
+   *  1.不要轻易重写 equals()，data class 会自动重写 equals()
+   *  2.用 by mutableStateOf() 来代理 Var 修饰的公开属性(Compose ⾃动判断类型「可靠」的唯⼀依据);
+   *    或者加上 @State/@Immutable 注解(同时别忘了⼿动实现「改变⾃动通知到Composition 的功能」)
    *  3.对于公开属性也全部是可靠类型, 只能靠写代码的时候多注意, 但其实一般来说不需要做任何事
    */
 
@@ -665,6 +671,7 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
+  // 依然会被识别为可靠类型
   private fun composeScope1591() {
     val cat = Cat("Cat: Tom")
     val user = User6("hsicen", cat)
@@ -675,8 +682,8 @@ class MainActivity : AppCompatActivity() {
         println("Recompose scope 范围测试2")
         HeavyCat(user)
         Text(text = user.name, modifier = Modifier.clickable {
-          user.name = "黄思程~~~"
-          // cat.name = "Cat: Jerry"
+          // user.name = "黄思程~~~"
+          cat.name = "Cat: Jerry" // 不会触发刷新
         })
       }
     }
