@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    deriveState1601()
+    deriveState1605()
   }
 
 
@@ -741,13 +741,14 @@ class MainActivity : AppCompatActivity() {
   /****=== 16.deriveStateOf & rememberOf ===****/
   /**
    * deriveStateOf: convert one or multiple state objects into another state
-   *
    * 当改变状态的方式不是通过赋值，而是改变内部状态时，使用 derivedStateOf 才能够监听到状态改变，触发刷新
    * 通过赋值的方式触发状态改变，可以直接使用带参数的 remember
    *
    * 1. 监听状态变化从而实现自动刷新，有两种写法：带参数的 remember(); 不带参数的 remember() + derivedStateOf()
-   * 2. 上面的说法不全对, 对于状态对象来说( mutableStateListOf(), mutableStateOf() ), 带参数的 remember() 不能使用, 只能使用 derivedStateOf()
-   * 3. 对于函数参数里的字符串(Int 之类)，监听链条会被掐断，所以不能使用 derivedStateOf()，只能使用带参数的 remember()
+   * 2. 上面的说法不全对, 对于状态对象来说( mutableStateListOf(), mutableStateOf() ),
+   *    带参数的 remember() 不能使用(参数对象没有变，引用传递),只能使用 derivedStateOf()
+   * 3. 对于函数参数里的字符串(Int 之类)，监听链条会被掐断()(直接赋值，不是引用传递)，
+   *    所以不能使用 derivedStateOf()，只能使用带参数的 remember()
    *
    * 带参数的 remember(): 可以判断对象的重新赋值，而 derivedStateOf() 不能完美做到，所以带参数的 remember()
    * derivedStateOf(): 适用于监听状态对象
@@ -758,6 +759,7 @@ class MainActivity : AppCompatActivity() {
    * 内部状态 -> derivedStateOf()
    */
 
+  // remember + derivedStateOf
   private fun deriveState1601() {
     setContent {
       var name by remember { mutableStateOf("黄翊安") }
@@ -769,6 +771,7 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
+  // 带参数的 remember
   private fun deriveState1602() {
     setContent {
       var name by remember { mutableStateOf("hsicen") }
@@ -780,12 +783,15 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun deriveState2() {
+  // 带参数的 remember；list 数据源 ==> 不起作用
+  private fun deriveState1603() {
+    // 值 copy
     var a1 = "hsicen"
     val a2 = a1
     a1 = "milky"
     println("a1==a2 ${a1 == a2} $a1 $a2")
 
+    // 引用类型
     val b1 = mutableListOf(1, 2, 3, 4)
     val b2 = b1
     b1.add(5)
@@ -793,8 +799,8 @@ class MainActivity : AppCompatActivity() {
 
     setContent {
       val names = remember { mutableStateListOf("hsicen", "milky") }
-      val processNames = remember(names) {
-        names.map { it.uppercase() } // names 的结构性相等，是同一个对象，不会触发这行代码
+      val processNames = remember(names) { // 触发了 Recompose，但是没有进入大括号中代码
+        names.map { it.uppercase() } // names 的结构性相等(是同一个对象)，不会触发这行代码
       }
 
       Text(text = "$processNames", modifier = Modifier.clickable {
@@ -803,7 +809,8 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun deriveState3() {
+  // remember + derivedStateOf；list 数据源 ==> 正常运行
+  private fun deriveState1604() {
     setContent {
       val names = remember { mutableStateListOf("hsicen", "milky") }
       val processNames by remember(names) {
@@ -816,7 +823,8 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun deriveState4() {
+  // 带参数的 remember
+  private fun deriveState1605() {
     @Composable
     fun ProcessName(name: String, onNameTap: () -> Unit) {
       // 可以正常刷新，因为两次 name 的值不一样
