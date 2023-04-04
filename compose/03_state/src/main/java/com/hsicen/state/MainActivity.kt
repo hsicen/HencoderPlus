@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    deriveState1605()
+    deriveState1609()
   }
 
 
@@ -746,8 +746,8 @@ class MainActivity : AppCompatActivity() {
    *
    * 1. 监听状态变化从而实现自动刷新，有两种写法：带参数的 remember(); 不带参数的 remember() + derivedStateOf()
    * 2. 上面的说法不全对, 对于状态对象来说( mutableStateListOf(), mutableStateOf() ),
-   *    带参数的 remember() 不能使用(参数对象没有变，引用传递),只能使用 derivedStateOf()
-   * 3. 对于函数参数里的字符串(Int 之类)，监听链条会被掐断()(直接赋值，不是引用传递)，
+   *    带参数的 remember() 不能使用(参数对象没有变，引用传递), 只能使用 derivedStateOf()
+   * 3. 对于函数参数里的字符串(Int 之类)，监听链条会被掐断(直接赋值，不是引用传递)，
    *    所以不能使用 derivedStateOf()，只能使用带参数的 remember()
    *
    * 带参数的 remember(): 可以判断对象的重新赋值，而 derivedStateOf() 不能完美做到，所以带参数的 remember()
@@ -759,7 +759,7 @@ class MainActivity : AppCompatActivity() {
    * 内部状态 -> derivedStateOf()
    */
 
-  // remember + derivedStateOf
+  // remember + derivedStateOf：基本类型数据源  ==> 正常运行
   private fun deriveState1601() {
     setContent {
       var name by remember { mutableStateOf("黄翊安") }
@@ -771,7 +771,7 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  // 带参数的 remember
+  // 带参数的 remember：基本类型数据源  ==> 正常运行
   private fun deriveState1602() {
     setContent {
       var name by remember { mutableStateOf("hsicen") }
@@ -823,11 +823,52 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  // 带参数的 remember
+  // 带参数的 remember：函数参数(基本类型数据源) ==> 正常运行
   private fun deriveState1605() {
     @Composable
     fun ProcessName(name: String, onNameTap: () -> Unit) {
       // 可以正常刷新，因为两次 name 的值不一样
+      val processName = remember(name) { name.uppercase() }
+
+      Text(text = processName, modifier = Modifier.clickable {
+        onNameTap()
+      })
+    }
+
+    setContent {
+      var name by remember { mutableStateOf("黄柚柚 hyy") }
+      ProcessName(name) { // 传进去的是 name 值，而不是一个 StateObject 对象
+        name = "黄肉肉 hrr"
+      }
+    }
+  }
+
+  // remember + derivedStateOf：函数参数(基本类型数据源) ==> 无法运行
+  private fun deriveState1606() {
+    @Composable
+    fun ProcessName(name: String, onNameTap: () -> Unit) {
+      // 不能正常刷新，因为这是一个无参数的 remember ，并且传入进来的 name 只是一个值，derivedStateOf 也无法监听到
+      val processName by remember { derivedStateOf { name.uppercase() } }
+
+
+
+      Text(text = processName, modifier = Modifier.clickable {
+        onNameTap()
+      })
+    }
+
+    setContent {
+      var name by remember { mutableStateOf("hsicen") }
+      ProcessName(name) { // 传进去的是 name 值，而不是一个 StateObject 对象
+        name = "hello hsicen"
+      }
+    }
+  }
+
+  // 带参数的 remember：函数参数(基本类型数据源) ==> 正常运行
+  private fun deriveState1607() {
+    @Composable
+    fun ProcessName(name: String, onNameTap: () -> Unit) {
       val processName = remember(name) { name.uppercase() }
 
       Text(text = processName, modifier = Modifier.clickable {
@@ -843,26 +884,8 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun deriveState5() {
-    @Composable
-    fun ProcessName(name: String, onNameTap: () -> Unit) {
-      // 不能正常刷新，因为这是一个无参数的 remember ，并且传入进来的 name 只是一个值，derivedStateOf 也无法监听到
-      val processName by remember { derivedStateOf { name.uppercase() } }
-
-      Text(text = processName, modifier = Modifier.clickable {
-        onNameTap()
-      })
-    }
-
-    setContent {
-      var name by remember { mutableStateOf("hsicen") }
-      ProcessName(name) { // 传进去的是 name 值，而不是一个 StateObject 对象
-        name = "hello hsicen"
-      }
-    }
-  }
-
-  private fun deriveState6() {
+  // remember + derivedStateOf：函数参数(State 类型的基本类型数据源) ==> 正常运行
+  private fun deriveState1608() {
     @Composable
     fun ProcessName(name: State<String>, onNameTap: () -> Unit) {
       // 能正常刷新，虽然这是一个无参数的 remember,但传进来的 name 是一个 StateObject，derivedStateOf 可以监听到
@@ -881,7 +904,8 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun deriveState7() {
+  // 函数参数类型 + list 数据源
+  private fun deriveState1609() {
     @Composable
     fun ProcessName(name: List<String>, onNameTap: () -> Unit) {
       // 无法刷新， 只有 name 重新赋值才能触发刷新
