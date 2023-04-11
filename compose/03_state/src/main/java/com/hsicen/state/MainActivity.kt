@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    deriveState1609()
+    compositionLocal1704()
   }
 
 
@@ -750,13 +750,14 @@ class MainActivity : AppCompatActivity() {
    * 3. 对于函数参数里的字符串(Int 之类)，监听链条会被掐断(直接赋值，不是引用传递)，
    *    所以不能使用 derivedStateOf()，只能使用带参数的 remember()
    *
-   * 带参数的 remember(): 可以判断对象的重新赋值，而 derivedStateOf() 不能完美做到，所以带参数的 remember()
-   * derivedStateOf(): 适用于监听状态对象
+   * 带参数的 remember(): 可以判断对象的重新赋值，而 derivedStateOf() 不能完美做到，所以带参数的 remember() 适合的场景是函数参数
+   * derivedStateOf(): 适用于监听状态对象，mutableStateOf() 和 mutableStateListOf()
    * by mutableStateOf() 所代理的对象：用两种都行，因为其 状态改变 和 重新赋值 是同一回事
-   * 拥有内部状态的类型 (状态对象的类型) 同时又是 Composable 函数的参数，需要同时使用带参数的 remember() 和 derivedStateOf()
+   * 拥有内部状态的类型 (状态对象的类型) 同时又是 Composable 函数的参数：需要同时使用带参数的 remember() 和 derivedStateOf()
    *
    * 函数参数 -> remember()
    * 内部状态 -> derivedStateOf()
+   * 函数参数 + 内部状态 -> remember(参数) + derivedStateOf()
    */
 
   // remember + derivedStateOf：基本类型数据源  ==> 正常运行
@@ -914,7 +915,7 @@ class MainActivity : AppCompatActivity() {
       // 可以刷新，监听到了 name 的改变，但如果 name 被重新赋值，则无法监听到 name 的改变
       // val processName by  remember { derivedStateOf { name.map { it.uppercase() } } }
 
-      // name 改变或者被重新赋值，都可以被监听到
+      // name 内部改变或者被重新赋值，都可以被监听到
       val processName by remember(name) {
         derivedStateOf {
           name.map { it.uppercase() }
@@ -958,7 +959,7 @@ class MainActivity : AppCompatActivity() {
    * compositionLocalOf   会跟踪使用记录，当前值失效时，使用了这个值的地方会被 Recompose  -> 精准刷新(适用于频繁刷新的内容)
    * staticCompositionLocalOf  不会跟踪使用记录，但是当 当前值失效时，会进行完整的重组  -> 全量刷新(适用于偶尔刷新的内容)
    */
-  private fun compositionLocal() {
+  private fun compositionLocal1701() {
     @Composable
     fun User(name: String) {
       Text(text = name)
@@ -971,7 +972,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private val localName = compositionLocalOf<String> { error("name 没有提供值") }
-  private fun compositionLocal2() {
+  private fun compositionLocal1702() {
     @Composable
     fun User() {
       // 从内部获取有穿透能力的数据
@@ -990,7 +991,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private val LocalBackground = compositionLocalOf<Color> { error("颜色 没有提供颜色值") }
-  private fun compositionLocal3() {
+  private fun compositionLocal1703() {
     @Composable
     fun TextWithBackground() {
       Text("有背景的文字", Modifier.background(LocalBackground.current))
@@ -1009,7 +1010,7 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun compositionLocal4() {
+  private fun compositionLocal1704() {
     @Composable
     fun TextWithBackground() {
       Text("有背景的文字", Modifier.background(LocalBackground.current))
