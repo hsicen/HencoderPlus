@@ -19,6 +19,6 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    compositionLocal1704()
+    compositionLocal1702()
   }
 }
