@@ -66,6 +66,11 @@ import androidx.compose.ui.unit.dp
  *  1. CompositionLocal 可以穿透多层函数
  *  2. 可以嵌套多个 CompositionLocalProvider() 来提供同⼀个 CompositionLocal 使⽤，多层之间互不⼲扰；
  *  3. 可以设置默认值，但「没有有意义的默认」的时候不要强⾏设置，应该抛异常，更有利于开发调试。
+ *
+ *  外面给的？ -> 上下文
+ *  里面要的？ -> 函数参数
+ *
+ *  文字颜色？ 上下文或函数参数都行  没有上下文和函数参数只能选其一的观念
  */
 fun ComponentActivity.compositionLocal1701() {
   @Composable
@@ -131,6 +136,7 @@ fun ComponentActivity.compositionLocal1704() {
   var specialColor by mutableStateOf(Color.Gray)
   setContent {
     Column(modifier = Modifier.padding(16.dp)) {
+      // TextWithBackground() 没有初始值异常
       CompositionLocalProvider(LocalBackground provides specialColor) {
         TextWithBackground()
         CompositionLocalProvider(LocalBackground provides Color.Blue) {
