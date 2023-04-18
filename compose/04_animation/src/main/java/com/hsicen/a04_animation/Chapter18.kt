@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.dp
 
 /******====== 18. 状态转移型动画 - animateXXXAsState ======******/
 /**
+ * animateXXXAsState 动画 -> 对动画的目标值进行控制，适用于状态切换
+ *
  * 1. animateXXXAsState 返回的是一个 State 对象，而不是 MutableState，不能够改变；能够监听值的变化，触发 Recompose
  * 2. animateXXXAsState 动画渐变目标值参数是可改变的，通过改变这个值来实现动画效果
  * 3. 没法手动设置动画的初始值，默认当前值为初始值

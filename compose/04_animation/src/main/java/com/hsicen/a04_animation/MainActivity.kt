@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation13()
+    composeAnimation02()
   }
 
   /******====== 1.2 流程定制型动画 - Animatable ======******/
