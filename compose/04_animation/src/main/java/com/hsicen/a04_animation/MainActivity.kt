@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.Easing
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.FloatSpringSpec
 import androidx.compose.animation.core.LinearEasing
@@ -55,72 +54,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation05()
-  }
-
-  /******====== DurationBasedAnimationSpec ======******/
-  /******====== 1.3 AnimationSpec - TweenSpec ======******/
-  /**
-   * TweenSpec
-   *  LinearEasing  - 匀速动画
-   *  FastOutSlowInEasing - 元素发生变化， A 状态到 B 状态的动画
-   *  LinearOutSlowInEasing - 入场动画
-   *  FastOutLinearInEasing - 出场动画
-   *
-   *  Inbetween 补帧
-   *  TweenSpec
-   *  tween
-   */
-  private fun composeAnimation5() {
-    var big by mutableStateOf(false)
-    setContent {
-      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
-
-      Box(
-        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
-      ) {
-        Box(modifier = Modifier
-          .size(animSize.value)
-          .background(Color.Green)
-          .clickable {
-            big = !big
-          })
-
-        // Recompose 优化  remember(key1)
-        LaunchedEffect(key1 = big, block = {
-          animSize.animateTo(if (big) 200.dp else 100.dp, spring(Spring.DampingRatioMediumBouncy))
-        })
-      }
-    }
-  }
-
-  private fun composeAnimation6() {
-    var big by mutableStateOf(false)
-    setContent {
-      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
-
-      Box(
-        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
-      ) {
-        Box(modifier = Modifier
-          .size(animSize.value)
-          .background(Color.Green)
-          .clickable {
-            big = !big
-          })
-
-        // TweenSpec
-        LaunchedEffect(key1 = big, block = {
-          // animSize.animateTo(if (big) 200.dp else 100.dp, TweenSpec(easing = LinearEasing))
-          // animSize.animateTo(if (big) 200.dp else 100.dp, TweenSpec(easing = FastOutSlowInEasing))
-          // animSize.animateTo(if (big) 200.dp else 100.dp, TweenSpec(easing = FastOutLinearInEasing))
-          // animSize.animateTo(if (big) 200.dp else 100.dp, TweenSpec(easing = LinearOutSlowInEasing))
-          animSize.animateTo(if (big) 200.dp else 100.dp, tween(easing = Easing {
-            it // 返回动画完成度 动画函数曲线(0.0f ~ 1.0f)
-          }))
-        })
-      }
-    }
+    composeAnimation06()
   }
 
   /******====== 1.4 AnimationSpec - SnapSpec ======******/

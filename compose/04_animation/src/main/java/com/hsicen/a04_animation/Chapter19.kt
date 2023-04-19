@@ -25,6 +25,8 @@ import kotlinx.coroutines.delay
 
 /******====== 19. 流程定制型动画 - Animatable ======******/
 /**
+ * Animatable 动画 -> 对动画过程进行控制，适用于动画流程定制
+ *
  * Animatable
  *  1. 可以实现动画流程细节的定制，animatableXxxAsState 只针对状态转移的动画场景
  *  2. Animatable 是 animatableXxxAsState 的底层实现
