@@ -8,7 +8,6 @@ import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.FloatSpringSpec
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.SnapSpec
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.StartOffset
 import androidx.compose.animation.core.StartOffsetType
@@ -54,35 +53,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation07()
-  }
-
-  /******====== 1.4 AnimationSpec - SnapSpec ======******/
-  /**
-   * SnapSpec/snap - 可以设置延时
-   * snapTo
-   */
-  private fun composeAnimation7() {
-    var big by mutableStateOf(false)
-    setContent {
-      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
-
-      Box(
-        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
-      ) {
-        Box(modifier = Modifier
-          .size(animSize.value)
-          .background(Color.Green)
-          .clickable {
-            big = !big
-          })
-
-        // SnapSpec 闪变
-        LaunchedEffect(key1 = big, block = {
-          animSize.animateTo(if (big) 200.dp else 100.dp, SnapSpec(500))
-        })
-      }
-    }
+    composeAnimation08()
   }
 
   /******====== 1.5 AnimationSpec - KeyframesSpec ======******/
