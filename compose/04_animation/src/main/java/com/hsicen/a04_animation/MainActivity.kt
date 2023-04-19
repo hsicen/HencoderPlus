@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation06()
+    composeAnimation07()
   }
 
   /******====== 1.4 AnimationSpec - SnapSpec ======******/

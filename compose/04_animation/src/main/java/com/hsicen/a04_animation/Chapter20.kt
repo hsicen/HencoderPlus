@@ -13,6 +13,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,14 +43,21 @@ import androidx.compose.ui.unit.dp
 /******====== DurationBasedAnimationSpec ======******/
 /******====== 20. AnimationSpec - TweenSpec ======******/
 /**
- * TweenSpec/Interpolator
- *  LinearEasing  - 匀速动画
- *  FastOutSlowInEasing - 元素发生变化， A 状态到 B 状态的动画
- *  LinearOutSlowInEasing - 入场动画
- *  FastOutLinearInEasing - 出场动画
+ * TweenSpec
+ *  1. 动画默认时长为 300ms，可以自定义设置
+ *  2. 可以设置动画起始延时
+ *  3. 用 easing: Easing 参数来设置动画的速度曲线
+ *    LinearEasing  - 匀速动画
+ *    FastOutSlowInEasing - 元素发生变化， A 状态到 B 状态的动画
+ *    LinearOutSlowInEasing - 入场动画
+ *    FastOutLinearInEasing - 出场动画
  *
+ *    Easing 的实现类为 CubicBezierEasing：由 3 阶贝塞尔曲线决定速度曲线
+ *
+ * Tween 起源：
  *  Inbetween 补帧
- *  TweenSpec
+ *  TweenAnimation
+ *  TweenSpec 开始值和结束值已确定，补中间过程
  *  tween
  */
 fun ComponentActivity.composeAnimation06() {
@@ -86,7 +94,7 @@ fun ComponentActivity.composeAnimation07() {
     ) {
       Box(modifier = Modifier
         .size(animSize.value)
-        .background(Color.Green)
+        .background(Color.Green, RoundedCornerShape(8.dp))
         .clickable {
           big = !big
         })
@@ -105,7 +113,7 @@ fun ComponentActivity.composeAnimation07() {
 
         // 自定义贝塞尔曲线
         animSize.animateTo(
-          if (big) 200.dp else 100.dp,
+          if (big) 300.dp else 100.dp,
           tween(easing = CubicBezierEasing(1f, -1.34f, 0f, 2.13f))
         )
       })
