@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.FloatSpringSpec
-import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.StartOffset
@@ -14,7 +12,6 @@ import androidx.compose.animation.core.StartOffsetType
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.exponentialDecay
 import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.repeatable
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -53,42 +50,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation08()
-  }
-
-  /******====== 1.5 AnimationSpec - KeyframesSpec ======******/
-  /**
-   *  KeyframesSpec 是分段的 TweenSpec
-   */
-  private fun composeAnimation8() {
-    var big by mutableStateOf(false)
-
-    setContent {
-      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
-
-      Box(
-        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
-      ) {
-        Box(modifier = Modifier
-          .size(animSize.value)
-          .background(Color.Green)
-          .clickable {
-            big = !big
-          })
-
-        // SnapSpec 闪变
-        LaunchedEffect(key1 = big, block = {
-          animSize.animateTo(if (big) 200.dp else 48.dp, keyframes {
-            durationMillis = 1000
-            delayMillis = 500
-
-            48.dp at 0 with LinearEasing
-            144.dp at 150
-            20.dp at 300 with FastOutSlowInEasing
-          })
-        })
-      }
-    }
+    composeAnimation09()
   }
 
   /******====== 1.6 AnimationSpec - SpringSpec ======******/
