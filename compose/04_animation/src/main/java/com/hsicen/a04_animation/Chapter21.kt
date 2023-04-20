@@ -5,6 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.SnapSpec
 import androidx.compose.animation.core.VectorConverter
+import androidx.compose.animation.core.snap
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -46,6 +47,7 @@ fun ComponentActivity.composeAnimation08() {
       // SnapSpec 闪变
       LaunchedEffect(key1 = big, block = {
         animSize.animateTo(if (big) 200.dp else 100.dp, SnapSpec(500))
+        animSize.animateTo(if (big) 400.dp else 50.dp, snap())
       })
     }
   }

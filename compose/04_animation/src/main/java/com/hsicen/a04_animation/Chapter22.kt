@@ -45,13 +45,12 @@ fun ComponentActivity.composeAnimation09() {
           big = !big
         })
 
-      // SnapSpec 闪变
       LaunchedEffect(key1 = big, block = {
         animSize.animateTo(if (big) 200.dp else 48.dp, keyframes {
-          durationMillis = 1000
-          delayMillis = 500
+          durationMillis = 450 // 动画时长
+          delayMillis = 500 // 动画延时
 
-          48.dp at 0 with LinearEasing
+          (if (big) 48.dp else 200.dp) at 0 with LinearEasing
           144.dp at 150
           20.dp at 300 with FastOutSlowInEasing
         })
