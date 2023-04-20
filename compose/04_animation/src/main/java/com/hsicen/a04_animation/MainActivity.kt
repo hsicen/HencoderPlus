@@ -11,7 +11,6 @@ import androidx.compose.animation.core.StartOffsetType
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.exponentialDecay
 import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.repeatable
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.rememberSplineBasedDecay
 import androidx.compose.animation.splineBasedDecay
@@ -42,56 +41,26 @@ import kotlinx.coroutines.delay
  *
  * animateXXXAsState 动画 -> 对动画的目标值进行控制，适用于状态切换
  * Animatable 动画 -> 对动画过程进行控制，适用于动画流程定制
+ *
+ * AnimationSpec 继承关系
+ *  1.FiniteAnimationSpec
+ *    (1).DurationBasedAnimationSpec
+ *      ①.TweenSpec
+ *      ②.SnapSpec
+ *      ③.KeyframesSpec
+ *    (2).RepeatableSpec
+ *    (3).SpringSpec
+ *  2.FloatAnimationSpec
+ *    (1).FloatSpringSpec
+ *    (2).FloatTweenSpec
+ *  3.InfiniteAnimationSpec
  */
 class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation10()
-  }
-
-  /******====== 1.7 AnimationSpec - RepeatableSpec ======******/
-  /**
-   * RepeatableSpec
-   *  iterations: 动画重复次数
-   *  animation: 要重复的动画
-   *  repeatMode: 重复的方式
-   *  initialStartOffset: 初始时间偏移
-   */
-  private fun composeAnimation11() {
-    var big by mutableStateOf(false)
-
-    setContent {
-      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
-
-      Box(
-        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
-      ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            })
-
-        LaunchedEffect(key1 = big, block = {
-          // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween()))
-          // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween(), RepeatMode.Reverse))
-          // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween(), RepeatMode.Reverse, StartOffset(500, StartOffsetType.Delay)))
-          animSize.animateTo(
-            if (big) 200.dp else 48.dp,
-            repeatable(
-              3,
-              tween(),
-              RepeatMode.Reverse,
-              StartOffset(300, StartOffsetType.FastForward)
-            )
-          )
-        })
-      }
-    }
+    composeAnimation11()
   }
 
   /******====== 1.8 AnimationSpec - InfiniteRepeatableSpec ======******/
