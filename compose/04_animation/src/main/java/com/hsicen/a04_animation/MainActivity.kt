@@ -5,13 +5,8 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FloatSpringSpec
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.StartOffset
-import androidx.compose.animation.core.StartOffsetType
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.exponentialDecay
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.tween
 import androidx.compose.animation.rememberSplineBasedDecay
 import androidx.compose.animation.splineBasedDecay
 import androidx.compose.foundation.background
@@ -60,38 +55,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation11()
-  }
-
-  /******====== 1.8 AnimationSpec - InfiniteRepeatableSpec ======******/
-  /**
-   * 循环次数是无限的
-   */
-  private fun composeAnimation12() {
-    var big by mutableStateOf(false)
-
-    setContent {
-      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
-
-      Box(
-        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
-      ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            })
-
-        LaunchedEffect(key1 = big, block = {
-          // animSize.animateTo(if (big) 200.dp else 48.dp, infiniteRepeatable(tween()))
-          // animSize.animateTo(if (big) 200.dp else 48.dp, infiniteRepeatable(tween(), RepeatMode.Reverse))
-          // animSize.animateTo(if (big) 200.dp else 48.dp, infiniteRepeatable(tween(), RepeatMode.Reverse, StartOffset(500, StartOffsetType.Delay)))
-          animSize.animateTo(if (big) 200.dp else 48.dp, infiniteRepeatable(tween(), RepeatMode.Reverse, StartOffset(300, StartOffsetType.FastForward)))
-        })
-      }
-    }
+    composeAnimation12()
   }
 
   /******====== 1.9 AnimationSpec - FloatAnimationSpec ======******/
