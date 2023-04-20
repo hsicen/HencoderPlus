@@ -4,22 +4,17 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.FloatSpringSpec
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.exponentialDecay
 import androidx.compose.animation.rememberSplineBasedDecay
 import androidx.compose.animation.splineBasedDecay
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -55,36 +50,8 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation12()
+    composeAnimation13()
   }
-
-  /******====== 1.9 AnimationSpec - FloatAnimationSpec ======******/
-  private fun composeAnimation13() {
-    var big by mutableStateOf(false)
-
-    setContent {
-      val animSize = remember { Animatable(100f) }
-
-      Box(
-        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
-      ) {
-        Box(
-          modifier = Modifier
-            .size(animSize.value.dp)
-            .background(Color.Green)
-            .clickable {
-              big = !big
-            })
-
-        LaunchedEffect(key1 = big, block = {
-          // animSize.animateTo(if (big) 300f else 100f, FloatTweenSpec())
-          animSize.animateTo(if (big) 300f else 100f, FloatSpringSpec())
-        })
-      }
-    }
-  }
-
-  /******====== 1.10 VectorizedAnimationSpec ======******/
 
   /******====== 1.11 DecayAnimationSpec ======******/
   /**
