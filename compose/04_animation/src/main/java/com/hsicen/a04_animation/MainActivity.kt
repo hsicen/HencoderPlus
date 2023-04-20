@@ -6,14 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FloatSpringSpec
 import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.StartOffset
 import androidx.compose.animation.core.StartOffsetType
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.exponentialDecay
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.repeatable
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.rememberSplineBasedDecay
 import androidx.compose.animation.splineBasedDecay
@@ -50,42 +48,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    composeAnimation09()
-  }
-
-  /******====== 1.6 AnimationSpec - SpringSpec ======******/
-  /**
-   * SpringSpec
-   *  dampingRatio: 阻尼比，控制动画有多Q弹
-   *  stiffness: 刚度，控制动画回弹速度，即弹簧「有多硬 / 多想弹回去」
-   *  visibilityThreshold: 可见阈值，控制动画可见阈值 (防止过大或过小)，直接判断弹簧可以停⽌的阈值
-   */
-  private fun composeAnimation9() {
-    var big by mutableStateOf(false)
-
-    setContent {
-      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
-
-      Box(
-        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
-      ) {
-        Box(modifier = Modifier
-          .size(animSize.value)
-          .background(Color.Green)
-          .clickable {
-            big = !big
-          })
-
-        LaunchedEffect(key1 = big, block = {
-          // animSize.animateTo(if (big) 200.dp else 48.dp, spring(0.1f))
-          // animSize.animateTo(if (big) 200.dp else 48.dp, spring(1f))
-          // animSize.animateTo(if (big) 200.dp else 48.dp, spring(0.1f, Spring.StiffnessHigh))
-          // animSize.animateTo(if (big) 200.dp else 48.dp, spring(0.1f, Spring.StiffnessVeryLow))
-          // animSize.animateTo(if (big) 200.dp else 48.dp, spring(0.1f, Spring.StiffnessVeryLow, 5.dp))
-          animSize.animateTo(48.dp, spring(0.1f, Spring.StiffnessMedium), 2000.dp)
-        })
-      }
-    }
+    composeAnimation10()
   }
 
   /******====== 1.7 AnimationSpec - RepeatableSpec ======******/
@@ -96,36 +59,6 @@ class MainActivity : AppCompatActivity() {
    *  repeatMode: 重复的方式
    *  initialStartOffset: 初始时间偏移
    */
-  private fun composeAnimation10() {
-    var big by mutableStateOf(false)
-
-    setContent {
-      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
-
-      Box(
-        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
-      ) {
-        Box(modifier = Modifier
-          .size(animSize.value)
-          .background(Color.Green)
-          .clickable {
-            big = !big
-          })
-
-        LaunchedEffect(key1 = big, block = {
-          // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween()))
-          // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween(), RepeatMode.Reverse))
-          // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween(), RepeatMode.Reverse, StartOffset(500, StartOffsetType.Delay)))
-          animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween(), RepeatMode.Reverse, StartOffset(300, StartOffsetType.FastForward)))
-        })
-      }
-    }
-  }
-
-  /******====== 1.8 AnimationSpec - InfiniteRepeatableSpec ======******/
-  /**
-   * 循环次数是无限的
-   */
   private fun composeAnimation11() {
     var big by mutableStateOf(false)
 
@@ -135,12 +68,52 @@ class MainActivity : AppCompatActivity() {
       Box(
         contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(modifier = Modifier
-          .size(animSize.value)
-          .background(Color.Green)
-          .clickable {
-            big = !big
-          })
+        Box(
+          modifier = Modifier
+            .size(animSize.value)
+            .background(Color.Green)
+            .clickable {
+              big = !big
+            })
+
+        LaunchedEffect(key1 = big, block = {
+          // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween()))
+          // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween(), RepeatMode.Reverse))
+          // animSize.animateTo(if (big) 200.dp else 48.dp, repeatable(3, tween(), RepeatMode.Reverse, StartOffset(500, StartOffsetType.Delay)))
+          animSize.animateTo(
+            if (big) 200.dp else 48.dp,
+            repeatable(
+              3,
+              tween(),
+              RepeatMode.Reverse,
+              StartOffset(300, StartOffsetType.FastForward)
+            )
+          )
+        })
+      }
+    }
+  }
+
+  /******====== 1.8 AnimationSpec - InfiniteRepeatableSpec ======******/
+  /**
+   * 循环次数是无限的
+   */
+  private fun composeAnimation12() {
+    var big by mutableStateOf(false)
+
+    setContent {
+      val animSize = remember { Animatable(48.dp, Dp.VectorConverter) }
+
+      Box(
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
+      ) {
+        Box(
+          modifier = Modifier
+            .size(animSize.value)
+            .background(Color.Green)
+            .clickable {
+              big = !big
+            })
 
         LaunchedEffect(key1 = big, block = {
           // animSize.animateTo(if (big) 200.dp else 48.dp, infiniteRepeatable(tween()))
@@ -153,7 +126,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   /******====== 1.9 AnimationSpec - FloatAnimationSpec ======******/
-  private fun composeAnimation12() {
+  private fun composeAnimation13() {
     var big by mutableStateOf(false)
 
     setContent {
@@ -162,12 +135,13 @@ class MainActivity : AppCompatActivity() {
       Box(
         contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
       ) {
-        Box(modifier = Modifier
-          .size(animSize.value.dp)
-          .background(Color.Green)
-          .clickable {
-            big = !big
-          })
+        Box(
+          modifier = Modifier
+            .size(animSize.value.dp)
+            .background(Color.Green)
+            .clickable {
+              big = !big
+            })
 
         LaunchedEffect(key1 = big, block = {
           // animSize.animateTo(if (big) 300f else 100f, FloatTweenSpec())
@@ -184,7 +158,7 @@ class MainActivity : AppCompatActivity() {
    * animateDecay 惯性衰减
    *  从初始速度慢慢的停下来，不要求目标值，作用于松手后的惯性滑动
    */
-  private fun composeAnimation13() {
+  private fun composeAnimation14() {
     setContent {
       val anim = remember { Animatable(0.dp, Dp.VectorConverter) }
 
