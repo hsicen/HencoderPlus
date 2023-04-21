@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 
 /******====== 27. DecayAnimationSpec ======******/
 /**
@@ -64,7 +65,7 @@ fun ComponentActivity.composeAnimation14() {
     ) {
       Box(
         modifier = Modifier
-          .padding(0.dp, anim.value, 0.dp, 0.dp)
+          .padding(0.dp, max(anim.value, 0.dp), 0.dp, 0.dp)
           .size(100.dp)
           .background(Color.Green)
           .clickable {
@@ -73,17 +74,17 @@ fun ComponentActivity.composeAnimation14() {
           }
       )
 
-      // 指数衰减 非像素修订
-      val spec1 = remember { exponentialDecay<Dp>() }
+      // 指数衰减 非像素修订，值是多少，动画应用的值就是多少
+      val spec1 = remember { exponentialDecay<Dp>(3f, 3f) }
 
-      // 惯性衰减 像素强制修订(DPI)
+      // 惯性衰减 强制像素修订(DPI)，即使我们使用的是 Dp 值，也会根据当前屏幕的像素密度，计算出一个强制修正的值
       val density = LocalDensity.current
       val spec2 = remember(density) { splineBasedDecay<Dp>(density) } // overscroller 惯性滑动
       val spec3 = rememberSplineBasedDecay<Dp>()
 
       LaunchedEffect(big, block = {
-        anim.animateDecay((if (big) (-2500).dp else 2500.dp), spec2) {
-          Log.d("hsc", "composeAnimation14: ${this.velocity}")
+        anim.animateDecay((if (big) (-2500).dp else 2500.dp), spec1) {
+          Log.d("hsc", "composeAnimation14: ${anim.value}")
         }
       })
     }
