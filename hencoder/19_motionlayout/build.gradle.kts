@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a20_motionlayout"
+    namespace = "com.hsicen.a20_motionlayout"
   }
 }

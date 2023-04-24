@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a32_view_draw_process"
+    namespace = "com.hsicen.a32_view_draw_process"
   }
 }
 

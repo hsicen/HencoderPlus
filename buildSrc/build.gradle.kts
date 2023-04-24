@@ -3,13 +3,17 @@ plugins {
 }
 
 repositories {
+  maven("https://maven.aliyun.com/repository/public")
+  maven("https://maven.aliyun.com/repository/google")
+  maven("https://maven.aliyun.com/repository/gradle-plugin")
+
   google()
   mavenCentral()
 }
 
 object PluginVersion {
-  const val GRADLE = "7.1.2"
-  const val KOTLIN = "1.6.10"
+  const val GRADLE = "8.0.0"
+  const val KOTLIN = "1.8.20"
 }
 
 dependencies {

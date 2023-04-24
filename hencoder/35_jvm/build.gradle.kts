@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a35_jvm"
+    namespace = "com.hsicen.a35_jvm"
   }
 
   buildTypes {

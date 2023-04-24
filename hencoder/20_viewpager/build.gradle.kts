@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a21_viewpager"
+    namespace = "com.hsicen.a21_viewpager"
   }
 }

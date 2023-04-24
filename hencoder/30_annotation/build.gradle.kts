@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a30_annotation"
+    namespace = "com.hsicen.a30_annotation"
   }
 }
 

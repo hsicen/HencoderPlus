@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.multitouch"
+    namespace = "com.hsicen.multitouch"
   }
 }

@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.drawing"
+    namespace = "com.hsicen.drawing"
   }
 }

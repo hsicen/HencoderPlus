@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.lifecycle"
+    namespace = "com.hsicen.lifecycle"
   }
 }
 

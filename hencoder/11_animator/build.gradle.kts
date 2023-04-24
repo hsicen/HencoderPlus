@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.animator"
+    namespace = "com.hsicen.animator"
   }
 }

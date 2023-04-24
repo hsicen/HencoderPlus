@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.daggersample"
+    namespace = "com.hsicen.daggersample"
   }
 }
 

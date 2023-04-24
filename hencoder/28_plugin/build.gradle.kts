@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a28_plugin"
+    namespace = "com.hsicen.a28_plugin"
   }
 }
 

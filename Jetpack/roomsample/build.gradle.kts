@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.roomsample"
+    namespace = "com.hsicen.roomsample"
   }
 }
 

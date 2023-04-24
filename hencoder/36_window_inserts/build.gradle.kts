@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a36_window_inserts"
+    namespace = "com.hsicen.a36_window_inserts"
   }
 }
 

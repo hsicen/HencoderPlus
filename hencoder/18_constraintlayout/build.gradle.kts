@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a19_constraintlayout"
+    namespace = "com.hsicen.a19_constraintlayout"
   }
 }

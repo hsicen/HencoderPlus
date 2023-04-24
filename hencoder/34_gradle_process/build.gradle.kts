@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a34_gradle_process"
+    namespace = "com.hsicen.a34_gradle_process"
   }
 }
 

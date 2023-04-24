@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a29_hotfix"
+    namespace = "com.hsicen.a29_hotfix"
   }
 }
 

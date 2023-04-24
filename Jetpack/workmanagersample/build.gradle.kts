@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.workmanagersample"
+    namespace = "com.hsicen.workmanagersample"
   }
 }

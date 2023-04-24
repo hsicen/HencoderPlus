@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.touch"
+    namespace = "com.hsicen.touch"
   }
 }

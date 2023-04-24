@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a22_thread"
+    namespace = "com.hsicen.a22_thread"
   }
 }
 

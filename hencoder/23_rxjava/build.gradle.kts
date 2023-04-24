@@ -5,7 +5,7 @@ plugins {
 android {
 
   defaultConfig {
-    applicationId = "com.hsicen.a23_rxjava"
+    namespace = "com.hsicen.a23_rxjava"
   }
 }
 

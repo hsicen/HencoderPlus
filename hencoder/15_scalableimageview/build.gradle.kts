@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.scalableimageview"
+    namespace = "com.hsicen.scalableimageview"
   }
 }

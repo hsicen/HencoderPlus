@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.kolitn"
+    namespace = "com.hsicen.kolitn"
   }
 }
 

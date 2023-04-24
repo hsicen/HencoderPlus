@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a6_retrofit"
+    namespace = "com.hsicen.a6_retrofit"
   }
 }
 

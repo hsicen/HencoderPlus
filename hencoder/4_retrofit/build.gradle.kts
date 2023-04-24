@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.aicoder.hencoderplus"
+    namespace = "com.aicoder.hencoderplus"
   }
 }
 

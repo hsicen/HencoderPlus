@@ -5,7 +5,7 @@ plugins {
 android {
 
   defaultConfig {
-    applicationId = "com.hsicen.koinsample"
+    namespace = "com.hsicen.koinsample"
   }
 }
 

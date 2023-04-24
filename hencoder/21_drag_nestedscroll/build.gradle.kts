@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a21_drag_nestedscroll"
+    namespace = "com.hsicen.a21_drag_nestedscroll"
   }
 }
 

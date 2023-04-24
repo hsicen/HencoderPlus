@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.viewmodel"
+    namespace = "com.hsicen.viewmodel"
   }
 }
 

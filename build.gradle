@@ -1,9 +1,12 @@
 buildscript {
   repositories {
+    maven { url Mavens.aliyunPublic }
+    maven { url Mavens.aliyunGoogle }
+    maven { url Mavens.aliyunGooglePlugin }
+    maven { url Mavens.jitpackIo }
+
     google()
     mavenCentral()
-    maven { url Mavens.aliyun }
-    maven { url Mavens.jitpackIo }
   }
 
   dependencies {
@@ -15,9 +18,12 @@ buildscript {
 
 allprojects {
   repositories {
+    maven { url Mavens.aliyunPublic }
+    maven { url Mavens.aliyunGoogle }
+    maven { url Mavens.aliyunGooglePlugin }
+    maven { url Mavens.jitpackIo }
+
     google()
     mavenCentral()
-    maven { url Mavens.aliyun }
-    maven { url Mavens.jitpackIo }
   }
 }

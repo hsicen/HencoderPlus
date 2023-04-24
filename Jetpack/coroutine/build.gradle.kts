@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.coroutine"
+    namespace = "com.hsicen.coroutine"
   }
 }
 

@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.layout"
+    namespace = "com.hsicen.layout"
   }
 }

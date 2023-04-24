@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.example.a21_multitouch"
+    namespace = "com.example.a21_multitouch"
   }
 }

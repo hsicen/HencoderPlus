@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.hellocompose"
+    namespace = "com.hsicen.hellocompose"
   }
 }
 

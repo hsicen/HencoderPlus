@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.todo"
+    namespace = "com.hsicen.todo"
   }
 }

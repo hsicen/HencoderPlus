@@ -1,10 +1,11 @@
+
 import com.android.build.gradle.api.ApkVariantOutput
 import java.io.FileInputStream
-import java.util.*
+import java.util.Properties
 
 plugins {
   id("comm.app-module")
-  id("Hencoder")
+  // id("Hencoder")
 }
 
 //自定义插件 方式一 直接在groovy文件中定义
@@ -30,13 +31,17 @@ configure<HelloWorldExtension> {
 }
 
 //定义插件方式二  引用自定义插件 properties文件名
-hsicen {
+/*hsicen {
   name = "黄思程!!!"
-}
+}*/
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a25_gradle"
+    namespace = "com.hsicen.a25_gradle"
+  }
+
+  buildFeatures {
+    buildConfig = true
   }
 
   //渠道
@@ -47,7 +52,7 @@ android {
       buildConfigField("String", "BaseUrl", "https:www.baidu.com.free")
     }
 
-    create("pay") {
+    create("vip") {
       dimension = "paying"
       buildConfigField("String", "BaseUrl", "https:www.baidu.com.pay")
     }

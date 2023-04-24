@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a33_hashmap"
+    namespace = "com.hsicen.a33_hashmap"
   }
 }

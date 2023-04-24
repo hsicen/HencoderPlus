@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.state"
+    namespace = "com.hsicen.state"
   }
 }

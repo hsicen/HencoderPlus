@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.a6_okhttp"
+    namespace = "com.hsicen.a6_okhttp"
   }
 }
 

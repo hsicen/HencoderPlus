@@ -4,7 +4,7 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.livedata"
+    namespace = "com.hsicen.livedata"
   }
 }
 

@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    applicationId = "com.hsicen.recyclerviewcore"
+    namespace = "com.hsicen.recyclerviewcore"
   }
 }

@@ -7,19 +7,20 @@
 
 object Versions {
   const val minSdk = 24
-  const val compileSdk = 31
-  const val targetSdk = 31
+  const val compileSdk = 33
+  const val targetSdk = 33
 
   const val versionCode = 1
   const val versionName = "1.0"
 
-  const val kotlin = "1.6.10"
-  const val gradle = "7.1.2"
+  const val kotlin = "1.8.20"
+  const val gradle = "8.0.0"
   const val appCompat = "1.3.1"
   const val coreKtx = "1.6.0"
   const val material = "1.4.0"
   const val constraint = "2.1.3"
-  const val compose = "1.1.1"
+  const val compose = "1.4.2"
+  const val composeCompiler = "1.4.6"
 
   const val hilt = "2.35"
   const val retrofit = "2.9.0"
@@ -130,5 +131,7 @@ object TestDeps {
 
 object Mavens {
   const val jitpackIo = "https://jitpack.io"
-  const val aliyun = "https://maven.aliyun.com/nexus/content/repositories/releases"
+  const val aliyunPublic = "https://maven.aliyun.com/repository/public" // central & jcenter
+  const val aliyunGoogle = "https://maven.aliyun.com/repository/google"
+  const val aliyunGooglePlugin = "https://maven.aliyun.com/repository/gradle-plugin"
 }
