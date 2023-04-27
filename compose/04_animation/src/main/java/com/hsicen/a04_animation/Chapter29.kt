@@ -4,11 +4,13 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.AnimationEndReason
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.exponentialDecay
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -22,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
 
 /******====== 29. 动画的边界限制、结束和取消 ======******/
 /**
@@ -31,15 +32,15 @@ import androidx.compose.ui.unit.max
  *  2. 动画被 stop() 停⽌；
  *  3. 触达边界导致的停⽌。
  *
- * 旧动画被新动画停⽌：
+ * 旧动画被新动画停⽌(异常结束)：
  *  1. 对同⼀个 Animatable 调⽤两次动画：旧动画停⽌；
  *  2. 抛异常 CancellationException。
  *
- * ⽤ stop() 函数停⽌动画：
+ * ⽤ stop() 函数停⽌动画(异常结束)：
  *  1. 在协程⾥调⽤ Animatable.stop() ，可以停⽌进⾏中的动画；
  *  2. 抛异常 CancellationException。
  *
- * 触达边界导致的停⽌：
+ * 触达边界导致的停⽌(正常结束)：
  *  1. ⽤ updateBounds() 可以设置边界，动画触达边界后会停⽌；
  *  2. 不会抛异常；
  *  3. 多维动画只要触达任何⼀个维度的上下界，就会停⽌；
@@ -51,11 +52,12 @@ fun ComponentActivity.composeAnimation16() {
 
   setContent {
     val anim = remember { Animatable(0.dp, Dp.VectorConverter) }
+    val animY = remember { Animatable(0.dp, Dp.VectorConverter) }
 
-    Box(contentAlignment = Alignment.TopCenter, modifier = Modifier.fillMaxSize()) {
+    BoxWithConstraints(contentAlignment = Alignment.TopStart, modifier = Modifier.fillMaxSize()) {
       Box(
         modifier = Modifier
-          .padding(0.dp, max(anim.value, 0.dp), 0.dp, 0.dp)
+          .padding(anim.value, animY.value, 0.dp, 0.dp)
           .size(100.dp)
           .background(Color.Green)
           .clickable {
@@ -64,16 +66,37 @@ fun ComponentActivity.composeAnimation16() {
           }
       )
 
-      val spec1 = remember { exponentialDecay<Dp>(3f, 3f) }
+      val spec1 = remember { exponentialDecay<Dp>() }
+      val spec2 = remember { exponentialDecay<Dp>() }
 
       LaunchedEffect(big, block = {
-        anim.animateDecay((if (big) (-3500).dp else 3500.dp), spec1) {
+        // delay(1000)
+        var result = anim.animateDecay((if (big) (-4000).dp else 4000.dp), spec1) {
           // 动画每一帧刷新都会回调
           Log.d("hsc", "composeAnimation16: ${anim.value}")
         }
 
+        while (result.endReason == AnimationEndReason.BoundReached) {
+          result = anim.animateDecay(-result.endState.velocity, spec1)
+        }
 
+        big = !big
       })
+
+      // 打断动画的执行
+      LaunchedEffect(big) {
+        // delay(1200)
+        // anim.animateTo(300.dp, tween())  新动画打断
+        // anim.stop() stop 打断
+
+        animY.animateDecay((if (big) (-2000).dp else 2000.dp), spec2) {
+          // 动画每一帧刷新都会回调
+          Log.d("hsc", "composeAnimation16: ${animY.value}")
+        }
+      }
+
+      anim.updateBounds(upperBound = maxWidth - 100.dp, lowerBound = 0.dp) // 边界触达
+      animY.updateBounds(upperBound = maxHeight - 100.dp, lowerBound = 0.dp) // 边界触达
     }
   }
 }
