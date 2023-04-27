@@ -1,4 +1,3 @@
-import com.android.build.gradle.api.ApkVariantOutput
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -144,7 +143,7 @@ afterEvaluate {
 
 project.android.applicationVariants.all {
   outputs.all {
-    (this as? ApkVariantOutput)?.let {
+    (this as? com.android.build.gradle.api.ApkVariantOutput)?.let {
       it.outputFileName = "${it.baseName}.apk"
       println(it.outputFileName)
     }
