@@ -3,7 +3,8 @@ plugins {
 }
 
 android {
+  namespace = "com.hsicen.a04_animation"
   defaultConfig {
-    namespace = "com.hsicen.a04_animation"
+    applicationId = "com.hsicen.a04_animation"
   }
 }

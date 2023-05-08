@@ -55,23 +55,21 @@ fun ComponentActivity.composeAnimation16() {
     val animY = remember { Animatable(0.dp, Dp.VectorConverter) }
 
     BoxWithConstraints(contentAlignment = Alignment.TopStart, modifier = Modifier.fillMaxSize()) {
-      Box(
-        modifier = Modifier
-          .padding(anim.value, animY.value, 0.dp, 0.dp)
-          .size(100.dp)
-          .background(Color.Green)
-          .clickable {
-            if (anim.isRunning) return@clickable
-            big = !big
-          }
-      )
+      Box(modifier = Modifier
+        .padding(anim.value, animY.value, 0.dp, 0.dp)
+        .size(100.dp)
+        .background(Color.Green)
+        .clickable {
+          if (anim.isRunning) return@clickable
+          big = !big
+        })
 
       val spec1 = remember { exponentialDecay<Dp>() }
       val spec2 = remember { exponentialDecay<Dp>() }
 
       LaunchedEffect(big, block = {
         // delay(1000)
-        var result = anim.animateDecay((if (big) (-4000).dp else 4000.dp), spec1) {
+        var result = anim.animateDecay((if (big) (-8000).dp else 8000.dp), spec1) {
           // 动画每一帧刷新都会回调
           Log.d("hsc", "composeAnimation16: ${anim.value}")
         }
@@ -89,7 +87,7 @@ fun ComponentActivity.composeAnimation16() {
         // anim.animateTo(300.dp, tween())  新动画打断
         // anim.stop() stop 打断
 
-        animY.animateDecay((if (big) (-2000).dp else 2000.dp), spec2) {
+        animY.animateDecay((if (big) (-4000).dp else 4000.dp), spec2) {
           // 动画每一帧刷新都会回调
           Log.d("hsc", "composeAnimation16: ${animY.value}")
         }
