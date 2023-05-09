@@ -74,6 +74,7 @@ fun ComponentActivity.composeAnimation16() {
           Log.d("hsc", "composeAnimation16: ${anim.value}")
         }
 
+        // 动画反弹
         while (result.endReason == AnimationEndReason.BoundReached) {
           result = anim.animateDecay(-result.endState.velocity, spec1)
         }
@@ -84,8 +85,8 @@ fun ComponentActivity.composeAnimation16() {
       // 打断动画的执行
       LaunchedEffect(big) {
         // delay(1200)
-        // anim.animateTo(300.dp, tween())  新动画打断
-        // anim.stop() stop 打断
+        // anim.animateTo(300.dp, tween())  新动画打断旧动画，旧动画是抛异常而停止
+        // anim.stop() stop 直接打断动画，抛异常
 
         animY.animateDecay((if (big) (-4000).dp else 4000.dp), spec2) {
           // 动画每一帧刷新都会回调
