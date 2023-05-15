@@ -16,18 +16,18 @@ class MainActivity : AppCompatActivity() {
 
     private val mTouchDelegate by lazy {
         GestureDetectorCompat(this, object : GestureDetector.SimpleOnGestureListener() {
-            override fun onDown(e: MotionEvent?) = true
+            override fun onDown(e: MotionEvent) = true
 
-            override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
-                Toast.makeText(this@MainActivity, "单击操作", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@MainActivity, TouchEventActivity::class.java))
-                return super.onSingleTapConfirmed(e)
-            }
+          override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
+            Toast.makeText(this@MainActivity, "单击操作", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this@MainActivity, TouchEventActivity::class.java))
+            return super.onSingleTapConfirmed(e)
+          }
 
-            override fun onDoubleTap(e: MotionEvent?): Boolean {
-                Toast.makeText(this@MainActivity, "双击操作", Toast.LENGTH_SHORT).show()
-                return super.onDoubleTap(e)
-            }
+          override fun onDoubleTap(e: MotionEvent): Boolean {
+            Toast.makeText(this@MainActivity, "双击操作", Toast.LENGTH_SHORT).show()
+            return super.onDoubleTap(e)
+          }
         })
     }
 

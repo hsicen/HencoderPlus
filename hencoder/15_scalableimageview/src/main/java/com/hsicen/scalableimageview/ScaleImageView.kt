@@ -125,34 +125,34 @@ class ScaleImageView @JvmOverloads constructor(
         }
 
         /*** 每次 ACTION_DOWN 事件出现的时候都会被调用*/
-        override fun onDown(e: MotionEvent?): Boolean {
+        override fun onDown(e: MotionEvent): Boolean {
 
-            //在这⾥里里返回 true 可以保证必然消费掉事件
-            return true
+          //在这⾥里里返回 true 可以保证必然消费掉事件
+          return true
         }
 
-        /*** ⽤户按下 100ms 不松⼿后会被调用，⽤于标记「可以显示按下状态了」*/
-        override fun onShowPress(e: MotionEvent?) {
+      /*** ⽤户按下 100ms 不松⼿后会被调用，⽤于标记「可以显示按下状态了」*/
+      override fun onShowPress(e: MotionEvent) {
 
-        }
+      }
 
-        /*** ⽤户单击时被调用(长按后松手不会调用、双击的第⼆下时不会被调用)*/
-        override fun onSingleTapUp(e: MotionEvent?): Boolean {
+      /*** ⽤户单击时被调用(长按后松手不会调用、双击的第⼆下时不会被调用)*/
+      override fun onSingleTapUp(e: MotionEvent): Boolean {
 
-            return false
-        }
+        return false
+      }
 
-        /*** ⽤户长按（按下 500ms 不松手）后会被调用*/
-        override fun onLongPress(e: MotionEvent?) {
+      /*** ⽤户长按（按下 500ms 不松手）后会被调用*/
+      override fun onLongPress(e: MotionEvent) {
 
-        }
+      }
 
         /*** 按下，抬起后  惯性滑动调用此方法*/
         override fun onFling(
-            e1: MotionEvent?,
-            e2: MotionEvent?,
-            velocityX: Float,
-            velocityY: Float
+          e1: MotionEvent,
+          e2: MotionEvent,
+          velocityX: Float,
+          velocityY: Float
         ): Boolean {
             if (isScale) {
                 mScroller.fling(
@@ -171,10 +171,10 @@ class ScaleImageView @JvmOverloads constructor(
 
         /*** 按下不松开滑动调用此方法*/
         override fun onScroll(
-            e1: MotionEvent?,
-            e2: MotionEvent?,
-            distanceX: Float,
-            distanceY: Float
+          e1: MotionEvent,
+          e2: MotionEvent,
+          distanceX: Float,
+          distanceY: Float
         ): Boolean {
             if (isScale) {
                 //按下位置更新和滑动界面限制
@@ -214,17 +214,17 @@ class ScaleImageView @JvmOverloads constructor(
             return false
         }
 
-        /*** 双击后移动抬起后调用此方法*/
-        override fun onDoubleTapEvent(e: MotionEvent?): Boolean {
+      /*** 双击后移动抬起后调用此方法*/
+      override fun onDoubleTapEvent(e: MotionEvent): Boolean {
 
-            return false
-        }
+        return false
+      }
 
-        /*** 按下抬起，并且在规定时间内不按下调用此方法*/
-        override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
+      /*** 按下抬起，并且在规定时间内不按下调用此方法*/
+      override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
 
-            return false
-        }
+        return false
+      }
 
     }
 }

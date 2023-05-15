@@ -59,7 +59,7 @@ class ScaleImage @JvmOverloads constructor(
     private val mFlingRunnable by lazy { HRunner() }
     private val mGestureDetector =
         GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
-            override fun onDown(e: MotionEvent?) = true
+            override fun onDown(e: MotionEvent): Boolean = true
 
             override fun onDoubleTap(e: MotionEvent): Boolean {
                 if (isScale) {
@@ -79,10 +79,10 @@ class ScaleImage @JvmOverloads constructor(
             }
 
             override fun onScroll(
-                e1: MotionEvent?,
-                e2: MotionEvent?,
-                distanceX: Float,
-                distanceY: Float
+              e1: MotionEvent,
+              e2: MotionEvent,
+              distanceX: Float,
+              distanceY: Float
             ): Boolean {
                 if (isScale) {
                     //记录按下位置并刷新
@@ -106,10 +106,10 @@ class ScaleImage @JvmOverloads constructor(
             }
 
             override fun onFling(
-                e1: MotionEvent?,
-                e2: MotionEvent?,
-                velocityX: Float,
-                velocityY: Float
+              e1: MotionEvent,
+              e2: MotionEvent,
+              velocityX: Float,
+              velocityY: Float
             ): Boolean {
                 if (isScale) {
                     mScroller.fling(
@@ -167,15 +167,15 @@ class ScaleImage @JvmOverloads constructor(
         canvas.drawBitmap(mBitmap, 0f, 0f, mPaint)
     }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        /*** 手势处理和双指缩放处理*/
-        var result = mScaleDetector.onTouchEvent(event)
-        if (!mScaleDetector.isInProgress) {
-            result = mGestureDetector.onTouchEvent(event)
-        }
-
-        return result
+  override fun onTouchEvent(event: MotionEvent): Boolean {
+    /*** 手势处理和双指缩放处理*/
+    var result = mScaleDetector.onTouchEvent(event)
+    if (!mScaleDetector.isInProgress) {
+      result = mGestureDetector.onTouchEvent(event)
     }
+
+    return result
+  }
 
     private fun getAnimator(): ObjectAnimator {
         if (mAnimator == null) {

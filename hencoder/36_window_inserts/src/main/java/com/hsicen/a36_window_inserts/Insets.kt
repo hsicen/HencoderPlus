@@ -3,7 +3,15 @@ package com.hsicen.a36_window_inserts
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.*
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsAnimationCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.doOnAttach
+import androidx.core.view.marginBottom
+import androidx.core.view.marginLeft
+import androidx.core.view.marginRight
+import androidx.core.view.marginTop
+import androidx.core.view.updatePadding
 
 class InitialPadding(
   val left: Int,
@@ -56,12 +64,12 @@ fun View.requestApplyInsetsWhenAttached() {
     requestApplyInsets()
   } else {
     addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
-      override fun onViewAttachedToWindow(v: View?) {
-        v?.removeOnAttachStateChangeListener(this)
-        v?.requestApplyInsets()
+      override fun onViewAttachedToWindow(v: View) {
+        v.removeOnAttachStateChangeListener(this)
+        v.requestApplyInsets()
       }
 
-      override fun onViewDetachedFromWindow(v: View?) = Unit
+      override fun onViewDetachedFromWindow(v: View) = Unit
     })
   }
 }
@@ -101,10 +109,6 @@ fun View.applyIme() {
           return insets
         }
 
-        override fun onEnd(animation: WindowInsetsAnimationCompat) {
-          super.onEnd(animation)
-          // fooView.translationY = 0f
-        }
       })
   }
 }

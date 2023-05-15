@@ -1,11 +1,11 @@
 package com.hsicen.a23_rxjava
 
 import android.annotation.SuppressLint
-import android.app.Service
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.hsicen.a23_rxjava.databinding.ActivityMainBinding
+import com.jakewharton.rxbinding3.view.clicks
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.Single
@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity() {
 
       mBinding.btnGet.clicks().throttleFirst(800, TimeUnit.MILLISECONDS)
         .subscribe { observableInterval() }
-
-      Service
     }
 
     private fun getUser() {

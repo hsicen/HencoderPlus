@@ -23,25 +23,25 @@ class TouchView @JvmOverloads constructor(
     //复杂手势操作  接替onTouchEvent处理事件分发
     private val mGestureDetector = GestureDetectorCompat(context,
         object : GestureDetector.SimpleOnGestureListener() {
-            override fun onDoubleTap(e: MotionEvent?): Boolean {
-                logd("hsc", "双击操作")
-                return true
+            override fun onDoubleTap(e: MotionEvent): Boolean {
+              logd("hsc", "双击操作")
+              return true
             }
 
-            override fun onDown(e: MotionEvent?): Boolean {
+          override fun onDown(e: MotionEvent): Boolean {
 
-                return true
-            }
+            return true
+          }
 
-            override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
-                logd("hsc", "单击操作")
-                return super.onSingleTapConfirmed(e)
-            }
+          override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
+            logd("hsc", "单击操作")
+            return super.onSingleTapConfirmed(e)
+          }
 
-            override fun onSingleTapUp(e: MotionEvent?): Boolean {
-                logd("hsc", "单击抬起")
-                return super.onSingleTapUp(e)
-            }
+          override fun onSingleTapUp(e: MotionEvent): Boolean {
+            logd("hsc", "单击抬起")
+            return super.onSingleTapUp(e)
+          }
         })
 
     /*** 自定义触摸反馈算法*/

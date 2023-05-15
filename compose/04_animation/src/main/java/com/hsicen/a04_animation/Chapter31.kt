@@ -13,7 +13,9 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.slideIn
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -57,7 +59,7 @@ import androidx.compose.ui.unit.dp
 fun ComponentActivity.composeAnimation23() {
 
   setContent {
-    TransitionSquare06()
+    TransitionSquare02()
   }
 }
 
@@ -81,8 +83,7 @@ private fun TransitionSquare01() {
     Button(
       onClick = {
         big = !big
-      }, modifier = Modifier
-        .padding(top = 400.dp)
+      }, modifier = Modifier.padding(top = 400.dp)
     ) {
       Text(text = "Change")
     }
@@ -94,10 +95,16 @@ private fun TransitionSquare01() {
 private fun TransitionSquare02() {
   var big by remember { mutableStateOf(false) }
   val updateTransition = updateTransition(big, label = "big")
-  val size by updateTransition.animateDp(label = "size") { if (it) 200.dp else 80.dp }
-  val corner by updateTransition.animateDp(label = "corner") { if (it) 18.dp else 0.dp }
+  val size by updateTransition.animateDp(label = "size") { if (it) 300.dp else 0.dp }
+  val corner by updateTransition.animateDp(label = "corner") { if (it) 32.dp else 0.dp }
 
-  Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+  Column(
+    horizontalAlignment = Alignment.CenterHorizontally,
+    verticalArrangement = Arrangement.Center,
+    modifier = Modifier
+      .fillMaxSize()
+      .padding(16.dp)
+  ) {
     AnimatedVisibility(big, enter = fadeIn(tween(2000), initialAlpha = 0.5f)) {
       Box(
         modifier = Modifier
@@ -110,8 +117,7 @@ private fun TransitionSquare02() {
     Button(
       onClick = {
         big = !big
-      }, modifier = Modifier
-        .padding(top = 400.dp)
+      }, modifier = Modifier.padding(top = 16.dp)
     ) {
       Text(text = "Change")
     }
@@ -126,7 +132,13 @@ private fun TransitionSquare03() {
   val size by updateTransition.animateDp(label = "size") { if (it) 200.dp else 80.dp }
   val corner by updateTransition.animateDp(label = "corner") { if (it) 18.dp else 0.dp }
 
-  Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+  Column(
+    horizontalAlignment = Alignment.CenterHorizontally,
+    verticalArrangement = Arrangement.Center,
+    modifier = Modifier
+      .fillMaxSize()
+      .padding(16.dp)
+  ) {
     AnimatedVisibility(big, enter = slideIn(tween(2000)) {
       // IntOffset(-it.width, -it.height)
       // IntOffset(0, -it.height)
@@ -143,8 +155,7 @@ private fun TransitionSquare03() {
     Button(
       onClick = {
         big = !big
-      }, modifier = Modifier
-        .padding(top = 400.dp)
+      }, modifier = Modifier.padding(top = 16.dp)
     ) {
       Text(text = "Change")
     }
@@ -158,7 +169,13 @@ private fun TransitionSquare04() {
   val size by updateTransition.animateDp(label = "size") { if (it) 200.dp else 80.dp }
   val corner by updateTransition.animateDp(label = "corner") { if (it) 18.dp else 0.dp }
 
-  Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+  Column(
+    horizontalAlignment = Alignment.CenterHorizontally,
+    verticalArrangement = Arrangement.Center,
+    modifier = Modifier
+      .fillMaxSize()
+      .padding(16.dp)
+  ) {
     AnimatedVisibility(big, enter = slideInHorizontally {// 返回初始便宜宽度
       // it  // it 表示内容的宽度
       -it
@@ -174,8 +191,7 @@ private fun TransitionSquare04() {
     Button(
       onClick = {
         big = !big
-      }, modifier = Modifier
-        .padding(top = 400.dp)
+      }, modifier = Modifier.padding(top = 16.dp)
     ) {
       Text(text = "Change")
     }
@@ -189,16 +205,18 @@ private fun TransitionSquare05() {
   val size by updateTransition.animateDp(label = "size") { if (it) 200.dp else 80.dp }
   val corner by updateTransition.animateDp(label = "corner") { if (it) 18.dp else 0.dp }
 
-  Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-    AnimatedVisibility(
-      big, enter = expandIn(
-        tween(5000),
-        Alignment.TopStart,
-        true
-      ) {
-        IntSize(it.width / 2, it.height / 2)
-      }
+  Column(
+    horizontalAlignment = Alignment.CenterHorizontally,
+    verticalArrangement = Arrangement.Center,
+    modifier = Modifier
+      .fillMaxSize()
+      .padding(16.dp)
+  ) {
+    AnimatedVisibility(big, enter = expandIn(
+      tween(5000), Alignment.TopStart, true
     ) {
+      IntSize(it.width / 2, it.height / 2)
+    }) {
       Box(
         modifier = Modifier
           .size(size)
@@ -210,8 +228,7 @@ private fun TransitionSquare05() {
     Button(
       onClick = {
         big = !big
-      }, modifier = Modifier
-        .padding(top = 400.dp)
+      }, modifier = Modifier.padding(top = 16.dp)
     ) {
       Text(text = "Change")
     }
@@ -223,14 +240,19 @@ private fun TransitionSquare05() {
 private fun TransitionSquare06() {
   var big by remember { mutableStateOf(false) }
   val updateTransition = updateTransition(big, label = "big")
-  val size by updateTransition.animateDp(label = "size") { if (it) 200.dp else 80.dp }
+  val size by updateTransition.animateDp(label = "size") { if (it) 200.dp else 0.dp }
   val corner by updateTransition.animateDp(label = "corner") { if (it) 18.dp else 0.dp }
 
-  Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+  Column(
+    horizontalAlignment = Alignment.CenterHorizontally,
+    verticalArrangement = Arrangement.Center,
+    modifier = Modifier
+      .fillMaxSize()
+      .padding(16.dp)
+  ) {
     AnimatedVisibility(
       big, enter = scaleIn(
-        tween(10000),
-        transformOrigin = TransformOrigin(0f, 0f)
+        tween(5000), transformOrigin = TransformOrigin(0f, 0f)
       )
     ) {
       Box(
@@ -244,8 +266,7 @@ private fun TransitionSquare06() {
     Button(
       onClick = {
         big = !big
-      }, modifier = Modifier
-        .padding(top = 400.dp)
+      }, modifier = Modifier.padding(top = 16.dp)
     ) {
       Text(text = "Change")
     }
