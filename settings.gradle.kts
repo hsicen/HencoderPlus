@@ -8,7 +8,7 @@ include(":Jetpack:viewBinding")
 include(":Jetpack:lifecycle")
 include(":Jetpack:appstartup")
 include(":Jetpack:workmanagersample")
-
+include(":Jetpack:datastore")
 
 
 include(":Inject:koinsample")

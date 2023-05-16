@@ -30,6 +30,8 @@ object Versions {
   const val room = "2.2.6"
   const val dagger = "2.38.1"
   const val lifecycle = "2.3.1"
+
+  const val dataStore = "1.1.0-alpha04"
 }
 
 //依赖库管理
@@ -114,6 +116,11 @@ object Deps {
   const val accompanistInsets = "dev.chrisbanes.accompanist:accompanist-insets:0.6.0"
   const val accompanistPager = "com.google.accompanist:accompanist-pager:0.21.4-beta"
   const val coil = "io.coil-kt:coil-compose:2.0.0-alpha05"
+
+
+  const val dataStoreCore = "androidx.datastore:datastore-core:${Versions.dataStore}"
+  const val dataStorePb = "androidx.datastore:datastore:${Versions.dataStore}"
+  const val dataStoreSp = "androidx.datastore:datastore-preferences:${Versions.dataStore}"
 }
 
 object TestDeps {
