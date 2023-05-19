@@ -14,4 +14,7 @@ dependencies {
   implementation(Deps.dataStoreCore)
   implementation(Deps.dataStoreSp)
   implementation(Deps.dataStorePb)
+
+  // 自动初始化
+  implementation(Deps.startUp)
 }
