@@ -105,7 +105,7 @@ private fun AnimatedContent02() {
   Column {
     AnimatedContent(show, label = "AnimatedContent01",
       transitionSpec = {
-        // 让 targetState 始终被遮盖
+        // 让 targetState 始终被遮盖(最下层)
         if (targetState) {
           (fadeIn(tween(3000)) with
             fadeOut(tween(3000, delayMillis = 3000))).apply {
