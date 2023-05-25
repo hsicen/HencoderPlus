@@ -10,7 +10,7 @@ import android.view.SurfaceHolder
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
 import com.hsicen.a6_okhttp.databinding.ActivityMainBinding
 import com.hsicen.a6_okhttp.interceptor.LoggingInterceptor
 import com.squareup.moshi.Moshi
@@ -41,7 +41,7 @@ import kotlin.concurrent.thread
  * https://square.github.io/okhttp/r8_proguard/
  */
 @SuppressLint("SetTextI18n")
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
   private lateinit var binding: ActivityMainBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
