@@ -4,7 +4,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -43,15 +43,26 @@ fun ComponentActivity.composeModifier04() {
 
 @Composable
 private fun ModifierLayout() {
-  Box(
-    Modifier
-      .size(150.dp)
-      .background(Color.Green)
-      .layout { measurable, constraints ->
-        val placeable = measurable.measure(constraints)
-        layout(placeable.width, placeable.height) {
-          // 自定义布局处理
-          placeable.placeRelative(placeable.width, placeable.height)
-        }
-      })
+  Box(Modifier.background(Color.Yellow)) {
+    Text(
+      "hsicen",
+      Modifier
+        .background(Color.Green)
+        // 修改被修饰组件的尺寸和位置偏移  装饰效果，无法干涉内部的测量和布局
+        .layout { measurable, constraints ->
+          val padGap = 10.dp.roundToPx()
+
+          val placeable = measurable.measure(
+            constraints.copy(
+              maxWidth = constraints.maxWidth - padGap * 2,
+              maxHeight = constraints.maxHeight - padGap * 2
+            )
+          )
+          layout(placeable.width, placeable.height) { // 尺寸
+            // 位置偏移
+            placeable.placeRelative(0, 0)// 默认不偏移
+            //placeable.placeRelative(placeable.width, placeable.height)
+          }
+        })
+  }
 }

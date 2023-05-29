@@ -21,6 +21,7 @@ object Versions {
   const val constraint = "2.1.3"
   const val compose = "1.4.2"
   const val composeCompiler = "1.4.6"
+  const val composeMd3 = "1.2.0-alpha02"
 
   const val hilt = "2.35"
   const val retrofit = "2.9.0"
@@ -102,9 +103,11 @@ object Deps {
 
   const val startUp = "androidx.startup:startup-runtime:1.0.0"
 
-  // 一般依赖 material material-icons-extended ui-tooling 三个就行
+  // 一般依赖 material(3) material-icons-extended ui-tooling 三个就行
   const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
   const val iconExtend = "androidx.compose.material:material-icons-extended:${Versions.compose}"
+  const val composeMaterial3 = "androidx.compose.material3:material3:${Versions.composeMd3}"
+  const val composeMaterial3Window = "androidx.compose.material3:material3-window-size-class:${Versions.composeMd3}"
 
   const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
   const val composeUiUtil = "androidx.compose.ui:ui-util:${Versions.compose}"
