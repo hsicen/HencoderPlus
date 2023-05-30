@@ -4,6 +4,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -48,19 +49,22 @@ private fun ModifierLayout() {
       "hsicen",
       Modifier
         .background(Color.Green)
+        .padding(2.dp)
         // 修改被修饰组件的尺寸和位置偏移  装饰效果，无法干涉内部的测量和布局
         .layout { measurable, constraints ->
           val padGap = 10.dp.roundToPx()
+          val padGap2 = 2 * padGap
 
           val placeable = measurable.measure(
             constraints.copy(
-              maxWidth = constraints.maxWidth - padGap * 2,
-              maxHeight = constraints.maxHeight - padGap * 2
+              maxWidth = constraints.maxWidth - padGap2,
+              maxHeight = constraints.maxHeight - padGap2
             )
           )
-          layout(placeable.width, placeable.height) { // 尺寸
+
+          layout(placeable.width + padGap2, placeable.height + padGap2) { // 尺寸
             // 位置偏移
-            placeable.placeRelative(0, 0)// 默认不偏移
+            placeable.placeRelative(padGap, padGap)
             //placeable.placeRelative(placeable.width, placeable.height)
           }
         })
