@@ -139,7 +139,7 @@ private fun ModifierDraw08() {
   Box(
     modifier = Modifier
       .size(80.dp)
-      .drawWithContent() {
+      .drawWithContent {
         val canvas = drawContext.canvas.nativeCanvas
         val paint = android.graphics
           .Paint()
