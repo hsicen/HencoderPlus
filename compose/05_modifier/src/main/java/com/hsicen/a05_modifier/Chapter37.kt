@@ -5,6 +5,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -24,12 +26,34 @@ import androidx.compose.ui.unit.dp
  *
  * Modifier.layout():
  *   1. 用法：a.调⽤ measurable.measure() 来测量实际的 Composable 组件（或者内层的另⼀个 LayoutModifier ）;
- *           b.⽤返回的 Placeable 对象来计算出实际尺⼨，调⽤ layout() 来吧尺⼨填⼊;
+ *           b.⽤返回的 Placeable 对象来计算出实际尺⼨，调⽤ layout() 来把尺⼨填⼊;
  *           c.同样⽤这个返回的 Placeable 的尺⼨，结合上 constraints 以及⾃身的特性，
  *             计算出偏移量，在 layout() 的 Lambda 参数内部调⽤ Placeable.place<Relative>() 来摆放.
  *   2. 当多个 Modifier.layout() （或其他 LayoutModifier 的函数）连续调⽤时，
  *      会是⼀种「左边测量右边，右边再测量更右边，直到最内部的 Composable 组件」的测量顺序，并且测量之后也会从右往左陆续返回结果。
  *      所以，效果上也会是⼀种「右边总受左边控制」的效果
+ *
+ * 测量流程(remeasure)：
+ *  LayoutNode.remeasure() ->
+ *    LayoutNode.measurePassDelegate.remeasure(constraints) ->
+ *    LayoutNodeLayoutDelegate.MeasurePassDelegate.performMeasure(constraints) ->
+ *    LayoutNodeLayoutDelegate.outerCoordinator.measure(constraints)
+ *
+ *  outerCoordinator = LayoutNodeLayoutDelegate.layoutNode.nodes.outerCoordinator
+ *  measurePassDelegate = layoutDelegate.measurePassDelegate
+ *  layoutDelegate : LayoutNodeLayoutDelegate(LayoutNode)
+ *
+ *  LayoutNode.nodes = NodeChain(LayoutNode) ->
+ *    outerCoordinator = innerCoordinator ->
+ *    innerCoordinator = InnerNodeCoordinator(layoutNode) ->
+ *    measureResultIn = InnerNodeCoordinator.measure()
+ *
+ *  Text("hsicen", Modifier.padding(10.dp).padding(10.dp))
+ *  [LayoutModifier-10.dp -> ModifiedLayoutNode
+ *      [LayoutModifier-20.dp -> ModifiedLayoutNode
+ *          实际组件 Text() innerCoordinator-InnerNodeCoordinator
+ *      ]
+ *  ]
  */
 
 private val LocalActivity = staticCompositionLocalOf<ComponentActivity> { error("没有初始化") }
@@ -37,7 +61,7 @@ fun ComponentActivity.composeModifier04() {
 
   setContent {
     CompositionLocalProvider(LocalActivity provides this) {
-      ModifierLayout()
+      ModifierLayout05()
     }
   }
 }
@@ -68,5 +92,65 @@ private fun ModifierLayout() {
             //placeable.placeRelative(placeable.width, placeable.height)
           }
         })
+  }
+}
+
+@Composable
+private fun ModifierLayout01() {
+  Box(
+    modifier = Modifier
+      .padding(150.dp)
+      .size(200.dp)
+      .background(Color.Green)
+  )
+}
+
+@Composable
+private fun ModifierLayout02() {
+  Box(
+    modifier = Modifier
+      .size(200.dp)
+      .background(Color.Green)
+      .padding(90.dp)
+      .background(Color.Yellow)
+  )
+}
+
+@Composable
+private fun ModifierLayout03() {
+  Box(
+    modifier = Modifier
+      .size(90.dp)
+      .background(Color.Green)
+      .size(200.dp)
+      .background(Color.Yellow)
+  ) {
+    Text(text = "hsicen")
+  }
+}
+
+@Composable
+private fun ModifierLayout04() {
+  Box(
+    modifier = Modifier
+      .size(200.dp)
+      .background(Color.Green)
+      .requiredSize(90.dp)
+      .background(Color.Yellow)
+  ) {
+    Text(text = "hsicen")
+  }
+}
+
+@Composable
+private fun ModifierLayout05() {
+  Box(
+    modifier = Modifier
+      .requiredSize(90.dp)
+      .background(Color.Green)
+      .size(200.dp)
+      .background(Color.Yellow)
+  ) {
+    Text(text = "hsicen")
   }
 }
