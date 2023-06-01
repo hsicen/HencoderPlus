@@ -1,5 +1,6 @@
 package com.hsicen.a05_modifier
 
+import android.graphics.Rect
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.DrawModifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -28,6 +30,10 @@ import androidx.compose.ui.unit.dp
  *  2. ⼀个 Modifier 链条上的多个 DrawModifier ，会以「左边优先于右边」的顺序进⾏调⽤，所以「左边的」总是包含「右边的」；
  *  3. DrawModifier 不会主动绘制内部（右边）的 DrawModifier ，
  *     但 drawContent() 函数可以进⾏这项⼯作，所以需要主动调⽤这个函数来确保绘制的逻辑链条不断开。
+ *
+ * NodeChain ->
+ *    outerCoordinator = innerCoordinator = InnerNodeCoordinator(layoutNode:LayoutNode) ->
+ *
  */
 fun ComponentActivity.composeModifier05() {
   setContent {
@@ -58,7 +64,7 @@ private fun ModifierDraw02() {
   Box(
     modifier = Modifier
       .requiredSize(80.dp)
-      .background(Color.Yellow)
+      .background(Color.Yellow) // 基于右边的 modifier 的范围进行背景绘制
       .requiredSize(40.dp)
   )
 
@@ -69,7 +75,7 @@ private fun ModifierDraw02() {
 private fun ModifierDraw03() {
   Box(
     modifier = Modifier
-      .requiredSize(80.dp)
+      .requiredSize(80.dp) // 会打破右边的尺寸限制，按照要求的尺寸进行绘制
       .background(Color.Yellow)
       .size(40.dp)
   )
@@ -83,7 +89,7 @@ private fun ModifierDraw04() {
     modifier = Modifier
       .size(80.dp)
       .background(Color.Yellow)
-      .requiredSize(40.dp)
+      .requiredSize(40.dp) // 打破给定的尺寸限制
   )
 
   // result: 40.dp
@@ -116,7 +122,7 @@ private fun ModifierDraw06() {
     modifier = Modifier
       .size(80.dp)
       .background(Color.Yellow)
-      .drawWithContent { }
+      .drawWithContent { } // 没有绘制右边的 modifier
 
     // result: 80.dp
   )
@@ -127,7 +133,7 @@ private fun ModifierDraw07() {
   Box(
     modifier = Modifier
       .size(80.dp)
-      .drawWithContent { }
+      .drawWithContent { } // 没有绘制右边的 modifier
       .background(Color.Yellow)
 
     // result: empty
@@ -139,7 +145,7 @@ private fun ModifierDraw08() {
   Box(
     modifier = Modifier
       .size(80.dp)
-      .drawWithContent {
+      .drawWithContent { // 替换绘制内容
         val canvas = drawContext.canvas.nativeCanvas
         val paint = android.graphics
           .Paint()
@@ -148,12 +154,18 @@ private fun ModifierDraw08() {
             strokeWidth = 20f
             style = android.graphics.Paint.Style.FILL
             textSize = 50f
+            isFakeBoldText = true
           }
 
-        drawContent()
-        canvas.drawText("hsicen", 20f, 40f, paint)
+        drawContent() // 绘制原有内容
+        val str = "hsicen & hyy"
+        val rect = Rect()
+        paint.getTextBounds(str, 0, str.length, rect)
+        val width = rect.width()
+        canvas.drawText(str, (80.dp.toPx() - width) / 2f, (80.dp.toPx()) / 2f, paint)
       }
-      .background(Color.Gray)
+      .background(Color.LightGray)
+      .alpha(0.5f)
 
     // result: 80.dp
   )
