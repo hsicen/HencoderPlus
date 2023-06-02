@@ -33,11 +33,30 @@ import androidx.compose.ui.unit.dp
  *
  * NodeChain ->
  *    outerCoordinator = innerCoordinator = InnerNodeCoordinator(layoutNode:LayoutNode) ->
+ *    NodeCoordinator.draw() -> drawContainedDrawModifiers(canvas) ->
+ *      performDraw() -> (wrapped: NodeCoordinator?)?.draw() -> wrapped = NodeChain.innerCoordinator
  *
+ *      layoutNode.mDrawScope.draw()
+ *        canvasDrawScope.draw()
+ *
+ * 包裹关系：
+ * Box(Modifier.padding(8.dp).size(40.dp))
+ *  outerCoordinator: InnerNodeCoordinator
+ *  ModifiedLayoutNode(
+ *    SizeModifier(40.dp),
+ *    [DrawModifier2 -> DrawModifier1, null, null, null, null, null, null]
+ *    ModifiedLayoutNode(
+ *      PaddingModifier(8.dp),
+ *      [DrawModifier3, null, null, null, null, null, null]
+ *      InnerNodeCoordinator(
+ *        [DrawModifier4, DrawModifier5, DrawModifier6, null, null, null, null, null, null]
+ *      )
+ *    )
+ *  )
  */
 fun ComponentActivity.composeModifier05() {
   setContent {
-    ModifierDraw08()
+    ModifierDraw09()
   }
 }
 
@@ -169,4 +188,20 @@ private fun ModifierDraw08() {
 
     // result: 80.dp
   )
+}
+
+
+@Composable
+private fun ModifierDraw09() {
+  Box(
+    modifier = Modifier
+      .size(100.dp)
+      .background(Color.Red) // 左边是右边的背景
+      .background(Color.Yellow)
+  )
+
+  // DrawModifier
+  // 遍历从右到左，使用头插法，插入链表
+  // 绘制左边包着右边
+  // DrawModifier 会与其右边最近的一个 LayoutModifier 放在一起
 }
