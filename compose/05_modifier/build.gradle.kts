@@ -9,3 +9,7 @@ android {
     applicationId = "com.hsicen.a05_modifier"
   }
 }
+
+dependencies {
+  implementation(Deps.extension)
+}

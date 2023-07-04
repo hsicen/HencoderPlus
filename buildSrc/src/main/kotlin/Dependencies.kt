@@ -13,14 +13,14 @@ object Versions {
   const val versionCode = 1
   const val versionName = "1.0"
 
-  const val kotlin = "1.8.20"
-  const val gradle = "8.0.0"
+  const val kotlin = "1.8.22"
+  const val gradle = "8.0.2"
   const val appCompat = "1.3.1"
   const val coreKtx = "1.6.0"
   const val material = "1.4.0"
   const val constraint = "2.1.3"
-  const val compose = "1.4.2"
-  const val composeCompiler = "1.4.6"
+  const val compose = "1.4.3"
+  const val composeCompiler = "1.4.8"
   const val composeMd3 = "1.2.0-alpha02"
 
   const val hilt = "2.35"
