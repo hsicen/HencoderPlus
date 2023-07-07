@@ -19,7 +19,9 @@ fun CustomLayout(
   Layout({ CustomLayoutScopeInstance.content() }, modifier) { measurables, constraints ->
     measurables.forEach {
       //2.拿到 parentData,进行自定义处理
-      val data = it.parentData as? String
+      (it.parentData as? LayoutData)?.let {
+
+      }
     }
 
     layout(80.dp2px, 80.dp2px) {
@@ -27,6 +29,12 @@ fun CustomLayout(
     }
   }
 }
+
+class LayoutData(
+  var str: String = "",
+  var weight: Float = 0f,
+  var big: Boolean = false
+)
 
 @LayoutScopeMarker
 @Immutable
@@ -46,21 +54,21 @@ private object CustomLayoutScopeInstance : CustomLayoutScope {
   @Stable
   override fun Modifier.stringData(str: String) = this.then(object : ParentDataModifier {
     override fun Density.modifyParentData(parentData: Any?): Any {
-      return str
+      return ((parentData as? LayoutData) ?: LayoutData()).also { it.str = str }
     }
   })
 
   @Stable
   override fun Modifier.weightData(weight: Float) = this.then(object : ParentDataModifier {
     override fun Density.modifyParentData(parentData: Any?): Any {
-      return weight
+      return ((parentData as? LayoutData) ?: LayoutData()).also { it.weight = weight }
     }
   })
 
   @Stable
   override fun Modifier.bigData(big: Boolean) = this.then(object : ParentDataModifier {
     override fun Density.modifyParentData(parentData: Any?): Any {
-      return big
+      return ((parentData as? LayoutData) ?: LayoutData()).also { it.big = big }
     }
   })
 }

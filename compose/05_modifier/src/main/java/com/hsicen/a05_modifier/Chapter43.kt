@@ -78,5 +78,9 @@ private fun ModifierParentData02() {
 
     Text("2", modifier = Modifier.stringData("2"))
     Text("3")
+
+    Box(modifier = Modifier.bigData(false)) {
+      Text("4" /*modifier = Modifier.stringData("3")*/)
+    }
   }
 }
