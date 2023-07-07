@@ -21,7 +21,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 
-/******====== 42/43. PointerInputModifier 的功能介绍和原理简析 ======******/
+/******====== 42. PointerInputModifier 的功能介绍和原理简析 ======******/
 
 /**
  * PointerInputModifier 的写法: [ModifierInput01]
