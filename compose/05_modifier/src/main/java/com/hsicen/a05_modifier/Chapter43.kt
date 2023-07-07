@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,7 +18,7 @@ import androidx.compose.ui.unit.dp
 /**
  * 作用：⽤于给⼦组件附加⼀些属性，让⽗组件能在测量和布局的过程中可以拿到，⽤来辅助测量和布局。
  *
- * 写法：
+ * 写法[CustomLayout]：
  *  1.前提：⾸先是要⽤ Layout() 组件去写⼀个⾃定义布局，才会⽤得到它；
  *  2.⾃定义布局的测量和布局的算法⾥，⽤ Measurable.parentData 拿到开发者给⼦组件设置的属性，然后去计算；
  *  3.写⼀个⾃定义的 Modifier 函数，让它的内部创建⼀个 ParentDataModifier ，
@@ -32,7 +33,7 @@ import androidx.compose.ui.unit.dp
  */
 fun ComponentActivity.composeModifier07() {
   setContent {
-    ModifierParentData01()
+    ModifierParentData02()
   }
 }
 
@@ -66,5 +67,16 @@ private fun ModifierParentData01() {
 
 @Composable
 private fun ModifierParentData02() {
+  // 4.使用
+  CustomLayout {
+    Text(
+      "1", modifier = Modifier
+        .stringData("1")
+        .weightData(1f)
+        .bigData(true)
+    )
 
+    Text("2", modifier = Modifier.stringData("2"))
+    Text("3")
+  }
 }
