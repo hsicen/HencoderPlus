@@ -27,9 +27,39 @@ import androidx.compose.ui.unit.dp
  *    (2).可以把 Modifier 函数写进专⻔的接⼝或 object 对象，来避免 API 污染的问题。
  *
  * 原理：
- *  存储结构上，和 DrawModifier 以及 PointerInputModifier 完全⼀致；在执⾏阶段，
- *  也是按照「从左到右」的顺序递归调⽤同⼀个 Composable 组件的所有 ParentDataModifier ，
+ *  存储结构上，和 DrawModifier 以及 PointerInputModifier 完全⼀致；
+ *  在执⾏阶段，也是按照「从左到右」的顺序递归调⽤同⼀个 Composable 组件的所有 ParentDataModifier ，
  *  来确保每⼀个都会起作⽤。
+ *
+ *  Modifier.then(ParentDataModifier1).then(ParentDataModifier2).then(LayoutModifier1)
+ *          .then(ParentDataModifier3).then(ParentDataModifier4).then(LayoutModifier2)
+ *          .then(ParentDataModifier5).then(ParentDataModifier6)
+ *  ==>
+ *  ModifiedLayoutNode(
+ *    LayoutModifier1[
+ *      ...
+ *      ParentDataModifier1 -> ParentDataModifier2
+ *      ...
+ *    ],
+ *    ModifiedLayoutNode(
+ *      LayoutModifier2[
+ *        ...
+ *        ParentDataModifier3 -> ParentDataModifier4
+ *        ...
+ *      ],
+ *      InnerPlaceable(
+ *        [
+ *          ...
+ *          ParentDataModifier5 -> ParentDataModifier6
+ *          ...
+ *        ]
+ *      )
+ *    )
+ *  )
+ *
+ *
+ *  新老 API 类名对应：
+ *    LayoutNodeWrapper -> NodeCoordinator
  */
 fun ComponentActivity.composeModifier07() {
   setContent {
