@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 
 /******====== 47. addBefore 和 addAfter 的区别 ======******/
 /**
+ * 同一个 Modifier 的多重身份，先处理那一重身份
  * 区别：
  *  1. addBefore-() 会让里面的 Modifier 身份早于 LayoutModifier 身份被处理，
  *     导致被包含在 LayoutModifier 所处的 ModifiedLayoutNode 的更内部的一层，
@@ -16,9 +17,9 @@ import androidx.compose.runtime.Composable
  */
 
 fun ComponentActivity.composeModifier09() {
-  setContent {
-    ModifierAdd01()
-  }
+    setContent {
+        ModifierAdd01()
+    }
 }
 
 @Composable
