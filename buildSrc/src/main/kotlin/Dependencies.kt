@@ -13,8 +13,8 @@ object Versions {
   const val versionCode = 1
   const val versionName = "1.0"
 
-  const val kotlin = "1.8.22"
-  const val gradle = "8.0.2"
+  const val kotlin = "1.9.10"
+  const val gradle = "8.1.2"
   const val appCompat = "1.3.1"
   const val coreKtx = "1.6.0"
   const val material = "1.4.0"
