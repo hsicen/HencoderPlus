@@ -7,3 +7,7 @@ android {
     namespace = "com.hsicen.todo"
   }
 }
+
+dependencies {
+  implementation(Deps.extension)
+}

@@ -6,9 +6,9 @@
  */
 
 object Versions {
-  const val minSdk = 24
-  const val compileSdk = 33
-  const val targetSdk = 33
+  const val minSdk = 26
+  const val compileSdk = 34
+  const val targetSdk = 34
 
   const val versionCode = 1
   const val versionName = "1.0"
@@ -19,9 +19,9 @@ object Versions {
   const val coreKtx = "1.6.0"
   const val material = "1.4.0"
   const val constraint = "2.1.3"
-  const val compose = "1.4.3"
-  const val composeCompiler = "1.4.8"
-  const val composeMd3 = "1.2.0-alpha02"
+  const val compose = "1.5.3"
+  const val composeCompiler = "1.5.3"
+  const val composeMd3 = "1.2.0-alpha09"
 
   const val hilt = "2.35"
   const val retrofit = "2.9.0"
