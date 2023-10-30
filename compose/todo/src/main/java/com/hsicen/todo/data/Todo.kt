@@ -1,1 +1,0 @@
-package com.hsicen.todo.dataimport androidx.compose.runtime.getValueimport androidx.compose.runtime.mutableStateOfimport androidx.compose.runtime.setValue/** * 作者：hsicen  11/8/21 21:43 * 邮箱：codinghuang@163.com * 作用： * 描述：HencoderPlus */class Todo {  var name: String by mutableStateOf("")  var completed: Boolean by mutableStateOf(false)}

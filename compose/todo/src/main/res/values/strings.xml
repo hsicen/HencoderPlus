@@ -1,3 +1,11 @@
 <resources>
   <string name="app_name">Todo</string>
+
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="members">%d members</string>
+  <string name="search">Search</string>
+  <string name="info">Information</string>
+  <string name="send">Send</string>
+
+  <string name="textfield_desc">Text input</string>
 </resources>
