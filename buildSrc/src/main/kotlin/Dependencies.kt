@@ -120,6 +120,7 @@ object Deps {
   const val accompanistPager = "com.google.accompanist:accompanist-pager:0.21.4-beta"
   const val coil = "io.coil-kt:coil-compose:2.0.0-alpha05"
 
+  const val liveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
 
   const val dataStoreCore = "androidx.datastore:datastore-core:${Versions.dataStore}"
   const val dataStorePb = "androidx.datastore:datastore:${Versions.dataStore}"

@@ -9,3 +9,7 @@ android {
     applicationId = "com.hsicen.a06_coroutine"
   }
 }
+
+dependencies {
+  implementation(Deps.liveData)
+}
