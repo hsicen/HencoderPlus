@@ -10,4 +10,5 @@ android {
 
 dependencies {
   implementation(Deps.extension)
+  implementation(Deps.composeMaterial3)
 }
