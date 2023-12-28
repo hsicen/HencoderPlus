@@ -3,7 +3,7 @@ package com.hsicen.hellocompose.ui.theme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.colorspace.ColorSpaces
 
-val white = Color(0xFFFFFFFF).convert(ColorSpaces.CieXyz)
+val white = Color(0xFFFFFFFF)
 val white1 = Color(0xFFF7F7F7).convert(ColorSpaces.CieXyz)
 val white2 = Color(0xFFEDEDED).convert(ColorSpaces.CieXyz)
 val white3 = Color(0xFFE5E5E5).convert(ColorSpaces.CieXyz)
