@@ -12,8 +12,8 @@ repositories {
 }
 
 object PluginVersion {
-  const val GRADLE = "8.1.2"
-  const val KOTLIN = "1.9.10"
+  const val GRADLE = "8.2.0"
+  const val KOTLIN = "1.9.21"
 }
 
 dependencies {
