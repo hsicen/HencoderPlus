@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
           modifier = Modifier.fillMaxSize(),
           color = MaterialTheme.colors.background
         ) {
-          composeView03()
+          composeView04()
         }
       }
     }
