@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -90,15 +91,15 @@ fun ComponentActivity.stateScreen110() {
 }
 
 fun ComponentActivity.stateScreen111() {
-  val test = mutableStateOf(1)
+  val test = mutableIntStateOf(1)
 
   setContent {
     Box(
       contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
     ) {
       Log.d(MainActivity.TAG, "stateScreen11 before: $test")
-      Text("${test.value}", fontSize = 30.sp)
-      test.value += 1 // test 值的改变会导致 setContent Scope 一直被重组
+      Text("${test.intValue}", fontSize = 30.sp)
+      test.intValue += 1 // test 值的改变会导致 setContent Scope 一直被重组
       Log.d(MainActivity.TAG, "stateScreen11 after: $test")
     }
   }

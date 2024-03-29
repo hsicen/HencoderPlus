@@ -9,3 +9,4 @@
 .cxx
 /asm_plugin/build/
 asm_lifecycle_repo/
+.kotlin
