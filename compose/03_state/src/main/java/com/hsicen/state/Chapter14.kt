@@ -6,10 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
@@ -28,7 +25,7 @@ import androidx.compose.ui.unit.dp
  * 自定义类型 ？？？
  */
 fun ComponentActivity.stateScreen140() {
-  var num by mutableStateOf(1)
+  var num by mutableIntStateOf(1)
 
   setContent {
     Text(text = "The content of num $num", modifier = Modifier.clickable {
