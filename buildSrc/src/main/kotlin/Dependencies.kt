@@ -15,10 +15,10 @@ object Versions {
 
   const val kotlin = "1.9.23"
   const val gradle = "8.3.2"
-  const val appCompat = "1.3.1"
-  const val coreKtx = "1.6.0"
+  const val appCompat = "1.6.1"
+  const val coreKtx = "1.10.1"
   const val material = "1.4.0"
-  const val constraint = "2.1.3"
+  const val constraint = "2.1.4"
 
   const val compose = "1.6.6"
   const val composeCompiler = "1.5.12"
@@ -26,14 +26,14 @@ object Versions {
 
   const val hilt = "2.35"
   const val retrofit = "2.9.0"
-  const val coroutine = "1.6.0"
+  const val coroutine = "1.8.0"
   const val rxBinding = "3.1.0"
 
   const val room = "2.2.6"
   const val dagger = "2.38.1"
-  const val lifecycle = "2.3.1"
+  const val lifecycle = "2.7.0"
 
-  const val dataStore = "1.1.0-alpha04"
+  const val dataStore = "1.1.1"
 }
 
 //依赖库管理
@@ -99,8 +99,8 @@ object Deps {
   const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
   const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
-  const val activityKtx = "androidx.activity:activity-ktx:1.4.0"
-  const val fragmentKtx = "androidx.fragment:fragment-ktx:1.4.1"
+  const val activityKtx = "androidx.activity:activity-ktx:1.9.0"
+  const val fragmentKtx = "androidx.fragment:fragment-ktx:1.7.0"
 
   const val startUp = "androidx.startup:startup-runtime:1.0.0"
 
@@ -116,7 +116,7 @@ object Deps {
   const val composeFoundation = "androidx.compose.foundation:foundation:${Versions.compose}"
   const val composeFoundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
   const val lifecycleViewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
-  const val activityCompose = "androidx.activity:activity-compose:1.3.0-alpha06"
+  const val activityCompose = "androidx.activity:activity-compose:1.8.0"
   const val accompanistInsets = "dev.chrisbanes.accompanist:accompanist-insets:0.6.0"
   const val accompanistPager = "com.google.accompanist:accompanist-pager:0.21.4-beta"
   const val coil = "io.coil-kt:coil-compose:2.6.0"
