@@ -9,3 +9,7 @@ android {
     applicationId = "com.hsicen.a08_custom"
   }
 }
+
+dependencies {
+  implementation(Deps.extension)
+}
