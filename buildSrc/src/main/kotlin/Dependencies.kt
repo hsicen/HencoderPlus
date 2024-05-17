@@ -16,12 +16,12 @@ object Versions {
   const val kotlin = "2.0.0-RC3"
   const val gradle = "8.3.2"
   const val appCompat = "1.6.1"
-  const val coreKtx = "1.10.1"
+  const val coreKtx = "1.13.1"
   const val material = "1.4.0"
   const val constraint = "2.1.4"
 
   const val compose = "1.6.7"
-  const val composeCompiler = "1.5.13"
+  const val composeCompiler = "1.5.14"
   const val composeMd3 = "1.2.1"
 
   const val hilt = "2.35"
@@ -31,7 +31,7 @@ object Versions {
 
   const val room = "2.2.6"
   const val dagger = "2.38.1"
-  const val lifecycle = "2.7.0"
+  const val lifecycle = "2.8.0"
 
   const val dataStore = "1.1.1"
 }
@@ -60,7 +60,7 @@ object Deps {
   const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
 
   const val gson = "com.google.code.gson:gson:2.8.6"
-  const val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
+  const val recyclerview = "androidx.recyclerview:recyclerview:1.3.2"
   const val cardview = "androidx.cardview:cardview:1.0.0"
 
   const val rxjava = "io.reactivex.rxjava2:rxjava:2.2.10"
@@ -100,7 +100,7 @@ object Deps {
   const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
   const val activityKtx = "androidx.activity:activity-ktx:1.9.0"
-  const val fragmentKtx = "androidx.fragment:fragment-ktx:1.7.0"
+  const val fragmentKtx = "androidx.fragment:fragment-ktx:1.7.1"
 
   const val startUp = "androidx.startup:startup-runtime:1.0.0"
 
@@ -116,9 +116,9 @@ object Deps {
   const val composeFoundation = "androidx.compose.foundation:foundation:${Versions.compose}"
   const val composeFoundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
   const val lifecycleViewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
-  const val activityCompose = "androidx.activity:activity-compose:1.8.0"
-  const val accompanistInsets = "dev.chrisbanes.accompanist:accompanist-insets:0.6.0"
-  const val accompanistPager = "com.google.accompanist:accompanist-pager:0.21.4-beta"
+  const val activityCompose = "androidx.activity:activity-compose:1.9.0"
+  const val accompanistInsets = "com.google.accompanist:accompanist-insets:0.30.1"
+  const val accompanistPager = "com.google.accompanist:accompanist-pager:0.34.0"
   const val coil = "io.coil-kt:coil-compose:2.6.0"
 
   const val liveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
