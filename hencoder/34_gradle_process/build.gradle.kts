@@ -9,5 +9,5 @@ android {
 }
 
 dependencies {
-  compileOnly(Deps.gradle)
+  compileOnly(Deps.plugGradle)
 }
