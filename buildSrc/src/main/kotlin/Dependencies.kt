@@ -43,7 +43,7 @@ object Versions {
   const val activityKtx = "1.9.0"
   const val fragmentKtx = "1.7.1"
 
-  const val retrofit = "2.9.0"
+  const val retrofit = "2.11.0"
   const val coroutine = "1.8.1"
   const val okhttp = "4.9.0"
   const val moshi = "1.12.0"
@@ -83,6 +83,7 @@ object Deps {
   const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
   const val converterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
   const val adapterRxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
+  const val adapterRxjava3 = "com.squareup.retrofit2:adapter-rxjava3:${Versions.retrofit}"
 
   const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
   const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"

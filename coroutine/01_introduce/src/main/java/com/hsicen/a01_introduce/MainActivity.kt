@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      basics01()
+      basics02()
     }
   }
 }

@@ -1,6 +1,3 @@
-import extensions.androidTestImplementation
-import extensions.testImplementation
-
 plugins {
   id("comm.app-compose-module")
 }
@@ -16,4 +13,8 @@ android {
 dependencies {
   implementation(Deps.coroutinesCore)
   implementation(Deps.coroutinesAndroid)
+
+  implementation(Deps.retrofit)
+  implementation(Deps.converterGson)
+  implementation(Deps.adapterRxjava3)
 }
