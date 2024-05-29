@@ -27,9 +27,11 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      basics02()
+      basics04()
     }
+  }
 
+  private fun useInAndroid() {
     // lifecycleScope Dispatcher 为 Main
     lifecycleScope.launch {
       println("@@@lifecycleScope.launch1: ${Thread.currentThread().name}")
