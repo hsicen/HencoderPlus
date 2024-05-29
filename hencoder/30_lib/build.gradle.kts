@@ -4,6 +4,6 @@ plugins {
 
 android {
   defaultConfig {
-    namespace = "com.hsicen.30_lib"
+    namespace = "com.hsicen.a30_lib"
   }
 }

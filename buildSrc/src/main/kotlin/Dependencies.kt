@@ -13,8 +13,8 @@ object Versions {
   const val versionCode = 1
   const val versionName = "1.0"
 
-  const val kotlin = "2.0.0-RC3"
-  const val gradle = "8.4.0"
+  const val kotlin = "2.0.0"
+  const val gradle = "8.4.1"
 
   const val appCompat = "1.6.1"
   const val material = "1.4.0"
@@ -44,7 +44,7 @@ object Versions {
   const val fragmentKtx = "1.7.1"
 
   const val retrofit = "2.9.0"
-  const val coroutine = "1.8.0"
+  const val coroutine = "1.8.1"
   const val okhttp = "4.9.0"
   const val moshi = "1.12.0"
   const val gson = "2.8.6"
