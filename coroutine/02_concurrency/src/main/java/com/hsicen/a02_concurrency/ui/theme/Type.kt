@@ -1,4 +1,4 @@
-package com.hsicen.a01_introduce.theme
+package com.hsicen.a02_concurrency.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

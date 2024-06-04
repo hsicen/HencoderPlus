@@ -75,3 +75,4 @@ include(":compose:09_theory")
 
 /**====== coroutine ======**/
 include(":coroutine:01_introduce")
+include(":coroutine:02_concurrency")
