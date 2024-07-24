@@ -13,6 +13,7 @@ buildscript {
     classpath(Deps.plugGradle)
     classpath(Deps.plugKotlin)
     classpath(Deps.plugHilt)
+      classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
   }
 }
 
