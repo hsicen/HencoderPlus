@@ -13,8 +13,8 @@ object Versions {
   const val versionCode = 1
   const val versionName = "1.0"
 
-  const val kotlin = "2.0.0"
-  const val gradle = "8.4.1"
+  const val kotlin = "2.0.20"
+  const val gradle = "8.5.2"
 
   const val appCompat = "1.6.1"
   const val material = "1.4.0"
@@ -22,7 +22,7 @@ object Versions {
   const val cardview = "1.0.0"
   const val rv = "1.3.2"
 
-  const val compose = "1.6.7"
+  const val compose = "1.6.8"
   const val composeMd3 = "1.2.1"
   const val composeCompiler = "1.5.14"
   const val composeActivity = "1.9.0"
