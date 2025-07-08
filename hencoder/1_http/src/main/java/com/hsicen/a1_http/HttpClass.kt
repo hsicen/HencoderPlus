@@ -9,6 +9,7 @@
  * 一次配置，终生使用
  */
 class HttpClass {
+  //HTML：Hyper Text Markup Language
 
   //定义：Hyper Text Transfer Protocol
   /**
@@ -22,7 +23,7 @@ class HttpClass {
    * 工作方式：
    * 浏览器：联网请求 -> 请求报文拼接 -> 服务器响应 -> 响应报文 -> 数据解析
    * 手机App：联网请求 -> 请求报文拼接 -> 服务器响应 -> 响应报文 -> 数据解析
-   * 渲染引擎：显示HTML文本
+   * 渲染引擎(chrome)：显示HTML文本
    */
 
   //URL  协议类型://服务器地址:端口号/路径  http://www.baidu.com/search?content="Hello world"
@@ -30,8 +31,8 @@ class HttpClass {
 
   //请求报文: Request
   /**
-   * 请求行:  GET  /search(定位)  HTTP/1.1
-   * Header: Host: www.baidu.com
+   * 请求行：GET  /search(定位)  HTTP/1.1
+   * Header：Host: www.baidu.com
    *         Content-Type: text/plain
    *         Content-Length: 21
    *
@@ -40,8 +41,8 @@ class HttpClass {
 
   //响应报文: Response
   /**
-   * 状态行： HTTP/1.1  200  OK
-   * Header: Host: www.baidu.com
+   * 状态行：HTTP/1.1  200  OK
+   * Header：Host: www.baidu.com
    *         Content-Type: text/plain
    *         Content-Length: 21
    *
@@ -50,18 +51,18 @@ class HttpClass {
 
   //请求方法(Request method)
   /**
-   * GET：   获取资源，无body，参数拼接在path后面(@Path)  幂等操作
+   * GET：   获取资源，无body，参数拼接在path后面(@Path)          幂等性操作
    * POST：  增加或修改资源，有body，参数在body里(@Filed)
-   * PUT：   修改资源，有body，参数写在body里(@Path, @Filed)  幂等性操作
-   * DELETE: 删除资源，无body，参数拼接在path后面  幂等性操作
+   * PUT：   修改资源，有body，参数写在body里(@Path, @Filed)      幂等性操作
+   * DELETE: 删除资源，无body，参数拼接在path后面                 幂等性操作
    * HEAD：  和GET相同，但是响应中没有body，只有状态行和Header
    */
 
   //状态码(Response Status Code)：对响应结果做出类型化描述   方便开发调试
   /**
    * 1xx： 临时性消息  (100：继续发送 header -> Expect:100-continue)  (101：正在切换协议  header -> Upgrade: h2c)
-   * 2xx： 成功      （200：成功；201：创建成功）
-   * 3xx： 重定向    （301：永久移动；302：暂时移动；304：内容未改变）
+   * 2xx： 成功       （200：成功；201：创建成功）
+   * 3xx： 重定向     （301：永久移动；302：暂时移动；304：内容未改变）
    * 4xx： 客户端错误 （400：客户端请求错误；401：认证失败；403：被禁止访问；404：内容未找到）
    * 5xx： 服务器错误 （500：服务器内部错误；503：服务器不可用；504：网关超时）
    */

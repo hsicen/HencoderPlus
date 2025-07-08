@@ -18,10 +18,21 @@ class TcpIpClass {
    * 分层：网络的不稳定性，各层功能独立，模块封装，通用
    *
    * 四层网络分层模型：
-   *     应用层(Application Layer)：HTTP，FTP(文件传输)，DNS(网络寻址)
-   *     传输层(Transport Layer)：TCP，UDP  数据分块传输策略，数据组装
-   *     网络层(Internet Layer)：IP  网络寻址，以包为单位发送网络数据
-   *     数据链路层(Link Layer)：以太网，Wi-Fi
+   *     应用层(Application Layer)
+   *        作用：提供用户接口、应用服务；是用户与网络之间的接口，定义应用程序如何使用网络资源
+   *        常见协议：HTTP(网页浏览)，FTP(文件传输)，DNS(网络寻址)，SMTP(电子邮件发送与接收)，SSH(安全远程登录)
+   *
+   *     传输层(Transport Layer)
+   *        作用：端到端通信、流量控制、错误校验；数据分块传输策略，数据组装
+   *        常见协议：TCP(有状态的连接，可靠)，UDP(无状态连接，不可靠)
+   *
+   *     网络层(Internet Layer)
+   *        作用：路由选择、寻址和转发；以包为单位发送网络数据；负责将数据包从源主机传送到目标主机
+   *        常见协议：IP, ICMP, ARP
+   *
+   *     数据链路层(Link Layer)
+   *        作用：物理传输、帧格式、差错检测；负责物理介质上的数据传输
+   *        常见协议：Ethernet(以太网)，Wi-Fi，PPP
    *
    * TCP连接：
    *     什么叫连接：通信双方建立确认可以通信，不会将对方的消息丢弃，即为建立连接，实质是建立一个Socket(host,端口)
@@ -47,7 +58,7 @@ class TcpIpClass {
    *    1.客户端发送一个字节的数据，称为 Client Hello
    *      附加信息：
    *          可选 TLS 版本集合
-   *          可选 Cipher Suite 加密套件集合
+   *          可选 Cipher Suite 加密套件集合(加密算法组合：如何加密，身份校验，完整性校验；示例：TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256)
    *          客户端随机数(客户端生成，随机，唯一，不受环境影响)
    *
    *    2.服务器发送一个字节的数据，称为 Server Hello

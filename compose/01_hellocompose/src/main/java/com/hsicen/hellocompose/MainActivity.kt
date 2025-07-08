@@ -3,6 +3,7 @@ package com.hsicen.hellocompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -18,27 +19,25 @@ import com.hsicen.hellocompose.ui.theme.WeComposeTheme
  */
 @ExperimentalPagerApi
 class MainActivity : ComponentActivity() {
-  private val mViewModel by viewModels<WeViewModel>()
+    private val mViewModel by viewModels<WeViewModel>()
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
 
-    setContent {
-      WeComposeTheme(mViewModel.theme) {
-        Box {
-          Home(mViewModel)
-          ChatPage()
+        setContent {
+            WeComposeTheme(mViewModel.theme) {
+                Box {
+                    Home(mViewModel)
+                    ChatPage()
+                }
+            }
         }
-      }
     }
 
-    window.statusBarColor = getColor(R.color.black)
-  }
-
-  override fun onBackPressed() {
-    if (mViewModel.endChat().not()) {
-      super.onBackPressed()
+    override fun onBackPressed() {
+        if (mViewModel.endChat().not()) {
+            super.onBackPressed()
+        }
     }
-  }
-
 }
