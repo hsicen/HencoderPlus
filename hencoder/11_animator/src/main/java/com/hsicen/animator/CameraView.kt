@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.graphics.withTranslation
 
 /**
  * <p>作者：Hsicen  2019/7/9 7:51
@@ -23,65 +24,63 @@ class CameraView @JvmOverloads constructor(context: Context, attrs: AttributeSet
       invalidate()
     }
   var mTopFlip = 0f
-        set(value) {
-            field = value
-            invalidate()
-        }
-    var mBottomFlip = 0f
-        set(value) {
-            field = value
-            invalidate()
-        }
-
-    private val mPaint by lazy { Paint(Paint.ANTI_ALIAS_FLAG) }
-    private val mBitmap by lazy { getBitmap(mWidth.toInt()) }
-
-    init {
-        mCamera.setLocation(0f, 0f, -8 * (context.resources.displayMetrics.density))
+    set(value) {
+      field = value
+      invalidate()
+    }
+  var mBottomFlip = 0f
+    set(value) {
+      field = value
+      invalidate()
     }
 
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
+  private val mPaint by lazy { Paint(Paint.ANTI_ALIAS_FLAG) }
+  private val mBitmap by lazy { getBitmap(mWidth.toInt()) }
 
-        //绘制上半部分
-        canvas.save()
-        canvas.translate(width / 2f, height / 2f)
-        canvas.rotate(-mRotate)
-        mCamera.save()
-        //旋转是增量值
-        mCamera.rotateX(mTopFlip)
-        mCamera.applyToCanvas(canvas)
-        mCamera.restore()
-        canvas.clipRect(-width / 2f, -height / 2f, width / 2f, 0f)
-        canvas.rotate(mRotate)
-        canvas.translate(-width / 2f, -height / 2f)
-        canvas.drawBitmap(mBitmap, width / 2f - mWidth / 2, height / 2f - mWidth / 2f, mPaint)
-        canvas.restore()
+  init {
+    mCamera.setLocation(0f, 0f, -8 * (context.resources.displayMetrics.density))
+  }
 
-        //绘制下半部分
-        canvas.save()
-        canvas.translate(width / 2f, height / 2f)
-        canvas.rotate(-mRotate)
-        mCamera.save()
-        //旋转是增量值
-        mCamera.rotateX(mBottomFlip)
-        mCamera.applyToCanvas(canvas)
-        mCamera.restore()
-        canvas.clipRect(-width / 2f, 0f, width / 2f, height / 2f)
-        canvas.rotate(mRotate)
-        canvas.translate(-width / 2f, -height / 2f)
-        canvas.drawBitmap(mBitmap, width / 2f - mWidth / 2, height / 2f - mWidth / 2f, mPaint)
-        canvas.restore()
+  override fun onDraw(canvas: Canvas) {
+    super.onDraw(canvas)
+
+    //绘制上半部分
+    canvas.withTranslation(width / 2f, height / 2f) {
+      rotate(-mRotate)
+      mCamera.save()
+      //旋转是增量值
+      mCamera.rotateX(mTopFlip)
+      mCamera.applyToCanvas(this)
+      mCamera.restore()
+      clipRect(-width / 2f, -height / 2f, width / 2f, 0f)
+      rotate(mRotate)
+      translate(-width / 2f, -height / 2f)
+      drawBitmap(mBitmap, width / 2f - mWidth / 2, height / 2f - mWidth / 2f, mPaint)
     }
 
-    private fun getBitmap(width: Int): Bitmap {
-        val options = BitmapFactory.Options()
-        options.inJustDecodeBounds = true
-        BitmapFactory.decodeResource(resources, R.drawable.avatar_rengwuxian, options)
-        options.inJustDecodeBounds = false
-        options.inDensity = options.outWidth
-        options.inTargetDensity = width
-
-        return BitmapFactory.decodeResource(resources, R.drawable.avatar_rengwuxian, options)
+    //绘制下半部分
+    canvas.withTranslation(width / 2f, height / 2f) {
+      rotate(-mRotate)
+      mCamera.save()
+      //旋转是增量值
+      mCamera.rotateX(mBottomFlip)
+      mCamera.applyToCanvas(this)
+      mCamera.restore()
+      clipRect(-width / 2f, 0f, width / 2f, height / 2f)
+      rotate(mRotate)
+      translate(-width / 2f, -height / 2f)
+      drawBitmap(mBitmap, width / 2f - mWidth / 2, height / 2f - mWidth / 2f, mPaint)
     }
+  }
+
+  private fun getBitmap(width: Int): Bitmap {
+    val options = BitmapFactory.Options()
+    options.inJustDecodeBounds = true
+    BitmapFactory.decodeResource(resources, R.drawable.avatar_rengwuxian, options)
+    options.inJustDecodeBounds = false
+    options.inDensity = options.outWidth
+    options.inTargetDensity = width
+
+    return BitmapFactory.decodeResource(resources, R.drawable.avatar_rengwuxian, options)
+  }
 }

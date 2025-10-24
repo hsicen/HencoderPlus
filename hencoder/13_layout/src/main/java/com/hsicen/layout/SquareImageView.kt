@@ -60,7 +60,7 @@ class SquareImageView @JvmOverloads constructor(
         canvas.drawText("$width * $height", width / 2f, height / 2f, mPaint)
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         println("before onDraw")
         super.onDraw(canvas)
         println("after onDraw")

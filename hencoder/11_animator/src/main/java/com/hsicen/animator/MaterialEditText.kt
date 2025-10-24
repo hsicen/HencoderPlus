@@ -12,6 +12,7 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.TypedValue
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.withStyledAttributes
 
 /**
  * 作者：Hsicen  2019/7/25 17:16
@@ -35,10 +36,10 @@ class MaterialEditText(context: Context, attrs: AttributeSet) :
   }
 
   private fun init(context: Context, attrs: AttributeSet) {
-    val typedArray = context.obtainStyledAttributes(attrs, R.styleable.MaterialEditText)
-    useFloatingLabel =
-      typedArray.getBoolean(R.styleable.MaterialEditText_useFloatingLabel, true)
-    typedArray.recycle()
+    context.withStyledAttributes(attrs, R.styleable.MaterialEditText) {
+      useFloatingLabel =
+        getBoolean(R.styleable.MaterialEditText_useFloatingLabel, true)
+    }
 
     paint.textSize = TEXT_SIZE
     onUseFloatingLabelChanged()
@@ -51,10 +52,10 @@ class MaterialEditText(context: Context, attrs: AttributeSet) :
         if (useFloatingLabel) {
           if (floatingLabelShown && TextUtils.isEmpty(s)) {
             floatingLabelShown = false
-            getAnimator()!!.reverse()
+            getAnimator().reverse()
           } else if (!floatingLabelShown && !TextUtils.isEmpty(s)) {
             floatingLabelShown = true
-            getAnimator()!!.start()
+            getAnimator().start()
           }
         }
       }
@@ -86,12 +87,12 @@ class MaterialEditText(context: Context, attrs: AttributeSet) :
     }
   }
 
-  private fun getAnimator(): ObjectAnimator? {
+  private fun getAnimator(): ObjectAnimator {
     if (animator == null) {
       animator =
         ObjectAnimator.ofFloat(this@MaterialEditText, "floatingLabelFraction", 0f, 1f)
     }
-    return animator
+    return animator!!
   }
 
   fun getFloatingLabelFraction(): Float {

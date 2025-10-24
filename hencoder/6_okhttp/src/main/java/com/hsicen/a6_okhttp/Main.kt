@@ -16,6 +16,7 @@ import java.net.Socket
 fun main() {
   try {
     val socket = Socket("rengwuxian.com", 80)
+    //val socket = SSLSocketFactory.getDefault().createSocket("rengwuxian.com", 443)
     val writer = BufferedWriter(OutputStreamWriter(socket.getOutputStream()))
     val reader = BufferedReader(InputStreamReader(socket.getInputStream()))
 

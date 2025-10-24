@@ -12,4 +12,6 @@ import java.net.InetAddress
 fun main(args: Array<String>) {
   println("Resolve: " + InetAddress.getAllByName("www.hencoder.com").toList())
   println("Resolve: " + InetAddress.getAllByName("www.baidu.com").toList())
+  println("Resolve: " + InetAddress.getAllByName("www.hsicen.name").toList())
+  println("Resolve: " + InetAddress.getAllByName("www.hsicen.top").toList())
 }

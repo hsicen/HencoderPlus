@@ -53,6 +53,8 @@ object Versions {
     const val javapoet = "1.12.1"
     const val rxBinding = "3.1.0"
     const val butterKnife = "10.2.3"
+
+    const val glide = "4.12.0"
 }
 
 //依赖库管理
@@ -147,6 +149,9 @@ object Deps {
     const val accompanistInsets = "com.google.accompanist:accompanist-insets:${Versions.accompanistInsets}"
     const val accompanistPager = "com.google.accompanist:accompanist-pager:${Versions.accompanistPager}"
     const val coil = "io.coil-kt:coil-compose:${Versions.composeCoil}"
+
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 }
 
 object TestDeps {

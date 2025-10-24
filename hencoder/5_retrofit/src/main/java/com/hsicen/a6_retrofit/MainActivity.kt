@@ -56,21 +56,26 @@ class MainActivity : AppCompatActivity() {
   private fun fetchData() {
     val repoService = Net.instance().create(GithubService::class.java)
 
+    // RxJava
     repoService.listRepos("hsicen")
       .observeOn(Schedulers.newThread())
       .subscribe(object : SingleObserver<List<Repo>> {
-        override fun onSubscribe(d: Disposable?) {}
-        override fun onSuccess(value: List<Repo>?) {}
-        override fun onError(e: Throwable?) {}
+        override fun onSubscribe(d: Disposable) = Unit
+        override fun onSuccess(t: List<Repo>) = Unit
+        override fun onError(e: Throwable) = Unit
       })
 
     val listRepos = repoService.getUser()
     val cloneCall = listRepos.clone()
 
+    // 异步
     listRepos.enqueue(object : Callback<User> {
       override fun onFailure(call: Call<User>, t: Throwable) {}
       override fun onResponse(call: Call<User>, response: Response<User>) {}
     })
+
+    // 同步
+    cloneCall.execute()
   }
 
   private fun testPractise() {

@@ -21,7 +21,7 @@ import java.nio.charset.Charset
  */
 fun main() {
 
-    okio3()
+  netIo()
 }
 
 /*** 普通网络IO

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.withStyledAttributes
 import com.hsicen.drawing.R
 import com.hsicen.drawing.dp2px
 import kotlin.math.cos
@@ -16,101 +17,99 @@ import kotlin.math.sin
  * 描述：自定义仪表盘控件
  */
 class DashView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private val mPaint by lazy {
-        Paint(Paint.ANTI_ALIAS_FLAG)
+  private val mPaint by lazy {
+    Paint(Paint.ANTI_ALIAS_FLAG)
+  }
+
+  private var openAngle = 120f
+  private var mRadius = 200f.dp2px
+  private var mark = 20
+  private var markPos = 0
+  private var markLength = 180f.dp2px
+
+  private val mArcPath = Path()
+  private var mArcPathMeasure = PathMeasure(mArcPath, false)
+
+  private val dash by lazy {
+    Path().apply {
+      addRect(0f, 0f, 2f.dp2px, 18f.dp2px, Path.Direction.CW)
     }
+  }
+  private var dashEffect = PathDashPathEffect(
+    dash,
+    (mArcPathMeasure.length - 2f.dp2px) / mark,
+    0f,
+    PathDashPathEffect.Style.ROTATE
+  )
 
-    private var openAngle = 120f
-    private var mRadius = 100f.dp2px
-    private var mark = 20
-    private var markPos = 0
-    private var markLength = 80f.dp2px
-
-    private val mArcPath = Path()
-    private var mArcPathMeasure = PathMeasure(mArcPath, false)
-
-    private val dash by lazy {
-        Path().apply {
-            addRect(0f, 0f, 2f.dp2px, 10f.dp2px, Path.Direction.CW)
-        }
+  init {
+    context.withStyledAttributes(attrs, R.styleable.DashView) {
+      openAngle = getFloat(R.styleable.DashView_openAngle, openAngle)
+      mark = getInt(R.styleable.DashView_mark, mark)
+      markLength = getDimension(R.styleable.DashView_markLength, markLength)
+      markPos = getInt(R.styleable.DashView_markPos, markPos)
+      mRadius = getDimension(R.styleable.DashView_radius, mRadius)
     }
-    private var dashEffect = PathDashPathEffect(
-        dash,
-        (mArcPathMeasure.length - 2f.dp2px) / mark,
-        0f,
-        PathDashPathEffect.Style.ROTATE
+  }
+
+  override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+    super.onSizeChanged(w, h, oldw, oldh)
+
+    mArcPath.reset()
+    mArcPath.addArc(
+      width / 2f - mRadius,
+      height / 2f - mRadius,
+      width / 2f + mRadius,
+      height / 2f + mRadius,
+      90 + openAngle / 2,
+      360 - openAngle
     )
 
-    init {
-        val typeArray = context.obtainStyledAttributes(attrs, R.styleable.DashView)
-        openAngle = typeArray.getFloat(R.styleable.DashView_openAngle, openAngle)
-        mark = typeArray.getInt(R.styleable.DashView_mark, mark)
-        markLength = typeArray.getDimension(R.styleable.DashView_markLength, markLength)
-        markPos = typeArray.getInt(R.styleable.DashView_markPos, markPos)
-        mRadius = typeArray.getDimension(R.styleable.DashView_radius, mRadius)
+    mArcPathMeasure = PathMeasure(mArcPath, false)
+    dashEffect = PathDashPathEffect(
+      dash,
+      (mArcPathMeasure.length - 2f.dp2px) / mark,
+      0f,
+      PathDashPathEffect.Style.ROTATE
+    )
+  }
 
-        typeArray.recycle()
-    }
+  override fun onDraw(canvas: Canvas) {
+    super.onDraw(canvas)
 
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
+    //绘制圆弧
+    mPaint.style = Paint.Style.STROKE
+    mPaint.strokeWidth = 2f.dp2px
+    canvas.drawPath(mArcPath, mPaint)
 
-        mArcPath.reset()
-        mArcPath.addArc(
-            width / 2f - mRadius,
-            height / 2f - mRadius,
-            width / 2f + mRadius,
-            height / 2f + mRadius,
-            90 + openAngle / 2,
-            360 - openAngle
-        )
+    //绘制刻度
+    mPaint.style = Paint.Style.FILL
+    mPaint.pathEffect = dashEffect
+    canvas.drawPath(mArcPath, mPaint)
+    mPaint.pathEffect = null
 
-        mArcPathMeasure = PathMeasure(mArcPath, false)
-        dashEffect = PathDashPathEffect(
-            dash,
-            (mArcPathMeasure.length - 2f.dp2px) / mark,
-            0f,
-            PathDashPathEffect.Style.ROTATE
-        )
-    }
+    //绘制原点
+    canvas.drawCircle(width / 2f, height / 2f, 2f.dp2px, mPaint)
 
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
+    //绘制指针
+    mPaint.strokeWidth = 2f.dp2px
+    canvas.drawLine(
+      width / 2f, height / 2f,
+      width / 2f + markLength * cos(getAngleForPos(markPos)),
+      height / 2f + markLength * sin(getAngleForPos(markPos)),
+      mPaint
+    )
 
-        //绘制圆弧
-        mPaint.style = Paint.Style.STROKE
-        mPaint.strokeWidth = 3f.dp2px
-        canvas.drawPath(mArcPath, mPaint)
+  }
 
-        //绘制刻度
-        mPaint.style = Paint.Style.FILL
-        mPaint.pathEffect = dashEffect
-        canvas.drawPath(mArcPath, mPaint)
-        mPaint.pathEffect = null
-
-        //绘制原点
-        canvas.drawCircle(width / 2f, height / 2f, 2f.dp2px, mPaint)
-
-        //绘制指针
-        mPaint.strokeWidth = 2f.dp2px
-        canvas.drawLine(
-            width / 2f, height / 2f,
-            width / 2f + markLength * cos(getAngleForPos(markPos)),
-            height / 2f + markLength * sin(getAngleForPos(markPos)),
-            mPaint
-        )
-
-    }
-
-    private fun getAngleForPos(markPos: Int): Float {
-        //转换成弧度值
-        return Math.toRadians(((90 + openAngle / 2) + markPos * (360 - openAngle) / mark).toDouble())
-            .toFloat()
-    }
-
+  private fun getAngleForPos(markPos: Int): Float {
+    //转换成弧度值
+    return Math.toRadians(((90 + openAngle / 2) + markPos * (360 - openAngle) / mark).toDouble())
+      .toFloat()
+  }
 }
