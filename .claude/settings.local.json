@@ -4,7 +4,16 @@
       "Bash(dir:*)",
       "Bash(gradlew tasks:*)",
       "Bash(./gradlew tasks:*)",
-      "Bash(./gradlew:*)"
+      "Bash(./gradlew:*)",
+      "Bash(mkdir:*)",
+      "Bash(xcopy /E /I /Y buildSrcsrcmainkotlin gradlebuild-logicsrcmainkotlin)",
+      "Bash(powershell -Command:*)",
+      "Bash(java -version:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(jar tf:*)",
+      "Bash(jar xf:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "ask": []

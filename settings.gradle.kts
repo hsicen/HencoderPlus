@@ -1,3 +1,22 @@
+pluginManagement {
+  repositories {
+    maven("https://maven.aliyun.com/repository/public")
+    maven("https://maven.aliyun.com/repository/google")
+    maven("https://maven.aliyun.com/repository/gradle-plugin")
+    google()
+    mavenCentral()
+  }
+  includeBuild("gradle/build-logic")
+}
+
+// Gradle Build Cache 配置
+buildCache {
+  local {
+    directory = File(rootDir, ".gradle/build-cache")
+    removeUnusedEntriesAfterDays = 7
+  }
+}
+
 rootProject.name = "HencoderPlus"
 
 include(":Jetpack:viewmodel")

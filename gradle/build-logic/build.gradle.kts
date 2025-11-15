@@ -12,8 +12,8 @@ repositories {
 }
 
 object PluginVersion {
-  const val GRADLE = "8.4.1"
-  const val KOTLIN = "1.9.24"
+  const val GRADLE = "8.6.0"
+  const val KOTLIN = "2.0.20"
 }
 
 dependencies {
@@ -21,4 +21,5 @@ dependencies {
   implementation("com.android.tools.build:gradle-api:${PluginVersion.GRADLE}")
   implementation("org.jetbrains.kotlin:kotlin-stdlib:${PluginVersion.KOTLIN}")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${PluginVersion.KOTLIN}")
+  implementation("org.jetbrains.kotlin:compose-compiler-gradle-plugin:${PluginVersion.KOTLIN}")
 }

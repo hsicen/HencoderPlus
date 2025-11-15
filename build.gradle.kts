@@ -1,28 +1,28 @@
 buildscript {
   repositories {
-    maven(Mavens.aliyunPublic)
-    maven(Mavens.aliyunGoogle)
-    maven(Mavens.aliyunGooglePlugin)
-    maven(Mavens.jitpackIo)
+    maven("https://maven.aliyun.com/repository/public")
+    maven("https://maven.aliyun.com/repository/google")
+    maven("https://maven.aliyun.com/repository/gradle-plugin")
+    maven("https://jitpack.io")
 
     google()
     mavenCentral()
+    gradlePluginPortal()
   }
 
   dependencies {
-    classpath(Deps.plugGradle)
-    classpath(Deps.plugKotlin)
-    classpath(Deps.plugHilt)
-      classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
+    classpath("com.android.tools.build:gradle:8.6.0")
+    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.20")
+    classpath("com.google.dagger:hilt-android-gradle-plugin:2.52")
   }
 }
 
 allprojects {
   repositories {
-    maven(Mavens.aliyunPublic)
-    maven(Mavens.aliyunGoogle)
-    maven(Mavens.aliyunGooglePlugin)
-    maven(Mavens.jitpackIo)
+    maven("https://maven.aliyun.com/repository/public")
+    maven("https://maven.aliyun.com/repository/google")
+    maven("https://maven.aliyun.com/repository/gradle-plugin")
+    maven("https://jitpack.io")
 
     google()
     mavenCentral()

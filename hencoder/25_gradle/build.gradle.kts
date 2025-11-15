@@ -3,7 +3,7 @@ import java.util.Properties
 
 plugins {
   id("comm.app-module")
-  id("Hencoder")
+  id("comm.hencoder-plugin")
 }
 
 //自定义插件 方式一 直接在groovy文件中定义
