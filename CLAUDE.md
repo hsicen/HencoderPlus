@@ -8,6 +8,8 @@ HencoderPlus is an Android learning project containing course notes and sample i
 
 ## Build Commands
 
+**Note**: On Windows, use `gradlew` instead of `./gradlew` for all commands below.
+
 ### Basic Build Operations
 - `./gradlew build` - Build all modules
 - `./gradlew clean` - Clean build outputs
@@ -67,22 +69,22 @@ The project is organized into 4 main categories:
 
 ### Build Configuration
 
-The project uses a centralized build configuration system via `buildSrc/`:
+The project uses a centralized build configuration system via composite build in `gradle/build-logic/`:
 
-- **Dependencies.kt** - All dependency versions and library definitions
+- **Dependencies.kt** (`gradle/build-logic/src/main/kotlin/Dependencies.kt`) - All dependency versions and library definitions
   - `Versions` object: SDK versions and library version numbers
   - `Deps` object: Library dependencies
   - `TestDeps` object: Testing dependencies
   - `Mavens` object: Repository URLs (uses Aliyun mirrors)
 
-- **Convention Plugins** in `buildSrc/src/main/kotlin/comm/`:
+- **Convention Plugins** in `gradle/build-logic/src/main/kotlin/comm/`:
   - `app-module.gradle.kts` - Standard Android application module config
   - `lib-module.gradle.kts` - Standard Android library module config
   - `app-compose-module.gradle.kts` - Compose application module config
   - `lib-compose-module.gradle.kts` - Compose library module config
   - `kotlin-lib.gradle.kts` - Pure Kotlin/Java library module config
 
-All modules reference these convention plugins for consistent configuration.
+All modules reference these convention plugins for consistent configuration. The build logic is included via `includeBuild("gradle/build-logic")` in `settings.gradle.kts`.
 
 ### Module Types
 
@@ -97,8 +99,9 @@ All modules reference these convention plugins for consistent configuration.
 - **Target SDK**: 34
 - **Compile SDK**: 34
 - **Java Version**: 17
-- **Kotlin Version**: 2.0.20
-- **Gradle Version**: 8.6.0
+- **Kotlin Version**: 2.2.21
+- **Android Gradle Plugin**: 8.13.1
+- **Gradle Version**: 8.14.3
 - **Compose Compiler**: 1.5.14
 
 ## Module Naming Convention
@@ -111,7 +114,7 @@ Modules follow a numbered pattern indicating lesson/topic sequence:
 ## Working with Dependencies
 
 To add a new dependency:
-1. Add the version to `Versions` object in `buildSrc/src/main/kotlin/Dependencies.kt`
+1. Add the version to `Versions` object in `gradle/build-logic/src/main/kotlin/Dependencies.kt`
 2. Add the dependency string to `Deps` or `TestDeps` object
 3. Reference it in module's `build.gradle.kts` using `Deps.dependencyName`
 

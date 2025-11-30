@@ -10,12 +10,12 @@ buildscript {
   }
 
   dependencies {
-    val GRADLE = "8.13.1"
-    val KOTLIN = "2.2.21"
-    val HILT = "2.57.2"
+    val gradle = "8.13.1"
+    val kotlin = "2.2.21"
+    val hilt = "2.57.2"
 
-    classpath("com.android.tools.build:gradle:$GRADLE")
-    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN")
-    classpath("com.google.dagger:hilt-android-gradle-plugin:$HILT")
+    classpath("com.android.tools.build:gradle:$gradle")
+    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin")
+    classpath("com.google.dagger:hilt-android-gradle-plugin:$hilt")
   }
 }
