@@ -11,6 +11,16 @@ pluginManagement {
   includeBuild("gradle/build-logic")
 }
 
+dependencyResolutionManagement {
+  repositories {
+    maven("https://maven.aliyun.com/repository/public")
+    maven("https://maven.aliyun.com/repository/google")
+    maven("https://jitpack.io")
+    google()
+    mavenCentral()
+  }
+}
+
 rootProject.name = "HencoderPlus"
 
 include(":Jetpack:viewmodel")

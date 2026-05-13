@@ -5,15 +5,12 @@
       "Bash(gradlew tasks:*)",
       "Bash(./gradlew tasks:*)",
       "Bash(./gradlew:*)",
-      "Bash(mkdir:*)",
-      "Bash(xcopy /E /I /Y buildSrcsrcmainkotlin gradlebuild-logicsrcmainkotlin)",
-      "Bash(powershell -Command:*)",
-      "Bash(java -version:*)",
-      "Bash(cat:*)",
-      "Bash(find:*)",
-      "Bash(jar tf:*)",
-      "Bash(jar xf:*)",
-      "Bash(git checkout:*)"
+      "Bash(npx skills *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(android skills *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(android skills *)",
+      "PowerShell(Get-ChildItem \"D:\\\\DevTools\\\\Code\\\\HencoderPlus\\\\.skills\" -Recurse -Filter \"SKILL.md\" | ForEach-Object { \"$\\($_.Directory.Name\\): $\\([math]::Round\\($_.Length/1KB, 1\\)\\) KB\" })"
     ],
     "deny": [],
     "ask": []

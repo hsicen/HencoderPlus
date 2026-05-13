@@ -23,6 +23,7 @@ HencoderPlus is an Android learning project containing course notes and sample i
 - `./gradlew connectedAndroidTest` - Run instrumented tests on connected devices
 - `./gradlew lint` - Run lint checks
 - `./gradlew lintDebug` - Run lint on debug variant
+- `./gradlew :coroutine:01_introduce:testDebugUnitTest --tests "com.hsicen.a01_introduce.ExampleTest"` - Run a single test class
 
 ### Working with Specific Modules
 - `./gradlew :compose:todo:assembleDebug` - Build a specific module
@@ -33,7 +34,7 @@ HencoderPlus is an Android learning project containing course notes and sample i
 
 ### Module Organization
 
-The project is organized into 4 main categories:
+The project is organized into 5 main categories:
 
 1. **hencoder/** - Core Android training modules covering:
    - Network (HTTP, Retrofit, OkHttp, TCP/IP)
@@ -66,6 +67,7 @@ The project is organized into 4 main categories:
    - Scopes and contexts
    - Channels and flows
    - Cooperative cancellation
+   - Note: coroutine modules use Compose for UI (not traditional Views)
 
 ### Build Configuration
 
@@ -148,3 +150,5 @@ The project uses Aliyun Maven mirrors for faster dependency downloads in China:
 - The project includes both traditional View-based and modern Compose-based samples
 - Course notes are in markdown files under `note/` directory
 - Each `hencoder` topic has corresponding markdown notes in the module's directory
+- `hencoder/30_*` modules form an annotation processing pipeline: `30_lib_annotation` (defines annotations) → `30_lib_processos` (APT processor) → `30_lib` (runtime binding) → `30_annotation` / `30_annotation_reflection` (demo apps)
+- `hencoder/28_plugin` and `hencoder/28_plugin_lib` are paired: the lib module defines the Gradle plugin, the app module demonstrates its use
