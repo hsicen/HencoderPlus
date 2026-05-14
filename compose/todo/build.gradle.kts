@@ -11,4 +11,5 @@ android {
 dependencies {
   implementation(Deps.extension)
   implementation(Deps.composeMaterial3)
+  implementation(Deps.iconExtend)
 }

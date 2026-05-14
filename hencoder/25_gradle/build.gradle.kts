@@ -47,12 +47,12 @@ android {
   productFlavors {
     create("free") {
       dimension = "paying"
-      buildConfigField("String", "BaseUrl", "https:www.baidu.com.free")
+      buildConfigField("String", "BaseUrl", "\"https:www.baidu.com.free\"")
     }
 
     create("vip") {
       dimension = "paying"
-      buildConfigField("String", "BaseUrl", "https:www.baidu.com.pay")
+      buildConfigField("String", "BaseUrl", "\"https:www.baidu.com.pay\"")
     }
   }
 }

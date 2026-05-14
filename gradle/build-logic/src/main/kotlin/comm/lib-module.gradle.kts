@@ -1,6 +1,6 @@
 package comm
 
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.LibraryExtension
 import Deps
 import TestDeps
 import Versions
@@ -15,10 +15,8 @@ plugins {
   id("com.android.library")
 }
 
-pluginManager.apply("org.jetbrains.kotlin.android")
-
 extensions.configure<LibraryExtension>("android") {
-  compileSdkVersion(Versions.compileSdk)
+  compileSdk = Versions.compileSdk
 
   defaultConfig {
     minSdk = Versions.minSdk

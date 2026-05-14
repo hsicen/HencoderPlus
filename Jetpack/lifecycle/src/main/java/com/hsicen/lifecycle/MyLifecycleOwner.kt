@@ -38,8 +38,7 @@ class MyLifecycleOwner : Activity(), LifecycleOwner {
     mLifecycleRegistry.currentState = Lifecycle.State.DESTROYED
   }
 
-  override fun getLifecycle(): Lifecycle {
-    return mLifecycleRegistry
-  }
+  override val lifecycle: Lifecycle
+    get() = mLifecycleRegistry
 
 }

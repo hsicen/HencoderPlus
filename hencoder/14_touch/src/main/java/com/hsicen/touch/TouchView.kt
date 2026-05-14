@@ -45,7 +45,7 @@ class TouchView @JvmOverloads constructor(
         })
 
     /*** 自定义触摸反馈算法*/
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
+    override fun onTouchEvent(event: MotionEvent): Boolean {
         return mGestureDetector.onTouchEvent(event)
     }
 

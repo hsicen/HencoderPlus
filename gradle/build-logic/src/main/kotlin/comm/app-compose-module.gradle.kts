@@ -1,6 +1,6 @@
 package comm
 
-import com.android.build.gradle.AppExtension
+import com.android.build.api.dsl.ApplicationExtension
 import Deps
 import TestDeps
 import Versions
@@ -16,10 +16,8 @@ plugins {
   kotlin("plugin.compose")
 }
 
-pluginManager.apply("org.jetbrains.kotlin.android")
-
-extensions.configure<AppExtension>("android") {
-  compileSdkVersion(Versions.compileSdk)
+extensions.configure<ApplicationExtension>("android") {
+  compileSdk = Versions.compileSdk
 
   defaultConfig {
     minSdk = Versions.minSdk
@@ -49,9 +47,9 @@ extensions.configure<AppExtension>("android") {
 
   buildFeatures.compose = true
 
-  packagingOptions {
+  packaging {
     resources {
-      excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+      excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
   }
 }
@@ -70,6 +68,7 @@ dependencies {
   implementation(Deps.lifecycleViewmodelKtx)
   implementation(Deps.lifecycleViewmodelCompose)
   implementation(Deps.composeMaterial)
+  implementation(Deps.composeMaterial3)
   androidTestImplementation(TestDeps.composeUiTest)
   debugImplementation(TestDeps.composeUiTooling)
 }

@@ -1,6 +1,6 @@
 package comm
 
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.LibraryExtension
 import Deps
 import TestDeps
 import Versions
@@ -16,10 +16,8 @@ plugins {
   kotlin("plugin.compose")
 }
 
-pluginManager.apply("org.jetbrains.kotlin.android")
-
 extensions.configure<LibraryExtension>("android") {
-  compileSdkVersion(Versions.compileSdk)
+  compileSdk = Versions.compileSdk
 
   defaultConfig {
     minSdk = Versions.minSdk
@@ -47,9 +45,9 @@ extensions.configure<LibraryExtension>("android") {
 
   buildFeatures.compose = true
 
-  packagingOptions {
+  packaging {
     resources {
-      excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+      excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
   }
 }

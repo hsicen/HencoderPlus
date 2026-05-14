@@ -1,1 +1,3 @@
-plugins {  id("comm.app-module")}android {  defaultConfig {    namespace = "com.hsicen.viewBinding"  }}dependencies {  implementation(Deps.material)  implementation(Deps.extension)}
+plugins {  id("comm.app-module")}android {
+  namespace = "com.hsicen.viewbinding"
+}dependencies {  implementation(Deps.material)  implementation(Deps.extension)}

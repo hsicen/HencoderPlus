@@ -89,7 +89,7 @@ class ScaleImageView @JvmOverloads constructor(
     }
 
     //让GestureDetector接管事件的分发
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
+    override fun onTouchEvent(event: MotionEvent): Boolean {
         return mGestureDetector.onTouchEvent(event)
     }
 
@@ -149,7 +149,7 @@ class ScaleImageView @JvmOverloads constructor(
 
         /*** 按下，抬起后  惯性滑动调用此方法*/
         override fun onFling(
-          e1: MotionEvent,
+          e1: MotionEvent?,
           e2: MotionEvent,
           velocityX: Float,
           velocityY: Float
@@ -171,7 +171,7 @@ class ScaleImageView @JvmOverloads constructor(
 
         /*** 按下不松开滑动调用此方法*/
         override fun onScroll(
-          e1: MotionEvent,
+          e1: MotionEvent?,
           e2: MotionEvent,
           distanceX: Float,
           distanceY: Float
