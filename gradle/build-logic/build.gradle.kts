@@ -12,8 +12,9 @@ repositories {
 }
 
 object PluginVersion {
-  const val GRADLE = "8.13.1"
-  const val KOTLIN = "2.2.21"
+  const val GRADLE = "9.2.1"
+  const val KOTLIN = "2.3.21"
+  const val KSP = "2.3.7"
 }
 
 dependencies {
@@ -21,4 +22,5 @@ dependencies {
   implementation("com.android.tools.build:gradle-api:${PluginVersion.GRADLE}")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${PluginVersion.KOTLIN}")
   implementation("org.jetbrains.kotlin:compose-compiler-gradle-plugin:${PluginVersion.KOTLIN}")
+  implementation("com.google.devtools.ksp:symbol-processing-gradle-plugin:${PluginVersion.KSP}")
 }

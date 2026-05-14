@@ -8,6 +8,10 @@ pluginManagement {
     gradlePluginPortal()
   }
 
+  plugins {
+    id("com.google.devtools.ksp") version "2.3.7"
+  }
+
   includeBuild("gradle/build-logic")
 }
 

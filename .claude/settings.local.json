@@ -10,7 +10,9 @@
       "Bash(android skills *)",
       "PowerShell(Get-Command *)",
       "PowerShell(android skills *)",
-      "PowerShell(Get-ChildItem \"D:\\\\DevTools\\\\Code\\\\HencoderPlus\\\\.skills\" -Recurse -Filter \"SKILL.md\" | ForEach-Object { \"$\\($_.Directory.Name\\): $\\([math]::Round\\($_.Length/1KB, 1\\)\\) KB\" })"
+      "PowerShell(Get-ChildItem \"D:\\\\DevTools\\\\Code\\\\HencoderPlus\\\\.skills\" -Recurse -Filter \"SKILL.md\" | ForEach-Object { \"$\\($_.Directory.Name\\): $\\([math]::Round\\($_.Length/1KB, 1\\)\\) KB\" })",
+      "Bash(jar tf *)",
+      "Bash(jar xf *)"
     ],
     "deny": [],
     "ask": []

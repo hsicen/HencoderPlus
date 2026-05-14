@@ -130,22 +130,8 @@ extensions.getByName("animal2")
 extensions.getByType(Animal::class.java)
 extensions.getByType(TypeOf.typeOf(Animal::class.java))
 
-android.applicationVariants
-project.android.applicationVariants
-(project.property("android") as? com.android.build.gradle.internal.dsl.BaseAppModuleExtension)?.applicationVariants
-
-
-afterEvaluate {
-  android.applicationVariants.all {
-    println(mergeResourcesProvider.get().name)
-  }
-}
-
-project.android.applicationVariants.all {
-  outputs.all {
-    (this as? com.android.build.gradle.api.ApkVariantOutput)?.let {
-      it.outputFileName = "${it.baseName}.apk"
-      println(it.outputFileName)
-    }
+androidComponents {
+  onVariants(selector().all()) { variant ->
+    println(variant.name)
   }
 }

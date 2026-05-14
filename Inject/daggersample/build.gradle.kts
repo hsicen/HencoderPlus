@@ -1,5 +1,6 @@
 plugins {
   id("comm.app-module")
+  id("com.google.devtools.ksp")
 }
 
 android {
@@ -11,6 +12,6 @@ android {
 dependencies {
   implementation(Deps.material)
 
-  kapt(Deps.daggerCompiler)
+  ksp(Deps.daggerCompiler)
   implementation(Deps.dagger)
 }

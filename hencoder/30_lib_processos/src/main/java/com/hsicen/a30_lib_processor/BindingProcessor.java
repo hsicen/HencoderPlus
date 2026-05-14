@@ -54,7 +54,7 @@ public class BindingProcessor extends AbstractProcessor {
                     BindView bindView = enclosedElement.getAnnotation(BindView.class);
                     if (bindView != null) {
                         hasBind = true;
-                        constructorBuilder.addStatement("activity.$N = activity.findViewById($L)",
+                        constructorBuilder.addStatement("activity.$N = activity.findViewById(R.id.$L)",
                                 enclosedElement.getSimpleName(), bindView.value());
                     }
                 }

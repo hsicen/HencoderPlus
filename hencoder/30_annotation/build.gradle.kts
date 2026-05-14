@@ -1,5 +1,6 @@
 plugins {
   id("comm.app-module")
+  id("com.google.devtools.ksp")
 }
 
 android {
@@ -9,8 +10,7 @@ android {
 }
 
 dependencies {
-  //implementation project(':30_annotation_reflection')
   implementation(project(":hencoder:30_lib"))
   implementation(project(":hencoder:30_lib_annotation"))
-  kapt(project(":hencoder:30_lib_processos"))
+  ksp(project(":hencoder:30_lib_processos"))
 }

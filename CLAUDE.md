@@ -98,13 +98,13 @@ All modules reference these convention plugins for consistent configuration. The
 ### Common Configuration
 
 - **Min SDK**: 26
-- **Target SDK**: 34
-- **Compile SDK**: 34
+- **Target SDK**: 35
+- **Compile SDK**: 35
 - **Java Version**: 17
-- **Kotlin Version**: 2.2.21
-- **Android Gradle Plugin**: 8.13.1
-- **Gradle Version**: 8.14.3
-- **Compose Compiler**: 1.5.14
+- **Kotlin Version**: 2.3.21
+- **Android Gradle Plugin**: 9.2.1
+- **Gradle Version**: 9.4.1
+- **Compose Compiler**: 2.3.21
 
 ## Module Naming Convention
 

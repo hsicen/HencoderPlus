@@ -8,7 +8,7 @@ import com.hsicen.a30_lib_annotation.BindView
 
 class SecondActivity : AppCompatActivity() {
 
-    @BindView(R.id.tvInfo)
+    @BindView("tvInfo")
     lateinit var mTvInfo: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {

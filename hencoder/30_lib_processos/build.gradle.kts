@@ -5,4 +5,5 @@ plugins {
 dependencies {
   implementation(project(":hencoder:30_lib_annotation"))
   implementation(Deps.javapoet)
+  implementation(Deps.kspApi)
 }

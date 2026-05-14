@@ -1,5 +1,6 @@
 plugins {
   id("comm.app-module")
+  id("com.google.devtools.ksp")
 }
 
 android {
@@ -9,7 +10,7 @@ android {
 }
 
 dependencies {
-  kapt(Deps.roomCompiler)
+  ksp(Deps.roomCompiler)
   implementation(Deps.roomRuntime)
   implementation(Deps.lifecycleViewmodel)
 }

@@ -10,9 +10,9 @@ buildscript {
   }
 
   dependencies {
-    val gradle = "8.13.1"
-    val kotlin = "2.2.21"
-    val hilt = "2.57.2"
+    val gradle = "9.2.1"
+    val kotlin = "2.3.21"
+    val hilt = "2.59.2"
 
     classpath("com.android.tools.build:gradle:$gradle")
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin")

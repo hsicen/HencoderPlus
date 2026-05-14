@@ -1,5 +1,6 @@
 plugins {
   id("comm.app-module")
+  id("com.google.devtools.ksp")
 }
 
 android {
@@ -12,6 +13,6 @@ dependencies {
   implementation(Deps.okhttp)
   testImplementation(TestDeps.mockWebServer)
 
-  kapt(Deps.moshiKotlinCodegen)
+  ksp(Deps.moshiKotlinCodegen)
   implementation(Deps.moshiKotlin)
 }

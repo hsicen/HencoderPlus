@@ -11,10 +11,10 @@ import com.hsicen.a30_lib_annotation.BindView
 
 class MainActivity : AppCompatActivity() {
 
-    @BindView(R.id.rootLayout)
+    @BindView("rootLayout")
     lateinit var mRootLayout: ViewGroup
 
-    @BindView(R.id.tvTitle)
+    @BindView("tvTitle")
     lateinit var mTvTitle: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,5 +1,6 @@
 plugins {
   id("comm.app-module")
+  id("com.google.devtools.ksp")
   id("dagger.hilt.android.plugin")
 }
 
@@ -10,14 +11,8 @@ android {
 }
 
 dependencies {
-  //Hilt 依赖
-  kapt(Deps.hiltAndroidCompiler)
+  ksp(Deps.hiltAndroidCompiler)
   implementation(Deps.hiltAndroid)
 
-  //ButterKnife
   implementation(Deps.butterknife)
-}
-
-kapt {
-  correctErrorTypes = true
 }

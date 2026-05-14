@@ -1,5 +1,6 @@
 package comm
 
+import com.android.build.gradle.LibraryExtension
 import Deps
 import TestDeps
 import Versions
@@ -12,16 +13,15 @@ import Versions
  */
 plugins {
   id("com.android.library")
-  id("kotlin-android")
-  id("kotlin-kapt")
 }
 
-android {
-  compileSdk = Versions.compileSdk
+pluginManager.apply("org.jetbrains.kotlin.android")
+
+extensions.configure<LibraryExtension>("android") {
+  compileSdkVersion(Versions.compileSdk)
 
   defaultConfig {
     minSdk = Versions.minSdk
-    targetSdk = Versions.targetSdk
 
     testInstrumentationRunner = TestDeps.runner
   }
@@ -41,13 +41,7 @@ android {
     targetCompatibility = JavaVersion.VERSION_17
   }
 
-  kotlinOptions {
-    jvmTarget = "17"
-  }
-
-  buildFeatures {
-    viewBinding = true
-  }
+  buildFeatures.viewBinding = true
 }
 
 dependencies {

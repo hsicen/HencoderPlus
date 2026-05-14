@@ -6,31 +6,31 @@
  */
 object Versions {
     const val minSdk = 26
-    const val compileSdk = 34
-    const val targetSdk = 34
+    const val compileSdk = 35
+    const val targetSdk = 35
 
     const val versionCode = 1
     const val versionName = "1.0"
 
-    const val kotlin = "2.2.21"
-    const val gradle = "8.13.1"
+    const val kotlin = "2.3.21"
+    const val gradle = "9.2.1"
+    const val ksp = "2.3.7"
 
-    const val appCompat = "1.7.0"
+    const val appCompat = "1.7.1"
     const val material = "1.12.0"
     const val constraint = "2.1.4"
     const val cardview = "1.0.0"
     const val rv = "1.3.2"
 
-    const val compose = "1.7.1"
-    const val composeMd3 = "1.3.0"
-    const val composeCompiler = "1.5.14"
+    const val compose = "1.11.1"
+    const val composeMd3 = "1.4.0"
     const val composeActivity = "1.9.2"
     const val composeViewModel = "2.8.5"
     const val composeCoil = "2.7.0"
     const val accompanistInsets = "0.30.1"
     const val accompanistPager = "0.36.0"
 
-    const val hilt = "2.52"
+    const val hilt = "2.56.2"
     const val room = "2.6.1"
     const val dagger = "2.38.1"
     const val lifecycle = "2.8.5"
@@ -62,6 +62,7 @@ object Deps {
     const val plugGradle = "com.android.tools.build:gradle:${Versions.gradle}"
     const val plugKotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val plugHilt = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
+    const val plugKsp = "com.google.devtools.ksp:symbol-processing-gradle-plugin:${Versions.ksp}"
 
     val fileMap = mapOf("dir" to "libs", "include" to listOf("*.jar"))
     const val kotlinStb = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
@@ -80,6 +81,7 @@ object Deps {
     const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
     const val moshiKotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
     const val javapoet = "com.squareup:javapoet:${Versions.javapoet}"
+    const val kspApi = "com.google.devtools.ksp:symbol-processing-api:${Versions.ksp}"
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val converterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
