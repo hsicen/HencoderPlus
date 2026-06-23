@@ -1,9 +1,11 @@
 package com.hsicen.a02_sample
 
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -13,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
@@ -168,6 +171,37 @@ private fun ComponentActivity.NameContent() {
             Log.d("StateScreen045", "lifecycleScope 作用域4")
             delay(3000.milliseconds)
             name = "miky"
+        }
+    }
+}
+
+
+@Composable
+fun ComponentActivity.StateScreen046() {
+    // 1,2,3,4,5 -> 3  Button 不是 inline 函数
+    val ctx = LocalContext.current
+
+    Log.d("StateScreen046", "StateScreen046 作用域1")
+    Box(
+        contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
+    ) {
+        var name by mutableStateOf("hsicen")
+        Log.d("StateScreen046", "BOX 作用域2")
+
+        Button({
+            Toast.makeText(ctx, "click me.", Toast.LENGTH_SHORT).show()
+        }) {
+            Text(name, fontSize = 50f.sp)
+            Log.d("StateScreen046", "Button 作用域3")
+        }
+
+        LaunchedEffect(Unit) {
+            Log.d("StateScreen046", "LaunchedEffect 作用域4")
+            lifecycleScope.launch {
+                Log.d("StateScreen046", "lifecycleScope 作用域5")
+                delay(3000.milliseconds)
+                name = "miky"
+            }
         }
     }
 }

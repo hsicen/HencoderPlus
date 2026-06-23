@@ -92,7 +92,7 @@ class MainActivity : ComponentActivity() {
 
     setContent {
       // common components.
-      StateScreen045()
+      StateScreen046()
     }
   }
 
