@@ -93,7 +93,9 @@ All modules reference these convention plugins for consistent configuration. The
 - **Standard Android apps**: Use `comm.app-module` plugin (ViewBinding enabled)
 - **Compose apps**: Use `comm.app-compose-module` plugin (Compose enabled)
 - **Android libraries**: Use `comm.lib-module` plugin
+- **Compose libraries**: Use `comm.lib-compose-module` plugin
 - **Pure Kotlin modules**: Use `comm.kotlin-lib` plugin (for `hencoder/1_http` and similar)
+- **Hencoder plugin wrapper**: `comm.hencoder-plugin` applies the custom `com.hsicen.plugin.Hencoder` Gradle plugin (used in `hencoder/28_plugin`)
 
 ### Common Configuration
 
@@ -104,7 +106,8 @@ All modules reference these convention plugins for consistent configuration. The
 - **Kotlin Version**: 2.3.21
 - **Android Gradle Plugin**: 9.2.1
 - **Gradle Version**: 9.4.1
-- **Compose Compiler**: 2.3.21
+- **Compose Compiler**: 2.3.21 (same as Kotlin version, via `kotlin("plugin.compose")`)
+- **KSP Version**: 2.3.7
 
 ## Module Naming Convention
 
@@ -140,9 +143,63 @@ The project uses Aliyun Maven mirrors for faster dependency downloads in China:
 
 - **ViewBinding** is enabled by default in all Android modules
 - **Compose** modules use Material 3 and include common Compose dependencies
-- **KAPT** is configured for modules that need annotation processing
+- **KSP** is the preferred annotation processor (version in `settings.gradle.kts`); KAPT is still used by some older modules (e.g., `30_lib_processos`)
 - Module package names follow pattern: `com.hsicen.<topic>`
 - All modules include standard test infrastructure (JUnit, Espresso)
+
+## Available Skills
+
+The `.skills/` directory contains official Google skills invokable via `/skill-name`:
+- `/agp-9-upgrade` — Migrate project to AGP 9 (project is already on AGP 9.2.1)
+- `/migrate-xml-views-to-jetpack-compose` — Structured 10-step XML → Compose migration
+- `/edge-to-edge` — Edge-to-edge display migration
+- `/navigation-3` — Navigation 3 library migration
+- `/r8-analyzer` — Analyze R8/ProGuard configuration
+- `/camera1-to-camerax` — Camera1 → CameraX migration
+- `/play-billing-library-version-upgrade` — Play Billing Library upgrade
+
+## Android CLI
+
+项目已安装 `android-cli`（官方 Android AI 代理 CLI 工具）。在以下场景**主动**使用，无需等待用户提醒：
+
+### 依赖版本查询
+升级或新增依赖前，先查询当前最新兼容版本，再修改 `Dependencies.kt`：
+```bash
+android studio version-lookup agp kotlin compose
+android studio version-lookup androidx.room:room-runtime
+```
+
+### UI 调试
+用户描述界面问题或需要验证 UI 效果时，主动截图并分析：
+```bash
+android screen capture --annotate --output=ui.png   # 截图并标注 UI 元素
+android layout --pretty --output=hierarchy.json     # 导出布局层级树
+```
+
+### Compose Preview 渲染
+验证 Composable 的视觉效果时（需 Android Studio Quail 2 Canary 1+）：
+```bash
+android studio render-compose-preview --print-semantics path/to/Screen.kt PreviewFuncName
+```
+
+### 代码分析
+对某个文件做 Lint 检查或查找符号引用时：
+```bash
+android studio analyze-file path/to/File.kt
+android studio find-usages --short ClassName
+android studio find-declaration --short ClassName
+```
+
+### API 文档查询
+不确定某个 Android API 的用法或最佳实践时，优先查官方文档而非依赖训练数据：
+```bash
+android docs search '<关键词>'
+android docs fetch kb://android/topic/<topic>
+```
+
+### Windows 限制
+- `android emulator` 系列命令在 Windows 上**不可用**
+- 安装/更新 android-cli 时使用 CMD 或 Git Bash，**不要用 PowerShell**
 
 ## Notes
 
