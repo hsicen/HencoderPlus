@@ -1,4 +1,7 @@
 {
+  "worktree": {
+    "bgIsolation": "none"
+  },
   "permissions": {
     "allow": [
       "Bash(dir:*)",
